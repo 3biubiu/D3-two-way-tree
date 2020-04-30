@@ -1,0 +1,120 @@
+.jtk-demo-canvas {
+    min-height:690px;
+    border:1px solid #dddee1;
+    background-color:white;
+    position : relative;
+    font-size : 14px;
+}
+
+.flowchart-demo .window {
+    /*border: 1px solid #346789;*/
+    /*box-shadow: 2px 2px 19px #aaa;
+    -o-box-shadow: 2px 2px 19px #aaa;
+    -webkit-box-shadow: 2px 2px 19px #aaa;
+    -moz-box-shadow: 2px 2px 19px #aaa;
+    -moz-border-radius: 0.5em;
+    border-radius: 0.5em;*/
+    opacity: 0.8;
+    width: 11em;
+    height: 2.5em;
+    line-height: 1.5em;
+    cursor: pointer;
+    text-align: center;
+    z-index: 1;
+    position: absolute;
+    background-color: #2768AC;
+    color: #fff;
+    font-family: helvetica, sans-serif;
+    padding: 0.5em;
+    font-size: 0.9em;
+    /*-webkit-transition: -webkit-box-shadow 0.15s ease-in;
+    -moz-transition: -moz-box-shadow 0.15s ease-in;
+    -o-transition: -o-box-shadow 0.15s ease-in;
+    transition: box-shadow 0.15s ease-in;*/
+}
+
+.flowchart-demo .START{
+    border-radius: 1.5em;
+}
+.flowchart-demo .END{
+    border-radius: 1.5em;
+}
+
+/*.flowchart-demo .window:hover {
+    box-shadow: 2px 2px 19px #444;
+    -o-box-shadow: 2px 2px 19px #444;
+    -webkit-box-shadow: 2px 2px 19px #444;
+    -moz-box-shadow: 2px 2px 19px #444;
+    opacity: 0.6;
+}*/
+
+.flowchart-demo .active {
+    border: 1px dotted green;
+}
+
+.flowchart-demo .hover {
+    border: 1px dotted red;
+}
+
+.flowchart-demo .jtk-connector {
+    z-index: 0;
+}
+
+.flowchart-demo .jtk-endpoint, .endpointTargetLabel, .endpointSourceLabel {
+    z-index: 21;
+    cursor: pointer;
+}
+
+.flowchart-demo .aLabel {
+    background-color: white;
+    padding: 0.4em;
+    font: 12px sans-serif;
+    color: #444;
+    z-index: 21;
+    border: 1px solid gray;
+    opacity: 0.8;
+    cursor: pointer;
+    width: inherit;
+}
+
+.flowchart-demo .aLabel.jtk-hover {
+    background-color: #5C96BC;
+    color: white;
+    border: 1px solid white;
+}
+
+
+.jtk-drag {
+    outline: 4px solid pink !important;
+}
+
+path, .jtk-endpoint {
+    cursor: pointer;
+}
+
+.jtk-overlay {
+    background-color:transparent;
+}
+
+.jtk-demo-canvas .APPLY{
+    background-color: #fa8c2a !important;
+}
+
+.jtk-demo-canvas .REFUSED{
+    background-color: #ff0000 !important;
+}
+
+.jtk-demo-canvas .PASS{
+    background-color: #37db72!important;
+}
+
+#canvas b,#canvas strong{
+    font-weight: 500;
+    font-family: 'Microsoft YaHei', SimSun, sans-serif;
+    letter-spacing: 1px;
+}
+
+.tip{
+    margin: 10px 20px;
+    font-size: 14px;
+}

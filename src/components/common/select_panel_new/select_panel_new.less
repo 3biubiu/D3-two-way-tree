@@ -1,0 +1,116 @@
+
+.modal-header{
+  //margin-left: 16px;
+}
+/deep/.ivu-modal .ivu-modal-body{
+  padding: 0;
+}
+/deep/.ivu-modal .ivu-modal-header{
+  padding: 0;
+}
+.modal-search-input{
+  width: 250px;
+  position: relative;
+  margin-right: 8px;
+}
+/deep/.ivu-checkbox-group{
+  margin-top: 4px;
+}
+/deep/.ivu-checkbox-input{
+  width: 14px;
+  height: 14px;
+}
+/deep/.ivu-checkbox{
+  padding-right: 4px;
+  width: 18px;
+  height: 16px;
+  overflow: hidden;
+}
+.search-list{
+  position: absolute;
+  //left: 149px;
+  z-index: 999;
+  background-color: #FFF;
+  width: 250px;
+  max-height: 300px;
+  overflow-y: auto;
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+.search-list ul li{
+  cursor: pointer;
+  color: #707070;
+  font-size: 14px;
+  display: block;
+  width: 100%;
+  padding: 7px 8px;
+}
+.search-list ul li:hover{
+  background-color: #f6f6f6;
+}
+.modal-body{
+  position: relative;
+  //padding: 0 -16px;
+  height: 400px;
+  overflow-y: auto;
+}
+.modal-body .modal-one-item{
+  margin-top:16px;
+  //border: 1px solid #ccc;
+}
+.modal-body .modal-one-item .item-parent,.modal-body .modal-one-item .item-child{
+  cursor: pointer;
+  display: inline-block;
+  //border: 1px solid #ccc;
+  //padding: 5px 10px;
+}
+.item-child{
+    padding:0 4px;
+    color: #666;
+}
+.modal-body .modal-one-item .item-parent{
+  font-size: 16px;
+  //color: #2580ef;
+  font-weight: bold;
+}
+.modal-body .modal-one-item .item-child{
+  //margin: 10px 10px 0 10px;
+}
+.modal-body .modal-one-item .search{
+  border: 1px solid #2580ef !important;
+  position: relative;
+  border-radius: 4px;
+}
+.modal-body .modal-one-item .active{
+  border: 1px solid #2580ef;
+  position: relative;
+}
+.modal-body .modal-one-item .active:after{
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f058";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  color: #2580ef;
+}
+.item-parent input{
+  margin-right:8px;
+}
+[v-cloak]{
+  display: none;
+}
+.item-parent-border .ivu-checkbox-wrapper{
+  margin-right: 0;
+  padding-left:4px;
+}
+.check-all{
+  background-color: #FFF;
+  float: left;
+  margin-left:-16px;
+}

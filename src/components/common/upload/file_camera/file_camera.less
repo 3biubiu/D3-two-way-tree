@@ -1,0 +1,136 @@
+.modal-header {
+    min-height: 16.428571429px;
+}
+.modal-header h4 {
+    height: 40px;
+    padding: 0 3px;
+    color: #333333;
+    line-height: 40px;
+}
+.modal-header h4:before {
+    position: relative;
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    left: 0px;
+    top: 3px;
+    background: #50a6ff;
+    content: "";
+    border: 1px solid #50a6ff;
+    background-clip: padding-box;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+.modal-header span.fa-refresh {
+    color: #008BF5;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.modal-header .tip{
+	color:red;
+	font-size:12px;
+	margin-left:20px;
+}
+
+.pull-right {
+    float: right;
+}
+.clearfix:after {
+    clear: both;
+}
+.date-line {
+    padding: 10px;
+}
+.date-line label{
+	line-height: 2;
+}
+.container{
+	width: 100%;
+	height: 0;
+	padding-bottom: 100%;
+	position: relative;
+}
+.container .photo-box {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 5px;
+}
+.container .photo-box:hover{
+	cursor: pointer;
+}
+.check{
+	position: absolute;
+	right: 0;
+	top: 5px;
+}
+
+
+.timeline {
+    background: url(../../../../assets/mms_common/timeline-line.png) repeat-y 10px;
+    width: 80px;
+    float: left;
+}
+.timeline  *{
+	margin: 0;
+	padding: 0;
+}
+.year li .year-button {
+	cursor: pointer;
+	background: url(../../../../assets/mms_common/timeline-bg.png) 0px -175px no-repeat;
+	height: 25px;
+	padding-left: 22px;
+	margin-left: 8px;
+	line-height: 25px;
+}
+.year li .year-button:hover {
+	background: url(../../../../assets/mms_common/timeline-bg.png) 0px -29px no-repeat
+}
+.year>.active .year-button {
+	background: url(../../../../assets/mms_common/timeline-bg.png) 0px 0px no-repeat;
+	color: #FFF;
+}
+.year>.active .year-button:hover {
+	background: url(../../../../assets/mms_common/timeline-bg.png) 0px 0px no-repeat;
+	color: #FFF;
+}
+.month {
+	display: none;
+	margin-left: 7px;
+}
+.active>.month {
+	display: block
+}
+.month>li {
+	cursor: pointer;
+	height: 25px;
+	padding-right: 15px;
+	line-height: 25px;
+	text-align: right;
+}
+.month>li a {
+	color: #000000;
+	text-decoration: none;
+}
+.month>li.active {
+	background: url(../../../../assets/mms_common/timeline-bg.png) 0px -89px no-repeat;
+}
+.month>li.active a {
+	color: #FFF;
+	text-decoration: none;
+}
+.month>li:hover {
+	background: url(../../../../assets/mms_common/timeline-bg.png) 0px -119px no-repeat;
+}
+.month>li.active:hover {
+	background: url(../../../../assets/mms_common/timeline-bg.png) 0px -89px no-repeat;
+}
+
+.scroll-container{
+	height: 300px;
+	overflow-y: scroll;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	box-sizing: border-box;
+}
