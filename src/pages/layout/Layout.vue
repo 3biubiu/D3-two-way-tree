@@ -1,15 +1,16 @@
 <template>
     <div class="main">
         <top-notification ref="topNotification" :msg="msg"></top-notification>
-        <header-menu @shrink-menu="shrinkMenu" :powerHeaderData="powerHeaderData"></header-menu>
-        <div class="sidebar-menu-con" :style="{width: shrink?'64px':'220px'}">
-            <shrinkable-menu
+        <heade-menu ></heade-menu>
+        <div class="sidebar-menu-con" :style="{width: shrink?'64px':'240px'}">
+            <!-- <shrinkable-menu
                 :shrink="shrink"
                 :power="powerSiderData"
                 :theme="menuTheme"
                 :sub-num="sideBarNumber"
                 :menu-list="menuList">
-            </shrinkable-menu>
+            </shrinkable-menu> -->
+            <slide-bar></slide-bar>
         </div>
         <div class="single-page-con" id="js-main-content" ref="pageBody" :style="{marginLeft: shrink?'64px':'220px'}">
             <div class="single-page">
@@ -30,7 +31,8 @@
     import ShrinkableMenu from './business/ShrinkableMenu.vue';
     import menuArray from '@/static_data/menu_array.js';
     import CommonFooter from './business/CommonFooter.vue';
-    import HeaderMenu from "./business/HeaderMenu.vue";
+    import HeadeMenu from "./business/head_menu/HeadMenu";
+    import SlideBar from "./business/slide_bar/SlideBar";
     import $api from "@/api/index.js";
     import utils from "@/utils";
     import Cookie from 'js-cookie';
@@ -42,7 +44,8 @@
             ShrinkableMenu,
             CommonFooter,
             TopNotification,
-            HeaderMenu
+            HeadeMenu,
+            SlideBar
         },
         data () {
             return {
