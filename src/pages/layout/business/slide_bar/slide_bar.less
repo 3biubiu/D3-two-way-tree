@@ -1,0 +1,69 @@
+.menu-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    .menu-content-left {
+        width: 220px;
+        height: 100%;
+        // background-color:#1a2233;
+        background-color: #3c4454;
+        .menu-group-title {
+            color: #fff;
+            opacity: 0.5;
+            font-size: 14px;
+            height: 44px;
+            line-height: 44px;
+            margin-left: 24px;
+            cursor: pointer;
+            &:hover {
+                opacity: 1;
+            }
+        }
+        .menu-group-list {
+            /deep/ .ivu-menu-submenu-title {
+                padding-left: 24px;
+                padding-right: 16px;
+                background-color: #1a2233;
+                color: rgba(255, 255, 255, 0.7);
+                &:hover {
+                    color: #fff;
+                }
+                i {
+                    width: 16px;
+                    height: 16px;
+                    font-size: 16px;
+                    display: inline-block;
+                    box-sizing: content-box;
+                    &.sceond-icon {
+                        padding-right: 18px;
+                    }
+                }
+            }
+            /deep/ .ivu-menu-item {
+                background-color: #121926;
+                color: rgba(255, 255, 255, 0.7);
+                &:hover {
+                    color: #fff;
+                }
+                &.second-menu {
+                    padding-left: 56px;
+                }
+                i {
+                    width: 16px;
+                    height: 16px;
+                    font-size: 16px;
+                    display: inline-block;
+                    box-sizing: content-box;
+                    margin-right: 11px;
+                    &.sceond-icon {
+                        padding-left: 16px;
+                    }
+                }
+            }
+            /deep/ .ivu-menu-item-active{
+                color: #fff;
+                    background-color: #1f6cdd;
+            }
+        }
+    }
+}
