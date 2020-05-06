@@ -5,64 +5,132 @@
     .menu-content-left {
         width: 220px;
         height: 100%;
-        // background-color:#1a2233;
         background-color: #3c4454;
         .menu-group-title {
             color: #fff;
-            opacity: 0.5;
-            font-size: 14px;
-            height: 44px;
-            line-height: 44px;
-            margin-left: 24px;
-            cursor: pointer;
-            &:hover {
-                opacity: 1;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-left: 15px;
+            margin-top: 36px;
+            padding-bottom: 20px;
+            span {
+                margin-right: 11px;
+                display: inline-block;
+                float: left;
+                position: relative;
+                height: 16px;
+                width: 4px;
+                background-color: #28b294;
+                border: 1px solid #28b294;
+                border-radius: 3px;
+                top: 1px;
             }
         }
         .menu-group-list {
+            background-color: rgba(36,47,63,0.7);
             /deep/ .ivu-menu-submenu-title {
-                padding-left: 24px;
+                padding-left: 43px;
                 padding-right: 16px;
-                background-color: #1a2233;
-                color: rgba(255, 255, 255, 0.7);
+                background-color: #3c4454;
                 &:hover {
                     color: #fff;
                 }
                 i {
+                    color: #ffff;
+                    opacity: 0.5;
+                    position: absolute;
+                    top: 17px;
+                    font-size: 13px;
                     width: 16px;
                     height: 16px;
-                    font-size: 16px;
                     display: inline-block;
                     box-sizing: content-box;
+                    &.ivu-menu-submenu-title-icon {
+                        opacity: 0;
+                    }
                     &.sceond-icon {
                         padding-right: 18px;
                     }
+                    &.icon-fa {
+                        left: 30px;
+                    }
+                    &.drop-icon {
+                        transform: rotate(90deg);
+                        right: 15px;
+                        font-size: 12px;
+                    }
+                }
+                span {
+                    color: #ffff;
+                    opacity: 0.5;
+                    margin-left: 12px;
+                }
+                &:hover {
+                    background-color: rgba(36,47,63,0.7);
+                    color: #2D8cF0;
                 }
             }
             /deep/ .ivu-menu-item {
                 background-color: #121926;
-                color: rgba(255, 255, 255, 0.7);
                 &:hover {
-                    color: #fff;
+                    color: #2D8cF0;
                 }
                 &.second-menu {
                     padding-left: 56px;
                 }
+                a {
+                    display: block;
+                    color: #fff;
+                    &:hover {
+                        color: #2D8cF0;
+                    }
+                }
                 i {
-                    width: 16px;
-                    height: 16px;
-                    font-size: 16px;
+                    width: 12px;
+                    font-size: 12px;
                     display: inline-block;
                     box-sizing: content-box;
-                    margin-right: 11px;
+                    margin-right: 13px;
+                    position: relative;
+                    top: -3px;
                     &.sceond-icon {
                         padding-left: 16px;
                     }
                 }
+                span {
+                    position: relative;
+                    top: -3px;
+                    left: -3px;
+                }
             }
             /deep/ .ivu-menu-item-active{
-                color: #fff;
-                    background-color: #1f6cdd;
+                color: #2D8cF0;
+                background-color: #1f6cdd;
+            }
+            /deep/.ivu-menu-submenu {
+                background-color: rgba(36,47,63,0.7);
+                &.ivu-menu-opened {
+                    .ivu-menu-submenu-title {
+                        background-color: rgba(36,47,63,0.7);
+                        i {
+                            opacity: 1;
+                            &.ivu-menu-submenu-title-icon {
+                                opacity: 0;
+                            }
+                            &.drop-icon {
+                                opacity: 0.5;
+                                font-size: 12px;
+                            }
+                        }
+                        span {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+            /deep/ .ivu-menu-item {
+                background-color: rgba(36,47,63,0.7);
             }
         }
     }

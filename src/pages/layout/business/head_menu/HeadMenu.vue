@@ -4,12 +4,8 @@
             <a href="#" class="menu-logo"> 
                 <img src="@/assets/mms_common/xnlogo.png" alt="">
             </a>
-            <a href="#" class="menu-head-home">
-                <i  class="fa fa-home "></i>
-            </a>
-            <a href="#" class="menu-head-home">
-                <i class="fa fa-bars "></i>
-            </a>
+            <i  class="fa fa-home menu-head-home"></i>
+            <i class="fa fa-bars menu-head-home"></i>
         </div>
         <ul class="menu-head-center dropdown clearfix">
             <li class="active"><a href="#">首页</a></li>
@@ -35,27 +31,27 @@
                 <img class="menu-ten-logo" src="@/assets/mms_common/header_icon_10year.png" alt="">
                 <a class="company-href" href="#">单位：选哪儿官方</a>
             </li>
-            <li>
-                <a href="#" class="menu-search clearfix" @mouseover="showSelect" @click="hideSelect">
+            <li  @mouseover="showSelect" @click="hideSelect">
+                <div class="menu-search clearfix" @mouseover="showSelect" @click="hideSelect">
                     <i class="fa fa-search"></i>
                     <span>搜索</span>
-                </a>
+                </div>
                  <div class="menu-head-search" v-if="isShowSelect">
                     <select  class="menu-search-select">
                         <option value="全部" >全部</option>
                         <option value="项目" >项目</option>
                         <option value="载体" >载体</option>
                     </select>
-                    <Input type="text" class="menu-search-input" />
+                    <input type="text" class="menu-search-input" placeholder="企业 编号 电话 姓名 联系方式 备注 介绍" />
                     <Button type="primary" class="menu-search-button">搜索</Button>
                 </div>
             </li>
             <li>
-                <a href="#" class="clearfix" @click="showUser">
+                <div class="clearfix" @click="showUser">
                     <i class="fa fa-user"></i>李璐瑶
                     <i class="caret"></i>
                     <span class="count msg-count">3</span>
-                </a>
+                </div>
                 <div class="menu-name-wrapper" v-if="isShowUser">
                     <a href="#">
                         <i class="fa fa-user menu-user"></i>用户中心
@@ -67,13 +63,13 @@
                 </div>
             </li>
             <li @mouseover="showMessage" @mouseout="hideMessage">
-                <a  href="#" class="clearfix">
+                <div class="clearfix">
                     <i class="fa fa-envelope-o"></i>消息
                     <span class="count msg-count">3</span>
-                </a>
+                </div>
                 <div class="menu-mess-wrapper" v-show="isShowMessage">
                     <a href="#" class="mess-list">
-                       <img class="mess-type" src="@/assets/mms_common/icon_1.jpg" alt=""> 
+                       <img class="mess-type" src="@/assets/mms_common/head_message.jpg" alt=""> 
                        <div class="mess-cont">
                             <p>暂无未读消息</p>
                             <p>鼓风机时发生纠纷很舒服滑动事件</p>
@@ -87,10 +83,10 @@
                 </div>
             </li>
             <li>
-                <a  href="#" class="clearfix" @click="showSchool">
+                <div class="clearfix" @click="showSchool">
                     <i class="fa fa-folder-open"></i>学院
                     <i class="caret"></i>
-                </a>
+                </div>
                 <div class="menu-name-wrapper" v-if="isShowSchool">
                     <a href="#">
                         <i class="fa fa-question-circle  menu-user menu-mess"></i>问答学院
@@ -104,9 +100,9 @@
                 </div>
             </li>
             <li>
-                <a  href="#" class="clearfix" @click="signOut">
+                <div class="clearfix" @click="signOut">
                     <i class="fa fa-power-off"></i>退出
-                </a>
+                </div>
             </li>
         </ul>
         <Modal

@@ -3,20 +3,14 @@
         <top-notification ref="topNotification" :msg="msg"></top-notification>
         <heade-menu ></heade-menu>
         <div class="sidebar-menu-con" :style="{width: shrink?'64px':'240px'}">
-            <!-- <shrinkable-menu
-                :shrink="shrink"
-                :power="powerSiderData"
-                :theme="menuTheme"
-                :sub-num="sideBarNumber"
-                :menu-list="menuList">
-            </shrinkable-menu> -->
             <slide-bar></slide-bar>
         </div>
         <div class="single-page-con" id="js-main-content" ref="pageBody" :style="{marginLeft: shrink?'64px':'220px'}">
             <div class="single-page">
                 <router-view ref="view"/>
             </div>
-            <common-footer></common-footer>
+            <!-- <common-footer></common-footer> -->
+            <common-pendant></common-pendant>
         </div>
         <div v-if="ucmsOn">
             <div v-if="!isInternalUser" class="user-login-logout">
@@ -33,6 +27,7 @@
     import CommonFooter from './business/CommonFooter.vue';
     import HeadeMenu from "./business/head_menu/HeadMenu";
     import SlideBar from "./business/slide_bar/SlideBar";
+    import CommonPendant from "./business/common_pendant/CommonPendant";
     import $api from "@/api/index.js";
     import utils from "@/utils";
     import Cookie from 'js-cookie';
@@ -45,7 +40,8 @@
             CommonFooter,
             TopNotification,
             HeadeMenu,
-            SlideBar
+            SlideBar,
+            CommonPendant
         },
         data () {
             return {
