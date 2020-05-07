@@ -1,15 +1,15 @@
 <template>
     <div class="main">
         <top-notification ref="topNotification" :msg="msg"></top-notification>
-        <heade-menu ></heade-menu>
+        <heade-menu ref="head" @open="open"></heade-menu>
         <div class="sidebar-menu-con" :style="{width: shrink?'64px':'240px'}">
-            <slide-bar></slide-bar>
+            <slide-bar  @hide-drop-down="hideDrop" :shrink="shrink"></slide-bar>
         </div>
-        <div class="single-page-con" id="js-main-content" ref="pageBody" :style="{marginLeft: shrink?'64px':'220px'}">
+        <div class="single-page-con" id="js-main-content"  ref="pageBody" :style="{marginLeft: shrink?'64px':'220px'}">
             <div class="single-page">
                 <router-view ref="view"/>
             </div>
-            <!-- <common-footer></common-footer> -->
+            <common-footer ></common-footer>
             <common-pendant></common-pendant>
         </div>
         <div v-if="ucmsOn">
@@ -24,7 +24,7 @@
     import TopNotification from '@/components/common/top_notification/TopNotification.vue';
     import ShrinkableMenu from './business/ShrinkableMenu.vue';
     import menuArray from '@/static_data/menu_array.js';
-    import CommonFooter from './business/CommonFooter.vue';
+    import CommonFooter from './business/footer/Footer.vue';
     import HeadeMenu from "./business/head_menu/HeadMenu";
     import SlideBar from "./business/slide_bar/SlideBar";
     import CommonPendant from "./business/common_pendant/CommonPendant";
@@ -158,7 +158,14 @@
             /*
             * 左侧菜单未读消息
             */
-            ...mmsCommon.mapActions([ 'saveSideBarNumber','saveDealLeftFieldTips'])
+            ...mmsCommon.mapActions([ 'saveSideBarNumber','saveDealLeftFieldTips']),
+            open(){
+                this.shrink = !this.shrink
+            },
+            hideDrop(){
+                this.$refs.head.hideDropDown();
+                
+            }
         }
     };
 </script>
