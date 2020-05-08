@@ -9,7 +9,7 @@ let config = {
 	// layout.vue组件内用的---谷川币
 	currencyApi: 'http://www.currency_api.com/api',// 谷川币 接口地址	
 	currencyWs: 'wss://tcs.tanikawa.com/ws',// 谷川币ws host
-	compaintLink: 'http://www.baidu.com',//挂件-投诉    
+	compaintLink: 'https://tanikawa.wjx.cn/jq/44181292.aspx',//挂件-投诉    
 
 	// 登录地址，
 	loginUrl : 'http://mms.app_php.com',  //不能和mmsHost合并。某些情况下两者不同
