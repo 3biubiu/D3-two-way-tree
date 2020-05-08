@@ -162,9 +162,12 @@
             open(){
                 this.shrink = !this.shrink
             },
+             /**
+            * 隐藏头部下拉
+            * @author liluyao & 2020-5-8 08:47:28
+            */
             hideDrop(){
-                this.$refs.head.hideDropDown();
-                
+                this.$refs.head.hideDropDown();               
             }
         }
     };

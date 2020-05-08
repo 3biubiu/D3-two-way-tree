@@ -208,12 +208,17 @@ export default {
             this.showForm = true;
             this.submitData.url = window.location.href;
         },
+         /**
+        * 提交
+        * @author liluyao & 2020-5-8 08:49:19
+        */
         submitForm(){
 
         },
         /**
         * 滚动
         * @author liluyao & 2020-5-6 20:11:34
+        * @param {object} e 事件对象
         */
         handleScroll(e) {
             let scrolltop = e.target.scrollTop;

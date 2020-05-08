@@ -210,6 +210,10 @@ export default {
         open(){
             this.$emit('open')
         },
+         /**
+        * 隐藏头部下拉
+        * @author liluyao 2020-5-8 08:48:01
+        */
         hideDropDown(){
             this.isShowUser = false;
             this.isShowSchool = false;
