@@ -4,12 +4,10 @@
             <a href="#" class="menu-logo"> 
                 <img src="@/assets/mms_common/xnlogo.png" alt="">
             </a>
-            <a href="#" class="menu-head-home">
-                <i  class="fa fa-home "></i>
+            <a href="#">
+                <i  class="fa fa-home menu-head-home"></i>
             </a>
-            <a href="#" class="menu-head-home">
-                <i class="fa fa-bars "></i>
-            </a>
+            <i class="fa fa-bars menu-head-home" @click="open"></i>
         </div>
         <ul class="menu-head-center dropdown clearfix">
             <li class="active"><a href="#">首页</a></li>
@@ -31,32 +29,32 @@
             <li><a href="#">产业</a></li>
         </ul>
         <ul class="menu-head-right dropdown">
-            <li>
+            <li >
                 <img class="menu-ten-logo" src="@/assets/mms_common/header_icon_10year.png" alt="">
                 <a class="company-href" href="#">单位：选哪儿官方</a>
             </li>
-            <li>
-                <a href="#" class="menu-search clearfix" @mouseover="showSelect" @click="hideSelect">
+            <li >
+                <div class="menu-search clearfix" @mouseover="showSelect" @click="hideSelect">
                     <i class="fa fa-search"></i>
                     <span>搜索</span>
-                </a>
-                 <div class="menu-head-search" v-if="isShowSelect">
+                </div>
+                 <div class="menu-head-search" v-show="isShowSelect">
                     <select  class="menu-search-select">
                         <option value="全部" >全部</option>
                         <option value="项目" >项目</option>
                         <option value="载体" >载体</option>
                     </select>
-                    <Input type="text" class="menu-search-input" />
+                    <input type="text" class="menu-search-input" placeholder="企业 编号 电话 姓名 联系方式 备注 介绍" />
                     <Button type="primary" class="menu-search-button">搜索</Button>
                 </div>
             </li>
-            <li>
-                <a href="#" class="clearfix" @click="showUser">
-                    <i class="fa fa-user"></i>李璐瑶
-                    <i class="caret"></i>
-                    <span class="count msg-count">3</span>
-                </a>
-                <div class="menu-name-wrapper" v-if="isShowUser">
+            <li >
+                <div class="clearfix menu-user list-li" @click="showUser" >
+                        <i class="fa fa-user menu-user-icon"></i>李璐瑶
+                        <i class="caret"></i>
+                        <span class="count msg-count  menu-user-icon">3</span>
+                </div>
+                <div class="menu-name-wrapper" v-if="isShowUser" >
                     <a href="#">
                         <i class="fa fa-user menu-user"></i>用户中心
                         <span class="count msg-counts">36</span>
@@ -67,13 +65,13 @@
                 </div>
             </li>
             <li @mouseover="showMessage" @mouseout="hideMessage">
-                <a  href="#" class="clearfix">
+                <div class="clearfix">
                     <i class="fa fa-envelope-o"></i>消息
                     <span class="count msg-count">3</span>
-                </a>
+                </div>
                 <div class="menu-mess-wrapper" v-show="isShowMessage">
                     <a href="#" class="mess-list">
-                       <img class="mess-type" src="@/assets/mms_common/icon_1.jpg" alt=""> 
+                       <img class="mess-type" src="@/assets/mms_common/head_message.jpg" alt=""> 
                        <div class="mess-cont">
                             <p>暂无未读消息</p>
                             <p>鼓风机时发生纠纷很舒服滑动事件</p>
@@ -86,12 +84,12 @@
                     <a href="#" class="old-mess">查看历史消息</a>
                 </div>
             </li>
-            <li>
-                <a  href="#" class="clearfix" @click="showSchool">
-                    <i class="fa fa-folder-open"></i>学院
+            <li  @click="showSchool">
+                <div class="clearfix list-li menu-school" >
+                    <i class="fa fa-folder-open menu-school-icon" ></i>学院
                     <i class="caret"></i>
-                </a>
-                <div class="menu-name-wrapper" v-if="isShowSchool">
+                </div>
+                <div class="menu-name-wrapper menu-name-left" v-if="isShowSchool">
                     <a href="#">
                         <i class="fa fa-question-circle  menu-user menu-mess"></i>问答学院
                     </a>
@@ -104,9 +102,9 @@
                 </div>
             </li>
             <li>
-                <a  href="#" class="clearfix" @click="signOut">
+                <div class="clearfix" @click="signOut">
                     <i class="fa fa-power-off"></i>退出
-                </a>
+                </div>
             </li>
         </ul>
         <Modal
@@ -127,7 +125,7 @@
 export default {
     data() {
         return {
-            isShowSelect:false,
+            isShowSelect:false,//搜索是否显示
             isShowUser:false,
             isShowSchool:false,
             isOut:false,
@@ -204,7 +202,46 @@ export default {
         */
         hideMessage(){
             this.isShowMessage = false;
+        },
+         /**
+        * 左侧菜单收起
+        * @author liluyao &2020-5-7 08:57:49
+        */
+        open(){
+            this.$emit('open')
+        },
+         /**
+        * 隐藏头部下拉
+        * @author liluyao 2020-5-8 08:48:01
+        */
+        hideDropDown(){
+            this.isShowUser = false;
+            this.isShowSchool = false;
+            this.isShowSelect = false;
         }
+    },
+    mounted(){
+        let that = this;
+        let modal = document.getElementsByClassName('menu-search')[0]
+        let modalHeadSearch = document.getElementsByClassName('menu-head-search')[0]
+        let modalSelect = document.getElementsByClassName('menu-search-select')[0]
+        let modalInput = document.getElementsByClassName('menu-search-input')[0]
+        let modalButton = document.getElementsByClassName('menu-search-button')[0]
+        let user = document.getElementsByClassName('menu-user')[0]
+        let userIcon = document.getElementsByClassName('menu-user-icon')[0]
+        let school = document.getElementsByClassName('menu-school')[0]
+        let schoolIcon = document.getElementsByClassName('menu-school-icon')[0]
+        document.addEventListener('click', function(e) {
+            if (e.target !== modal && e.target !== modalSelect && e.target !== modalInput && e.target !== modalButton && e.target !== modalHeadSearch) {
+                that.isShowSelect = false
+            }
+            if(e.target !== user && e.target !== userIcon){
+                that.isShowUser = false
+            }
+            if(e.target !== school && e.target !== schoolIcon ){
+                that.isShowSchool = false
+            }
+        })
     }
 }
 </script>

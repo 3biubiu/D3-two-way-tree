@@ -1,22 +1,16 @@
 <template>
     <div class="main">
         <top-notification ref="topNotification" :msg="msg"></top-notification>
-        <heade-menu ></heade-menu>
+        <heade-menu ref="head" @open="open"></heade-menu>
         <div class="sidebar-menu-con" :style="{width: shrink?'64px':'240px'}">
-            <!-- <shrinkable-menu
-                :shrink="shrink"
-                :power="powerSiderData"
-                :theme="menuTheme"
-                :sub-num="sideBarNumber"
-                :menu-list="menuList">
-            </shrinkable-menu> -->
-            <slide-bar></slide-bar>
+            <slide-bar  @hide-drop-down="hideDrop" :shrink="shrink"></slide-bar>
         </div>
-        <div class="single-page-con" id="js-main-content" ref="pageBody" :style="{marginLeft: shrink?'64px':'220px'}">
+        <div class="single-page-con" id="js-main-content"  ref="pageBody" :style="{marginLeft: shrink?'64px':'220px'}">
             <div class="single-page">
                 <router-view ref="view"/>
             </div>
-            <common-footer></common-footer>
+            <common-footer ></common-footer>
+            <common-pendant></common-pendant>
         </div>
         <div v-if="ucmsOn">
             <div v-if="!isInternalUser" class="user-login-logout">
@@ -30,9 +24,10 @@
     import TopNotification from '@/components/common/top_notification/TopNotification.vue';
     import ShrinkableMenu from './business/ShrinkableMenu.vue';
     import menuArray from '@/static_data/menu_array.js';
-    import CommonFooter from './business/CommonFooter.vue';
+    import CommonFooter from './business/footer/Footer.vue';
     import HeadeMenu from "./business/head_menu/HeadMenu";
     import SlideBar from "./business/slide_bar/SlideBar";
+    import CommonPendant from "./business/common_pendant/CommonPendant";
     import $api from "@/api/index.js";
     import utils from "@/utils";
     import Cookie from 'js-cookie';
@@ -45,7 +40,8 @@
             CommonFooter,
             TopNotification,
             HeadeMenu,
-            SlideBar
+            SlideBar,
+            CommonPendant
         },
         data () {
             return {
@@ -162,7 +158,17 @@
             /*
             * 左侧菜单未读消息
             */
-            ...mmsCommon.mapActions([ 'saveSideBarNumber','saveDealLeftFieldTips'])
+            ...mmsCommon.mapActions([ 'saveSideBarNumber','saveDealLeftFieldTips']),
+            open(){
+                this.shrink = !this.shrink
+            },
+             /**
+            * 隐藏头部下拉
+            * @author liluyao & 2020-5-8 08:47:28
+            */
+            hideDrop(){
+                this.$refs.head.hideDropDown();               
+            }
         }
     };
 </script>

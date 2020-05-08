@@ -5,11 +5,10 @@
             © 2015 <a href="http://www.tanikawa.com/" target="_blank">Tanikawa.</a> Powered by <a href="http://www.xuannaer.com" target="_blank">xuannaer.com.</a>
         </p>
         <!-- 右侧挂件 -->
-        <ul id="footer-sidebar">
+        <!-- <ul id="footer-sidebar">
             <li id="b_code" class="sidebar-icon" @mouseover="showLink=true" @mouseleave="showLink=false">
                 <a style="color:#fff">
                     <i class="fa fa-chain" style="font-size: 20px;"></i>
-                    <!-- ten -->
 				    <img src="@/assets/mms_common/layer_triangle@2x.png" />
                 </a>
                 <ul class="sidebar-login-ul" id="sidebar-login-ul" :class="{show:showLink}">
@@ -104,7 +103,6 @@
             <li id="b_code" class="sidebar-icon" @mouseover="showAppPhone=true" @mouseleave="showAppPhone=false">
                 <a style="color:#fff">
                     <i class="fa fa-mobile" style="font-size: 20px;"></i>
-                    <!-- ten -->
 				    <img src="@/assets/mms_common/layer_triangle@2x.png" />
                 </a>
                 <ul class="dropdown-menu notifications-list messages-list" id="ewmbox" :class="{show:showAppPhone}">
@@ -136,7 +134,6 @@
             </li>
             <li id="b_complaint" class="sidebar-icon">
                 <a :href="compaintLink" target="_blank" style="color:#fff">
-                    <!-- <span>投诉</span> -->  <!-- ten -->
                     <span class="sidebar-complain">投诉</span>
                     <i class="fa fa-envelope-o" style="font-size: 20px;"></i>
                 </a>
@@ -147,9 +144,9 @@
                     <i class="fa fa-chevron-up" style="font-size: 20px;"></i>
                 </a>
             </li>
-        </ul>
+        </ul> -->
         <!-- 右侧挂件-问题反馈弹窗 -->
-        <div class="bc-content" id="bc-content" :class="{show:showFeedback}">
+        <!-- <div class="bc-content" id="bc-content" :class="{show:showFeedback}">
             <div class="bc-container">
                 <h1>问题反馈<Icon type="md-close" :size="16" class="pull-right fa fa-times" @click="showFeedback=false"></Icon></h1>
                 <Form class="feedback-form" ref="refFeedback" :model="feedbackForm" :rules="validateRules">
@@ -195,7 +192,7 @@
                     </Row>
                 </Form>
             </div>
-        </div>
+        </div> -->
     </footer>
 </template>
 <script>
