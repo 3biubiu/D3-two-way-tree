@@ -144,7 +144,7 @@ export default {
             isShowPendant:false,
             isShowCode:false,
             compaintLink: config.compaintLink,
-             submitData:{   //问题反馈表单数据
+            submitData:{   //问题反馈表单数据
                 username:Cookie.get("username"),
                 contact:"",
                 url:"https://mms.xuannaer.com/index/admin_index",
@@ -155,7 +155,7 @@ export default {
             validateRules: {
                 content: [{ required: true, message: '请填写反馈内容'}]
             },
-             uploadOption: {
+            uploadOption: {
                 cMyDropzone:{
                     padding: '0 10px',
                     minHeight:'146px'
@@ -168,7 +168,7 @@ export default {
                     lineHeight: '20px'
                 }
             },
-             gotop: false
+            gotop: false
         }
     },
     methods:{
