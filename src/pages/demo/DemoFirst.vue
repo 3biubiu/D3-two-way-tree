@@ -1,11 +1,13 @@
 <template>
     <div>
-        demosddd
+        士大夫的考生放射科大夫
+        <tis-demo-one></tis-demo-one>
+        <tis-demo-two></tis-demo-two>
     </div>
 </template>
 <script>
     export default {
-        name:'demo',
+        name:'aaa',
         components: {
             
         },
@@ -18,7 +20,7 @@
             
         },
         mounted() {     
-            console.log(111)             
+                      
         },
         methods: {
 
