@@ -55,11 +55,10 @@
                         <img src="@/assets/mms_common/guanfang.png" alt="">
                         <div class="pendant-cont-right">
                             <p>选哪儿手机客户端</p>
-                            <a href="#" class="android-icon active">Android版</a>
-                            <a href="#"  class="iphone-icon">iPhone版</a>
+                            <a href="http://zhushou.360.cn/detail/index/soft_id/3984165?recrefer=SE_D_%E9%80%89%E5%93%AA%E5%84%BF%E5%AE%98%E6%96%B9" target="_blank" class="android-icon" :class="{'active':version == 1}" @click="changeAndroid">Android版</a>
+                            <a  href="https://itunes.apple.com/cn/app/linkmore/id1374730033?mt=8" target="_blank"  class="iphone-icon" :class="{'active':version == 2}" @click="changeIphone">iPhone版</a>
                         </div>
                     </div>
-                    <a href="#" class="pendant-station">你的工作站</a>
                 </div>
             </li>
             <li  class="pendant-li" @click="complaint" >
@@ -67,10 +66,10 @@
                 <i class="fa fa-comment-o"></i>
             </li>
             <li  class="pendant-li">
-               <a :href="compaintLink" target="_blank">
+                <a :href="compaintLink" target="_blank">
                     <span  class="pendant-li-span sidebar-complain" >投诉</span>
                     <i class="fa fa-envelope-o"></i>
-               </a>
+                </a>
             </li>
             <li  class="pendant-li" @click="toTop">
                 <span  class="pendant-li-span" >回到顶部</span>
@@ -81,7 +80,7 @@
             <div class="form-box">
                 <p>问题反馈<Icon type="md-close" :size="16" class="pull-right fa fa-times" @click="showForm=false"></Icon></p>
                 <Form class="feedback-form" ref="refFeedback" :model="submitData" :rules="validateRules">
-                    <Row :gutter="16">
+                    <Row :gutter="8">
                         <Col span="12">
                             <FormItem label="反馈人">
                                 <Input v-model="submitData.username" />
@@ -101,12 +100,11 @@
                         <Input type="textarea"  v-model="submitData.url" />
                     </FormItem>
                     <FormItem prop="content" label="反馈内容">
-                        <textarea v-model="submitData.content" class="form-text" placeholder="请详细描述BUG的触发条件，或者提出建议的背景情况"></textarea>
+                        <Input type="textarea" v-model="submitData.content" class="form-text" placeholder="请详细描述BUG的触发条件，或者提出建议的背景情况"></Input>
                     </FormItem>
                     <FormItem >
                         <label slot="label">
-                            图片
-                            <label-tip :content="'(请截取电脑屏幕全屏，涵盖网址信息，方便技术人员排查定位)'" :theme="{color: 'red'}"></label-tip>
+                            图片<label-tip :content="'(请截取电脑屏幕全屏，涵盖网址信息，方便技术人员排查定位)'" :theme="{color: '#f25041'}"></label-tip>
                         </label>
                     </FormItem>
                     <div class="sinple-upload-wrapper">
@@ -141,9 +139,9 @@ export default {
     },
     data() {
         return {
-            isShowPendant:false,
-            isShowCode:false,
-            compaintLink: config.compaintLink,
+            isShowPendant:false,//挂架第一个列表是否显示
+            isShowCode:false,//二维码是否显示
+            compaintLink: config.compaintLink,//投诉链接
             submitData:{   //问题反馈表单数据
                 username:Cookie.get("username"),
                 contact:"",
@@ -151,8 +149,8 @@ export default {
                 content:"",
                 resource:[]
             },
-            showForm: false,
-            validateRules: {
+            showForm: false,//表单显示
+            validateRules: { //校验
                 content: [{ required: true, message: '请填写反馈内容'}]
             },
             uploadOption: {
@@ -168,41 +166,36 @@ export default {
                     lineHeight: '20px'
                 }
             },
-            gotop: false
+            version:0,//下载版本
         }
     },
     methods:{
          /**
         * 点击显示列表
-        * @author liluyao & 2020-5-6 20:11:09
         */
         showPendant(){
             this.isShowPendant = true;
         },
          /**
         * 点击隐藏列表
-        * @author liluyao & 2020-5-6 20:11:21
         */
         hidePendant(){
              this.isShowPendant = false;
         },
          /**
         * 点击显示code
-        * @author liluyao & 2020-5-6 20:56:43
         */
         showCode(){
             this.isShowCode = true;
         },
          /**
         * 点击隐藏code
-        * @author liluyao & 2020-5-6 20:57:12
         */
         hideCode(){
             this.isShowCode = false;
         },
          /**
         * 反馈问题
-        * @author liluyao & 2020-5-6 22:49:31
         */
         complaint(){
             this.showForm = true;
@@ -210,23 +203,12 @@ export default {
         },
          /**
         * 提交
-        * @author liluyao & 2020-5-8 08:49:19
         */
         submitForm(){
 
         },
         /**
-        * 滚动
-        * @author liluyao & 2020-5-6 20:11:34
-        * @param {object} e 事件对象
-        */
-        handleScroll(e) {
-            let scrolltop = e.target.scrollTop;
-            scrolltop > 0 ? (this.gotop = true) : (this.gotop = false);
-        },
-        /**
         * 回到顶部
-        * @author liluyao & 2020-5-6 20:11:34
         */
         toTop() {
             let top = document.documentElement.scrollTop || document.body.scrollTop;
@@ -238,9 +220,20 @@ export default {
                 }
             }, 10);
         },
+         /**
+        * 切换版本Android
+        */
+        changeAndroid(){
+            this.version = 1;
+        },
+        /**
+        * 切换版本Android
+        */
+        changeIphone(){
+            this.version = 2;
+        }
     },
     mounted(){
-         window.addEventListener("scroll", this.handleScroll, true);
     }
 }
 </script>

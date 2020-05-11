@@ -1,19 +1,21 @@
 .common-pendant {
     position: fixed;
     right: 5px;
-    bottom: 118px;
+    bottom: 119px;
     height: auto;
     padding: 0px;
     z-index: 10;
     box-shadow: 0 0 10px rgba(0,0,0,0.15);
     width: 50px;
     margin: 0;
+    background-color: #fff;
     .pendant-ul {
         .pendant-li {
             position: relative;
             padding: 6px 10px;
             width: 50px;
             height: 51px;
+            background-color: #fff;
             i {
                 height: 45px; 
                 float: left;
@@ -26,12 +28,22 @@
                 padding-bottom: 6px;
                 border-bottom: 1px solid #e5e5e5;
             }
+            &:last-child{
+                height: 49px;
+                span {
+                    height: 49px;
+                }
+                i {
+                    height: 44px;
+                    border-bottom: none;
+                }
+            }
             &:hover {
                 cursor: pointer;
-                background-color: #2768ac;
+                background-color: #1f6cdd;
                 i {
                     color: #fff;
-                    border-color: #2768ac;
+                    border-color: #1f6cdd;
                 }
                 .pendant-li-span  {
                     opacity: 1;
@@ -66,7 +78,7 @@
                 float: left;
                 text-align: center;
                 z-index: 101;
-                background: #2768ac;
+                background: #1f6cdd;
                 overflow: hidden;
                 width: 50px;
                 height: 50px;
@@ -152,7 +164,12 @@
                         }
                         &:hover {
                             span {
-                                color: #28b294;
+                                color: #468eeb;
+                            }
+                        }
+                        &:active {
+                            span{
+                                color: #114eb8;
                             }
                         }
                     }
@@ -177,13 +194,13 @@
                 position: fixed;
                 z-index: 999;
                 top: auto;
-                bottom: 170px;
+                bottom: 202px;
                 left: auto;
                 width: auto;
                 right: 65px;
                 border: none;
                 box-shadow: 0px 0px 4px 0 #DDD;
-                padding-bottom: 15px;
+                padding-bottom: 18px;
                 .pendant-phone-title {
                     line-height: 1.1;
                     width: 100%;
@@ -222,7 +239,7 @@
                             line-height: 30px;
                             margin-top: 8px;
                             color: #FFFFFF;
-                            background-color: #2768ac;
+                            background-color: #1f6cdd;
                             -moz-border-radius: 3px;
                             -webkit-border-radius: 3px;
                             border-radius: 3px;
@@ -240,28 +257,33 @@
                                 background-position:14px -17px;
                             }
                             &.active {
-                                background-color: #285788;
+                                background-color: #114eb8;
                             }
                             &:hover {
-                                background-color: #285788;
+                                background-color: #468eeb;
+                            }
+                            &:active {
+                                background-color: #114eb8;
                             }
                         }
                     }
                 }
                 .pendant-station {
                     display: block;
-                    background: #ffffff;
+                    background: #1f6cdd;
                     width: 238px;
                     height: 32px;
                     border: 1px solid #2768ac;
-                    color: #2768ac;
+                    color: #fff;
                     padding: 0;
                     line-height: 32px;
                     margin: 0 auto;
                     text-align: center;
                     &:hover {
-                        color: #ffffff;
-                        background: #285788;
+                        background: #468eeb;
+                    }
+                    &:active {
+                        background: #114eb8;
                     }
                 }
             }
@@ -271,52 +293,63 @@
         position: fixed;
         background: #efefef;
         z-index: 999;
-        height: 580px;
         width: 600px;
         background-color: #fff;
         right: 0px;
         bottom: 0px;
         border: 3px #2768ac solid;
-        padding-top: 15px;
         .form-box {
-            padding: 0px 15px;
+            padding: 16px 16px 12px;
+            /deep/.ivu-form-item-label{
+                font-size: 14px;
+                color: #333;
+                line-height: 22px;
+                padding:0 12px 4px 0;
+            }
+            /deep/.ivu-form-item-error-tip {
+                font-size: 12px;
+                line-height: 20px;
+                color: #f25041;
+                padding-top: 0;
+            }
+            /deep/textarea.ivu-input{
+                resize: none;
+                border-color: #d9d9d9;
+            }
             p {
                 clear: both;
-                color: #2768ac;
-                margin: 0 0 20px 0;
+                color: #333;
                 font-size: 16px;
-                padding-left: 0px;
-                margin-top: 0px;
-                margin-bottom: 10px;
+                font-weight: bold;
                 &.pull-right {
                     float: right;
                 }
                 i{
                     cursor: pointer;
-                    font-weight:bold;
-                    color:#2768ac;
+                    font-weight:normal;
+                    color:#666;
+                    margin-top: 4px;
                 }
             }
             .form-text{
                 border-radius: 3px;
-                padding: 5px;
                 width: 100%;
                 max-height: 50px;
-                resize: none;
-                border: solid 1px #dddee1;
                 line-height: 16px;
                 height: 106px;
                 font-size: 12px;
+               
             }
             /deep/.ivu-form-item {
-                margin: 13px 0 0;
-                margin-top: 0;
-            }
-            .ivu-form{
-                .ivu-form-item-label{
-                    padding:0 12px 10px 0;
+                margin:24px 0 0;
+                input.ivu-input {
+                    height: 32px;
+                    line-height: 32px;
+                    color: #666;
+                    border-color: #d9d9d9;
                 }
-            } 
+            }
+           
             textarea{
                 .ivu-input{
                     line-height: 20px;
@@ -332,10 +365,19 @@
             
             .form-submit{
                 text-align: center; 
-                margin-top: 15px;
+                margin-top: 22px;
             }
             .form-submit-btn{
-                padding: 6px 40px;
+                width: 64px;
+                height: 32px;
+                line-height: 18px;
+                background-color: #1f6cdd;
+                &:hover {
+                    background: #468eeb;
+                }
+                &:active {
+                    background: #114eb8;
+                }
             }
         }
     }

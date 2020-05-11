@@ -7,7 +7,7 @@
     line-height: 36px;
     margin-left: 0;
     margin-right: 0;
-    position: absolute;
+    position: fixed;
     width: 100%;
     opacity: 1;
     box-sizing: border-box;
@@ -19,5 +19,14 @@
         float: left;
         position: relative;
         min-height: 1px;
+        color: #666;
+        .footer-color {
+            &:hover {
+                color:#468eeb
+            }
+            &:active {
+                color:#114eb8
+            }
+        }
     }
 }
