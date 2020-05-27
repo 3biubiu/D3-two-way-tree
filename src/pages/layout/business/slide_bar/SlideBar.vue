@@ -6,7 +6,7 @@
                 <div  v-if="menuList && menuList.length>0 ">
                     <Submenu :name="item.name"  v-for="(item,index) in menuList" :key="index">
                         <template slot="title"  >
-                            <i class="ivu-icon ivu-icon-ios-arrow-down ivu-menu-submenu-title-icon aaa" v-if="item.children && item.children.length>0"></i>
+                            <i class="ivu-icon ivu-icon-ios-arrow-down ivu-menu-submenu-title-icon show-icon" v-if="item.children && item.children.length>0"></i>
                             <i class="fa  icon-fa" v-if="!isOpen" :class="item.iconAwesome"></i>
                             <span v-if="!isOpen" class="first-menu">{{item.title}}</span>
                             <Dropdown v-else-if="item.children && item.children.length >0 && isOpen" placement="right-start" transfer class="no-hover">
