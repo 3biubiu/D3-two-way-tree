@@ -1,12 +1,34 @@
 <template>
     <div class="main">
         <top-notification ref="topNotification" :msg="msg"></top-notification>
-        <heade-menu ref="head" @open="open"></heade-menu>
+        <head-menu 
+            :power-header-data="powerHeaderData" 
+            ref="head"
+            @open="open"
+            @show-select="showSelect"
+            :power="powerSiderData">
+        </head-menu>
         <div class="sidebar-menu-con" :style="{width: shrink?'64px':'240px'}">
-            <slide-bar  @hide-drop-down="hideDrop" :shrink="shrink"></slide-bar>
+            <slide-bar 
+                :menu-list="menuList" 
+                :menu-title="menuTitle"  
+                @hide-drop-down="hideDrop" 
+                :shrink="shrink"
+                :power="powerSiderData">
+            </slide-bar>
         </div>
-        <div class="single-page-con" id="js-main-content"  ref="pageBody" :style="{marginLeft: shrink?'64px':'220px'}">
-            <div class="single-page">
+        <div class="single-page-con" id="js-main-content"  ref="pageBody" :style="{marginLeft: shrink?'64px':'220px',minHeight:heights+'px'}">
+            <div class="single-page" >
+                <div class="search-mask" :style="{'height':heights+'px'}" v-if="isShowSelect">
+                    <div class="search-top">
+                        <div class="search-type">
+                            <p :class="{'active':index == type}" v-for="(item,index) in typeArr" :key="index" @click="changeSearchType(index)">{{item.name}}</p>
+                        </div>
+                        <Input type="text" class="menu-search-input" placeholder="企业 编号 电话 姓名 联系方式 备注 介绍" />
+                        <Button type="primary" class="menu-search-button" @click="search">搜索</Button>
+                    </div>
+                    <div class="search-bot-mask" :style="{'height':maskHeight+'px'}" @click="hideSelect"></div>
+                </div>
                 <router-view ref="view"/>
             </div>
             <common-footer ></common-footer>
@@ -25,7 +47,7 @@
     import ShrinkableMenu from './business/ShrinkableMenu.vue';
     import menuArray from '@/static_data/menu_array.js';
     import CommonFooter from './business/footer/Footer.vue';
-    import HeadeMenu from "./business/head_menu/HeadMenu";
+    import HeadMenu from "./business/head_menu/HeadMenu";
     import SlideBar from "./business/slide_bar/SlideBar";
     import CommonPendant from "./business/common_pendant/CommonPendant";
     import $api from "@/api/index.js";
@@ -39,15 +61,16 @@
             ShrinkableMenu,
             CommonFooter,
             TopNotification,
-            HeadeMenu,
+            HeadMenu,
             SlideBar,
             CommonPendant
         },
         data () {
             return {
                 msg:'您当前的浏览器版本过低，为了保证您能正常使用本系统的全部功能，推荐您下载最新版的360浏览器、Chrome浏览器或QQ浏览器',
-                routerName:'index',//当前路由名
+                routerName:'demo',//当前路由名
                 menuList: [],//在左侧显示的列表
+                menuTitle: '',//在左侧显示的列表
                 menuArray: menuArray,//菜单数组
                 shrink: false,//菜单收缩
                 menuTheme:'dark',//菜单主题
@@ -58,7 +81,25 @@
                 ucmsIframeSrc: '',//续用户中心生命周期
                 ucmsIfameStyle: {
                     display: 'none'
-                }
+                },
+                heights:0,//搜索的高度
+                maskHeight:0,//遮罩层的高度
+                isShowSelect:false,
+                type:0,
+                typeArr:[
+                    {
+                        name:'全部',
+                        type:'1'
+                    },
+                    {
+                        name:'项目',
+                        type:'2'
+                    },
+                    {
+                        name:'载体',
+                        type:'3'
+                    },
+                ]
             }
         },
         computed: {
@@ -67,7 +108,7 @@
         watch: {
             "$route"() {
                 this.watchRouterName();
-            }
+            },
         },
         created () {
             this.getBrowser();
@@ -80,16 +121,19 @@
             this.watchRouterName();
             this.getIframeSrc();
             this.ucmsIframeEvent();
+            this.height();
         },
         methods: {
             /*
                 计算菜单和菜单权限：监听路由，改变routerName，menuList
             */
             watchRouterName(){
-                this.routerName = this.$route.path.split("/")[2];
+                this.routerName = this.$route.path.split("/")[1];
                 for(let i in this.menuArray){
                     if(this.menuArray[i].routerName == this.routerName){
-                        this.menuList = this.menuArray[i].modular;
+                        this.menuList = this.menuArray[i].modular[0].menuList;
+                        this.menuTitle = this.menuArray[i].modular[0].title;
+                        console.log(this.menuList)
                         break;
                     }
                 }
@@ -137,7 +181,7 @@
                 });
             },
             /**
-                * 监听用户中心message事件，触发时显示
+            * 监听用户中心message事件，触发时显示
             */
             ucmsIframeEvent(){
                 let _this = this;
@@ -166,12 +210,47 @@
             * 隐藏头部下拉
             */
             hideDrop(){
-                this.$refs.head.hideDropDown();               
-            }
+                this.$refs.head.hideDropDown();  
+                this.isShowSelect = false;             
+            },
+             /**
+            * 赋值搜索弹窗的高度
+            */
+            height(){
+                let main=document.getElementsByClassName('main')
+                this.heights = main[0].offsetHeight - 50;
+                this.maskHeight = this.heights -176
+            },
+             /**
+            * 显示搜索弹窗
+            */
+            showSelect(){
+                this.isShowSelect = !this.isShowSelect;
+            },
+            /**
+            * 关闭搜索弹窗
+            */
+            hideSelect(){
+                this.isShowSelect = false;
+            },
+            /**
+            * 切换搜索类型
+            */
+            changeSearchType(index){
+                this.type = index;
+            },
+            /**
+            * 点击搜索
+            */
+            search(){
+                 this.isShowSelect = false;
+            },
+            
         }
     };
 </script>
 <style lang="less" scoped>
     @import "./layout.less";
+    
 </style>
 

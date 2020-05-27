@@ -1,6 +1,6 @@
 <template>
     <div class="common-pendant">
-        <ul class="pendant-ul">
+        <ul class="pendant-ul" :class="[{'active':isOpen},{'show':!isOpen}]">
             <li class="pendant-li" @mouseover="showPendant"  @mouseleave="hidePendant" >
                 <i class="fa fa-chain"></i>
                 <img class="first-pendant-arrow" src="@/assets/mms_common/layer_triangle@2x.png" alt="">
@@ -76,6 +76,12 @@
                 <i class="fa fa-chevron-up"></i>
             </li>
         </ul>
+            <div  class="pendant-li li-open"  @click="putAway">
+                <span  class="pendant-li-span" v-if="!isOpen">点击收起</span>
+                <span  class="pendant-li-span" v-else>点击展开</span>
+                <Icon class="open-icon" type="md-menu" />
+                <!-- <i class="fa fa-chevron-up"></i> -->
+            </div>
         <div class="form-wrapper" v-show="showForm" >
             <div class="form-box">
                 <p>问题反馈<Icon type="md-close" :size="16" class="pull-right fa fa-times" @click="showForm=false"></Icon></p>
@@ -117,7 +123,7 @@
                         </simple-upload>
                     </div>
                     <Row class="form-submit">
-                        <Button class="form-submit-btn" @click="submitForm" type="primary">提交</Button>
+                        <Button class="form-submit-btn" @click="submitForm('refFeedback')" type="primary">提交</Button>
                     </Row>
                 </Form>
             </div>
@@ -167,6 +173,7 @@ export default {
                 }
             },
             version:0,//下载版本
+            isOpen:false
         }
     },
     methods:{
@@ -204,8 +211,33 @@ export default {
          /**
         * 提交
         */
-        submitForm(){
-
+        submitForm(name){
+            let isPass =false
+            // this.submitData.resource.map((item,index) =>{
+            //     if(item.is_required ==0 && item.value.length ==0){
+            //         this.$set(item,'isRed',true)
+            //         isPass = true
+            //     }else {
+            //         this.$set(item,'isRed',false)
+            //         isPass = false
+            //     }
+            // })
+            if(isPass){
+                this.$refs[name].validate((valid) => {
+                    if (!valid) {
+                        utils.notice('部分信息尚未填写完整，请填写后提交！','error')
+                    }
+                })
+                return false
+            }else {
+                this.$refs[name].validate((valid) => {
+                    if (valid) {
+                        this.$emit('submit-land',this.submitData)
+                    } else {
+                        utils.notice('部分信息尚未填写完整，请填写后提交！','error')
+                    }
+                })
+            }
         },
         /**
         * 回到顶部
@@ -231,6 +263,9 @@ export default {
         */
         changeIphone(){
             this.version = 2;
+        },
+        putAway(){
+            this.isOpen = !this.isOpen
         }
     },
     mounted(){
