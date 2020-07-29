@@ -12,22 +12,46 @@
     &.default-primary{
         color: @black-2-color;
         border: 1px solid @gray-5-color;
-        .primary-hover()
+        .primary-hover();
+        &[disabled]{
+            border: 1px solid @black-4-color;
+            background-color: #f8f8f8;
+            color: @black-4-color;
+            cursor: @cursor-disabled;
+        }
     }
     &.default-success{
         color: @black-2-color;
         border: 1px solid @gray-5-color;
-        .success-hover()
+        .success-hover();
+        &[disabled]{
+            border: 1px solid @black-4-color;
+            background-color: #f8f8f8;
+            color: @black-4-color;
+            cursor: @cursor-disabled;
+        }
     }
     &.default-warn{
         color: @black-2-color;
         border: 1px solid @gray-5-color;
-        .warn-hover()
+        .warn-hover();
+        &[disabled]{
+            border: 1px solid @black-4-color;
+            background-color: #f8f8f8;
+            color: @black-4-color;
+            cursor: @cursor-disabled;
+        }
     }
     &.default-error{
         color: @black-2-color;
         border: 1px solid @gray-5-color;
-        .error-hover()
+        .error-hover();
+        &[disabled]{
+            border: 1px solid @black-4-color;
+            background-color: #f8f8f8;
+            color: @black-4-color;
+            cursor: @cursor-disabled;
+        }
     }
     &.primary-bg{
         color: @white-color;
@@ -38,11 +62,21 @@
         &:active{
             background-color: @blue-1-color;
         }
+        &[disabled]{
+            background-color: @black-4-color;
+            cursor: @cursor-disabled;
+        }
     }
     &.primary-border{
         color: @blue-2-color;
         border: 1px solid @blue-2-color;
-        .primary-hover()
+        .primary-hover();
+        &[disabled]{
+            border: 1px solid @black-4-color;
+            background-color: #f8f8f8;
+            color: @black-4-color;
+            cursor: @cursor-disabled;
+        }
     }
     &.success-bg{
         color: @white-color;
@@ -53,11 +87,21 @@
         &:active{
             background-color: @green-1-color;
         }
+        &[disabled]{
+            background-color: @black-4-color;
+            cursor: @cursor-disabled;
+        }
     }
     &.success-border{
         color: @green-2-color;
         border: 1px solid @green-2-color;
-        .success-hover()
+        .success-hover();
+        &[disabled]{
+            border: 1px solid @black-4-color;
+            background-color: #f8f8f8;
+            color: @black-4-color;
+            cursor: @cursor-disabled;
+        }
     }
     &.warn-bg{
         color: @white-color;
@@ -68,11 +112,21 @@
         &:active{
             background-color: @orange-1-color;
         }
+        &[disabled]{
+            background-color: @black-4-color;
+            cursor: @cursor-disabled;
+        }
     }
     &.warn-border{
         color: @orange-2-color;
         border: 1px solid @orange-2-color;
-        .warn-hover()
+        .warn-hover();
+        &[disabled]{
+            border: 1px solid @black-4-color;
+            background-color: #f8f8f8;
+            color: @black-4-color;
+            cursor: @cursor-disabled;
+        }
     }
     &.error-bg{
         color: @white-color;
@@ -83,21 +137,21 @@
         &:active{
             background-color: @red-1-color;
         }
+        &[disabled]{
+            background-color: @black-4-color;
+            cursor: @cursor-disabled;
+        }
     }
     &.error-border{
         color: @red-2-color;
         border: 1px solid @red-2-color;
-        .error-hover()
-    }
-    &[disabled-border]{
-        border: 1px solid @black-4-color;
-        background-color: #f8f8f8!important;
-        color: @black-4-color;
-        cursor: @cursor-disabled;
-    }
-    &[disabled-bg]{
-        background-color: @black-4-color!important;
-        cursor: @cursor-disabled;
+        .error-hover();
+        &[disabled]{
+            border: 1px solid @black-4-color;
+            background-color: #f8f8f8;
+            color: @black-4-color;
+            cursor: @cursor-disabled;
+        }
     }
     i{
         margin-right: 4px;

@@ -1,14 +1,12 @@
 <template>
     <div>
-        士大夫的考生放射科大夫
-        <tis-demo-one></tis-demo-one>
-        <tis-demo-two></tis-demo-two>
+        <h1>tis设计规范的button组件底层属性调用示例</h1>
         <br/>
         <div class="tis-btn primary-border">大夫</div>
         <div class="tis-btn primary-bg">大夫</div>
         <div class="tis-btn primary-bg"><i class="iconfont iconedit"></i>大夫</div>
-        <div class="tis-btn primary-bg" disabled-bg><i class="iconfont iconedit"></i>大夫</div>
-        <div class="tis-btn primary-bg" disabled-border><i class="iconfont iconedit"></i>大夫</div>
+        <div class="tis-btn primary-bg" disabled><i class="iconfont iconedit"></i>大夫1</div>
+        <div class="tis-btn primary-border" disabled><i class="iconfont iconedit"></i>大夫2</div>
         <br/>
 
         <div class="tis-btn success-border">大夫</div>
@@ -29,15 +27,15 @@
         <div class="tis-btn error-bg" disabled><i class="iconfont iconedit"></i>大夫</div>
         <br/>
 
-        <div class="tis-btn default-primary">大夫</div>
-        <div class="tis-btn default-success">大夫</div>
+        <div class="tis-btn default-primary" disabled>大夫</div>
+        <div class="tis-btn default-success" disabled>大夫</div>
         <div class="tis-btn default-warn">大夫</div>
         <div class="tis-btn default-error">大夫</div>
     </div>
 </template>
 <script>
     export default {
-        name:'aaa',
+        name:'ivu-button',
         components: {
             
         },
@@ -49,14 +47,15 @@
         watch: {
             
         },
-        mounted() {     
-                      
+        mounted() {                     
+            
         },
         methods: {
 
         }
     }
 </script>
+
 <style lang="less" scoped>
-    @import "./demo.less";
+
 </style>
