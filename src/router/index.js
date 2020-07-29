@@ -1,4 +1,4 @@
-import demo from './demo.js'
+import examples from './examples.js'
 
 
 const page403 = {
@@ -15,11 +15,11 @@ export const appRouter = {
     path: '/',
     name: 'home',
     redirect: {
-    	name: 'demo'
+    	name: 'examples'
     },
     component: () => import ('@/pages/layout/Layout'),
     children: [
-        demo
+        examples
     ],    
 };
 
