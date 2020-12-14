@@ -1,13 +1,13 @@
 <template>
     <div>
-        士大夫的考生放射科大夫
-        <tis-demo-one></tis-demo-one>
-        <tis-demo-two></tis-demo-two>
+        <h1>tis设计规范的link组件底层属性调用示例</h1>
+
+        <a class="tis-link" href="#">我是链接</a>
     </div>
 </template>
 <script>
     export default {
-        name:'aaa',
+        name:'ivu-link',
         components: {
             
         },
@@ -20,13 +20,14 @@
             
         },
         mounted() {     
-                      
+                 
         },
-        methods: {
+        methods:{
 
         }
     }
 </script>
+
 <style lang="less" scoped>
-    @import "./demo.less";
+
 </style>
