@@ -10,7 +10,7 @@
             <i class="fa fa-bars menu-head-home" @click="open"></i>
         </div>
          <ul class="nav pull-left menu-head-center dropdown clearfix" ref="initNav" @click="hideSearch">
-            <li class="dropdown  more-li" style="display:none;padding-left: 8px;" ref="navLiHide" @mouseover="showDropMenu" @mouseout="hideDropMenu">
+            <li class="dropdown  more-li" style="display:none;" ref="navLiHide" @mouseover="showDropMenu" @mouseout="hideDropMenu">
                 <div class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
                     <a href="#">更多<i  class="menu-icon-down"></i></a>
                 </div>
@@ -24,15 +24,32 @@
         </ul>
          <!-- <div class="empty-box" @click="emptyClick"></div> -->
         <ul class="menu-head-right dropdown" ref="rightHead" :class="{'active':menuRight}">
-            <li @click="goSelect">
+            <!-- <li @click="goSelect">
                 <a class="company-href" href="#">单位：选哪儿官方</a>
-            </li>
-            <li  @click="showSelect">
+            </li> -->
+            <!-- 之前的搜索弹框 -->
+            <!-- <li  @click="showSelect">
                 <div class="menu-search clearfix">
-                    <i class="fa fa-search"></i>
-                    <span>搜索</span>
+                    <i class="fa fa-search"></i>搜索
+                </div>
+            </li> -->
+            <!-- 由于王静不在不确定要现在的还是之前的，先写上 -->
+            <li @mouseenter="showSelect">
+                <div class="menu-search clearfix">
+                    <i class="fa fa-search"></i>搜索
                 </div>
             </li>
+            <div class="select-content" v-show="isShowSelect">
+                <div class="select-content-options">
+                    <select name="" id="">
+                        <option value="0">全部</option>
+                        <option value="1">项目</option>
+                        <option value="2">载体</option>
+                    </select>
+                    <input type="text" placeholder="企业 编号 电话 姓名 联系方式 备注 介绍">
+                    <button>搜索</button>
+                </div>
+            </div>
             <li @click="showUser" :class="{'active':userShow}">
                 <div class="clearfix menu-user list-li" >
                     <!-- 写死的名字记得删掉，解开下面的注释 -->
@@ -44,7 +61,7 @@
                 <div class="menu-name-wrapper" v-if="isShowUser" >
                     <a href="#">
                         <i class="fa fa-user menu-user"></i>用户中心
-                        <span class=" msg-counts" :class="{'count':userMess >99}">{{userMess >99 ?'99+':userMess}}</span>
+                        <span class="msg-counts" :class="{'count':userMess >99}">{{userMess >99 ?'99+':userMess}}</span>
                     </a>
                     <a href="#">
                         <i class="fa fa-envelope-o menu-user menu-mess"></i>消息
@@ -64,8 +81,7 @@
                             <p>鼓风机时发生纠纷很舒服滑动事件</p>
                        </div>
                        <div class="mess-time">
-                           <i class="fa fa-clock-o mess-top"></i>
-                           2020-02-02 15:55
+                           <i class="fa fa-clock-o mess-top"></i>2020-02-02 15:55
                        </div>
                     </a>
                     <a href="#" class="old-mess">查看历史消息</a>
@@ -148,7 +164,8 @@ export default {
             picWidth:'',//头部logo宽度
             iconWidth:'', //图标宽度
             blankWidth:'', //窗口宽度
-            menuRight:false
+            menuRight:false,
+            isShowSelect:false//是否显示搜索框
         }
     },
     watch: {
@@ -160,6 +177,9 @@ export default {
                 this.initHeader();
             });
         }
+    },
+    created(){
+        this.otherHideSelect()
     },
     methods:{
          /*
@@ -194,7 +214,10 @@ export default {
         * 点击显示搜索
         */
         showSelect(){
-            this.$emit('show-select')
+            // 之前的
+            // this.$emit('show-select')
+            // 现在的搜索弹框
+            this.isShowSelect = true;
         },
          /**
         * 点击显示用户操作
@@ -203,7 +226,9 @@ export default {
             this.isShowUser = !this.isShowUser;
             this.isShowSchool = false;
             this.userShow = true;
-            this.$parent.isShowSelect = false
+            // this.$parent.isShowSelect = false
+            this.isShowSelect = false; 
+
         },
          /**
         * 点击显示学院操作
@@ -212,7 +237,9 @@ export default {
             this.userSchool =true
             this.isShowUser = false;
             this.isShowSchool = !this.isShowSchool;
-            this.$parent.isShowSelect = false
+            // this.$parent.isShowSelect = false
+            this.isShowSelect = false; 
+
         },
         /**
         * 显示消息弹窗
@@ -231,7 +258,8 @@ export default {
         */
         open(){
             this.$emit('open')
-            this.$parent.isShowSelect= false;
+            // this.$parent.isShowSelect= false;
+            this.isShowSelect = false; 
         },
          /**
         * 隐藏头部下拉
@@ -311,32 +339,40 @@ export default {
          * 回到首页
          */
         goIndex(){
-            this.$parent.isShowSelect= false;
+            // this.$parent.isShowSelect= false;
+            this.isShowSelect = false; 
             window.open(config.mmsHost);
         },
         /**
          * 跳转单位管理
          */
         goSelect(){
-            this.$parent.isShowSelect= false;
+            // this.$parent.isShowSelect= false;
+            this.isShowSelect = false; 
+
         },
           /**
          * 跳转选哪
          */
         goOut(){
-            this.$parent.isShowSelect= false;
+            // this.$parent.isShowSelect= false;
+            this.isShowSelect = false; 
+
         },
         /**
          * 点击空白关闭搜索
          */
         emptyClick(){
-            this.$parent.isShowSelect= false;
+            // this.$parent.isShowSelect= false;
+            this.isShowSelect = false; 
+
         },
         /**
          * 点击菜单关闭搜索
          */
         hideSearch(){
-            this.$parent.isShowSelect = false;
+            // this.$parent.isShowSelect = false;
+            this.isShowSelect = false; 
         },
          /*
             初始化头部
@@ -426,8 +462,18 @@ export default {
         */
         hideDropMenu(){
             this.$refs.hideMenu.style.display = "none";
+        },
+        /**
+         * 点击其他地方搜索框消失
+         */
+        otherHideSelect(){
+            let menuSearch = document.getElementsByClassName('menu-search')[0];
+            window.addEventListener('click',function (e) {
+                if(!menuSearch.contains(e.target)){
+                    this.isShowSelect = false;
+                }
+            })
         }
-        
 
     },
     mounted(){
