@@ -3,9 +3,6 @@ import utils from '@/utils';
 import Cache from '@/cache';
 
 const $api = {};
-
-
-
 // 左侧菜单 + 头部菜单
 /**
     * 左边栏提示的数量

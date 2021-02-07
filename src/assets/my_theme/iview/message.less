@@ -1,0 +1,33 @@
+.tis-components{
+    .ivu-message{
+        .ivu-message-notice-content{
+            height: 40px;
+            line-height: 24px;
+            max-width: 100%;
+        }
+        .ivu-message-notice-content-text {
+            max-width: 100%;
+        }
+        .ivu-message-custom-content{
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            span{
+                font-size: @font-size-14;
+                color: @black-2-color;
+            }
+        }
+        .ivu-icon{
+            margin-right: 2px;
+        }
+        .ivu-message-success .ivu-icon{
+            color: @green-2-color;
+        }
+        .ivu-message-error .ivu-icon {
+            color: @red-2-color;
+        }
+        .ivu-message-warning .ivu-icon {
+            color: @orange-2-color;
+        }
+    }
+}
