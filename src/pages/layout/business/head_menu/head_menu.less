@@ -5,7 +5,7 @@
     z-index: 1001;
     width: 100%;
     min-width:1260px;
-    padding-right: 8px;
+    padding-right: 4px;
     height: 50px;
     background: url("../../../../assets/mms_common/header_background_10year.jpg") center no-repeat;
     background-size: 100% 50px;
@@ -30,29 +30,34 @@
                 box-sizing: content-box;
             }
         }
-        .menu-head-home {
+        a{
             float: left;
-            color: #fff;
+            font-size: 16px;
             line-height: 50px;
             height: 50px;
             width: 30px;
             text-align: center;
-            cursor: pointer;
             &:hover {
                 background-color: #1c5ab5;
             }
         }
+        
+        .menu-head-home {
+            color: #fff;
+            cursor: pointer;
+        }
         .fa-bars {
-            font-size: 12px;
-            display: block;
-            padding-top: 1px;
+            float: left;
+            line-height: 50px;
+            padding: 0 10px;
+            &:hover {
+                background-color: #1c5ab5;
+            }
         }
     }
     .dropdown {
         &.clearfix{
-            display: inline-block;
-            *zoom: 1;
-            *display: inline;
+            float: left;
         }
         li {
             float: left;
@@ -63,20 +68,15 @@
             .clearfix{  
                 display: block;
                 color: #fff;
-                padding: 0 8px;
+                padding: 0 12px;
             }
             &:hover {
                 background-color: #1f6cdd;
             }
-           
-            &.active {
-                background-color: #1f6cdd;
-                
+            &:active {
+                background-color: #114eb8;
             }
             &:hover {
-                a{
-                    background-color: #1f6cdd;
-                }
                 .menu-name-wrapper {
                     a {
                         background-color:#fff;
@@ -101,7 +101,7 @@
                                 color: #fff;
                             }
                             &:hover {
-                                background-color: #1f6cdd;
+                                background-color: #468eeb;
                             }
                         }
                     }
@@ -109,24 +109,60 @@
                 .menu-icon-down {
                     display: inline-block;
                     width: 0;
-                    margin: 5px 0;
-                    margin-left: 2px;
                     vertical-align: middle;
                     border-top: 4px solid;
                     border-right: 4px solid transparent;
                     border-left: 4px solid transparent;
                 }
+                .dropdown-menu {
+                    &.more {
+                        min-width: 96px;
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        z-index: 9;
+                        display: none;
+                        float: left;
+                        // padding: 5px 0;
+                        margin: 0px 0 0;
+                        list-style: none;
+                        font-size: 14px;
+                        text-align: left;
+                        background-color: #fff;
+                        background-clip: padding-box;
+                        border: none;
+                        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
+                        li {
+                            float: none;
+                            color: #333333;
+                            font-size: 14px;
+                            height: auto;
+                            line-height: 44px;
+                            padding: 0 16px;
+                            a{
+                                padding:0 0;
+                            }
+                            &:hover {
+                                background-color: #f2f2f2;
+                                a {
+                                    background-color: transparent;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
         &.menu-head-center {
             a {
-                padding: 0 10px;
+                display: block;
+                padding: 0 16px;
                 color: #fff;
+
                 .menu-icon-down {
+                    margin-left: 4px;
                     display: inline-block;
                     width: 0;
-                    margin: 5px 0;
-                    margin-left: 2px;
                     vertical-align: middle;
                     border-top: 4px solid;
                     border-right: 4px solid transparent;
@@ -135,6 +171,62 @@
             }
         } 
         &.menu-head-right {
+            position: relative;
+            // 搜索框样式
+            .select-content{
+                // display: none;
+                position: absolute;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
+                top: 50px;
+                right:99px;
+                width: 455px;
+                padding:20px 0 26px 0;
+                font-size: 0;
+                .select-content-options{
+                    width: 414px;
+                    margin:0 auto;
+                }
+                select{
+                    min-width: 80px;
+                    line-height: 34px;
+                    padding:7px 12px;
+                    font-size: 14px;
+                    background: #ffffff;
+                    color: #666;
+                    border: 1px solid #dcdcdc;
+                    appearance: auto;
+                    &:focus{
+                        outline: 0;
+                        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(52, 152, 219, 0.6);
+                    }
+                    &::-ms-expand {
+                        display: block; 
+                    }
+                }
+                input{
+                    width: 280px;
+                    padding: 6px 12px;
+                    line-height: 20px;
+                    border: 1px solid #dcdcdc;
+                    color: #666;
+                    font-size: 14px;
+                    &:focus{
+                        outline: 0;
+                        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(52, 152, 219, 0.6);
+                    }
+                }
+                button{
+                    padding: 7px 13px;
+                    color:#ffffff;
+                    line-height: 20px;
+                    font-size: 14px;
+                    background-color: #28b294;
+                    border-radius: 3px;
+                    &:hover{
+                        background-color: #249f84;
+                    }
+                }
+            }
             &.active {
                 float: left;
                 margin-left: 48px;
@@ -144,6 +236,9 @@
                 position: relative;
                 div {
                     cursor: pointer;
+                    i{
+                        
+                    }
                 }
                 &:first-child{
                     div {
@@ -175,18 +270,14 @@
                         display: inline-block;
                         *zoom: 1;
                         *display: inline;
-                    
                     }
                     .fa {
-                        float: left;
-                        padding-top: 20px;
-                        font-size: 0.85em;
+                        font-size: 0.8em;
                         width: 11px;
                         display: inline-block;
-                        margin-right: 1px;
+                        margin-right: 4px;
                     }
                     .fa-user {
-                        margin-right: 1px;
                         font-size: 0.85em;
                         text-align: center;
                     }
@@ -204,19 +295,15 @@
                     .fa-search {
                         width: 11px;
                         height: 14px;
-                        font-size: 0.85em;
-                        margin-right: 1px;
+                        margin-right: 4px;
                     }
                     .caret {
                         display: inline-block;
                         width: 0;
-                        margin: 5px 0;
-                        margin-left: 2px;
                         vertical-align: middle;
                         border-top: 4px solid;
                         border-right: 4px solid transparent;
                         border-left: 4px solid transparent;
-                        margin-left: -4px;
                     }
                     &.menu-search {
                         height: 50px;
@@ -240,7 +327,7 @@
                         font-size: 12px;
                         height: 20px;
                         width: 20px;
-                        line-height: 18px;
+                        line-height: 20px;
                         position: absolute;
                         right: 0px;
                         text-align: center;
@@ -373,7 +460,7 @@
                             height: 20px;
                             font-size: 12px;
                             display: inline-block;
-                            line-height: 18px;
+                            line-height: 20px;
                             text-align: center;
                             float: none;
                             &.count {
@@ -462,39 +549,5 @@
         color: #333;
     }
 }
-.dropdown-menu {
-    &.more {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 1000;
-        display: none;
-        float: left;
-        min-width: 160px;
-        padding: 5px 0;
-        margin: 0px 0 0;
-        list-style: none;
-        font-size: 14px;
-        text-align: left;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: none;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
-        li {
-            float: none;
-            color: #707070;
-            font-size: 0.875em;
-            height: auto;
-            line-height: 1.7;
-            padding-left: 35px;
-            &:hover {
-                background-color: #f6f6f6;
-                color: #707070;
-                a {
-                    background-color: transparent;
-                }
-            }
-        }
-    }
-}
+
 
