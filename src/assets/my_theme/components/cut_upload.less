@@ -1,0 +1,63 @@
+.tis-cut-upload{
+    width: 100%;
+    .tis-upload-box{
+        text-align: center;
+        border: 1px dashed #d9d9d9;
+        cursor: pointer;
+        width: 100%;
+        min-height: 90px;
+        position: relative;
+        .ivu-upload{
+            height: 100%;
+            min-height: auto;
+        }
+        &:hover{
+            border-color: #468eeb;
+        }
+        .tis-icon-box{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            min-height: 90px;
+            .tis-icon-content{
+                width: 100%;
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            .tis-upload-icon{
+                font-size: 24px;
+                color: #1f6cdd;
+            }
+            .tis-upload-tips{
+                font-size: 12px;
+                color: #999999;
+                white-space: pre;
+            }
+        }
+        .ivu-upload-list{
+            display: none;
+        }
+        .tis-preview-img{
+            display: block;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            background-color: #ffffff;
+            border: 1px solid #eee;
+        }
+        .tis-preview-box{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            background-color: #ffffff;
+            border: 1px solid #eee;
+            font-size: 0;
+            text-align: left;
+            overflow: hidden;
+        }
+    }
+}

@@ -18,6 +18,14 @@ const demo = {
             component:()=> import('@/pages/examples/TisComponents.vue'),
         },
         {
+            path:'detail',
+            name:'detail',
+            meta:{
+                title:'详情'
+            },
+            component:()=> import('@/pages/examples/Detail.vue'),
+        },
+        {
             path:'button',
             name:'button',
             meta:{
@@ -144,7 +152,7 @@ const demo = {
                 title:'表格'
             },
             component:()=> import('@/pages/examples/Table.vue'),
-        },
+        }
     ]
 };
 

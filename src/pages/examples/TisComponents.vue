@@ -1,6 +1,6 @@
 <template>
     <div class="tis-components">
-        <h1>如何使用公共组件库示例</h1>
+        <h1>如何使用公共组件库示例111</h1>
         <tis-demo-one></tis-demo-one>
         <br/>
         <br/>
@@ -52,7 +52,6 @@
             :upload-text="uploadText"
             :extra-data="extraData"
         ></tis-upload>
-
     </div>
 </template>
 <script>
@@ -103,9 +102,7 @@
                 maxSize:2*1024,
                 extraData:{//上传接口额外参数
                     uid:''
-                }
-                
-                
+                }    
             }
         },
         watch: {
@@ -150,6 +147,9 @@
             */
             cancel(item){
                 console.log('点击取消',item)
+            },
+            userClick() {
+                this.counter++
             }
 
         }

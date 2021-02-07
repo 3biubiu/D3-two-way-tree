@@ -22,9 +22,7 @@ export const appRouter = {
         examples
     ],    
 };
-
-
 export const routers = [
     appRouter,
-    page403
+    page403,
 ];

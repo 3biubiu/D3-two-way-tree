@@ -1,0 +1,39 @@
+.tis-components{
+    .ivu-select-dropdown {
+        padding: 4px 0;
+    }
+    .ivu-select-not-found {
+        color: @black-3-color;
+        padding: 8px 0;
+    }
+    .ivu-select-item {
+        color: @black-2-color;
+        padding: 9px @space-16;
+        line-height: 14px;
+        &:hover {
+            background: @gray-7-color;
+        }
+    }
+    .ivu-select-item-focus {
+        background: none;
+    }
+    .ivu-select-item-selected {
+        color: @blue-2-color;
+    }
+    .ivu-select-visible .ivu-select-selection {
+        box-shadow: none;
+        border-color: #dcdee2;
+    }
+    .ivu-select-selection-focused, .ivu-select-selection:hover {
+        border-color: #dcdee2;
+    }
+    .ivu-select {
+        // font-family: @font-family;
+    }
+    .ivu-select-item{
+        max-width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}

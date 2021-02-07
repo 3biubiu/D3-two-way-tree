@@ -1,0 +1,171 @@
+.tis-file-camera{
+	.tis-modal-title {
+		color: #333333;
+		font-size: 16px;
+		font-weight: bold;
+		display: block;
+	}
+	.tis-tip{
+		font-size: 0;
+		padding-bottom: 16px;
+		.tis-tip-icon{
+			font-size: 18px;
+			color: #ff9900;
+			position: relative;
+			top: -1px;
+			vertical-align: middle;
+		}
+		.tis-tip-text{
+			font-size: 14px;
+			color: #666666;
+			vertical-align: middle;
+			margin-left: 8px;
+			.ivu-icon{
+				font-size: 20px;
+				color: #666666;
+				margin: -2px 4px 0;
+			}
+		}
+	}	
+	.tis-scroll-container{	
+		padding: 0;
+		height: 280px;
+		overflow-y: auto;
+		margin: 0;
+		width: 596px;
+		padding-left: 5px;
+		box-sizing: border-box;
+		float: left;
+		.tis-scrollbar();				
+		.tis-date-line {
+			padding: 10px 28px 10px 0;
+			.tis-container-header{
+				height: 32px;
+				overflow: hidden;
+				margin-right: 4px;
+				p{
+					line-height: 32px;
+					float: left;
+				}
+				.tis-pull-right{
+					float: right;
+					height: 32px;
+					line-height: 32px;
+					.ivu-checkbox-wrapper{
+						margin-right: 5px;
+					}
+				}
+				.ivu-checkbox-group{
+					font-size: 0;
+				}
+			}			
+			.tis-container{
+				width:110px;
+				height: 110px;
+				position: relative;
+				display: inline-block;
+				.tis-photo-box {
+					width: 100%;
+					height: 100%;
+					display: block;
+					padding: 5px;
+					&:hover{
+						cursor: pointer;
+					}
+				}								
+				.tis-check{
+					position: absolute;
+					right: 5px;
+					top: 10px;
+					margin-right: 0;
+					font-size: 0;
+				}
+			}
+		}
+		.tis-no-img{
+			font-size: 14px;
+			color: #666666;
+			text-align: center;
+			line-height: 20px;
+			padding-top: 130px;
+			padding-left: 128px;
+		}
+	}
+	.tis-timeline{
+		width: 140px;
+		padding-left: 33px;
+		float: left;
+		max-height: 280px;
+		overflow-y: auto;
+		*{
+			margin: 0;
+			padding: 0;
+		}		
+		.tis-year{
+			border-left: 2px solid @gray-6-color;
+			li{
+				list-style: none;
+				.tis-year-button{
+					cursor: pointer;
+					height: 25px;
+					padding-left: 22px;
+					line-height: 25px;
+					color: @black-1-color;
+					font-size: @font-size-14;
+					position: relative;
+					&:hover{
+						color: @blue-2-color;
+					}
+				}
+				.tis-month{
+					display: none;				
+					li{
+						cursor: pointer;
+						height: 25px;
+						padding-right: 15px;
+						line-height: 25px;
+						text-align: right;
+						position: relative;
+						a{
+							color: @black-1-color;
+							text-decoration: none;
+							padding-right: 34px;
+							&:hover{
+								color: @blue-2-color;
+							}
+						}
+						&:hover {
+							color: @blue-2-color;
+						}
+						&.tis-active{
+							a{
+								color: @blue-2-color;
+							}
+							.tis-circle{
+								position: absolute;
+								left: -5px;
+								top: 7px;
+								display: inline-block;
+								width: 8px;
+								height: 8px;
+								border:2px solid @blue-2-color;
+								border-radius: 50%;
+							}
+						}
+					}
+				}
+				&.tis-active{
+					.tis-year-button {
+						color: @blue-2-color;
+					}
+					.tis-month {
+						display: block
+					}
+				}
+			}
+		}
+	}
+	.tis-refresh-btn{
+		float: left;
+	}
+}

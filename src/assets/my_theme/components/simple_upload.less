@@ -1,0 +1,191 @@
+.tis-simple-box{
+    position: relative;
+    .tis-dropzone {
+        border: 1px dashed #D9D9D9;
+        border-radius: 3px;
+        padding: 22px;
+        min-height: 128px;
+        position: relative;
+        cursor: pointer;
+        max-height: 500px;
+        overflow-y: auto;
+        box-sizing: border-box;
+        *{
+            box-sizing: border-box;
+        }
+        .tis-details {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            background: #ebebeb;
+            text-align: center;
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100px;
+                height: 100px;
+            }
+            .tis-size {
+                width: 100%;
+                position: absolute;
+                bottom: -28px;
+                left: 0;
+                height: 28px;
+                line-height: 28px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                word-break: break-all;
+            }
+            .tis-cover-sign{
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                font-size: 30px;
+                text-align: center;
+                top: 50%;
+                left: 50%;
+                margin: -20px -20px;
+                .tis-right{
+                    font-size: 40px;
+                    color: @green-2-color;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
+                .tis-crop{
+                    font-size: 0;
+                }
+            }
+            .tis-iconfont{
+                font-size: 66px;
+    
+            }
+        }
+        .tis-preview{
+            background: rgba(255,255,255,0.8);
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+            margin: 16px;
+            vertical-align: middle;
+            border: 1px solid #d9d9d9;
+            padding: 6px;
+            font-size: 14px;
+            .tis-progress{
+                position: absolute;
+                width: 100%;
+                height: 6px;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                .tis-upload{
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    width: 0%;
+                    background-color: #8cc657;
+                    animation: loading 0.4s linear infinite;
+                    transition: width 0.3s ease-in-out;
+                    border-radius: 2px;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 0%;
+                    height: 100%;
+                };
+            }
+        }
+        .tis-default.tis-message {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            text-align: center;
+            font-size: 0;
+            .tis-iconfont,.ivu-icon{
+                font-size: 40px;
+                color: #1f6cdd;
+                display: block;
+                height: 40px;
+                line-height: 36px;
+                cursor: pointer;
+            }
+            .tis-upload-file{
+                font-size: 15px;
+                color: #666666;
+                margin-top: 8px;
+                line-height: 22px;
+                cursor: pointer;
+                white-space: pre;
+            }
+        }
+        .tis-remove {
+            -webkit-border-radius: 2px;
+            border-radius: 2px;
+            text-decoration: none;
+            display: block;
+            padding: 4px 5px;
+            text-align: center;
+            color: #f25041;
+            margin-top: 26px;
+            line-height: 20px;
+            cursor: pointer;
+            &:hover {
+                color: #ff7f6e;
+            }
+            &:active {
+                color: #cc352d;
+            }
+        }
+        .tis-cover-upload{
+            &:hover .tis-cover-sign{
+                cursor: pointer;
+                .tis-crop{
+                    font-size: 40px;
+                    color: @green-2-color;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
+                .tis-right{
+                    font-size: 0;
+                }
+            }
+            .tis-error-mark{
+                cursor: pointer;
+            }
+        }
+        .checked{
+            border: 1px solid #2D8cF0;
+        }
+    }
+    .tis-simple-upload{
+        opacity: 0; 
+        position: absolute;
+        width: calc(~'100% - 22px');
+        height: 100%;
+        margin-right: 22px;
+        top: 0;
+        .ivu-upload{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    
+    @keyframes loading {
+        0% {
+             background-position: 0 -400px;
+        }
+      
+        100% {
+            background-position: -7px -400px;
+        }
+    }
+}
