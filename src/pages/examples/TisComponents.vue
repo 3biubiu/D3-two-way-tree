@@ -1,7 +1,7 @@
 <template>
     <div class="tis-components">
         <h1>如何使用公共组件库示例111</h1>
-        <tis-demo-one></tis-demo-one>
+        <!-- <tis-demo-one></tis-demo-one>
         <br/>
         <br/>
         <tis-demo-two></tis-demo-two>
@@ -9,7 +9,7 @@
         <br/>
         <tis-demo-three></tis-demo-three>
         <br/>
-        <br/>
+        <br/> -->
         <tis-del-auth 
             :auth-list="authList" 
             :type="type" 
