@@ -99,7 +99,8 @@
                         name:'载体',
                         type:'3'
                     },
-                ]
+                ],
+                indexClick:-1//搜索弹窗点击的选项索引
             }
         },
         computed: {
@@ -238,12 +239,20 @@
             */
             changeSearchType(index){
                 this.type = index;
+                this.indexClick = index;
             },
             /**
             * 点击搜索
             */
             search(){
-                 this.isShowSelect = false;
+                this.isShowSelect = false;
+                if(this.indexClick==0){
+                    this.$router.push('/examples/page')
+                }else if(this.indexClick == 1){
+                    this.$router.push('/examples/Table')
+                }else if(this.indexClick == 2){
+                    this.$router.push('/examples/radio')
+                }
             },
             
         }
