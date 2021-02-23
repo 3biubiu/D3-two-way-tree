@@ -11,7 +11,7 @@
             <i class="fa fa-bars menu-head-home" @click="open"></i>
         </div>
         <ul class="nav pull-left menu-head-center dropdown clearfix" ref="initNav" @click="hideSearch">
-            <li class="more-li" style="display:none;" ref="navLiHide" @mouseover="showDropMenu" @mouseout="hideDropMenu">
+            <li class="dropdown more-li" style="display:none;" ref="navLiHide" @mouseover="showDropMenu" @mouseout="hideDropMenu">
                 <div class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
                     <a href="#">更多<i  class="menu-icon-down"></i></a>
                 </div>
