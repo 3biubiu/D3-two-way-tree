@@ -69,6 +69,7 @@
             height: 50px;
             &.drop-li.active{
                 background:#1f6cdd;
+                color:@white-color;
             }
             .clearfix{  
                 display: block;
@@ -97,9 +98,10 @@
                 position: relative;
                 &:hover {
                     .drop-li {
+                        color: #707070;
                         a {
                             background-color: transparent;
-                            color: #707070;
+
                         }
                     }
                 }
@@ -113,6 +115,8 @@
                 }
                 .dropdown-menu {
                     &.more {
+                        max-height: calc(100vh - 15px);
+                        overflow-y: auto;
                         position: absolute;
                         top: 100%;
                         left: 0;
@@ -128,6 +132,7 @@
                         background-clip: padding-box;
                         border: none;
                         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
+                        &::-webkit-scrollbar {display:none}
                         li {
                             width: 223px;
                             float: none;
@@ -138,6 +143,7 @@
                             padding: 0 16px;
                             a{
                                 padding:0 0;
+                                color: #707070;  
                             }
                             &:hover {
                                 background-color: @gray-7-color;
@@ -145,6 +151,15 @@
                                     background-color: transparent;
                                 }
                             }
+                            &.active {
+                                a{
+                                    color: #fff;
+                                }
+                                &:hover{
+                                    background-color:#1f6cdd;
+                                }
+                            }
+                            
                         }
                     }
                 }
@@ -482,14 +497,28 @@
         }
        
     }
-    /deep/ .ivu-modal-confirm-head-title {
-        font-size: 16px;
-        color: @black-1-color;
-    }
-    
 }
-/deep/ .ivu-modal-body{
-    padding: 24px 18px 24px 16px;
+.ivu-modal-confirm-head-title {
+    font-size: 16px;
+    color: @black-1-color;
 }
-
-
+.ivu-modal-header p span{
+    display: inline-block;
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+.ivu-modal .ivu-modal-body{
+    padding: 24px 16px 24px 18px;
+    font-size: 14px;
+    color: #666;
+   
+}
+.ivu-btn{
+    width: 64px;
+    font-size: 14px;
+    height: 34px;
+} 
+// icon-pic{
+//     font-size: ;
+// }

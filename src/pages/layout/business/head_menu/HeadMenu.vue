@@ -1,4 +1,5 @@
 <template>
+<div class="head-menu-wrapper">
     <div class="menu-head clearfix" >
         <div class="menu-head-left">
             <a :href="address.logo" class="menu-logo" ref="headerLogo" @click="goOut"> 
@@ -9,15 +10,15 @@
             </a>
             <i class="fa fa-bars menu-head-home" @click="open"></i>
         </div>
-         <ul class="nav pull-left menu-head-center dropdown clearfix" ref="initNav" @click="hideSearch">
-            <li class="dropdown  more-li" style="display:none;" ref="navLiHide" @mouseover="showDropMenu" @mouseout="hideDropMenu">
+        <ul class="nav pull-left menu-head-center dropdown clearfix" ref="initNav" @click="hideSearch">
+            <li class="more-li" style="display:none;" ref="navLiHide" @mouseover="showDropMenu" @mouseout="hideDropMenu">
                 <div class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
                     <a href="#">更多<i  class="menu-icon-down"></i></a>
                 </div>
                 <ul class="dropdown-menu more" id="hideMenu" ref="hideMenu">
                     <template v-for="(item,index) in menuArray">
                         <!-- <li class="drop-li " v-show="power && headerPower(item.powerSatus)" :class="{'active':item.routerName == activeName}" @click ="showIndex(index)"><a href="#" >{{item.name}}</a></li> -->
-                        <li class="drop-li" v-show="power" :class="{'active':item.url == activeName}" @click ="showIndex(index)"><a href="#" >{{item.name}}</a></li>
+                        <li class="drop-li" v-show="power" :class="{'active':item.routerName == activeName}" @click ="showIndex(index)" :key="item.url"><a href="#" >{{item.name}}</a></li>
                     </template>
                 </ul>
             </li>
@@ -92,13 +93,12 @@
                 </div>
             </li>
         </ul>
-
         <Modal v-model="showModal" width="400" :closable="false">
             <p slot="header" >
-                <Icon type="ios-information-circle"></Icon>
+                <Icon size="20" color="#ff9900" type="ios-information-circle"></Icon>
                 <span>确认退出</span>
             </p>
-            <div class="sign-out-question">
+            <div>
                 <p>确定要退出系统吗？</p>
             </div>
             <div slot="footer">
@@ -107,6 +107,7 @@
             </div>
         </Modal> 
     </div>
+</div>
 </template>
 <script>
 import Cookie from 'js-cookie';
@@ -151,15 +152,12 @@ export default {
     watch: {
         "$route"() {
             //计算菜单和菜单权限
-            // this.activeName = this.$route.path.split("/")[1];
+            this.activeName = this.$route.path.split("/")[1];
             //计算头部
             this.$nextTick(()=>{
                 this.initHeader();
             });
         }
-    },
-    mounted(){
-        console.log(this.activeName)
     },
     created(){
         // window.addEventListener('click', this.otherHideSelect)
@@ -192,7 +190,6 @@ export default {
                     location.href = this.menuArray[index].url;
                 }
             }
-            this.activeName = this.menuArray[index].url;
         },
          /**
         * 点击显示搜索
@@ -447,19 +444,10 @@ export default {
         */
         hideDropMenu(){
             this.$refs.hideMenu.style.display = "none";
-        },
-        /**
-         * 点击其他地方搜索框消失
-         */
-        // otherHideSelect(e){
-        //     let menuSearch = document.getElementsByClassName('select-content')[0];
-        //     if(!menuSearch.contains(e.target)){
-        //         this.isShowSelect = false;
-        //     }
-        // }
+        }
     },
     mounted(){
-        // this.activeName = this.$route.path.split("/")[1];
+        this.activeName = this.$route.path.split("/")[1];
         this.init();
         this.menuHead = JSON.parse(JSON.stringify(this.menuArray))
         this.initHead();
@@ -484,7 +472,7 @@ export default {
     }
 }
 </script>
-<style lang='less' scoped>
+<style lang='less'>
 @import "./head_menu.less";
 
 </style>

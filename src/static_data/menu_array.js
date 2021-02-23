@@ -149,7 +149,7 @@ const menuArray = [
         name:"示例页面",
         powerSatus:"demo",
         isVue : true,
-        routerName:"demo",
+        routerName:"examples",
         modular: [
             {
                 title:'示例页面1',
