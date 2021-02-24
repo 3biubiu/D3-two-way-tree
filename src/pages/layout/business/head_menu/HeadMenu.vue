@@ -24,7 +24,7 @@
             </li>
         </ul>
          <!-- <div class="empty-box" @click="emptyClick"></div> -->
-        <ul class="menu-head-right dropdown" ref="rightHead" :class="{'active':menuRight}">
+        <ul class="menu-head-right dropdown" ref="rightHead">
             <!-- <li @click="goSelect">
                 <a class="company-href" href="#">单位：选哪儿官方</a>
             </li> -->
@@ -145,7 +145,6 @@ export default {
             picWidth:'',//头部logo宽度
             iconWidth:'', //图标宽度
             blankWidth:'', //窗口宽度
-            menuRight:false,
             isShowSelect:false//是否显示搜索框
         }
     },
@@ -158,9 +157,6 @@ export default {
                 this.initHeader();
             });
         }
-    },
-    created(){
-        // window.addEventListener('click', this.otherHideSelect)
     },
     methods:{
          /*
@@ -195,10 +191,7 @@ export default {
         * 点击显示搜索
         */
         showSelect(){
-            // 之前的
             this.$emit('show-select')
-            // 现在的搜索弹框
-            // this.isShowSelect = true;
         },
          /**
         * 显示用户操作
@@ -361,7 +354,6 @@ export default {
         */
         initHeader(){
             this.resizeHeader();
-            this.resizeHeader();
         },
         /*
             重新初始化头部菜单
@@ -375,6 +367,7 @@ export default {
             this.picWidth = this.$refs.headerLogo.clientWidth;//logo的宽
             this.iconWidth = this.$refs.homeCon.clientWidth;//图标的宽
             this.blankWidth = this.allWidth-this.headerLeftWidth-this.headerRightWidth-this.picWidth-this.iconWidth;//空白区域的宽
+            console.log(this.blankWidth)
             //1. 把所有元素放到更多里
             let hasShowHeader = [];
             hasShowHeader = this.siblings(this.$refs.navLiHide);//获取菜单li的兄弟元素，并存到数组
@@ -452,23 +445,15 @@ export default {
         this.menuHead = JSON.parse(JSON.stringify(this.menuArray))
         this.initHead();
         this.initHeader();
+        this.allWidth = document.body.clientWidth;
         window.onresize = () => {
-            if(this.allWidth <1260){
-                this.menuRight = true
-            }else {
-                this.menuRight = false
-            }
+            this.allWidth = document.body.clientWidth;
             this.initHeader();
             this.$parent.height()
         };
         this.$nextTick(()=>{
             this.initHeader();
         });
-        if(this.allWidth <1260){
-            this.menuRight = true
-        }else {
-            this.menuRight = false
-        }
     }
 }
 </script>
