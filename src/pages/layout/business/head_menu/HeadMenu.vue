@@ -367,7 +367,6 @@ export default {
             this.picWidth = this.$refs.headerLogo.clientWidth;//logo的宽
             this.iconWidth = this.$refs.homeCon.clientWidth;//图标的宽
             this.blankWidth = this.allWidth-this.headerLeftWidth-this.headerRightWidth-this.picWidth-this.iconWidth;//空白区域的宽
-            console.log(this.blankWidth)
             //1. 把所有元素放到更多里
             let hasShowHeader = [];
             hasShowHeader = this.siblings(this.$refs.navLiHide);//获取菜单li的兄弟元素，并存到数组
