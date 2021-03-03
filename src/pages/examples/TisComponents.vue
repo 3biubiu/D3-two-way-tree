@@ -11,10 +11,8 @@
         <!-- <tis-demo-one></tis-demo-one>
         <br/>
         <br/>
-        <tis-demo-two></tis-demo-two>
         <br/>
         <br/>
-        <tis-demo-three></tis-demo-three>
         <br/>
         <br/> -->
         <tis-del-auth 
@@ -46,12 +44,6 @@
             :view-scale="2"
             @on-ok="ok" 
         ></tis-cut-upload>
-        <tis-select-search
-            :default-data="defaultData" 
-            :id="id" 
-            :placeholder="placeholder" 
-            @back-select-search="backSelectSearch">
-        </tis-select-search>
         <tis-upload 
             ref="feedbackUpload"
             :upload-url="uploadUrl"
@@ -117,9 +109,6 @@
                  
         },
         methods: {
-            backSelectSearch(data){
-                console.log(data)  //返回的数据
-            },
             /**
              * 点击剪裁弹窗确定
              * @param {Object} imgData 剪裁完毕的图片信息

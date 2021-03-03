@@ -16,7 +16,15 @@
                 :shrink="shrink"
                 :power="powerSiderData">
             </slide-bar>
+            <!-- <shrink-able-Menu 
+                :menu-list="menuList"
+                :menu-title="menuTitle"
+                @hide-drop-down="hideDrop" 
+                :shrink="shrink"
+                :power="powerSiderData"
+            ></shrink-able-Menu> -->
         </div>
+
         <div class="single-page-con" id="js-main-content"  ref="pageBody" :style="{marginLeft: shrink?'64px':'220px',minHeight:heights+'px'}">
             <div class="single-page" >
                 <div class="search-mask" :style="{'height':heights+'px'}" v-if="isShowSelect">
@@ -100,6 +108,8 @@
                         type:'3'
                     },
                 ],
+                routerName:'exam',//当前路由名
+
                 indexClick:-1,//搜索弹窗点击的选项索引
                 // leftList:{}
             }
@@ -108,8 +118,9 @@
             ...mmsCommon.mapGetters(["sideBarNumber","dealLeftFieldTips"]),
         },
         watch: {
-            "$route"() {
+            $route() {
                 this.watchRouterName();
+                console.log('路由变化')
                 this.routerName = this.$route.path.split("/")[1];
                 for(let i in this.menuArray){
                     if(this.menuArray[i].routerName == this.routerName){
@@ -137,7 +148,9 @@
                 计算菜单和菜单权限：监听路由，改变routerName，menuList
             */
             watchRouterName(){
-                this.routerName = this.$route.path.split("/")[1];
+                // this.routerName = this.$route.path.split("/")[1];
+                // this.routerName = this.$route.matched[0].name;
+                // console.log(this.routerName)
                 for(let i in this.menuArray){
                     if((this.menuArray[i].routerName == this.routerName) && this.menuArray[i].modular){
                         this.menuList = this.menuArray[i].modular[0].menuList;
