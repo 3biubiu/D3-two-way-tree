@@ -13,7 +13,7 @@ const page403 = {
 
 export const appRouter = {
     path: '/',
-    name: 'home',
+    name: 'examples',
     redirect: {
     	name: 'examples'
     },

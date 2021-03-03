@@ -10,7 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "@icon-park/vue": "^1.1.1",
+    "@icon-park/vue": "^1.2.6",
     "axios": "^0.18.0",
     "iview": "^3.0.0",
     "jquery": "^3.3.1",

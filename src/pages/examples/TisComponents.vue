@@ -1,13 +1,10 @@
 <template>
     <div class="tis-components">
         <h1>如何使用公共组件库示例111</h1>
-        <tis-demo-one></tis-demo-one>
         <br/>
         <br/>
-        <tis-demo-two></tis-demo-two>
         <br/>
         <br/>
-        <tis-demo-three></tis-demo-three>
         <br/>
         <br/>
         <tis-del-auth 
@@ -39,12 +36,6 @@
             :view-scale="2"
             @on-ok="ok" 
         ></tis-cut-upload>
-        <tis-select-search
-            :default-data="defaultData" 
-            :id="id" 
-            :placeholder="placeholder" 
-            @back-select-search="backSelectSearch">
-        </tis-select-search>
         <tis-upload 
             ref="feedbackUpload"
             :upload-url="uploadUrl"
@@ -82,20 +73,7 @@
                 limitType:['jpg','jpeg','png'],
                 uploadTips:'点击上传封面'+'\n'+'支持jpg, jpeg, png文件',
                 fileSize:2,//文件最大限制(M)
-                scale:0.6,//upload图片显示缩放比,
-                // 下拉搜索组件
-                defaultData:{
-                    url:'http://mms.app_php.com/spa.php/DealPlugin/contacts',
-                    methods:'get',
-                    token:'538f0f1cb4dcf8b108f1bfdc6c9d515e9be6d94b',
-                    keyword:'1',
-                    idShow:true,   //id是否展示在下拉列表中
-                    show:['id','name','money']   //除id外其他是需要展示的字段对应的字段名
-                },
-                id:598,
-                placeholder:'支持搜索的下拉选择',
-
-                
+                scale:0.6,//upload图片显示缩放比,                
                 uploadUrl: '',//文件上传地址
                 uploadText:'点击上传文件'+'\n'+'支持多种格式的文件',
                 fileAmount:'2',// 限制上传文件个数
@@ -112,9 +90,6 @@
                  
         },
         methods: {
-            backSelectSearch(data){
-                console.log(data)  //返回的数据
-            },
             /**
              * 点击剪裁弹窗确定
              * @param {Object} imgData 剪裁完毕的图片信息
