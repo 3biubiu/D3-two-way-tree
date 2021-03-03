@@ -1,6 +1,13 @@
 <template>
-    <div class="tis-components">
+    <div class="tis-compontent-wrapper">
         <h1>如何使用公共组件库示例111</h1>
+        <Icon type="md-home"  class="demo-home" size="24"/>
+        <icon-check-one theme="filled" size="32" fill="#1f6cdd" ref="checkOne" @mousemove="enterCheck" @mouseout="outCheck" @mousedown="downClick" @mouseup="upClick"/>
+        <icon-check-one theme="filled" size="32" fill="#1f6cdd" class="demo-check"/>
+        <icon-align-left-one theme="outline" size="24" fill="#f00" class="four-path-icon" strokeLinejoin="bevel"/>
+        <icon-expand-left-and-right theme="outline" size="24" fill="#f00" strokeLinejoin="bevel"/>
+        <icon-envelope-one class="envelope" theme="outline" size="24" fill="#f00" strokeLinejoin="bevel"/>
+        <icon-movie class="movie" theme="filled" size="24" fill="#333" strokeLinejoin="bevel"/>
         <!-- <tis-demo-one></tis-demo-one>
         <br/>
         <br/>
@@ -53,12 +60,12 @@
             :extra-data="extraData"
         ></tis-upload>
     </div>
+    
 </template>
 <script>
     export default {
         name:'tis-components',
         components: {
-            
         },
         data () {
             return {
@@ -94,8 +101,6 @@
                 },
                 id:598,
                 placeholder:'支持搜索的下拉选择',
-
-                
                 uploadUrl: '',//文件上传地址
                 uploadText:'点击上传文件'+'\n'+'支持多种格式的文件',
                 fileAmount:'2',// 限制上传文件个数
@@ -150,14 +155,70 @@
             },
             userClick() {
                 this.counter++
+            },
+            // 悬浮
+            enterCheck(){
+                this.$refs.checkOne.fill = "#468eeb"
+            },
+            //鼠标离开 
+            outCheck(){
+                this.$refs.checkOne.fill = "#1f6cdd"
+            },
+            // 鼠标点击
+            downClick(){
+                this.$refs.checkOne.fill = "#114eb8"
+            },
+            // 鼠标松开
+            upClick() {
+                this.$refs.checkOne.fill = "#468eeb"
             }
-
         }
     }
 </script>
 
-<style lang="less" scoped>
-    .tis-components{
+<style lang="less">
+    .tis-compontent-wrapper{
         height: 2000px;
+        .demo-home:hover{
+            color:#f00;
+        }
+        .demo-home:active{
+            color:#00f;
+        }
+        .demo-check{
+            &:hover {
+                path:first-child{
+                    fill: #468eeb;
+                    stroke: #468eeb;
+                }
+            }
+            &:active{
+                path:first-child{
+                    fill: #114eb8;
+                    stroke: #114eb8;
+                }
+            }
+        }
+        .four-path-icon:hover{
+            path{
+                stroke: rgb(96, 139, 66);
+            }
+        }
+        .envelope:hover{
+            path{
+                stroke: #00f;
+            }
+        }
+        .movie:hover{
+            path:first-child{
+                fill: #f00;
+                stroke: #f00;
+            }
+            path:last-child{
+                fill: #f00;
+                stroke: #f00;
+            }
+        }
+
     }
 </style>

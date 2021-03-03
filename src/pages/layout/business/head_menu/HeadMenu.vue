@@ -1,6 +1,7 @@
 <template>
 <div class="head-menu-wrapper">
     <div class="menu-head clearfix" >
+    <!-- {{powerHeaderData}} -->
         <div class="menu-head-left">
             <a :href="address.logo" class="menu-logo" ref="headerLogo" @click="goOut"> 
                 <img src="@/assets/mms_common/xnlogo.png" alt="">
@@ -8,7 +9,7 @@
             <a href="#" class="menu-home-icon" @click="goIndex" ref="homeCon">
                 <i  class="fa fa-home menu-head-home"></i>
             </a>
-            <i class="fa fa-bars menu-head-home" @click="open"></i>
+            <i v-if="isShowLeft" class="fa fa-bars menu-head-home" @click="open"></i>
         </div>
         <ul class="nav pull-left menu-head-center dropdown clearfix" ref="initNav" @click="hideSearch">
             <li class="dropdown more-li" style="display:none;" ref="navLiHide" @mouseover="showDropMenu" @mouseout="hideDropMenu">
@@ -18,7 +19,7 @@
                 <ul class="dropdown-menu more" id="hideMenu" ref="hideMenu">
                     <template v-for="(item,index) in menuArray">
                         <!-- <li class="drop-li " v-show="power && headerPower(item.powerSatus)" :class="{'active':item.routerName == activeName}" @click ="showIndex(index)"><a href="#" >{{item.name}}</a></li> -->
-                        <li class="drop-li" v-show="power" :class="{'active':item.routerName == activeName}" @click ="showIndex(index)" :key="item.url"><a href="#" >{{item.name}}</a></li>
+                        <li class="drop-li" v-show="power && headerPower(item.powerSatus)" :class="{'active':item.routerName == activeName}" @click ="showIndex(index)" :key="item.url"><a href="#" >{{item.name}}</a></li>
                     </template>
                 </ul>
             </li>
@@ -115,12 +116,7 @@ import menuArray from '@/static_data/menu_array.js';
 import address from "@/static_data/address.js";
 import config from "@/config.js";
 export default {
-    props:{
-        power:{
-            type:Array,
-            default:[]
-        }
-    },
+    props:['powerHeaderData',''],
     data() {
         return {
             isShowUser:false,//用户
@@ -145,22 +141,40 @@ export default {
             picWidth:'',//头部logo宽度
             iconWidth:'', //图标宽度
             blankWidth:'', //窗口宽度
-            isShowSelect:false//是否显示搜索框
+            isShowSelect:false,//是否显示搜索框
+            isShowLeft:true,//是否显示收缩左侧功能的图标
         }
     },
     watch: {
         "$route"() {
             //计算菜单和菜单权限
             this.activeName = this.$route.path.split("/")[1];
+            for(let i in this.menuArray){
+                if(this.menuArray[i].routerName == this.routerName){
+                    this.menuList = this.menuArray[i].modular;
+                    break;
+                }
+            }
             //计算头部
             this.$nextTick(()=>{
                 this.initHeader();
             });
         }
     },
+    computed:{
+        power(){
+            return this.powerHeaderData;
+        }
+    },
+    created(){
+        // this.initHead()
+        // this.resizeHeader()
+    },
     methods:{
-         /*
-         菜单权限展示
+
+        
+        /*
+            菜单权限展示
         */
         headerPower(powerSatus){
             let bool = true;
@@ -269,18 +283,6 @@ export default {
         okLogin(){
             this.showModal = false;
         },
-        /*
-        * 菜单权限展示
-        */
-        headerPower(powerSatus){
-            let bool = true;
-            if(powerSatus){
-                if(this.power.indexOf(powerSatus)==-1){
-                    bool = false;
-                }
-            }
-            return bool;
-        },
          /**
         * 初始化
         */
@@ -349,7 +351,7 @@ export default {
         hideSearch(){
             this.$parent.isShowSelect = false;
         },
-         /*
+        /*
             初始化头部
         */
         initHeader(){
@@ -440,14 +442,20 @@ export default {
     },
     mounted(){
         this.activeName = this.$route.path.split("/")[1];
-        this.init();
+        // this.init();
         this.menuHead = JSON.parse(JSON.stringify(this.menuArray))
-        this.initHead();
-        this.initHeader();
+        // this.initHead();
+        // this.initHeader();
+        for(let i in this.menuArray){
+            if(this.menuArray[i].routerName == this.routerName){
+                this.menuList = this.menuArray[i].modular;
+                break;
+            }
+        } 
         this.allWidth = document.body.clientWidth;
         window.onresize = () => {
             this.allWidth = document.body.clientWidth;
-            this.initHeader();
+            this.resizeHeader();
             this.$parent.height()
         };
         this.$nextTick(()=>{
