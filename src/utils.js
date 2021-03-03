@@ -1,5 +1,5 @@
 import Config from "@/config.js";
-import {Message,Notice} from 'iview';
+import {Message,Notice} from 'view-design';
 import Cookies from 'js-cookie';
 
 let utils = {

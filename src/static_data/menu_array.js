@@ -243,7 +243,7 @@ const menuArray = [
                     }
                 ]
             }
-        ]
+        ],
     },
 ]
 

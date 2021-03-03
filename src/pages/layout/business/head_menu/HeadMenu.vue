@@ -1,39 +1,40 @@
 <template>
+<div class="head-menu-wrapper">
     <div class="menu-head clearfix" >
+    <!-- {{powerHeaderData}} -->
         <div class="menu-head-left">
-            <a  :href="address.logo" class="menu-logo" ref="headerLogo" @click="goOut"> 
+            <a :href="address.logo" class="menu-logo" ref="headerLogo" @click="goOut"> 
                 <img src="@/assets/mms_common/xnlogo.png" alt="">
             </a>
-            <a href="#" @click="goIndex" ref="homeCon">
+            <a href="#" class="menu-home-icon" @click="goIndex" ref="homeCon">
                 <i  class="fa fa-home menu-head-home"></i>
             </a>
-            <i class="fa fa-bars menu-head-home" @click="open"></i>
+            <i v-if="isShowLeft" class="fa fa-bars menu-head-home" @click="open"></i>
         </div>
-         <ul class="nav pull-left menu-head-center dropdown clearfix" ref="initNav" @click="hideSearch">
-            <li class="dropdown  more-li" style="display:none;padding-left: 8px;" ref="navLiHide" @mouseover="showDropMenu" @mouseout="hideDropMenu">
+        <ul class="nav pull-left menu-head-center dropdown clearfix" ref="initNav" @click="hideSearch">
+            <li class="dropdown more-li" style="display:none;" ref="navLiHide" @mouseover="showDropMenu" @mouseout="hideDropMenu">
                 <div class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
                     <a href="#">更多<i  class="menu-icon-down"></i></a>
                 </div>
                 <ul class="dropdown-menu more" id="hideMenu" ref="hideMenu">
                     <template v-for="(item,index) in menuArray">
                         <!-- <li class="drop-li " v-show="power && headerPower(item.powerSatus)" :class="{'active':item.routerName == activeName}" @click ="showIndex(index)"><a href="#" >{{item.name}}</a></li> -->
-                        <li class="drop-li " v-show="power" :class="{'active':item.routerName == activeName}" @click ="showIndex(index)"><a href="#" >{{item.name}}</a></li>
+                        <li class="drop-li" v-show="power && headerPower(item.powerSatus)" :class="{'active':item.routerName == activeName}" @click ="showIndex(index)" :key="item.url"><a href="#" >{{item.name}}</a></li>
                     </template>
                 </ul>
             </li>
         </ul>
          <!-- <div class="empty-box" @click="emptyClick"></div> -->
-        <ul class="menu-head-right dropdown" ref="rightHead" :class="{'active':menuRight}">
-            <li @click="goSelect">
+        <ul class="menu-head-right dropdown" ref="rightHead">
+            <!-- <li @click="goSelect">
                 <a class="company-href" href="#">单位：选哪儿官方</a>
-            </li>
-            <li  @click="showSelect">
+            </li> -->
+            <li @click="showSelect">
                 <div class="menu-search clearfix">
-                    <i class="fa fa-search"></i>
-                    <span>搜索</span>
+                    <i class="fa fa-search"></i>搜索
                 </div>
             </li>
-            <li @click="showUser" :class="{'active':userShow}">
+            <li @mouseover="showUser" @mouseout="hideUser" :class="{'active':userShow}">
                 <div class="clearfix menu-user list-li" >
                     <!-- 写死的名字记得删掉，解开下面的注释 -->
                     <i class="fa fa-user menu-user-icon"></i>李璐瑶
@@ -41,10 +42,10 @@
                     <i class="caret"></i>
                     <span class=" msg-count  menu-user-icon" :class="{'count':userMess >99}">{{userMess >99 ?'99+':userMess}}</span>
                 </div>
-                <div class="menu-name-wrapper" v-if="isShowUser" >
+                <div class="menu-name-wrapper" v-show="isShowUser" >
                     <a href="#">
                         <i class="fa fa-user menu-user"></i>用户中心
-                        <span class=" msg-counts" :class="{'count':userMess >99}">{{userMess >99 ?'99+':userMess}}</span>
+                        <span class="msg-counts" :class="{'count':userMess >99}">{{userMess >99 ?'99+':userMess}}</span>
                     </a>
                     <a href="#">
                         <i class="fa fa-envelope-o menu-user menu-mess"></i>消息
@@ -64,19 +65,18 @@
                             <p>鼓风机时发生纠纷很舒服滑动事件</p>
                        </div>
                        <div class="mess-time">
-                           <i class="fa fa-clock-o mess-top"></i>
-                           2020-02-02 15:55
+                           <i class="fa fa-clock-o mess-top"></i>2020-02-02 15:55
                        </div>
                     </a>
                     <a href="#" class="old-mess">查看历史消息</a>
                 </div>
             </li>
-            <li  @click="showSchool" :class="{'active':userSchool}">
+            <li  @mouseover="showSchool" @mouseout="hideSchool" :class="{'active':userSchool}">
                 <div class="clearfix list-li menu-school" >
                     <i class="fa fa-folder-open menu-school-icon" ></i>学院
                     <i class="caret"></i>
                 </div>
-                <div class="menu-name-wrapper menu-name-left" v-if="isShowSchool">
+                <div class="menu-name-wrapper menu-name-left" v-show="isShowSchool">
                     <a href="#">
                         <i class="fa fa-question-circle  menu-user menu-mess"></i>问答学院
                     </a>
@@ -94,23 +94,21 @@
                 </div>
             </li>
         </ul>
-
         <Modal v-model="showModal" width="400" :closable="false">
             <p slot="header" >
-                <Icon type="ios-information-circle"></Icon>
+                <Icon size="20" color="#ff9900" type="ios-information-circle"></Icon>
                 <span>确认退出</span>
             </p>
-            <div style="text-align:center">
+            <div>
                 <p>确定要退出系统吗？</p>
             </div>
             <div slot="footer">
-                <Button type="primary" @click="okLogin">确定</Button>
                 <Button @click="cancelLogin">取消</Button>
+                <Button type="primary" @click="okLogin">确定</Button>
             </div>
-        </Modal>
-       
-        
+        </Modal> 
     </div>
+</div>
 </template>
 <script>
 import Cookie from 'js-cookie';
@@ -118,12 +116,7 @@ import menuArray from '@/static_data/menu_array.js';
 import address from "@/static_data/address.js";
 import config from "@/config.js";
 export default {
-    props:{
-        power:{
-            type:Array,
-            default:[]
-        }
-    },
+    props:['powerHeaderData',''],
     data() {
         return {
             isShowUser:false,//用户
@@ -148,22 +141,40 @@ export default {
             picWidth:'',//头部logo宽度
             iconWidth:'', //图标宽度
             blankWidth:'', //窗口宽度
-            menuRight:false
+            isShowSelect:false,//是否显示搜索框
+            isShowLeft:true,//是否显示收缩左侧功能的图标
         }
     },
     watch: {
         "$route"() {
             //计算菜单和菜单权限
             this.activeName = this.$route.path.split("/")[1];
+            for(let i in this.menuArray){
+                if(this.menuArray[i].routerName == this.routerName){
+                    this.menuList = this.menuArray[i].modular;
+                    break;
+                }
+            }
             //计算头部
             this.$nextTick(()=>{
                 this.initHeader();
             });
         }
     },
+    computed:{
+        power(){
+            return this.powerHeaderData;
+        }
+    },
+    created(){
+        // this.initHead()
+        // this.resizeHeader()
+    },
     methods:{
-         /*
-         菜单权限展示
+
+        
+        /*
+            菜单权限展示
         */
         headerPower(powerSatus){
             let bool = true;
@@ -197,22 +208,28 @@ export default {
             this.$emit('show-select')
         },
          /**
-        * 点击显示用户操作
+        * 显示用户操作
         */
         showUser(){
-            this.isShowUser = !this.isShowUser;
+            this.isShowUser = true;
             this.isShowSchool = false;
             this.userShow = true;
             this.$parent.isShowSelect = false
         },
          /**
-        * 点击显示学院操作
+        * 显示学院操作
         */
         showSchool(){
             this.userSchool =true
             this.isShowUser = false;
-            this.isShowSchool = !this.isShowSchool;
+            this.isShowSchool = true;
             this.$parent.isShowSelect = false
+        },
+        /**
+         * 隐藏学院
+         */
+        hideSchool(){
+            this.isShowSchool = false;
         },
         /**
         * 显示消息弹窗
@@ -226,7 +243,13 @@ export default {
         hideMessage(){
             this.isShowMessage = false;
         },
-         /**
+        /**
+         * 隐藏用户弹窗
+         */
+        hideUser(){
+            this.isShowUser = false;
+        },
+        /**
         * 左侧菜单收起
         */
         open(){
@@ -246,6 +269,7 @@ export default {
         signOut () {
             this.showModal = true;
             this.$parent.isShowSelect = false
+
         },
          /**
         * 点击取消
@@ -258,18 +282,6 @@ export default {
         */
         okLogin(){
             this.showModal = false;
-        },
-        /*
-            菜单权限展示
-        */
-        headerPower(powerSatus){
-            let bool = true;
-            if(powerSatus){
-                if(this.power.indexOf(powerSatus)==-1){
-                    bool = false;
-                }
-            }
-            return bool;
         },
          /**
         * 初始化
@@ -319,6 +331,7 @@ export default {
          */
         goSelect(){
             this.$parent.isShowSelect= false;
+
         },
           /**
          * 跳转选哪
@@ -338,11 +351,10 @@ export default {
         hideSearch(){
             this.$parent.isShowSelect = false;
         },
-         /*
+        /*
             初始化头部
         */
         initHeader(){
-            this.resizeHeader();
             this.resizeHeader();
         },
         /*
@@ -427,36 +439,32 @@ export default {
         hideDropMenu(){
             this.$refs.hideMenu.style.display = "none";
         }
-        
-
     },
     mounted(){
         this.activeName = this.$route.path.split("/")[1];
-        this.init();
+        // this.init();
         this.menuHead = JSON.parse(JSON.stringify(this.menuArray))
-        this.initHead()
-        this.initHeader();
-        window.onresize = () => {
-            if(this.allWidth <1260){
-                this.menuRight = true
-            }else {
-                this.menuRight = false
+        // this.initHead();
+        // this.initHeader();
+        for(let i in this.menuArray){
+            if(this.menuArray[i].routerName == this.routerName){
+                this.menuList = this.menuArray[i].modular;
+                break;
             }
-            this.initHeader();
+        } 
+        this.allWidth = document.body.clientWidth;
+        window.onresize = () => {
+            this.allWidth = document.body.clientWidth;
+            this.resizeHeader();
             this.$parent.height()
         };
         this.$nextTick(()=>{
             this.initHeader();
         });
-        if(this.allWidth <1260){
-            this.menuRight = true
-        }else {
-            this.menuRight = false
-        }
     }
 }
 </script>
-<style lang='less' scoped>
+<style lang='less'>
 @import "./head_menu.less";
 
 </style>

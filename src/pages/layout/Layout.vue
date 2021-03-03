@@ -6,7 +6,7 @@
             ref="head"
             @open="open"
             @show-select="showSelect"
-            :power="powerSiderData">
+            >
         </head-menu>
         <div class="sidebar-menu-con" :style="{width: shrink?'64px':'240px'}">
             <slide-bar 
@@ -76,7 +76,7 @@
         data () {
             return {
                 msg:'您当前的浏览器版本过低，为了保证您能正常使用本系统的全部功能，推荐您下载最新版的360浏览器、Chrome浏览器或QQ浏览器',
-                routerName:'demo',//当前路由名
+                routerName:'examples',//当前路由名
                 menuList: [],//在左侧显示的列表
                 menuTitle: '',//在左侧显示的列表
                 menuArray: menuArray,//菜单数组
@@ -110,6 +110,8 @@
                 ],
                 routerName:'exam',//当前路由名
 
+                indexClick:-1,//搜索弹窗点击的选项索引
+                // leftList:{}
             }
         },
         computed: {
@@ -119,6 +121,13 @@
             $route() {
                 this.watchRouterName();
                 console.log('路由变化')
+                this.routerName = this.$route.path.split("/")[1];
+                for(let i in this.menuArray){
+                    if(this.menuArray[i].routerName == this.routerName){
+                        this.menuList = this.menuArray[i].modular;
+                        break;
+                    }
+                }
             },
         },
         created () {
@@ -143,11 +152,16 @@
                 // this.routerName = this.$route.matched[0].name;
                 // console.log(this.routerName)
                 for(let i in this.menuArray){
-                    if(this.menuArray[i].routerName == this.routerName){
+                    if((this.menuArray[i].routerName == this.routerName) && this.menuArray[i].modular){
                         this.menuList = this.menuArray[i].modular[0].menuList;
                         this.menuTitle = this.menuArray[i].modular[0].title;
-                        console.log(this.menuList)
                         break;
+                    }else if((this.menuArray[i].routerName == this.routerName) && !this.menuArray[i].modular){
+                        let sidebarMenuCon = document.getElementsByClassName("sidebar-menu-con")[0];
+                        let singlepageCon = document.getElementsByClassName("single-page-con")[0];
+                        sidebarMenuCon.style.display = "none";
+                        singlepageCon.style.marginLeft = 0; //内容铺满整个宽度
+                        this.$refs.head.isShowLeft = false; //删除收缩功能的小图标 
                     }
                 }
             },
@@ -171,7 +185,12 @@
                 let INDUSTRY = power.INDUSTRY!=undefined || power.INDUSTRY!=null?power.INDUSTRY:[];
                 let TCS = power.tcs!=undefined || power.tcs!=null?power.tcs:[];
                 this.powerSiderData = [...HR,...DEAL,...INDUSTRY,...TCS];
-                console.log(this.powerSiderData)
+                // console.log(this.powerSiderData ,this.powerHeaderData)
+
+                // 根据接口的权限数据去展示左侧栏（如果根据menuArray完整列表没有意义）
+                // let leftList = this.menuArray.filter(item => this.powerHeaderData.indexOf(item.powerSatus) > -1)
+                // this.menuList = leftList
+                // console.log(this.menuList)
             },
             /*
                 判断浏览器版本并作出提示
@@ -251,12 +270,20 @@
             */
             changeSearchType(index){
                 this.type = index;
+                this.indexClick = index;
             },
             /**
             * 点击搜索
             */
             search(){
-                 this.isShowSelect = false;
+                this.isShowSelect = false;
+                if(this.indexClick==0){
+                    this.$router.push('/examples/page')
+                }else if(this.indexClick == 1){
+                    this.$router.push('/examples/Table')
+                }else if(this.indexClick == 2){
+                    this.$router.push('/examples/radio')
+                }
             },
             
         }
@@ -264,6 +291,8 @@
 </script>
 <style lang="less" scoped>
     @import "./layout.less";
-    
+    .single-page-con.active{
+        margin-left:0px !important;
+    }
 </style>
 
