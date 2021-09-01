@@ -13,7 +13,7 @@
                                 <span v-if="!isOpen" class="first-menu">{{item.title}}</span>                            
                                 <!-- 收起后的icon和气泡 -->
                                 <Dropdown v-else-if="item.children && item.children.length >0 && isOpen" placement="right-start" transfer >
-                                    <Tooltip :content="item.title" placement="right"  >
+                                    <Tooltip :content="item.title" placement="right">
                                         <a href="javascript:void(0)">
                                             <i class="fa  icon-fa"  :class="item.iconAwesome"></i>
                                             <span class="label label-danger label-circle pull-right">94</span>
