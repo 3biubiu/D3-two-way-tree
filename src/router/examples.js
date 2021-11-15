@@ -152,6 +152,24 @@ const demo = {
                 title:'表格'
             },
             component:()=> import('@/pages/examples/Table.vue'),
+        },
+        {
+            path:'approve',
+            name:'approve',
+            meta:{
+                title:'审批接待'
+            },
+            component:()=> import('@/pages/examples/Approve.vue'),
+            children:[        
+                {
+                    path:'approve_add',
+                    name:'approve_add',
+                    meta:{
+                        title:'申请接待'
+                    },
+                    component:()=> import('@/pages/examples/Add.vue'),
+                },
+            ]
         }
     ]
 };

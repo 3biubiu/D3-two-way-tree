@@ -10,6 +10,7 @@ import 'view-design/dist/styles/iview.css';
 import Viewer from 'v-viewer' //v-viewer大图预览
 import {install} from '@icon-park/vue/es/all';
 import '@icon-park/vue/styles/index.css';
+import 'tanikawa-tis/dist/styles/tis.css'
 Vue.config.productionTip = false
 
 
