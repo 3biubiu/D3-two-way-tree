@@ -169,6 +169,14 @@ const demo = {
                     },
                     component:()=> import('@/pages/examples/Add.vue'),
                 },
+                {
+                    path:'approve_my_add',
+                    name:'approve_my_add',
+                    meta:{
+                        title:'我发起的'
+                    },
+                    component:()=> import('@/pages/examples/list/MyAdd.vue'),
+                }
             ]
         }
     ]

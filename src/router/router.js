@@ -16,6 +16,11 @@ Vue.use(Router)
 
 const router = new Router(RouterConfig);
 
+
+const originalPush = Router.prototype.push;
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+};
 /**处理权限状态码
 *
 *@param {Array} data 权限码数组

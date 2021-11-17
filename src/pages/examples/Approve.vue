@@ -1,10 +1,10 @@
 <template>
     <div class="approve-index">
-        <h1>tis设计规范的添加编辑页调用示例</h1>
+        <!-- <h1>tis设计规范的添加编辑页调用示例</h1> -->
         <Card dis-hover>
             <Tabs value="name1" @on-click="handleTab">
                 <TabPane label="申请接待" name="approve_add"></TabPane>
-                <TabPane label="我发起的" name=""></TabPane>
+                <TabPane label="我发起的" name="approve_my_add"></TabPane>
                 <TabPane label="我参与的" name=""></TabPane>
                 <TabPane label="待我审批" name=""></TabPane>
                 <TabPane label="我已审批" name=""></TabPane>
@@ -14,6 +14,7 @@
                 <router-view></router-view>
             </div>
         </Card>
+
     </div>
 </template>
 <script>
@@ -32,7 +33,6 @@
             
         },
         mounted() {     
-                 
         },
         methods:{
             //Tab切换跳转
@@ -56,11 +56,18 @@
     .ivu-tabs-bar{
         margin-bottom: 0;
     }
+    .ivu-card-bordered{
+        border: none;
+    }
     .ivu-card-body{
         padding: 0;
     }
     .router-view{
-        padding: 24px 40px;
+        // padding: 16px;
+    }
+    .ivu-tabs-nav-container:focus .ivu-tabs-tab-focused{
+        border-color: #ececec !important;
+        border-top-color: #1f6cdd !important;
     }
 }
 </style>
