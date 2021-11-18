@@ -59,7 +59,7 @@ export default {
             dealNumber: 0,
         }
     },
-    created(){
+    mounted(){
         this.init();
     },
     computed:{
@@ -79,12 +79,16 @@ export default {
             this.buttonLoading = false;
             this.SpinStatus = false;
         },
+        /**
+         * 点击搜索按钮
+         * @param {*} data 
+         */
         selectSearch(data){
             this.searchData = Object.assign(this.searchData,data);
             this.searchData.page = 1;
             //排序改为默认排序
             this.searchData.order = '';
-            // this.$refs.tableDeal.searchData.order = '';
+            this.$refs.tableDeal.searchData.order = '';
             this.jumpRoute();
             this.buttonLoading = true;
         },
@@ -109,15 +113,12 @@ export default {
             let query = this.$route.query;
             let search = Object.keys(query).length === 0 ? {page:this.searchData.page,pageSize:this.searchData.pageSize} : query;
             this.searchData = Object.assign(this.searchData,search);
-            // console.log(this.searchData);
             //根据搜索项请求列表数据
             this.getList(this.searchData);
-            if(this.searchSet){
-                this.$nextTick(()=>{
-                    this.$refs.searchDeal.setSearchOptions(this.searchData);
-                    // this.$refs.tableDeal.setPageOptions(this.searchData.page, this.searchData.pageSize);
-                })
-            }
+            this.$nextTick(()=>{
+                this.$refs.searchDeal.setSearchOptions(this.searchData);
+                this.$refs.tableDeal.setPageOptions(this.searchData.page, this.searchData.pageSize);
+            })
             // 拉取最新数量数据
             this.getStatisticsNumber()
         },
@@ -140,6 +141,18 @@ export default {
             this.searchData.page = pageData.page;
             this.searchData.pageSize = pageData.pageSize;
             this.jumpRoute();
+        },
+        /**
+         * 排序
+         * @param {string} order 和接口对应的值
+         */
+        handleOrder(order){
+            this.searchData.order = order;
+            this.jumpRoute();
+        },
+        //通过是否显示重置按钮来控制列表文案显示
+        isShowReset(isShow){
+            this.$refs.tableDeal.isShowDefaultTips = isShow;
         },
     }
 

@@ -11,7 +11,7 @@ const $api = {};
  * @return {Promise<void>}
  */
 $api.getContactBase = async (data) => {
-    const url = "Card/getCardInfo";
+    const url = "http://mms-group1.dev.tanikawa.com/spa.php/Card/getCardInfo?testUid=920928";
     return await $http.get(url,{params: data});
 };
 

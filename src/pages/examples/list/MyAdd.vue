@@ -1,7 +1,10 @@
 <template>
     <div class="my-add-content">
-        <search ref="searchDeal" class="add-search" @select-search="selectSearch" :button-loading="buttonLoading"></search>
-        <div style="position: relative;">
+        <search ref="searchDeal" class="add-search"
+        @select-search="selectSearch"
+        :button-loading="buttonLoading"
+        @is-show-Reset="isShowReset"></search>
+        <div class="list-box">
             <my-spin  v-if="SpinStatus"></my-spin>
             <div class="spin-box">
                 <div v-if="isShowTip">
@@ -17,8 +20,9 @@
                 <list
                     ref="tableDeal"
                     class="add-list"
-                    :search-data="searchData"
                     @change-page="handlePage"
+                    @change-order="handleOrder"
+                    @refresh="init"
                     :list-data="listData"
                     :list-count="listCount">
                 </list>

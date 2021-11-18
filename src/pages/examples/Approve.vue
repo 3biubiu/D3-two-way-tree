@@ -2,7 +2,7 @@
     <div class="approve-index">
         <!-- <h1>tis设计规范的添加编辑页调用示例</h1> -->
         <Card dis-hover>
-            <Tabs value="name1" @on-click="handleTab">
+            <Tabs :value="tabValue" @on-click="handleTab">
                 <TabPane label="申请接待" name="approve_add"></TabPane>
                 <TabPane label="我发起的" name="approve_my_add"></TabPane>
                 <TabPane label="我参与的" name=""></TabPane>
@@ -26,7 +26,8 @@
         },
         data () {
             return {
-                tabValue:''
+                //当前tab选中的路由name
+                tabValue : this.$route.name,
             }
         },
         watch: {
@@ -49,9 +50,30 @@
 
 <style lang="less">
 .approve-index{
-    .ivu-tabs-nav .ivu-tabs-tab{
+    .ivu-tabs-tab{
         margin-right: 0;
         padding: 0 16px;
+        font-weight: bold;
+        color: #333333;
+        transition: none;
+    }
+    .ivu-tabs-tab-active{
+        color: #1f6cdd;
+        border-top: none;
+        position: relative;
+        &::before{
+            content: '';
+            width: 100%;
+            height: 2px;
+            background-color: #1f6cdd;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+        }
+    }
+    .ivu-tabs-tab:hover{
+        color: #468eeb;
     }
     .ivu-tabs-bar{
         margin-bottom: 0;
@@ -61,9 +83,6 @@
     }
     .ivu-card-body{
         padding: 0;
-    }
-    .router-view{
-        // padding: 16px;
     }
     .ivu-tabs-nav-container:focus .ivu-tabs-tab-focused{
         border-color: #ececec !important;

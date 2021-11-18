@@ -159,6 +159,9 @@ const demo = {
             meta:{
                 title:'审批接待'
             },
+            redirect: {
+                name: 'approve_my_add'
+            },
             component:()=> import('@/pages/examples/Approve.vue'),
             children:[        
                 {

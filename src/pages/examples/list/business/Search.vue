@@ -22,9 +22,9 @@
 					</tis-input>
                 </tis-col>
                 <tis-col :span="8">
-                    <tis-input  placeholder="联系方式" v-model="searchData.link">
-                        <tis-select v-model="linkSelect" slot="prepend" style="width: 80px">
-                            <tis-option v-for="item in numberList" :value="item.value" :key="item.key">{{item.value}}</tis-option>
+                    <tis-input  placeholder="联系方式" v-model="searchData.linkContent" clearable>
+                        <tis-select class="link-select" v-model="searchData.linkType" @on-change="linkChange" slot="prepend">
+                            <tis-option v-for="item in numberList" :value="item.key" :key="item.key">{{item.value}}</tis-option>
                         </tis-select>
                     </tis-input>
                 </tis-col>
@@ -33,29 +33,32 @@
             <tis-row :gutter="8">
                 <tis-col :span="4">
                     <tis-select 
-                        v-model="searchData.level" 
+                        v-model="searchData.itemLevel" 
                         placeholder="项目等级"
+                        clearable
                         :isModal='true'
                     >
-                        <tis-option v-for="(item,index) in 6" :value="index+1" :key="index">{{item | levelStar}}</tis-option>
+                        <tis-option v-for="(item,index) in 6" :value="index+1" :key="index+1">{{item | levelStar}}</tis-option>
                     </tis-select>
                 </tis-col>
                 <tis-col :span="4">
                     <tis-select 
-                        v-model="searchData.quality" 
+                        v-model="searchData.itemQuality" 
                         placeholder="项目质量"
+                        clearable
                         :isModal='true'
                     >
-                        <tis-option v-for="(item,index) in 5" :value="index+1" :key="index">{{item | levelStar}}</tis-option>
+                        <tis-option v-for="(item,index) in 5" :value="index+1" :key="index+1">{{item | levelStar}}</tis-option>
                     </tis-select>
                 </tis-col>
                 <tis-col :span="4">
                     <tis-select-search 
                         :default-data="ourUserData"
                         placeholder="我方关系建立人"
+                        :is-init="isInit"
+                        :id="searchData.ourId"
                         @clear-select-search="clearOurSearch"
                         @back-select-search="backOurSearch"
-                        res-fields="data"
                         >
                     </tis-select-search>
                 </tis-col>
@@ -83,7 +86,6 @@
             <tis-row :gutter="8" class="search-row-top" v-show="searchShow">
                 <tis-col :span="8">
                     <tis-select-cascader 
-                        class="level2-select"
                         :list="roleList" 
                         @select="getRoleSelect"
                         @clear-select ="roleClear"
@@ -117,15 +119,15 @@
                 </tis-col>
                 <tis-col :span="8">
                     <tis-department-people
-                        class="level2-select"
+                        ref="departPeople"
                         :department-data="departmentData"
                         :department-fields="departmentFields"
-                        :department-id="departmentId"
-                        :people-data="peopleData"
-                        :people-id="peopleId"
-                        ref="departPeople"
+                        :department-id="searchData.inputDepart"
                         department-placeholder="选择录入部门"
-                        people-placeholder='选择录入人'>
+                        :people-data="peopleData"
+                        :people-id="searchData.inputUserId"
+                        people-placeholder='选择录入人'
+                        @back-department-people="backDepartmentPeople">
                     </tis-department-people>
                 </tis-col>
             </tis-row>
@@ -133,6 +135,7 @@
             <tis-row :gutter="8" class="search-row-top" v-show="searchShow">
 				<tis-col span="4">
                     <tis-select 
+                        clearable
                         v-model="searchData.isRelationItem" 
                         placeholder="是否关联项目"
                         @on-change="changeItem"
@@ -143,6 +146,7 @@
 				</tis-col>
 				<tis-col span="4">
                     <tis-select 
+                        clearable
                         v-model="searchData.itemCate" 
                         placeholder="关联项目类型"  
                         :isModal='true'                       
@@ -239,7 +243,6 @@
     import $api from "@/api/contacts_card/index.js";
     import $pluginApi from '@/api/mms_common/plugin.js';
     import itemCateEnum from "@/static_data/item_cate.js";
-    import motCateEnum from "@/static_data/mot_cate.js";
     import Cookie from "js-cookie";
     export default {
         name:'',
@@ -250,7 +253,7 @@
                 if (value * 1 <= 0) {
                     return "";
                 }
-                return ("★").repeat(value)
+                return ("★").repeat(value);
             }
         },
         props:{
@@ -343,9 +346,9 @@
                 linkSelect:'',//联系人下拉选择
                 numberList:[
                     {key:'1' ,value:'手机'},
-                    {key:'2' ,value:'邮箱'},
-                    {key:'3' ,value:'座机'},
-                    {key:'4' ,value:'微信'}
+                    {key:'4' ,value:'邮箱'},
+                    {key:'2' ,value:'座机'},
+                    {key:'3' ,value:'微信'}
                 ],//联系方式下拉单位
                 ourUserData:{//我方关系建立人
                     url:'http://mms-group1.dev.tanikawa.com/spa.php/DealPlugin/users?testUid=920928',
@@ -365,14 +368,12 @@
                 roleList:[],//联系人角色列表
                 roleFields: {id: 'id', name: 'name', children: 'son'},//联系人角色字段
                 placeholder1:['联系人角色类型','联系人角色'],
-                departmentId:'0',//部门id,默认选中的部门的id
                 departmentData:[],//部门数据
                 departmentFields:{
                     id:'id',
                     name:'name',
                     groupId:'group_id'
                 },
-                peopleId:0,//默认选中的人员id
                 peopleData:{//部门人员数据
                     url:'http://mms-group1.dev.tanikawa.com/spa.php/DealPlugin/users?testUid=920928',
                     methods:'get',
@@ -416,8 +417,22 @@
         },
         mounted() {     
             this.getAllTags();
+            let obj = {
+                a : '1',
+                b : '2',
+                c : '3'
+            }
+            // Object.keys(obj).forEach(key=>{obj[key]=''})
         },
         methods:{
+            /**
+             * 修改联系方式清空后面输入框
+             *  @param {string} temp 类型 1=手机 2=座机 3=微信 4=邮箱
+             */
+            linkChange(temp){
+                this.searchData.linkType = temp;
+                this.searchData.linkContent = '';
+            },
             /**
              * 清空我方关系
              */
@@ -704,7 +719,6 @@
                 for(let i in this.searchData){
                     this.searchData[i] = data[i];
                 }
-                this.searchData = Object.assign({},this.searchData);
                 //判断默认展开状态
                 this.setToggleStatus();
                 this.setReset();
@@ -715,54 +729,25 @@
              *
              */
             handleReset() {
+                //将搜索项中的每一项置空
+                Object.keys(this.searchData).forEach(key=>{this.searchData[key]=''});
+                this.searchData.page = 1;
+                this.searchData.pageSize = 10;
+                this.searchData.uid = Cookie.get('uid');
                 this.searchData.dateSettlingCreate = [];
                 this.searchData.dateSettlingPush = [];
-                this.searchData.nameId = ""; //联系人姓名或id
-                this.searchData.job = "";//职务
-                this.searchData.business = "";  //所属企业/单位
                 this.searchData.linkType = "1";//联系方式类型 1=手机 2=邮箱 3=座机 4=微信
-                this.searchData.linkContent = "";//联系方式类型 1=手机 2=邮箱 3=座机 4=微信
-                this.searchData.itemLevel = "";//项目等级
-                this.searchData.itemQuality = ""; //项目质量
-                this.searchData.ourId = '';  //我方关系建立人
-                this.searchData.ourType = "";//	我方关系程度
-                this.searchData.insideId = '';//内部关系人
-                this.searchData.insideType = "";//内部关系程度
-                this.searchData.roleType = ""; //联系人角色类型
-                this.searchData.roleId = "";//联系人角色
-                this.searchData.createTimeStart = "";//录入开始时间
-                this.searchData.createTimeEnd = "";//录入结束时间
-                this.searchData.updateTimeStart = "";//推送开始时间
-                this.searchData.updateTimeEnd = "";//推送结束时间
-                this.searchData.inputDepart = ''; //	录入部门
                 this.searchData.inputUserId = null;//录入人
-                this.searchData.isRelationItem = "";  //是否关联项目
-                this.searchData.itemCate = "";  //	关联项目类型
-                this.searchData.isRelationCompany = ""; //是否关联单位
-                this.searchData.companyCate = "";  //关联单位类型
-                this.searchData.isRelationCarrier = "";//是否关联载体
-                this.searchData.carrierCate = "";//关联载体类型
-                this.searchData.tagType = "";//联系人标签类型
-                this.searchData.tagId = ""; //联系人标签
-                this.searchData.motType = "";//项目MOT类型
-                this.searchData.motId = "";//项目mot
                 this.searchData.motSortId =["","",""] ;//项目mot
-                this.searchData.province = ""; //所属企业/单位 一级
-                this.searchData.city = ""; //所属企业/单位 二级
-                this.searchData.area = "";  //所属企业/单位 三级
                 this.searchData.createTimeSortData = null;
                 this.searchData.pushTimeSortData = null;
                 this.searchData.order = null;
-                this.searchData.contentStatus = "";
                 this.$refs.departPeople.clearDepartment();
                 this.$refs.departPeople.clearPeople();
                 this.resetStatus = false;
                 this.motTag = false;
                 this.toggleStatus = false;   //搜索项展开状态true-展开
                 this.disabled = true;
-                this.defaultAreaCascader = [];//地区三级联动
-                this.defaultRoleSelect = [];//联系人角色二级联动
-                this.defaultTagSelect = [];//联系人标签二级联动
                 this.$emit('select-search',this.searchData);
                 this.$refs.businessSearch.clearAll();
             },
@@ -777,7 +762,7 @@
                         openType = true;
                     }
                 }
-                // this.$emit('is-show-Reset',openType);
+                this.$emit('is-show-Reset',openType);
                 this.resetStatus = openType;
             },
             /**
@@ -792,6 +777,16 @@
                     }
                 }
                 this.searchShow = openType;
+            },
+            /**
+             * 组件返回的部门人员选中值
+             * @param data
+             */
+            backDepartmentPeople(data){
+                if (Object.keys(data).length > 0) {
+                    this.searchData.inputUserId = data.peopleId;
+                    this.searchData.inputDepart = data.departmentId;
+                }
             },
         }
     }
@@ -809,6 +804,9 @@
         .itis-btn-default{
             width: 96px;
             margin-left: 4px;
+        }
+        .link-select{
+            width: 80px;
         }
     }
 </style>

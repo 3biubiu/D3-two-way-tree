@@ -102,7 +102,7 @@ $api.getLevelList = function(formData) {
  * @url :/Plugin/transferModelUser
  */
 $api.plugInGroupUser = function(formData) {
-    const url = '/Plugin/transferModelUser';
+    const url = 'http://mms-group1.dev.tanikawa.com/spa.php/Plugin/transferModelUser?testUid=920928';
 	const promise = new Promise(function(resolve){
         $http.get(url,{params:formData}).then(response=>{
             resolve(response);
