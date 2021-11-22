@@ -273,7 +273,7 @@ $api.reviewCard = async(data) => {
  * @returns {Promise<void>}
  */
 $api.calAllSum = async() => {
-    const url = "Card/calAllSum";
+    const url = "http://mms-group1.dev.tanikawa.com/spa.php/Card/calAllSum?testUid=920928";
     return await $http.get(url);
 };
 

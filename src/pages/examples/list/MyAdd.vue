@@ -2,7 +2,7 @@
     <div class="my-add-content">
         <search ref="searchDeal" class="add-search"
         @select-search="selectSearch"
-        :button-loading="buttonLoading"
+        :btn-loading="buttonLoading"
         @is-show-Reset="isShowReset"></search>
         <div class="list-box">
             <my-spin  v-if="SpinStatus"></my-spin>
@@ -23,8 +23,8 @@
                     @change-page="handlePage"
                     @change-order="handleOrder"
                     @refresh="init"
-                    :list-data="listData"
-                    :list-count="listCount">
+                    :table-data="listData"
+                    :table-count="listCount">
                 </list>
             </div>
         </div>
@@ -59,14 +59,12 @@ import listMixins from "@/mixins/list.js";
         watch: {
             '$route.name'(newVal){
                 this.SpinStatus = true
-                // this.pageType = newVal
                 this.$refs.searchDeal.handleSearch()
-                // this.initTip()
             }
         },
         created(){
+            this.init();
             this.initTip();
-            // this.getList(this.searchData);
         },
         methods:{
             /**

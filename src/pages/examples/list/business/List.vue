@@ -37,7 +37,7 @@
                 </th>
                 <th style="width:9%;">操作</th>
             </tr>
-            <tr slot="table-body" v-for="(item,index) in listData" :key="index">
+            <tr slot="table-body" v-for="(item,index) in tableData" :key="index">
                 <td><Checkbox @on-change="selectOne(item.id)" :value="selectIds.indexOf(item.id) > -1"></Checkbox></td>
                 <td>{{item.id}}</td>
                 <td><span class="name-link" :title="item.name" @click="detailInfo(item.id,item.operation)">{{item.name}}</span></td>
@@ -55,17 +55,18 @@
                 </td>
             </tr>
         </tis-table>
+        <!-- <div class="default-tips hide-footer" v-if="!isShowDefaultTips && this.$route.name === 'approve_my_add'">请在输入框中输入您要搜索的关键词，点击搜索即可从{{countAllNum}}条联系人数据中查找您需要的信息！</div> -->
+        <div class="default-tips" v-if="isShowDefaultTips && tableCount === 0 && this.$route.name === 'approve_my_add'">暂无匹配数据</div>
+        <div class="default-tips" v-if="tableCount === 0 && this.$route.name === 'all_list'">暂无匹配数据</div>
         <div class="list-bottom">
-            <!-- <div class="default-tips hide-footer" v-if="!isShowDefaultTips && this.$route.name === 'contacts_all_list'">请在输入框中输入您要搜索的关键词，点击搜索即可从{{countAllNum}}条联系人数据中查找您需要的信息！</div>
-            <div class="default-tips hide-footer" v-if="isShowDefaultTips && listCount === 0 && this.$route.name === 'contacts_all_list'">暂无匹配数据</div>
-            <div class="default-tips hide-footer" v-if="listCount === 0 && this.$route.name === 'my_all_list'">暂无匹配数据</div> -->
+
             <div class="bottom-left">
                 <tis-checkbox  @on-change="selectAll" v-model="allChecked"><span class="checkbox-text">全选</span></tis-checkbox>
                 <tis-button v-if="isShowButton" ref="recycleBtn" :loading="recycleLoading" type="default" @click="changeRecycleShowBatch">批量回收</tis-button>
             </div>
             <Page   
                 class="page-box"
-                :total="listCount"
+                :total="tableCount"
                 :current="Number(searchData.page)"
                 :page-size="Number(searchData.pageSize)"
                 @on-change="handlePage"
@@ -74,7 +75,7 @@
                 show-sizer
                 show-total
                 show-elevator>
-                <slot>当前共{{listCount}}条记录，本页共{{listData.length}}条记录</slot>
+                <slot>当前共{{tableCount}}条记录，本页共{{tableData.length}}条记录</slot>
             </Page>
         </div>
         <tis-modal v-model="recycleShow" :footerHide="true" :mask-closable="false">
@@ -108,22 +109,24 @@ import $itemOneApi from "@/api/item/item_detail/item_one.js";
 import MySpin from '@/components/common/my_spin/MySpin.vue';
 import ApplyCard from "@/components/apply_card/ApplyCard"
 import Cookie from "js-cookie";
+import listMixins from "@/mixins/list.js";
     export default {
         name:'',
         components: {
             MySpin,
             ApplyCard
         },
+        mixins:[listMixins],
         props:{
             //表格数据
-            listData: {
+            tableData: {
                 type: Array,
                 default: () => {
                     return []
                 }
             },
             // //数据总数
-            listCount: {
+            tableCount: {
                 type: Number,
                 default: 0,
             },
@@ -139,7 +142,7 @@ import Cookie from "js-cookie";
                 pageSizeOpts:[10,20,30,40,50,100,200,300,400,500],
                 selectIds:[],//选中的id数组
                 allChecked:false,//是否全选
-                isShowRecovery:false,
+                isShowRecovery:false,//控制是否回收，为了实现功能，暂时先不用
                 recycleLoading: false, // 批量回收按钮loading
                 recycleShow: false, // 回收modal显示状态
                 recycleTip: '', // 回收弹窗提示语
@@ -151,84 +154,14 @@ import Cookie from "js-cookie";
                 isAuth:null,
                 //默认提示信息显示状态
                 isShowDefaultTips:false,
-                //搜索项内容
-                searchData: {
-                    //页码
-                    //页码
-                    page: 1,
-                    //单页条数
-                    pageSize: 10,
-                    dateSettlingCreate: [],
-                    dateSettlingPush: [],
-                    //联系人姓名或id
-                    nameId: "",
-                    //职务
-                    job: "",
-                    //所属企业/单位
-                    business: "",
-                    //联系方式类型 1=手机 2=座机 3=微信 4=邮箱
-                    linkType: "1",
-                    //联系方式nr
-                    linkContent: "",
-                    //项目等级
-                    itemLevel: "",
-                    //项目质量
-                    itemQuality: "",
-                    //我方关系建立人
-                    ourId: "",
-                    //	我方关系程度
-                    ourType: "",
-                    //内部关系人
-                    insideId: "",
-                    //内部关系程度
-                    insideType: "",
-                    //联系人角色类型
-                    roleType: "",
-                    //联系人角色
-                    roleId: "",
-                    //录入时间
-                    createTimeStart: "",//录入开始时间
-                    createTimeEnd: "",//录入结束时间
-                    //推送时间
-                    updateTimeStart: "",//推送开始时间
-                    updateTimeEnd: "",//推送结束时间
-                    //	录入部门
-                    inputDepart: "",
-                    //录入人
-                    inputUserId: null,
-                    //是否关联项目
-                    isRelationItem: "",
-                    //	关联项目类型
-                    itemCate: "",
-                    //是否关联单位
-                    isRelationCompany: "",
-                    //关联单位类型
-                    companyCate: "",
-                    //是否关联载体
-                    isRelationCarrier: "",
-                    //关联载体类型
-                    carrierType: "",
-                    //联系人标签类型
-                    cardTagType: "",
-                    //联系人标签
-                    cardTagId: "",
-                    //项目MOT类型
-                    motType: "",
-                    //项目mot
-                    motId: "",
-                    //所属企业/单位 一级
-                    province: "",
-                    //所属企业/单位 二级
-                    city: "",
-                    //所属企业/单位 三级
-                    area: "",
-                    order:"",
-                    motSortId:["","",""],
-                },
+                //联系人总数
+                countAllNum:null,
             }
         },
         watch: {
             
+        },
+        created(){
         },
         mounted() {
         },
@@ -277,7 +210,7 @@ import Cookie from "js-cookie";
                 } else {
                     this.selectIds.splice(index, 1);
                 }
-                this.allChecked = this.selectIds.length === this.listData.length;
+                this.allChecked = this.selectIds.length === this.tableData.length;
             },
             /**
              * 多选
@@ -286,10 +219,10 @@ import Cookie from "js-cookie";
                 if(this.allChecked==false){
                     this.selectIds = [];
                 }else{
-                    if(this.listData){
-                        for(let i in this.listData){
-                            if (this.selectIds.indexOf(this.listData[i].id) === -1) {
-                                this.selectIds.push(this.listData[i].id);
+                    if(this.tableData){
+                        for(let i in this.tableData){
+                            if (this.selectIds.indexOf(this.tableData[i].id) === -1) {
+                                this.selectIds.push(this.tableData[i].id);
                             }
                         }
                     }
@@ -323,16 +256,6 @@ import Cookie from "js-cookie";
              */
             hideRecycle() {
                 this.recycleShow = false
-            },
-            /**
-             * 回车事件
-             */
-            enterEvent() {
-                document.onkeydown = e =>{
-                    if (e.key === 'Enter' && e.target.baseURI.match(/contacts_my/) && this.recycleShow) {
-                        this.recycle()
-                    }
-                }
             },
             /**
              * 回收确认
@@ -381,29 +304,6 @@ import Cookie from "js-cookie";
                 }
             },
             /**
-             * 申请查看名片
-             */
-            async applyCard(itemId,cardName,manager,managerName){
-                //添加操作记录埋点
-                await $api.addContactsLog('APPLY_SUBMIT','cardId/'+itemId);
-                //需求7422当用户只能查看限制天数以内的名片时
-                let res = await $api.userIsCanView(itemId);
-                if(res.code == 200){
-                    this.baseInfo={
-                        id:itemId,
-                        name:cardName,
-                        manager:manager,
-                        managerName:managerName,
-                    }
-                    this.$refs.applyCardModal.showNew(itemId,manager);
-                }else if(res.code == 403){
-                    this.$router.push({name: 'error-403'});
-                    return false;
-                }else{
-                    utils.notice(res.msg,'error');
-                }
-            },
-            /**
              * 获取联系人基本信息
              */
             async getBaseInfo(itemId){
@@ -439,6 +339,21 @@ import Cookie from "js-cookie";
                 });
                 window.open(url.href);
                 window.opener = null;
+            },
+            /**
+             * 初始化计算所有联系人总数
+             */
+            async calAllSum(){
+                if (this.$route.name==="approve_my_add"){
+                    let res = await $api.calAllSum();
+                    if (res.code == 200){
+                        if (res.data<10000){
+                            this.countAllNum = res.data
+                        }else{
+                            this.countAllNum = String(res.data/10000).split(".")[0] + "万"
+                        }
+                    }
+                }
             },
         }
     }

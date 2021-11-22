@@ -5,19 +5,22 @@
             <tis-row :gutter="8" class="search-row">
                 <tis-col :span="4">
 					<tis-input
+                        clearable
 						v-model="searchData.nameId"
 						placeholder="联系人ID 姓名">
 					</tis-input>
                 </tis-col>
                 <tis-col :span="4">
 					<tis-input
+                        clearable
 						v-model="searchData.job"
 						placeholder="职务">
 					</tis-input>
                 </tis-col>
                 <tis-col :span="8">
 					<tis-input
-						v-model="searchData.company"
+                        clearable
+						v-model="searchData.business"
 						placeholder="所属企业">
 					</tis-input>
                 </tis-col>
@@ -38,7 +41,7 @@
                         clearable
                         :isModal='true'
                     >
-                        <tis-option v-for="(item,index) in 6" :value="index+1" :key="index+1">{{item | levelStar}}</tis-option>
+                        <tis-option v-for="(item,index) in 6" :value="String(index+1)" :key="String(index+1)">{{item | levelStar}}</tis-option>
                     </tis-select>
                 </tis-col>
                 <tis-col :span="4">
@@ -48,7 +51,7 @@
                         clearable
                         :isModal='true'
                     >
-                        <tis-option v-for="(item,index) in 5" :value="index+1" :key="index+1">{{item | levelStar}}</tis-option>
+                        <tis-option v-for="(item,index) in 5" :value="String(index+1)" :key="String(index+1)">{{item | levelStar}}</tis-option>
                     </tis-select>
                 </tis-col>
                 <tis-col :span="4">
@@ -76,6 +79,7 @@
                         ref="businessSearch"
                         :default-data="tagsData"
                         placeholder="标签搜索"
+                        :id="searchData.tagId"
                         @clear-select-search="clearTagsSearch"
                         @back-select-search="backTagsSearch"
                         res-fields='data'>
@@ -156,6 +160,7 @@
 				</tis-col>
 				<tis-col span="4">
                     <tis-select 
+                        clearable
                         v-model="searchData.isRelationCompany" 
                         placeholder="是否关联单位"  
                         :isModal='true'          
@@ -166,7 +171,6 @@
 				</tis-col>
 				<tis-col span="4">
                     <tis-select 
-                        ref="itemCompanySelect"
                         clearable
                         v-model="searchData.companyCate" 
                         placeholder="关联单位类型"
@@ -216,7 +220,7 @@
                     </tis-select>
                 </tis-col>
                 <template  v-for="(item,key) in motSort">
-                    <tis-col v-show="motTag===true" span="4" :class="{'col-top':key>1}" class="mot-style">
+                    <tis-col v-show="motTag===true" span="4" :class="{'col-top':key>1}">
                         <tis-select clearable :placeholder="item.name" v-model="searchData.motSortId[key]">
                             <tis-option v-for="sonIndex in item.son" :value="sonIndex.id" :key="sonIndex.id">
                                 {{sonIndex.name}}
@@ -228,7 +232,7 @@
         </div>
         <div class="search-right">
             <div class="right-button">
-                <tis-button type="primary" :loading="buttonLoading" @click="handleSearch">搜索</tis-button>
+                <tis-button type="primary" :loading="btnLoading" @click="handleSearch">搜索</tis-button>
                 <tis-button type="default" v-show="resetStatus"  @click="handleReset">重置</tis-button>
                 <div class="btn-none" v-show="!resetStatus"></div>
             </div>
@@ -240,14 +244,17 @@
     </div>
 </template>
 <script>
+    import utils from '@/utils.js';
     import $api from "@/api/contacts_card/index.js";
     import $pluginApi from '@/api/mms_common/plugin.js';
     import itemCateEnum from "@/static_data/item_cate.js";
     import Cookie from "js-cookie";
+    import listMixins from "@/mixins/list.js";
     export default {
         name:'',
         components: {
         },
+        mixins:[listMixins],
         filters:{
             levelStar(value){
                 if (value * 1 <= 0) {
@@ -257,7 +264,7 @@
             }
         },
         props:{
-            buttonLoading:{
+            btnLoading:{
                 type: Boolean,
                 default: true,
             }
@@ -265,84 +272,6 @@
         data () {
             return {
                 searchShow:false,//搜索项展开收起
-                //搜索项内容
-                searchData: {
-                    uid:Cookie.get('uid'),
-                    //页码
-                    page: 1,
-                    //单页条数
-                    pageSize: 10,
-                    dateSettlingCreate: [],
-                    dateSettlingPush: [],
-                    //联系人姓名或id
-                    nameId:"",
-                    //职务
-                    job:"",
-                    //所属企业/单位
-                    business:"",
-                    //联系方式类型 1=手机 2=座机 3=微信 4=邮箱
-                    linkType: "1",
-                    //联系方式nr
-                    linkContent: "",
-                    //项目等级
-                    itemLevel: "",
-                    //项目质量
-                    itemQuality: "",
-                    //我方关系建立人
-                    ourId: "",
-                    //	我方关系程度
-                    ourType: "",
-                    //内部关系人
-                    insideId: "",
-                    //内部关系程度
-                    insideType: "",
-                    //联系人角色类型
-                    roleType: "",
-                    //联系人角色
-                    roleId: "",
-                    //录入时间
-                    createTimeStart: "",//录入开始时间
-                    createTimeEnd: "",//录入结束时间
-                    //更新时间
-                    updateTimeStart: "",//更新开始时间
-                    updateTimeEnd: "",//更新结束时间
-                    //	录入部门
-                    inputDepart: '',
-                    //录入人
-                    inputUserId: null,
-                    //是否关联项目
-                    isRelationItem: "",
-                    //	关联项目类型
-                    itemCate: "",
-                    //是否关联单位
-                    isRelationCompany: "",
-                    //关联单位类型
-                    companyCate: "",
-                    //是否关联载体
-                    isRelationCarrier: "",
-                    //关联载体类型
-                    carrierType: "",
-                    //联系人标签类型
-                    cardTagType: "",
-                    //联系人标签
-                    cardTagId: "",
-                    //项目MOT类型
-                    motType: "",
-                    //项目mot
-                    motId: "",
-                    //所属企业/单位 一级
-                    province: "",
-                    //所属企业/单位 二级
-                    city: "",
-                    //所属企业/单位 三级
-                    area: "",
-                    //排序条件
-                    createTimeSortData: null,
-                    pushTimeSortData: null,
-                    order:null,
-                    motSortId:["","",""],
-                    contentStatus:"",//联系人状态
-                },
                 linkSelect:'',//联系人下拉选择
                 numberList:[
                     {key:'1' ,value:'手机'},
@@ -417,12 +346,6 @@
         },
         mounted() {     
             this.getAllTags();
-            let obj = {
-                a : '1',
-                b : '2',
-                c : '3'
-            }
-            // Object.keys(obj).forEach(key=>{obj[key]=''})
         },
         methods:{
             /**
@@ -454,10 +377,9 @@
             async getAllTags(){
                 let res = await $api.getListAllTags();
                 if(res.code !== "200"){
-                    // utils.notice(res.msg,"error");
+                    utils.notice(res.msg,"error");
                     return false;
                 }
-                // this.tagList = res.data.tagList;
                 this.roleList = res.data.roleList;
                 this.ourType = res.data.ourType;
                 this.insideType = res.data.insideType;
@@ -468,7 +390,6 @@
              */
             backTagsSearch(data){
                 this.searchData.tagId = data.id;
-                // this.$refs.businessSearch.keyword = "";
             },
             clearTagsSearch(data){
                 this.searchData.tagId = "";
@@ -479,20 +400,8 @@
              */
             getRoleSelect(data){
                 if (Object.keys(data).length > 0) {
-                    // this.searchData.roleType = data[0].id?data[0].id:'';
-                    // this.searchData.roleId = data[1].id?data[1].id:'';
-                    if (data[0]) {
-                        this.searchData.roleType = data[0].id; //角色类型 一级
-                    } else {
-                        this.searchData.roleType = '';
-                        this.searchData.roleId = '';
-                    }
-                    if (data[1]) {
-                        this.searchData.roleId = data[1].id; //角色 二级
-                    } else {
-                        this.searchData.roleId = '';
-                    }
-
+                    this.searchData.roleType = data[0].id?data[0].id:'';
+                    this.searchData.roleId = data[1].id?data[1].id:'';
                 }
             },
             /**
@@ -512,6 +421,7 @@
              * @param {Array} date 时间区间数组
              */
             changeCreateTime(date) {
+                this.searchData.dateSettlingCreate = date;
                 this.searchData.createTimeStart = `${date[0]}`;
                 this.searchData.createTimeEnd =`${date[1]}`;
             },
@@ -520,6 +430,7 @@
              * @param {Array} date 时间区间数组
              */
             changePushTime(date) {
+                this.searchData.dateSettlingPush = date;
                 this.searchData.updateTimeStart = `${date[0]}`;
                 this.searchData.updateTimeEnd = `${date[1]}`;
             },
@@ -612,10 +523,10 @@
              */
             async getContactsStatus(){
                 let res = await $api.getContactsStatus();
-                // if(res.code != "200"){
-                //     utils.notice(res.msg,"error");
-                //     return false;
-                // }
+                if(res.code != "200"){
+                    utils.notice(res.msg,"error");
+                    return false;
+                }
                 this.contentStatus = res.data;
             },
             /**
@@ -677,7 +588,7 @@
                 this.motTag = false;
                 let mot = await $api.getMotSort(motType,motId);
                 if (mot.code !== "200") {
-                    // utils.notice(mot.msg, "error");
+                    utils.notice(mot.msg, "error");
                     this.motTag = false;
                     return false;
                 }
@@ -697,7 +608,7 @@
             async getMotList(){
                 let mot = await $api.getMotTags();
                 if (mot.code !== "200") {
-                    // utils.notice(mot.msg, "error");
+                    utils.notice(mot.msg, "error");
                     return false;
                 }
                 this.motEnum = mot.data;
@@ -706,8 +617,7 @@
              *点击搜索按钮
              */
             handleSearch(){
-                let res = this.searchData;
-                this.$emit('select-search',res);
+                this.$emit('select-search',this.searchData);
             },
             /**
              * 初始化搜索条件
@@ -738,6 +648,7 @@
                 this.searchData.dateSettlingPush = [];
                 this.searchData.linkType = "1";//联系方式类型 1=手机 2=邮箱 3=座机 4=微信
                 this.searchData.inputUserId = null;//录入人
+                this.searchData.contentStatus = "";
                 this.searchData.motSortId =["","",""] ;//项目mot
                 this.searchData.createTimeSortData = null;
                 this.searchData.pushTimeSortData = null;
@@ -746,7 +657,6 @@
                 this.$refs.departPeople.clearPeople();
                 this.resetStatus = false;
                 this.motTag = false;
-                this.toggleStatus = false;   //搜索项展开状态true-展开
                 this.disabled = true;
                 this.$emit('select-search',this.searchData);
                 this.$refs.businessSearch.clearAll();
@@ -769,7 +679,7 @@
              * 判断默认是否展开状态
              */
             setToggleStatus() {
-                let type = ['page','pageSize','order','uid','nameId','job','business','linkType','linkContent','itemLevel','itemQuality','ourId','ourType','insideId','insideType','tagId','tagName']
+                let type = ['page','pageSize','order','uid','nameId','job','business','linkType','linkContent','itemLevel','itemQuality','ourId','ourType','tagId']
                 let openType = false;
                 for(let i in this.searchData){
                     if(this.searchData[i] != null && this.searchData[i] != undefined && this.searchData[i].toString() != '' && this.searchData[i].toString().replace(/,/g, '') !== "" && type.indexOf(i)<0){
@@ -797,13 +707,15 @@
 </style>
 <style lang="less">
     .search-content{
-        .itis-btn{
-            width: 96px;
-            min-width: 64px;
-        }
-        .itis-btn-default{
-            width: 96px;
-            margin-left: 4px;
+        .right-button{
+            .itis-btn{
+                width: 96px;
+                min-width: 64px;
+            }
+            .itis-btn-default{
+                width: 96px;
+                margin-left: 8px;
+            }
         }
         .link-select{
             width: 80px;

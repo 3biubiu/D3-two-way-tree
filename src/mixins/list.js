@@ -38,15 +38,10 @@ export default {
                 itemCate: "", //	关联项目类型
                 isRelationCompany: "",//是否关联单位
                 companyCate: "",   //关联单位类型
-                isRelationCarrier: "",//是否关联载体
-                carrierCate: "", //关联载体类型
                 tagType: "", //联系人标签类型
                 tagId: "",  //联系人标签
                 motType: "",    //项目MOT类型
                 motId: "",//项目mot
-                province: "",  //所属企业/单位 一级
-                city: "",      //所属企业/单位 二级
-                area: "",  //所属企业/单位 三级
                 order:"",
                 motSortId:["","",""],
             },
@@ -59,8 +54,9 @@ export default {
             dealNumber: 0,
         }
     },
+    created() {
+    },
     mounted(){
-        this.init();
     },
     computed:{
         approve(){
@@ -102,9 +98,7 @@ export default {
                 query : searchOpt,
             });
             //等待路由的push完成后再初始化搜索项
-            setTimeout(()=>{
-                this.init();
-            })
+            setTimeout(()=>{this.init();})
         },
         /**
          * 初始化搜索项并根据路由拉取数据
@@ -117,6 +111,8 @@ export default {
             this.getList(this.searchData);
             this.$nextTick(()=>{
                 this.$refs.searchDeal.setSearchOptions(this.searchData);
+                this.$refs.tableDeal.selectIds = [];
+                this.$refs.tableDeal.allChecked = false;
                 this.$refs.tableDeal.setPageOptions(this.searchData.page, this.searchData.pageSize);
             })
             // 拉取最新数量数据
@@ -153,7 +149,8 @@ export default {
         //通过是否显示重置按钮来控制列表文案显示
         isShowReset(isShow){
             this.$refs.tableDeal.isShowDefaultTips = isShow;
-        },
+        }
+
     }
 
 }
