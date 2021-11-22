@@ -1,20 +1,15 @@
 import $http from '@/resource';
 import contacts from "./contacts.js";
 import contactsDetail from "./contacts_detail.js";
-import contactsAdd from "./contacts_add";
-import contactsConfig from "./contacts_config.js";
 import utils from "@/utils";
 const $api = Object.assign({},
     contacts,
     contactsDetail,
-    contactsAdd,
     contactsConfig
 );
 
 /**
  * 拉取用户的联系人列表页权限
- *
- * @author zan 2020-10-27 11:00:51
  *
  * @method GET
  *
@@ -32,11 +27,10 @@ $api.getContactsAuth = async (uid) => {
 /**
  * 拉取用户的联系人详情页权限
  *
- * @author zan 2020-10-27 11:00:51
- *
  * @method GET
  *
  * @param uid 用户id
+ * 
  * @param cardId 联系人id cardId
  *
  * @returns {Promise<*>}
@@ -49,8 +43,6 @@ $api.getContactsInfoAuth = async (info) => {
 };
 /**
  * 快速拨打电话
- *
- * @author liluyao & 2020-3-24 17:01:56
  *
  * @param {obj} obj
  * *
@@ -68,8 +60,6 @@ export default $api;
 /**
  * 项目推送
  *
- * @author wanghao 2021-2-22
- *
  * @method post
  *
  * @param {Array} data 推送人员数组
@@ -81,15 +71,6 @@ export default $api;
  *
  * @returns {Promise<void>}
  */
-// $api.contactPush = async (data,sendmsgArr,itemId)=>{
-//     const url = `ItemBaseInfo/contactPush`;
-//     let postData = {
-//         "users" :  data,
-//         "itemId" :  itemId,
-//         "sendmsgArr" :  sendmsgArr
-//     };
-//     return await $http.post(url,postData);
-// };
 $api.contactPush = async (formData) => {
     const url = `ItemBaseInfo/contactPush`;
     let response = await $http.post(url,formData);
@@ -102,8 +83,6 @@ $api.contactPush = async (formData) => {
 };
 /**
  * 搜索合并项目
- *
- * @author qinna 2021.2.24
  *
  * @method post
  *
@@ -124,8 +103,6 @@ $api.searchCard = async (itemId,keywords)=>{
 };
 /**
  * 合并联系人提交
- *
- * @author qinna 2021-2-25
  *
  * @method post
  *
