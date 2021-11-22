@@ -35,3 +35,5 @@ $api.delCardAuth = async (formData)=>{
     const url = `http://mms-group1.dev.tanikawa.com/spa.php/UserCard/delCardAuth?testUid=920928`;
     return await $http.post(url,formData);
 };
+
+export default $api;
