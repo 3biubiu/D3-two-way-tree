@@ -152,6 +152,35 @@ const demo = {
                 title:'表格'
             },
             component:()=> import('@/pages/examples/Table.vue'),
+        },
+        {
+            path:'approve',
+            name:'approve',
+            meta:{
+                title:'审批接待'
+            },
+            redirect: {
+                name: 'approve_my_add'
+            },
+            component:()=> import('@/pages/examples/Approve.vue'),
+            children:[        
+                {
+                    path:'approve_add',
+                    name:'approve_add',
+                    meta:{
+                        title:'申请接待'
+                    },
+                    component:()=> import('@/pages/examples/Add.vue'),
+                },
+                {
+                    path:'approve_my_add',
+                    name:'approve_my_add',
+                    meta:{
+                        title:'我发起的'
+                    },
+                    component:()=> import('@/pages/examples/list/MyAdd.vue'),
+                }
+            ]
         }
     ]
 };

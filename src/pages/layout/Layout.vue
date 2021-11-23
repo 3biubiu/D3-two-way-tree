@@ -52,7 +52,7 @@
 </template>
 <script>
     import TopNotification from '@/components/common/top_notification/TopNotification.vue';
-    import ShrinkableMenu from './business/ShrinkableMenu.vue';
+    import ShrinkAbleMenu from './business/ShrinkableMenu.vue';
     import menuArray from '@/static_data/menu_array.js';
     import CommonFooter from './business/footer/Footer.vue';
     import HeadMenu from "./business/head_menu/HeadMenu";
@@ -66,7 +66,7 @@
     const mmsCommon = createNamespacedHelpers('mmsCommon')
     export default {
         components: {
-            ShrinkableMenu,
+            ShrinkAbleMenu,
             CommonFooter,
             TopNotification,
             HeadMenu,

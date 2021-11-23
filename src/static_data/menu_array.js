@@ -214,16 +214,16 @@ const menuArray = [
                     {
                         iconAwesome: "fa fa-table",
                         name: "example",
-                        title: "公共组件示例",
+                        title: "示例页面",
                         powerSatus:"",
                         openName:'example',
                         children: [
                             {
                                 iconAwesome: "fa fa-globe",
-                                name:'tis-componentso',
-                                openName:'tis-componentso',
+                                name:'approve',
+                                openName:'approve',
                                 powerSatus:"",
-                                title: "公共组件",                                
+                                title: "添加编辑页/列表页",                                
                             },
                             {
                                 iconAwesome: "fa fa-globe",

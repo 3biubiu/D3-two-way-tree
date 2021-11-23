@@ -7,6 +7,7 @@ import store from "./store/index.js"
 import 'font-awesome/css/font-awesome.css'; //font-awesome图标库
 import "./theme/index.less"
 import 'view-design/dist/styles/iview.css';  
+import 'tanikawa-tis/dist/styles/tis.css';
 import Viewer from 'v-viewer' //v-viewer大图预览
 import {install} from '@icon-park/vue/es/all';
 import '@icon-park/vue/styles/index.css';
