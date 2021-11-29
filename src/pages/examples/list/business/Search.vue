@@ -702,23 +702,6 @@
     }
 </script>
 
-<style lang="less" scoped>
-@import './search.less';
-</style>
 <style lang="less">
-    .search-content{
-        .right-button{
-            .itis-btn{
-                width: 96px;
-                min-width: 64px;
-            }
-            .itis-btn-default{
-                width: 96px;
-                margin-left: 8px;
-            }
-        }
-        .link-select{
-            width: 80px;
-        }
-    }
+@import './search.less';
 </style>

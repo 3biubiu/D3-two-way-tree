@@ -7,8 +7,6 @@ const $api = {};
 /**
  * 附件相机列表
  *
- * @author wangjiannan & 2018-12-27 8:54:51
- *
  * @method POST
  *
  * @url : /Plugin/getCameraList
@@ -29,8 +27,6 @@ $api.cameraAttachment = function(formData) {
 
 /**
  * 上传文件删除
- *
- * @author wangjiannan & 2018-12-27 8:54:51
  *
  * @method POST
  *
@@ -53,8 +49,6 @@ $api.deletePic = function(formData) {
 /**
  * 附件相机上传
  *
- * @author wangjiannan & 2018-12-27 8:54:51
- *
  * @method POST
  *
  * @url : /Plugin/getPicInfuByIds
@@ -76,8 +70,6 @@ $api.getPicInfuByIds = function(formData) {
 /**
  * 等级下拉
  *
- * @author wangjiannan & 2018-12-27 8:54:51
- *
  * @method GET
  *
  * @url :/Plugin/getLevelList
@@ -95,8 +87,6 @@ $api.getLevelList = function(formData) {
 /**
  * 获取部门及部门下人员
  *
- * @author wangjiannan & 2018-12-28 8:54:51
- *
  * @method GET
  *
  * @url :/Plugin/transferModelUser
@@ -113,8 +103,6 @@ $api.plugInGroupUser = function(formData) {
 
 /**
  * 获取推送弹窗部门及部门下人员
- *
- * @author panhaowen & 2020-4-20
  *
  * @method GET
  *
@@ -134,8 +122,6 @@ export default $api;
 /**
  * 上传文件删除
  *
- * @author liujuan & 2019-1-3 10:16:28
- *
  * @method POST
  *
  * @url : /Plugin/deletePic
@@ -152,8 +138,6 @@ $api.delUpload = async (data) => {
 
 /**
  * 获取部门及部门下人员
- *
- * @author wangjiannan & 2018-12-28 8:54:51
  *
  * @method GET
  *
@@ -189,8 +173,6 @@ $api.getInvestmentDemands = async (type=1)=>{
 /**
  * 获取省市区的数据
  *
- * @author qinna 2020-3-13 10:59:34
- *
  * @method GET
  *
  *
@@ -204,8 +186,6 @@ $api.getArea = async ()=>{
 };
 /**
  * 获取世界所有公司名称 对接搜索引擎
- *
- * @author qinna 2020-3-13 10:59:34
  *
  * @method GET
  *
@@ -222,8 +202,6 @@ $api.getAllCompany = async (word,pageSize=10)=>{
 };
 /**
  * 获取产业分类列表 选项框
- *
- * @author qinna 2019.11.16
  *
  * @method GET
  *
@@ -243,8 +221,6 @@ $api.getAllIndustry = async (searchData=undefined) => {
 /**
  * 获取经营行业列表 选项框
  *
- * @author qinna 2019.11.16
- *
  * @method GET
  *
  * @param searchData 查询条件
@@ -261,8 +237,6 @@ $api.getAllTrade = async (searchData=undefined) => {
 /**
  * 获取单位成员
  *
- * @author qinna 2020-3-13 10:59:34
- *
  * @method GET
  *
  * @url Plugin/searchUserwithName
@@ -276,8 +250,6 @@ $api.searchUserwithName = async (keyword)=>{
 
 /**
  * 获取对接人
- *
- * @author qinna 2020-3-13 10:59:34
  *
  * @method GET
  *
@@ -293,8 +265,6 @@ $api.getRelateBrokerCard = async (keyword,excuteId)=>{
 
 /**
  * 获取最近联系人||常用联系人
- *
- * @author panhaowen 2020-4-17
  *
  * @method GET
  *

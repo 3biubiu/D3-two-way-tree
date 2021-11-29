@@ -1,7 +1,9 @@
 import $http from '@/resource';
 import contacts from "./contacts.js";
 import contactsDetail from "./contacts_detail.js";
+import Config from '@/config.js';
 import utils from "@/utils";
+// devApiUrl
 const $api = Object.assign({},
     contacts,
     contactsDetail,

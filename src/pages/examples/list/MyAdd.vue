@@ -5,7 +5,7 @@
         :btn-loading="buttonLoading"
         @is-show-Reset="isShowReset"></search>
         <div class="list-box">
-            <my-spin  v-if="SpinStatus"></my-spin>
+            <Spin fix v-if="SpinStatus"></Spin>
             <div class="spin-box">
                 <div v-if="isShowTip">
                     <div class="list-tip" v-if="approve >= 0">
@@ -31,7 +31,6 @@
     </div>
 </template>
 <script>
-import MySpin from '@/components/common/my_spin/MySpin.vue';
 import Search from './business/Search';
 import List from './business/List';
 import listMixins from "@/mixins/list.js";
@@ -40,7 +39,6 @@ import listMixins from "@/mixins/list.js";
         components: {
             Search,
             List,
-            MySpin
         },
         mixins:[listMixins],
         data () {
@@ -83,6 +81,6 @@ import listMixins from "@/mixins/list.js";
     }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 @import './my_add.less';
 </style>

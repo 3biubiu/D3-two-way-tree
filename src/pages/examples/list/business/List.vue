@@ -105,15 +105,13 @@
 <script>
 import utils from '@/utils.js';
 import $api from "@/api/contacts_card/index.js";
-import $itemOneApi from "@/api/item/item_detail/item_one.js";
-import MySpin from '@/components/common/my_spin/MySpin.vue';
+import $itemOneApi from "@/api/item/item_detail/index.js";
 import ApplyCard from "@/components/apply_card/ApplyCard"
 import Cookie from "js-cookie";
 import listMixins from "@/mixins/list.js";
     export default {
         name:'',
         components: {
-            MySpin,
             ApplyCard
         },
         mixins:[listMixins],
@@ -359,46 +357,6 @@ import listMixins from "@/mixins/list.js";
     }
 </script>
 
-<style lang="less" scoped>
-@import './list.less';
-</style>
 <style lang="less">
-    .my-add-list{
-        position: relative;
-        .tis-table th{
-            padding-left: 16px;
-            line-height: 32px;
-            font-weight: bold;
-        }
-        .tis-table td{
-            height: 48px;
-            padding-left: 16px;
-            line-height: 18px;
-            box-sizing: border-box;
-            word-break: break-all;
-            word-break: break-word;
-        }
-        .ivu-page{
-            text-align: right;
-            margin-top: 16px;
-        }
-        .page-box{
-            .ivu-select-item{
-                padding: 0;
-            }
-        }
-        .itis-checkbox-wrapper{
-            font-size: 0;
-            .itis-checkbox{
-                margin-bottom: 2px;
-            }
-            .checkbox-text{
-                display: inline-block;
-                font-size: 14px;
-                line-height: 20px;
-                margin-left: 8px;
-                vertical-align: bottom;
-            }
-        }
-    }
+@import './list.less';
 </style>

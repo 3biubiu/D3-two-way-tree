@@ -1,6 +1,6 @@
 <template>
-    <tis-modal class="form-modal" v-model="ApplyCardModal" scrollable title="申请查看" :mask-closable="false">
-        <div class="message-box">
+    <tis-modal class="form-modal" v-model="ApplyCardModal" title="申请查看" :mask-closable="false">
+        <div class="apply-message-box">
             <tis-row :gutter="16">
                 <tis-col :span="6">
                     <p class="left-title">联系人名称：</p>
@@ -187,6 +187,6 @@
         }
     }
 </script>
-<style lang="less" scoped>
+<style lang="less">
     @import "./apply_card.less";
 </style>

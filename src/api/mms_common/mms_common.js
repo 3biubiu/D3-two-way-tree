@@ -66,14 +66,6 @@ $api.saveProblemFeedback = async (submitData) => {
     }
 };
 
-
-
-
-
-
-
-
-
 /**
     * 获取iframe地址
     * @method POST
@@ -89,7 +81,6 @@ $api.getIframeSrc = async () => {
     }
 };
 
-
 /**
     * 拉取用户的基本权限
     * @method GET
@@ -104,14 +95,6 @@ $api.getBasicAuthList = async (uid="") => {
     }
     return await $http.get(url);    
 };
-
-// 右侧挂件
-
-
-
-
-
-
 
 // 成交
 /**
