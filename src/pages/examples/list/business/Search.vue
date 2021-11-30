@@ -334,8 +334,7 @@
                 resetStatus:false,//重置按钮是否出现
             }
         },
-        watch:{
-        },
+        watch:{},
         created(){
             /**
              * 获取部门列表

@@ -23,6 +23,7 @@
                     class="add-list"
                     @change-page="handlePage"
                     @change-order="handleOrder"
+                    @set-page-options="setPageOptions"
                     @refresh="init"
                     :is-show-default-tips="isShowDefaultTips"
                     :search-data="searchData"
@@ -75,7 +76,6 @@ import listMixins from "@/mixins/list.js";
                     this.isShowTip = false
                 }
             },
-            
         }
     }
 </script>

@@ -156,6 +156,14 @@ export default {
         //通过是否显示重置按钮来控制列表文案显示
         isShowReset(isShow){
             this.isShowDefaultTips = isShow;
+        },
+        /**
+         * 手动设置页码数
+         * @param {Object} 当前页码和最大显示条数
+         */
+            setPageOptions(pageData){
+            this.searchData.page = pageData.page;
+            this.searchData.pageSize = pageData.pageSize;
         }
 
     }

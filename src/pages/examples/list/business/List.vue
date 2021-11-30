@@ -175,8 +175,7 @@ import Cookie from "js-cookie";
              * @param {Number} page 当前页
              */
             handlePage(page) {
-                this.searchData.page = page;
-                this.$emit("change-page",{"page":this.searchData.page,"pageSize":this.searchData.pageSize});
+                this.$emit("change-page",{"page":page,"pageSize":this.searchData.pageSize});
             },
             /**
              * 手动设置页码数
@@ -184,25 +183,24 @@ import Cookie from "js-cookie";
              * @param {int} pageSize 单页条数
              */
             setPageOptions(page,pageSize) {
-                this.searchData.page = page ? parseInt(page) : 0;
-                this.searchData.pageSize = pageSize ? parseInt(pageSize) : 10;
+                let newPage = page ? parseInt(page) : 0;
+                let newPageSize = pageSize ? parseInt(pageSize) : 10;
+                this.$emit("set-page-options",{"page":newPage,"pageSize":newPageSize});
             },
             /**
              * 处理分页最大显示条数派发事件
              * @param {Number} pageSize 当前显示条数
              */
             handlePageSize(pageSize) {
-                this.searchData.page = 1;
-                this.searchData.pageSize = pageSize;
-                this.$emit("change-page",{"page":this.searchData.page,"pageSize":this.searchData.pageSize});
+                this.$emit("change-page",{"page":1,"pageSize":pageSize});
             },
             /**
              * 列表时间排序
              * @param {string} rule 规则
              */
             doSort(rule){
-                this.searchData.order = rule ===''?'':rule;
-                this.$emit("change-order",rule);
+                let newRule = rule ===''?'':rule;
+                this.$emit("change-order",newRule);
             },
             /**
              * 单选
