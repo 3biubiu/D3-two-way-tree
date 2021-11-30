@@ -63,7 +63,7 @@
                 <div class="about-item-content">
                     <template v-for="(item,index) in formValidate.urlList">
                         <tis-form-item label="参考网址" class="url-item" :prop="'url'+index">
-                            <tis-input v-model="item.urlLink" placeholder="请输入客方的姓名和职务" />
+                            <tis-input v-model="item.urlLink" clearable placeholder="请输入客方的姓名和职务" />
                             <span v-show="index==0" @click="addUrl">添加+</span>
                             <span v-show="index!=0" @click="delUrl(index)">删除X</span>
                         </tis-form-item>
@@ -294,7 +294,6 @@
              * @param {String} value2 日期类型
              */
             timeChange(value1,value2){
-                console.log(value1);
                 this.formValidate.time = value1;
                 // this.formValidate.starTime = value1[0];
                 // this.formValidate.endTime = value1[1];
@@ -320,7 +319,6 @@
              * @param {Object} formValidate 需要验证的表单数据
              */
             handleSubmit (formValidate) {
-                console.log(this.formValidate);
                 this.$refs[formValidate].validate((valid) => {
                     if (valid) {
                         this.$Message.success('提交成功!');
@@ -394,7 +392,6 @@
                 //     pic_id: file.id
                 // }; 
                 // let res = await $api.deletePic(data);
-                // console.log(res);
                 // if(res.code==200){
                 //     this.$refs.feedbackUpload.deleteFile(file);
                 //     this.$TisMessage.success('删除成功')

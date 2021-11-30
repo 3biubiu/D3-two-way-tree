@@ -1,6 +1,7 @@
 <template>
     <div class="my-add-content">
         <search ref="searchDeal" class="add-search"
+        :search-data="searchData"
         @select-search="selectSearch"
         :btn-loading="buttonLoading"
         @is-show-Reset="isShowReset"></search>
@@ -24,6 +25,7 @@
                     @change-order="handleOrder"
                     @refresh="init"
                     :is-show-default-tips="isShowDefaultTips"
+                    :search-data="searchData"
                     :table-data="listData"
                     :table-count="listCount">
                 </list>

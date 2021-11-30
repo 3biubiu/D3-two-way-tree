@@ -71,7 +71,6 @@ export default {
          async getList(data){
             this.SpinStatus = true;
             let res = await $api.getCardListData(data,this.pageType);
-            console.log(res);
             if(res.code=='200'){
                 // if(res.data.length!=0){
                 //     this.listData = JSON.parse(JSON.stringify(res.data.list));

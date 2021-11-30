@@ -249,12 +249,12 @@
     import $pluginApi from '@/api/mms_common/plugin.js';
     import itemCateEnum from "@/static_data/item_cate.js";
     import Cookie from "js-cookie";
-    import listMixins from "@/mixins/list.js";
+    // import listMixins from "@/mixins/list.js";
     export default {
         name:'',
         components: {
         },
-        mixins:[listMixins],
+        // mixins:[listMixins],
         filters:{
             levelStar(value){
                 if (value * 1 <= 0) {
@@ -264,9 +264,13 @@
             }
         },
         props:{
-            btnLoading:{
+            btnLoading:{//搜索按钮的loading状态
                 type: Boolean,
                 default: true,
+            },
+            searchData:{//搜索项数据
+                type:Object,
+                default:()=>{return {}}
             }
         },
         data () {
@@ -643,7 +647,8 @@
                 Object.keys(this.searchData).forEach(key=>{this.searchData[key]=''});
                 this.searchData.page = 1;
                 this.searchData.pageSize = 10;
-                this.searchData.uid = Cookie.get('uid');
+                this.searchData.uid = '702144';//临时使用固定的uid
+                // this.searchData.uid = Cookie.get('uid');
                 this.searchData.dateSettlingCreate = [];
                 this.searchData.dateSettlingPush = [];
                 this.searchData.linkType = "1";//联系方式类型 1=手机 2=邮箱 3=座机 4=微信

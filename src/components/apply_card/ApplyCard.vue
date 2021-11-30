@@ -30,11 +30,11 @@
                     <p class="left-title">通知类型：</p>
                 </tis-col>
                 <tis-col :span="18">
-                    <CheckboxGroup v-model="notice">
-                        <Checkbox label="phone_call_status">电话</Checkbox>
-                        <Checkbox label="qq_push_status">企业微信</Checkbox>
-                        <Checkbox label="app_push_status">选哪儿APP</Checkbox>
-                    </CheckboxGroup>
+                    <tis-checkbox-group v-model="notice">
+                        <tis-checkbox label="phone_call_status">电话</tis-checkbox>
+                        <tis-checkbox label="qq_push_status">企业微信</tis-checkbox>
+                        <tis-checkbox label="app_push_status">选哪儿APP</tis-checkbox>
+                    </tis-checkbox-group>
                 </tis-col>
             </tis-row>
         </div>
@@ -89,8 +89,6 @@
                 handler(newVal, oldVal) {
                     this.applyData.phone_call_status = (newVal.indexOf("phone_call_status")==-1)?false : true;
                     this.applyData.qq_push_status = (newVal.indexOf("qq_push_status")==-1)?false : true;
-                    this.applyData.wx_push_status = (newVal.indexOf("wx_push_status")==-1)?false : true;
-                    this.applyData.send_message_status = (newVal.indexOf("send_message_status")==-1)?false : true;
                     this.applyData.app_push_status = (newVal.indexOf("app_push_status")==-1)?false : true;
                 },
                 deep: true
@@ -119,8 +117,7 @@
         },
         methods:{
             /**
-            * 关闭申请弹窗确定
-            * @author liluyao & 2020-3-12 21:36:54
+            * 申请弹窗确定
             */
             async okApplyCard(){
                 this.loading = true
@@ -135,8 +132,6 @@
                     return;
                 }
             },
-
-
             /**
              * 弹窗点击取消
              */
@@ -144,10 +139,9 @@
                 this.ApplyCardModal = false
             },
             /**
-                * 关闭申请弹窗取消
-                * @param id
-                * @author liluyao & 2020-3-12 21:37:48
-                */
+            * 申请弹窗打开
+            * @param id
+            */
             show(){
                 this.applyData = {
                     itemId:'',
@@ -159,27 +153,6 @@
                     app_push_status:false,
                     cardId:this.applyInfo.id,
                     manager:this.applyInfo.manager,
-                    type:6,
-                };
-                this.ApplyCardModal = true;
-            },
-            /**
-             * 关闭申请弹窗取消
-             * @author liluyao & 2020-3-12 21:37:48
-             * @param cardId
-             * @param manager
-             */
-            showNew(cardId,manager){
-                this.applyData = {
-                    itemId:'',
-                    remark:'',
-                    phone_call_status:false,
-                    qq_push_status:true,
-                    wx_push_status:false,
-                    send_message_status:false,
-                    app_push_status:false,
-                    cardId:cardId,
-                    manager:manager,
                     type:6,
                 };
                 this.ApplyCardModal = true;
