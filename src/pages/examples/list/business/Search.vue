@@ -75,11 +75,11 @@
                     </tis-select>
                 </tis-col>
                 <tis-col :span="8">
+                    <!-- :id="searchData.tagId" -->
                     <tis-select-search 
                         ref="businessSearch"
                         :default-data="tagsData"
                         placeholder="标签搜索"
-                        :id="searchData.tagId"
                         @clear-select-search="clearTagsSearch"
                         @back-select-search="backTagsSearch"
                         res-fields='data'>

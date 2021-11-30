@@ -5,7 +5,7 @@
         :btn-loading="buttonLoading"
         @is-show-Reset="isShowReset"></search>
         <div class="list-box">
-            <Spin fix v-if="SpinStatus"></Spin>
+            <tis-spin fix v-if="SpinStatus"></tis-spin>
             <div class="spin-box">
                 <div v-if="isShowTip">
                     <div class="list-tip" v-if="approve >= 0">
@@ -23,6 +23,7 @@
                     @change-page="handlePage"
                     @change-order="handleOrder"
                     @refresh="init"
+                    :is-show-default-tips="isShowDefaultTips"
                     :table-data="listData"
                     :table-count="listCount">
                 </list>
@@ -46,12 +47,8 @@ import listMixins from "@/mixins/list.js";
                 pageType : 'my_all_list',
                 isShowButton: true, // 是否显示批量回收按钮
                 isShowTip: false, // 是否显示名片数量提示
-                searchSet:true,//用来区分是否在列表页
-            }
-        },
-        computed:{
-            approve(){
-                return Number(this.limitNumber)-Number(this.listCount)
+                searchSet:true,//用来区分是否在列表页,
+                isShowDefaultTips:false
             }
         },
         watch: {

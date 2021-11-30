@@ -59,7 +59,6 @@
         <div class="default-tips" v-if="isShowDefaultTips && tableCount === 0 && this.$route.name === 'approve_my_add'">暂无匹配数据</div>
         <div class="default-tips" v-if="tableCount === 0 && this.$route.name === 'all_list'">暂无匹配数据</div>
         <div class="list-bottom">
-
             <div class="bottom-left">
                 <tis-checkbox  @on-change="selectAll" v-model="allChecked"><span class="checkbox-text">全选</span></tis-checkbox>
                 <tis-button v-if="isShowButton" ref="recycleBtn" :loading="recycleLoading" type="default" @click="changeRecycleShowBatch">批量回收</tis-button>
@@ -132,6 +131,11 @@ import listMixins from "@/mixins/list.js";
             isShowButton: {
                 type: Boolean,
                 default: true,
+            },
+            //暂无数据文案的控制状态
+            isShowDefaultTips:{
+                type: Boolean,
+                default: false,
             }
         },
         data () {
@@ -150,8 +154,6 @@ import listMixins from "@/mixins/list.js";
                 moreCardModal:false,   //名片抽屉打开/关闭
                 baseInfo:{},
                 isAuth:null,
-                //默认提示信息显示状态
-                isShowDefaultTips:false,
                 //联系人总数
                 countAllNum:null,
             }
@@ -243,6 +245,7 @@ import listMixins from "@/mixins/list.js";
              * 单独回收
              */
             changeRecycleShow(id) {
+                console.log(id);
                 this.recycle_id = id
                 this.recycle_type = 'single'
                 this.recycleShow = true
@@ -291,8 +294,10 @@ import listMixins from "@/mixins/list.js";
             async cardRecovery(cardId){
                 let obj = {
                     cardId:cardId,
-                    uid:Cookie.get('uid')
+                    // uid:Cookie.get('uid')
+                    uid:'702144'
                 };
+                console.log(obj);
                 let res = await $itemOneApi.delCardAuth(obj);
                 if(res.code == 200){
                     utils.notice("操作成功",'success');

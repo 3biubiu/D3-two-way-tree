@@ -32,10 +32,26 @@ $api.cameraAttachment = function(formData) {
  *
  * @url : /Plugin/deletePic
  */
+//  
+// $api.deletePic = function(formData) {
+// 	const url = '/Plugin/deletePic?testUid=920928';
+// 	const promise = new Promise(function(resolve){
+//         $http.post(url,formData).then(response=>{
+//             console.log(response);
+//             if (response.code === 200) {
+//                 resolve(response.data);
+//             } else {
+//                 utils.notice(response.error, 'error');
+//             }
+//         })
+// 	});
+//   	return promise;
+// };
 $api.deletePic = function(formData) {
-	const url = '/Plugin/deletePic';
+	const url = 'https://mms-group1.dev.tanikawa.com/spa.php/Plugin/deletePic?testUid=920928';
 	const promise = new Promise(function(resolve){
         $http.post(url,formData).then(response=>{
+            console.log(response);
             if (response.code === 200) {
                 resolve(response.data);
             } else {

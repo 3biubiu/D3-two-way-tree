@@ -10,10 +10,10 @@ var $http = axios.create({
     baseURL: `${config.apiUrl}/`,
     timeout: 55000,
     //在发送请求前修改请求数据
-    transformRequest: [function (data) {
-        //将对象 序列化成URL的形式，以&进行拼接
-        return qs.stringify(data)
-    }],
+    // transformRequest: [function (data) {
+    //     //将对象 序列化成URL的形式，以&进行拼接
+    //     return qs.stringify(data)
+    // }],
 });
 //请求拦截器之前（在请求之前进行一些配置）
 $http.interceptors.request.use(
