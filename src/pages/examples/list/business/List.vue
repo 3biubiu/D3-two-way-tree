@@ -59,7 +59,6 @@
         <div class="default-tips" v-if="isShowDefaultTips && tableCount === 0 && this.$route.name === 'approve_my_add'">暂无匹配数据</div>
         <div class="default-tips" v-if="tableCount === 0 && this.$route.name === 'all_list'">暂无匹配数据</div>
         <div class="list-bottom">
-
             <div class="bottom-left">
                 <tis-checkbox  @on-change="selectAll" v-model="allChecked"><span class="checkbox-text">全选</span></tis-checkbox>
                 <tis-button v-if="isShowButton" ref="recycleBtn" :loading="recycleLoading" type="default" @click="changeRecycleShowBatch">批量回收</tis-button>
@@ -105,18 +104,16 @@
 <script>
 import utils from '@/utils.js';
 import $api from "@/api/contacts_card/index.js";
-import $itemOneApi from "@/api/item/item_detail/item_one.js";
-import MySpin from '@/components/common/my_spin/MySpin.vue';
+import $itemOneApi from "@/api/item/item_detail/index.js";
 import ApplyCard from "@/components/apply_card/ApplyCard"
 import Cookie from "js-cookie";
-import listMixins from "@/mixins/list.js";
+// import listMixins from "@/mixins/list.js";
     export default {
         name:'',
         components: {
-            MySpin,
             ApplyCard
         },
-        mixins:[listMixins],
+        // mixins:[listMixins],
         props:{
             //表格数据
             tableData: {
@@ -134,6 +131,15 @@ import listMixins from "@/mixins/list.js";
             isShowButton: {
                 type: Boolean,
                 default: true,
+            },
+            //暂无数据文案的控制状态
+            isShowDefaultTips:{
+                type: Boolean,
+                default: false,
+            },
+            searchData:{//搜索项数据
+                type:Object,
+                default:()=>{return {}}
             }
         },
         data () {
@@ -152,8 +158,6 @@ import listMixins from "@/mixins/list.js";
                 moreCardModal:false,   //名片抽屉打开/关闭
                 baseInfo:{},
                 isAuth:null,
-                //默认提示信息显示状态
-                isShowDefaultTips:false,
                 //联系人总数
                 countAllNum:null,
             }
@@ -171,8 +175,7 @@ import listMixins from "@/mixins/list.js";
              * @param {Number} page 当前页
              */
             handlePage(page) {
-                this.searchData.page = page;
-                this.$emit("change-page",{"page":this.searchData.page,"pageSize":this.searchData.pageSize});
+                this.$emit("change-page",{"page":page,"pageSize":this.searchData.pageSize});
             },
             /**
              * 手动设置页码数
@@ -180,25 +183,24 @@ import listMixins from "@/mixins/list.js";
              * @param {int} pageSize 单页条数
              */
             setPageOptions(page,pageSize) {
-                this.searchData.page = page ? parseInt(page) : 0;
-                this.searchData.pageSize = pageSize ? parseInt(pageSize) : 10;
+                let newPage = page ? parseInt(page) : 0;
+                let newPageSize = pageSize ? parseInt(pageSize) : 10;
+                this.$emit("set-page-options",{"page":newPage,"pageSize":newPageSize});
             },
             /**
              * 处理分页最大显示条数派发事件
              * @param {Number} pageSize 当前显示条数
              */
             handlePageSize(pageSize) {
-                this.searchData.page = 1;
-                this.searchData.pageSize = pageSize;
-                this.$emit("change-page",{"page":this.searchData.page,"pageSize":this.searchData.pageSize});
+                this.$emit("change-page",{"page":1,"pageSize":pageSize});
             },
             /**
              * 列表时间排序
              * @param {string} rule 规则
              */
             doSort(rule){
-                this.searchData.order = rule ===''?'':rule;
-                this.$emit("change-order",rule);
+                let newRule = rule ===''?'':rule;
+                this.$emit("change-order",newRule);
             },
             /**
              * 单选
@@ -275,7 +277,8 @@ import listMixins from "@/mixins/list.js";
                 this.recycleLoading = true;
                 let obj = {
                     cardId:this.selectIds,
-                    uid:Cookie.get('uid')
+                    // uid:Cookie.get('uid')
+                    uid:'702144'
                 };
                 let res = await $itemOneApi.delCardAuth(obj);
                 if(res.code == 200){
@@ -293,7 +296,8 @@ import listMixins from "@/mixins/list.js";
             async cardRecovery(cardId){
                 let obj = {
                     cardId:cardId,
-                    uid:Cookie.get('uid')
+                    // uid:Cookie.get('uid')
+                    uid:'702144'
                 };
                 let res = await $itemOneApi.delCardAuth(obj);
                 if(res.code == 200){
@@ -310,7 +314,8 @@ import listMixins from "@/mixins/list.js";
                 this.baseInfo = {}
                 let res = await $api.getContactBase({
                     cardId:itemId,
-                    uid:Cookies.get('uid')
+                    uid:'702144'
+                    // uid:Cookies.get('uid')
                 });
                 if(res.code != '200'){
                     if(res.code !=='403'){
@@ -325,7 +330,7 @@ import listMixins from "@/mixins/list.js";
              */
             updateIsAuth(data){
                 this.$nextTick(() => (this.isAuth = data));
-                this.$emit('init-param-search')
+                // this.$emit('init-param-search')
             },
             /**
              * 处理查看详情
@@ -355,50 +360,23 @@ import listMixins from "@/mixins/list.js";
                     }
                 }
             },
+            /**
+             * 申请查看名片
+             */
+            async applyCard(itemId,cardName,manager,managerName){
+                this.baseInfo={
+                    id:itemId,
+                    name:cardName,
+                    manager:manager,
+                    managerName:managerName,
+                }
+                this.$refs.applyCardModal.show();
+                // this.$refs.applyCardModal.showNew(itemId,manager);
+            },
         }
     }
 </script>
 
-<style lang="less" scoped>
-@import './list.less';
-</style>
 <style lang="less">
-    .my-add-list{
-        position: relative;
-        .tis-table th{
-            padding-left: 16px;
-            line-height: 32px;
-            font-weight: bold;
-        }
-        .tis-table td{
-            height: 48px;
-            padding-left: 16px;
-            line-height: 18px;
-            box-sizing: border-box;
-            word-break: break-all;
-            word-break: break-word;
-        }
-        .ivu-page{
-            text-align: right;
-            margin-top: 16px;
-        }
-        .page-box{
-            .ivu-select-item{
-                padding: 0;
-            }
-        }
-        .itis-checkbox-wrapper{
-            font-size: 0;
-            .itis-checkbox{
-                margin-bottom: 2px;
-            }
-            .checkbox-text{
-                display: inline-block;
-                font-size: 14px;
-                line-height: 20px;
-                margin-left: 8px;
-                vertical-align: bottom;
-            }
-        }
-    }
+@import './list.less';
 </style>

@@ -10,7 +10,8 @@ export default {
             buttonLoading:false,//搜索按钮的loading状态
             //顶部搜索条件
             searchData: {
-                uid:Cookie.get('uid'),
+                // uid:Cookie.get('uid'),
+                uid:'702144',//这里为了避免权限控制显示列表数据暂时先使用固定的uid
                 page: 1, //页码
                 pageSize: 10,//单页条数
                 dateSettlingCreate: [],
@@ -70,8 +71,14 @@ export default {
          async getList(data){
             this.SpinStatus = true;
             let res = await $api.getCardListData(data,this.pageType);
-            this.listData = JSON.parse(JSON.stringify(res.data.list));
-            this.listCount = Number(res.data.count);
+            if(res.code=='200'){
+                // if(res.data.length!=0){
+                //     this.listData = JSON.parse(JSON.stringify(res.data.list));
+                // }
+                this.listData = res.data.list;
+                this.listCount = Number(res.data.count);
+            }
+            this.isShowDefaultTips = this.listCount==0?true:false;
             this.buttonLoading = false;
             this.SpinStatus = false;
         },
@@ -148,7 +155,15 @@ export default {
         },
         //通过是否显示重置按钮来控制列表文案显示
         isShowReset(isShow){
-            this.$refs.tableDeal.isShowDefaultTips = isShow;
+            this.isShowDefaultTips = isShow;
+        },
+        /**
+         * 手动设置页码数
+         * @param {Object} 当前页码和最大显示条数
+         */
+            setPageOptions(pageData){
+            this.searchData.page = pageData.page;
+            this.searchData.pageSize = pageData.pageSize;
         }
 
     }

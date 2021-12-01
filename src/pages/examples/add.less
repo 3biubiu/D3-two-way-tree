@@ -1,6 +1,7 @@
 .add-index{
     padding: 24px 40px;
     background: #ffffff;
+    margin-bottom: 16px;
     .ivu-tabs-nav .ivu-tabs-tab{
         margin-right: 0;
         padding: 0 16px;
@@ -17,6 +18,9 @@
         }
         .textarea-input{
             min-height: 45px;
+            textarea{
+                min-height: 45px;
+            }
         }
         .level-item{
             border: solid 1px #d9d9d9;
@@ -33,8 +37,8 @@
             }
             .level-item-content{
                 padding: 24px 16px;
-                .ivu-radio-group-item{
-                    display: block;
+                .itis-radio-group-item{
+                    display: inline-block;
                 }
                 .litle-item{
                     width: 30%;
@@ -44,13 +48,44 @@
                 .textarea-text{
                     color: #999999;
                     font-size: 14px;
-                    // line-height: 18px;
                 }
                 .no-bottom{
                     margin-bottom: 0;
                 }
+                .name-tip{
+                    font-size: 14px;
+                    line-height: 1;
+                    padding-top: 6px;
+                    color: #999999;
+                }
+                .no-tip{
+                    width: 100%;
+                    height: 20px;
+                }
             }
 
+        }
+        .url-item{
+            font-size: 0;
+            &:last-child{
+                margin-bottom: 0;
+            }
+            .itis-form-item-content{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                span{
+                    flex-basis: 48px;
+                    display: inline-block;
+                    font-size: 14px;
+                    line-height: 20px;
+                    margin-left: 8px;
+                    cursor: pointer;
+                    &:hover{
+                        color: #1f6cdd;
+                    }
+                }
+            }
         }
         .about-item{
             .about-item-content{
@@ -92,5 +127,11 @@
     }
     .tis-button-padding{
         padding: 0 16px;
+        min-width: 64px;
+    }
+}
+.add-index-modal1{
+    .modal1-input{
+        margin-bottom: 24px;
     }
 }

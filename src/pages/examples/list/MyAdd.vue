@@ -1,11 +1,12 @@
 <template>
     <div class="my-add-content">
         <search ref="searchDeal" class="add-search"
+        :search-data="searchData"
         @select-search="selectSearch"
         :btn-loading="buttonLoading"
         @is-show-Reset="isShowReset"></search>
         <div class="list-box">
-            <my-spin  v-if="SpinStatus"></my-spin>
+            <tis-spin fix v-if="SpinStatus"></tis-spin>
             <div class="spin-box">
                 <div v-if="isShowTip">
                     <div class="list-tip" v-if="approve >= 0">
@@ -22,7 +23,10 @@
                     class="add-list"
                     @change-page="handlePage"
                     @change-order="handleOrder"
+                    @set-page-options="setPageOptions"
                     @refresh="init"
+                    :is-show-default-tips="isShowDefaultTips"
+                    :search-data="searchData"
                     :table-data="listData"
                     :table-count="listCount">
                 </list>
@@ -31,7 +35,6 @@
     </div>
 </template>
 <script>
-import MySpin from '@/components/common/my_spin/MySpin.vue';
 import Search from './business/Search';
 import List from './business/List';
 import listMixins from "@/mixins/list.js";
@@ -40,7 +43,6 @@ import listMixins from "@/mixins/list.js";
         components: {
             Search,
             List,
-            MySpin
         },
         mixins:[listMixins],
         data () {
@@ -48,12 +50,8 @@ import listMixins from "@/mixins/list.js";
                 pageType : 'my_all_list',
                 isShowButton: true, // 是否显示批量回收按钮
                 isShowTip: false, // 是否显示名片数量提示
-                searchSet:true,//用来区分是否在列表页
-            }
-        },
-        computed:{
-            approve(){
-                return Number(this.limitNumber)-Number(this.listCount)
+                searchSet:true,//用来区分是否在列表页,
+                isShowDefaultTips:false
             }
         },
         watch: {
@@ -78,11 +76,10 @@ import listMixins from "@/mixins/list.js";
                     this.isShowTip = false
                 }
             },
-            
         }
     }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 @import './my_add.less';
 </style>
