@@ -1,21 +1,18 @@
 <template>
     <div class="main">
-        <top-notification ref="topNotification" :msg="msg"></top-notification>
-        <head-menu 
-            :power-header-data="powerHeaderData" 
-            ref="head"
-            @open="open"
-            @show-select="showSelect"
+        <!-- <top-notification ref="topNotification" :msg="msg"></top-notification> -->
+        <header-menu
+            routerName="test"
             >
-        </head-menu>
-        <div class="sidebar-menu-con" :style="{width: shrink?'64px':'240px'}">
+        </header-menu>
+        <!-- <div class="sidebar-menu-con" :style="{width: shrink?'64px':'240px'}">
             <slide-bar 
                 :menu-list="menuList" 
                 :menu-title="menuTitle"  
                 @hide-drop-down="hideDrop" 
                 :shrink="shrink"
                 :power="powerSiderData">
-            </slide-bar>
+            </slide-bar> -->
             <!-- <shrink-able-Menu 
                 :menu-list="menuList"
                 :menu-title="menuTitle"
@@ -23,8 +20,8 @@
                 :shrink="shrink"
                 :power="powerSiderData"
             ></shrink-able-Menu> -->
-        </div>
-
+        <!-- </div> -->
+        <shrinkable-menu routerName="test"></shrinkable-menu>
         <div class="single-page-con" id="js-main-content"  ref="pageBody" :style="{marginLeft: shrink?'64px':'220px',minHeight:heights+'px'}">
             <div class="single-page" >
                 <div class="search-mask" :style="{'height':heights+'px'}" v-if="isShowSelect">
@@ -40,7 +37,6 @@
                 <router-view ref="view"/>
             </div>
             <common-footer ></common-footer>
-            <common-pendant></common-pendant>
         </div>
         <div v-if="ucmsOn">
             <div v-if="!isInternalUser" class="user-login-logout">
@@ -52,12 +48,11 @@
 </template>
 <script>
     import TopNotification from '@/components/common/top_notification/TopNotification.vue';
-    import ShrinkAbleMenu from './business/ShrinkableMenu.vue';
+    // import ShrinkAbleMenu from './business/ShrinkableMenu.vue';
     import menuArray from '@/static_data/menu_array.js';
-    import CommonFooter from './business/footer/Footer.vue';
-    import HeadMenu from "./business/head_menu/HeadMenu";
-    import SlideBar from "./business/slide_bar/SlideBar";
-    import CommonPendant from "./business/common_pendant/CommonPendant";
+    import CommonFooter from './business/CommonFooter.vue';
+    // import HeadMenu from "./business/head_menu/HeadMenu";
+    // import SlideBar from "./business/slide_bar/SlideBar";
     import $api from "@/api/index.js";
     import utils from "@/utils";
     import Cookie from 'js-cookie';
@@ -66,12 +61,11 @@
     const mmsCommon = createNamespacedHelpers('mmsCommon')
     export default {
         components: {
-            ShrinkAbleMenu,
+            // ShrinkAbleMenu,
             CommonFooter,
             TopNotification,
-            HeadMenu,
-            SlideBar,
-            CommonPendant
+            // HeadMenu,
+            // SlideBar,
         },
         data () {
             return {

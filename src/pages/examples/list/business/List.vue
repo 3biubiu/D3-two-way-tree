@@ -89,10 +89,10 @@
                     <div><p>{{ recycleTip }}</p></div>
                 </div>
                 <div class="ivu-modal-confirm-footer">
-                    <tis-button @click="hideRecycle()" type="default" size='large' class="ivu-btn ivu-btn-text ivu-btn-large">
+                    <tis-button @click="hideRecycle()" type="default" class="ivu-btn ivu-btn-text">
                         <span>取消</span>
                     </tis-button>
-                    <tis-button @click="recycle()" type="primary" size='large'>
+                    <tis-button @click="recycle()" type="primary">
                         <span>确定</span>
                     </tis-button>
                 </div>
