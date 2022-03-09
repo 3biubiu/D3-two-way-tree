@@ -13,9 +13,9 @@ const page403 = {
 
 export const appRouter = {
     path: '/',
-    name: 'examples',
+    name: 'test',
     redirect: {
-    	name: 'examples'
+    	name: 'test'
     },
     component: () => import ('@/pages/layout/Layout'),
     children: [

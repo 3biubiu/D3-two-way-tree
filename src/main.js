@@ -9,15 +9,19 @@ import "./theme/index.less"
 import 'view-design/dist/styles/iview.css';  
 import 'tanikawa-tis/dist/styles/tis.css';
 import Viewer from 'v-viewer' //v-viewer大图预览
-import {install} from '@icon-park/vue/es/all';
-import '@icon-park/vue/styles/index.css';
+import config from './config.js';
+import utils from './utils.js';
+import axios from 'axios';
 Vue.config.productionTip = false
 
 
 Vue.use(tanikawaTis);
 Vue.use(ViewUI)
 Vue.use(Viewer);
-install(Vue);//iconPark 全局引入，图标名称前需加icon
+// 公共头部
+// setTimeout(()=>{
+  Vue.use(window.component.default, {store, axios, config, utils})
+// },500)
 
 /* eslint-disable no-new */
 new Vue({

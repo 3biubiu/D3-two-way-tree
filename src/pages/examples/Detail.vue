@@ -10,25 +10,21 @@
       <tags>
         <tags-item>
           <template slot="tags-item">
-            <phone-telephone theme="outline" size="16" fill="#999" />
             <span>编辑</span>
           </template>
         </tags-item>
         <tags-item>
           <template slot="tags-item">
-            <two-dimensional-code-one theme="outline" size="16" fill="#999" />
             <span>二维码</span>
           </template>
         </tags-item>
         <tags-item>
           <template slot="tags-item">
-            <phone-telephone theme="outline" size="16" fill="#999" />
             <span>编辑</span>
           </template>
         </tags-item>
         <tags-item>
           <template slot="tags-item">
-            <phone-telephone theme="outline" size="16" fill="#999" />
             <span>编辑</span>
           </template>
         </tags-item>
@@ -40,9 +36,7 @@
             <template slot="tbody">
                 <tr>
                     <td class="table-title">等级载体</td>
-                    <td class="table-content">
-                        <star theme="filled" size="10" fill="#666" />
-                    </td>
+                    <td class="table-content">★</td>
                     <td class="table-title">签约载体</td>
                     <td class="table-content">否</td>
                 </tr>
@@ -276,9 +270,6 @@
     </div>
 </template>
 <script>
-import { PhoneTelephone } from "@icon-park/vue";
-import { TwoDimensionalCodeOne } from "@icon-park/vue";
-import { Star } from "@icon-park/vue";
 import AddUser from "../../components/add_user/AddUser.vue";
 import Tags from "../../components/tags/Tags.vue";
 import TagsItem from "../../components/tags/TagsItem.vue";
@@ -289,9 +280,6 @@ import Search from "../../components/common/remark/Search.vue";
 export default {
     name: "detail",
     components: {
-        PhoneTelephone,
-        TwoDimensionalCodeOne,
-        Star,
         AddUser,
         Tags,
         Tables,
@@ -301,7 +289,11 @@ export default {
         Search
     },
     data() {
-        return {};
+        return {
+            model1:'',
+            cityList:[],
+            toggleStatus:false,
+        };
     },
     computed: {},
     watch: {},
