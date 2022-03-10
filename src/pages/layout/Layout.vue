@@ -37,6 +37,11 @@
                 <router-view ref="view"/>
             </div>
             <common-footer ></common-footer>
+            <tis-right-pendant
+                ref="rightPendant"
+                :open-status="false"
+                :compaint-link="compaintLink">
+            </tis-right-pendant>
         </div>
         <div v-if="ucmsOn">
             <div v-if="!isInternalUser" class="user-login-logout">
@@ -50,7 +55,7 @@
     import TopNotification from '@/components/common/top_notification/TopNotification.vue';
     // import ShrinkAbleMenu from './business/ShrinkableMenu.vue';
     import menuArray from '@/static_data/menu_array.js';
-    import CommonFooter from './business/CommonFooter.vue';
+    // import CommonFooter from './business/CommonFooter.vue';
     // import HeadMenu from "./business/head_menu/HeadMenu";
     // import SlideBar from "./business/slide_bar/SlideBar";
     import $api from "@/api/index.js";
@@ -62,7 +67,7 @@
     export default {
         components: {
             // ShrinkAbleMenu,
-            CommonFooter,
+            // CommonFooter,
             TopNotification,
             // HeadMenu,
             // SlideBar,
@@ -105,6 +110,7 @@
                 routerName:'exam',//当前路由名
 
                 indexClick:-1,//搜索弹窗点击的选项索引
+                compaintLink: Config.compaintLink,
                 // leftList:{}
             }
         },
