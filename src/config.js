@@ -3,8 +3,8 @@ let config = {
 	downloadUrl:'http://mms.app_php.com/spa.php/Plugin/pluginDownload',
 	uploadUrl: 'http://mms.app_php.com/spa.php/Plugin/plugInUpload',
 	// 接口地址
-	apiUrl: 'http://mms.app_php.com/spa.php',
-	// apiUrl: 'http://mms-group1.dev.tanikawa.com/spa.php/',
+	apiUrl: 'http://mms-group1.dev.tanikawa.com/spa.php',
+	// apiUrl: 'http://mms.app_php.com/spa.php',
 	devUploadUrl:'http://mms-group1.dev.tanikawa.com/spa.php/Plugin/plugInUploads?testUid=920928',
 	token:'123456',
 	// layout.vue组件内用的---谷川币
@@ -18,6 +18,7 @@ let config = {
 
 	// 头部菜单的跳转地址
 	mmsHost:'http://mms.app_php.com',//mms域名
+	// mmsHost:'http://mms-group1.dev.tanikawa.com',//mms域名
     biUrl : "https://bi2.tanikawa.com",//bi系统域名
 	financeUrl:'https://oms.xuannaer.com/Reimbursement/add.html',   //财务
 	progressUrl:'https://process.xuannaer.com/User/erpIdentityList.html',   //流程系统地址

@@ -50,9 +50,9 @@ async function getIndustryCodeList(meta){
                 codeList.push(codeData.data[i].authority);
             }
             if(meta.code != '11'){
-                return handleCode(codeList, meta.code) && handleCode(codeList, '11');
+                return utils.codeStatus(codeList, meta.code) && utils.codeStatus(codeList, '11');
             }else{
-                return handleCode(codeList, meta.code);
+                return utils.codeStatus(codeList, meta.code);
             }
         }else{
             return false;
@@ -93,7 +93,7 @@ router.beforeEach((to,from,next) => {
             })
         }
     } else {
-        $http.get(`${config.apiUrl}/Login/getToken`).then((res) => {
+        $http.get(`${config.apiUrl}/Login/getToken?testUid=920928`).then((res) => {
             if (res.code == 200) {
                 cookies.set('uid', res.uid);
                 cookies.set('token', res.token);

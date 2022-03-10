@@ -9,10 +9,10 @@ import mms_common_state from './mms_common/state'
 import mms_common_mutations from './mms_common/mutations'
 
 // 示例
-import demo_actions from './demo/actions'
-import demo_getters from './demo/getters'
-import demo_state from './demo/state'
-import demo_mutations from './demo/mutations'
+// import demo_actions from './demo/actions'
+// import demo_getters from './demo/getters'
+// import demo_state from './demo/state'
+// import demo_mutations from './demo/mutations'
 
 
 Vue.use(Vuex)
@@ -29,19 +29,19 @@ const MMS_COMMON = {
 
 
 // 示例
-const DEMO = {
-	namespaced: true,
-	state:demo_state,
-	mutations:demo_mutations,
-	actions:demo_actions,
-	getters:demo_getters
-}
+// const DEMO = {
+// 	namespaced: true,
+// 	state:demo_state,
+// 	mutations:demo_mutations,
+// 	actions:demo_actions,
+// 	getters:demo_getters
+// }
 
 
 
 export default new Vuex.Store({
     modules:{
     	mmsCommon:MMS_COMMON,
-    	demo:DEMO,
+    	// demo:DEMO,
     }
 })

@@ -46,6 +46,7 @@ $http.interceptors.response.use(
         }
     },
     error => {//这是异常
+        debugger
         if (error.response) {
             const code = error.response.status;
             if (code == 401) {

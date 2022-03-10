@@ -12,7 +12,7 @@ const $api = Object.assign({},
  * @returns {Promise<*>}
  */
 $api.getStatisticsNumber= async ()=>{
-    const url = `http://mms-group1.dev.tanikawa.com/spa.php/Card/getStatisticsNumber?testUid=920928`;
+    const url = `/Card/getStatisticsNumber?testUid=920928`;
     return await $http.post(url);
 }
 /**
@@ -23,7 +23,7 @@ $api.getStatisticsNumber= async ()=>{
  * @returns {Promise<*>}
  */
 $api.addContactsLog = async (behavior,other='',content='') => {
-    const url = "http://mms-group1.dev.tanikawa.com/spa.php/Card/addContactsLog?testUid=920928";
+    const url = "/Card/addContactsLog?testUid=920928";
     return await $http.post(url,{behavior:behavior,other:other,content:content});
 };
 export default $api;

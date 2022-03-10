@@ -12,7 +12,7 @@ const $api = {};
  * @url : /Plugin/getCameraList
  */
 $api.cameraAttachment = function(formData) {
-	const url = '/Plugin/getCameraList';
+	const url = '/Plugin/getCameraList?testUid=920928';
 	const promise = new Promise(function(resolve){
         $http.post(url,formData).then(response=>{
             if (response.code === 200) {
@@ -48,7 +48,7 @@ $api.cameraAttachment = function(formData) {
 //   	return promise;
 // };
 $api.deletePic = function(formData) {
-	const url = 'https://mms-group1.dev.tanikawa.com/spa.php/Plugin/deletePic?testUid=920928';
+	const url = '/spa.php/Plugin/deletePic?testUid=920928';
 	const promise = new Promise(function(resolve){
         $http.post(url,formData).then(response=>{
             console.log(response);
@@ -70,7 +70,7 @@ $api.deletePic = function(formData) {
  * @url : /Plugin/getPicInfuByIds
  */
 $api.getPicInfuByIds = function(formData) {
-	const url = '/Plugin/getPicInfuByIds';
+	const url = '/Plugin/getPicInfuByIds?testUid=920928';
 	const promise = new Promise(function(resolve){
         $http.post(url,formData).then(response=>{
             if (response.code === 200) {
@@ -91,7 +91,7 @@ $api.getPicInfuByIds = function(formData) {
  * @url :/Plugin/getLevelList
  */
 $api.getLevelList = function(formData) {
-	const url = '/Plugin/getLevelList';
+	const url = '/Plugin/getLevelList?testUid=920928';
 	const promise = new Promise(function(resolve){
         $http.get(url,{params:formData}).then(response=>{
             resolve(response);
@@ -108,7 +108,7 @@ $api.getLevelList = function(formData) {
  * @url :/Plugin/transferModelUser
  */
 $api.plugInGroupUser = function(formData) {
-    const url = 'http://mms-group1.dev.tanikawa.com/spa.php/Plugin/transferModelUser?testUid=920928';
+    const url = '/Plugin/transferModelUser?testUid=920928';
 	const promise = new Promise(function(resolve){
         $http.get(url,{params:formData}).then(response=>{
             resolve(response);
@@ -125,7 +125,7 @@ $api.plugInGroupUser = function(formData) {
  * @url :/Plugin/transferModelUserForPush
  */
 $api.transferModelUserForPush = function(formData) {
-    const url = '/Plugin/transferModelUserForPush';
+    const url = '/Plugin/transferModelUserForPush?testUid=920928';
     const promise = new Promise(function(resolve){
         $http.get(url,{params:formData}).then(response=>{
             resolve(response);
@@ -143,7 +143,7 @@ export default $api;
  * @url : /Plugin/deletePic
  */
 $api.delUpload = async (data) => {
-    const url = '/Plugin/deletePic';
+    const url = '/Plugin/deletePic?testUid=920928';
     let res = await $http.post(url,data);
     if (res.code === 200) {
         return res;
@@ -160,7 +160,7 @@ $api.delUpload = async (data) => {
  * @url :/Plugin/plugInGroupUser
  */
 $api.groupUser = function() {
-    const url = '/Plugin/plugInGroupUser';
+    const url = '/Plugin/plugInGroupUser?testUid=920928';
     const promise = new Promise(function(resolve){
         $http.get(url).then(response=>{
             resolve(response);
@@ -183,7 +183,7 @@ $api.groupUser = function() {
  * @return {Promise<any>}
  */
 $api.getInvestmentDemands = async (type=1)=>{
-    const url = `/DealPlugin/investmentDemands`;
+    const url = `/DealPlugin/investmentDemands?testUid=920928`;
     return await $http.get(url,{params:{type:type}});
 };
 /**
@@ -197,7 +197,7 @@ $api.getInvestmentDemands = async (type=1)=>{
  * @return {Promise<any>}
  */
 $api.getArea = async ()=>{
-    const url = `/Plugin/getArea`;
+    const url = `/Plugin/getArea?testUid=920928`;
     return await $http.get(url);
 };
 /**
@@ -213,7 +213,7 @@ $api.getArea = async ()=>{
  * @return {Promise<any>}
  */
 $api.getAllCompany = async (word,pageSize=10)=>{
-    const url = `/Plugin/getAllCompany`;
+    const url = `/Plugin/getAllCompany?testUid=920928`;
     return await $http.post(url,{'word':word,'pageSize':pageSize});
 };
 /**
@@ -228,7 +228,7 @@ $api.getAllCompany = async (word,pageSize=10)=>{
  * @url Plugin/getList
  */
 $api.getAllIndustry = async (searchData=undefined) => {
-    let url = "Plugin/getAllIndustry";
+    let url = "Plugin/getAllIndustry?testUid=920928";
     if(searchData){
         url += `?status=${searchData.status}`;
     }
@@ -246,7 +246,7 @@ $api.getAllIndustry = async (searchData=undefined) => {
  * @url Plugin/getList
  */
 $api.getAllTrade = async (searchData=undefined) => {
-    let url = "Plugin/getAllTrade";
+    let url = "Plugin/getAllTrade?testUid=920928";
     return await $http.get(url);
 };
 
@@ -260,7 +260,7 @@ $api.getAllTrade = async (searchData=undefined) => {
  * @return {Promise<any>}
  */
 $api.searchUserwithName = async (keyword)=>{
-    const url = `/Plugin/searchUserwithName`;
+    const url = `/Plugin/searchUserwithName?testUid=920928`;
     return await $http.post(url,{'keyword':keyword});
 };
 
@@ -274,7 +274,7 @@ $api.searchUserwithName = async (keyword)=>{
  * @return {Promise<any>}
  */
 $api.getRelateBrokerCard = async (keyword,excuteId)=>{
-    const url = `/Plugin/getRelateBrokerCard`;
+    const url = `/Plugin/getRelateBrokerCard?testUid=920928`;
     return await $http.post(url,{'keyword':keyword,'excuteId':excuteId});
 };
 
@@ -289,7 +289,7 @@ $api.getRelateBrokerCard = async (keyword,excuteId)=>{
  * @return {Promise<any>}
  */
 $api.getRecentContactUsers = async (groupSelect)=>{
-    const url = `/Plugin/getRecentContactUsers?groupSelect=${groupSelect}`;
+    const url = `/Plugin/getRecentContactUsers?groupSelect=${groupSelect}?testUid=920928`;
     return await $http.get(url);
 };
 

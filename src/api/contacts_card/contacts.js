@@ -15,7 +15,7 @@ const $api = {};
  * @return {Promise<void>}
  */
 $api.getCardLists = async (data) => {
-    const url = "http://mms-group1.dev.tanikawa.com/spa.php/Card/getCardLists?testUid=920928";
+    const url = "/Card/getCardLists?testUid=920928";
     return await $http.get(url, {params:Object.assign({"isFollow":0},data)});
 };
 
@@ -32,7 +32,7 @@ $api.getCardLists = async (data) => {
  * @returns {Promise<void>}
  */
 $api.getCardListData = async(data,type='') => {
-    const url = "http://mms-group1.dev.tanikawa.com/spa.php/Card/getCardLists?testUid=920928";
+    const url = "/Card/getCardLists?testUid=920928";
     return await $http.get(url, {params:Object.assign({"type":type},data)});
 };
 /**
@@ -41,7 +41,7 @@ $api.getCardListData = async(data,type='') => {
  * @returns {Promise<*>}
  */
 $api.getMotSort = async (motCateId,motId) => {
-    const url = `http://mms-group1.dev.tanikawa.com/spa.php/Card/getMotSortByCate?testUid=920928`;
+    const url = `/Card/getMotSortByCate?testUid=920928`;
     return await $http.get(url,{params:{mot_id:motId,mot_cate:1,mot_cate_type:motCateId}});
 }
 /**
@@ -49,7 +49,7 @@ $api.getMotSort = async (motCateId,motId) => {
  * @returns {Promise<*>}
  */
 $api.getMotTags  = async () => {
-    const url = `http://mms-group1.dev.tanikawa.com/spa.php/Card/getMotTagList?testUid=920928`;
+    const url = `/Card/getMotTagList?testUid=920928`;
     return await $http.get(url);
 }
 /**
@@ -57,14 +57,14 @@ $api.getMotTags  = async () => {
  * 获取联系人标签、角色类型   获取联系人关系备选项
  */
 $api.getListAllTags = async ()=>{
-    const url = 'http://mms-group1.dev.tanikawa.com/spa.php/Card/getAllTagList?testUid=920928';
+    const url = '/Card/getAllTagList?testUid=920928';
     return await $http.get(url);
 }
 /**
  * 获取联系人状态
  */
 $api.getContactsStatus=async (data)=>{
-    const url='http://mms-group1.dev.tanikawa.com/spa.php/Card/getContactsStatus?testUid=920928';
+    const url='/Card/getContactsStatus?testUid=920928';
     return await $http.post(url,data);
 };
 /**
@@ -77,7 +77,7 @@ $api.getContactsStatus=async (data)=>{
  * @returns {Promise<void>}
  */
 $api.calAllSum = async() => {
-    const url = "http://mms-group1.dev.tanikawa.com/spa.php/Card/calAllSum?testUid=920928";
+    const url = "/Card/calAllSum?testUid=920928";
     return await $http.get(url);
 };
 export default $api;

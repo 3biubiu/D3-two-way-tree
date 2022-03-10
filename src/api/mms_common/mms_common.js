@@ -10,7 +10,7 @@ const $api = {};
     * @url : /Plugin/leftFieldTips
 */
 $api.getSideBarNumber = async () => {
-    const url = '/Plugin/leftFieldTips'; 
+    const url = '/Plugin/leftFieldTips?testUid=920928'; 
     let res = await $http.get(url);
     if (res.code === 200) {
         return res.data;
@@ -24,7 +24,7 @@ $api.getSideBarNumber = async () => {
     * @url : /Plugin/headerInfo
 */
 $api.getHeaderData = async () => {
-    const url = '/Plugin/headerInfo'; 
+    const url = '/Plugin/headerInfo?testUid=920928'; 
     let res = await $http.get(url);
     if (res.code === 200) {
         return res;
@@ -39,7 +39,7 @@ $api.getHeaderData = async () => {
     * @url : /Plugin/getSpaAuth
 */
 $api.getPowerData = async () => {
-    const url = '/Plugin/getSpaAuth'; 
+    const url = '/Plugin/getSpaAuth?testUid=920928'; 
     let res = await $http.get(url);
     if (res.code === 200) {
         return res;
@@ -57,7 +57,7 @@ $api.getPowerData = async () => {
     * @url : /Plugin/problemFeedback
 */
 $api.saveProblemFeedback = async (submitData) => {
-    const url = '/Plugin/problemFeedback'; 
+    const url = '/Plugin/problemFeedback?testUid=920928'; 
     let res = await $http.post(url,submitData);
     if (res.code === 200) {
         return res;
@@ -72,7 +72,7 @@ $api.saveProblemFeedback = async (submitData) => {
     * @url : /Plugin/problemFeedback
 */
 $api.getIframeSrc = async () => {
-    const url = '/Plugin/iframeSrc';
+    const url = '/Plugin/iframeSrc?testUid=920928';
     let res = await $http.get(url);
     if (res.code === 200) {
         return res;
@@ -89,7 +89,7 @@ $api.getIframeSrc = async () => {
     * @url /basic-auth
 */
 $api.getBasicAuthList = async (uid="") => {
-    let url = "/User/auth";
+    let url = "/User/auth?testUid=920928";
     if(uid){
         url +=`?uid=${uid}`;
     }
@@ -105,7 +105,7 @@ $api.getBasicAuthList = async (uid="") => {
     * @url : /DealPlugin/dealLeftFieldTips
 */
 $api.dealLeftFieldTips = async ()=> {
-    const url = '/DealPlugin/dealLeftFieldTips';
+    const url = '/DealPlugin/dealLeftFieldTips?testUid=920928';
     return await $http.get(url);
 };
 

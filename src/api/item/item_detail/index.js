@@ -13,7 +13,7 @@ const $api = {};
  * @returns {Promise<void>}
  */
  $api.applyCard = async (formData)=>{
-    const url = `http://mms-group1.dev.tanikawa.com/spa.php/UserCard/applyCard?testUid=920928`;
+    const url = `/UserCard/applyCard?testUid=920928`;
     return await $http.post(url,formData);
 };
 
@@ -28,7 +28,7 @@ const $api = {};
  * @returns {Promise<void>}
  */
 $api.delCardAuth = async (formData)=>{
-    const url = `http://mms-group1.dev.tanikawa.com/spa.php/UserCard/delCardAuth?testUid=920928`;
+    const url = `/UserCard/delCardAuth?testUid=920928`;
     return await $http.post(url,formData);
 };
 
