@@ -1,5 +1,5 @@
 import Config from "@/config.js";
-import {Message,Notice} from 'view-design';
+import tis from 'tanikawa-tis'
 import Cookies from 'js-cookie';
 
 let utils = {
@@ -174,15 +174,15 @@ utils.notice = (content, action = 'warning', duration = 2) => {
     config.content = content;
     switch (action) {
         case 'info':
-            return Message.info(config);
+            return tis.TisMessage.info(config);
         case 'success':
-            return Message.success(config);
+            return tis.TisMessage.success(config);
         case 'error':
-            return Message.error(config);
+            return tis.TisMessage.error(config);
         case 'loading':
-            return Message.loading(config);
+            return tis.TisMessage.loading(config);
         default:
-            return Message.warning(config);
+            return tis.TisMessage.warning(config);
     }
 }
 
@@ -192,15 +192,15 @@ utils.message = (content, action = 'warning', duration = 2) => {
     config.desc = content.desc || '';
     switch (action) {
         case 'open':
-            return Notice.open(config);
+            return tis.TisNotice.open(config);
         case 'info':
-            return Notice.info(config);
+            return tis.TisNotice.info(config);
         case 'success':
-            return Notice.success(config);
+            return tis.TisNotice.success(config);
         case 'error':
-            return Notice.error(config);
+            return tis.TisNotice.error(config);
         default:
-            return Notice.warning(config);
+            return tis.TisNotice.warning(config);
     }
 };
 
