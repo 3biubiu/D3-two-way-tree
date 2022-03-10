@@ -26,14 +26,14 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style lang="less" scoped>
 .card{
     background-color: #FFFFFF;
     margin-bottom: 0;
     border-radius: 3px;
 }
 .card-shadow{
-    box-shadow: 0px 4px 4px 0 #eeeeee;
+    box-shadow: @shadow-1;
 }
 </style>
 
