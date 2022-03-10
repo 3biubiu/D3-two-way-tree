@@ -51,7 +51,13 @@ exports.cssLoaders = function (options) {
   return {
     css: generateLoaders(),
     postcss: generateLoaders(),
-    less: generateLoaders('less'),
+    // 使用sass-resources-loader全局引入less变量
+    less: generateLoaders('less', { javascriptEnabled: true }).concat({
+        loader: 'sass-resources-loader',
+        options: {
+            resources: path.resolve(__dirname, '../src/theme/vars/index.less')
+        }
+    }),
     sass: generateLoaders('sass', { indentedSyntax: true }),
     scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
