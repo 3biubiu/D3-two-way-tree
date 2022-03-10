@@ -4,7 +4,7 @@ import cookies from 'js-cookie';
 import utils from './utils';
 import { Object } from 'core-js';
 import qs from 'qs';
-
+// const mmsCommon = createNamespacedHelpers('mmsCommon');
 
 var $http = axios.create({
     baseURL: `${config.apiUrl}/`,
@@ -34,7 +34,7 @@ $http.interceptors.response.use(
             case 403:
                 cookies.set('uid', '');
                 cookies.set('token', '');
-                location.href = config.loginUrl;
+                // location.href = config.loginUrl;
                 break;
             case 402:
                 cookies.set('uid', '');
@@ -46,7 +46,6 @@ $http.interceptors.response.use(
         }
     },
     error => {//这是异常
-        debugger
         if (error.response) {
             const code = error.response.status;
             if (code == 401) {

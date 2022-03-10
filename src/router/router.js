@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import cookies from 'js-cookie'
+import Cookies from 'js-cookie'
 import {routers} from './index';
-import config from "@/config"
+import Config from "@/config"
 import $http from "@/resource";
 import $api from "@/api/index.js";
 import utils from "@/utils";
@@ -37,34 +37,36 @@ async function getCodeList(meta){
     return status;
 }
 
-/**判断所跳转路由是否有权限 产业
-    * @param {meta} meta 调转到路由的meta字段
-    *@return bool true 有权限 false 无权限
- */
-async function getIndustryCodeList(meta){
-    if(meta.code){
-        let codeData = await $api.getBasicAuthList(cookies.get('uid'));
-        let codeList = [];
-        if(codeData.code == '200' && codeData.data){
-            for(let i in codeData.data){
-                codeList.push(codeData.data[i].authority);
-            }
-            if(meta.code != '11'){
-                return utils.codeStatus(codeList, meta.code) && utils.codeStatus(codeList, '11');
-            }else{
-                return utils.codeStatus(codeList, meta.code);
-            }
-        }else{
-            return false;
-        }
-    }else{
-        return true;
-    }
-}
+router.beforeEach(async (to,from,next) => {
+    // if(routePass(to)){
+    //     next();
+    //     return true;
+    // }
+    // if (to.meta.title) {
+    //     document.title = to.meta.title + "-谷川信息系统";
+    // }
+    // if(!(to.name == from.name)){
+    //     // 获取权限
+    //     let res = await $api.getMenuAuth(to.query.token);
+    //     if(res.code == 401) {
+    //         // 未登录
+    //         window.location.href = res.data.loginUrl;
+    //         return true;
+    //     } else { 
+    //         store.commit('USERHEADPOWER', res.data);
+    //         // 权限判断
+    //         await store.dispatch('getUserPower');
+    //         let power = [...store.state.userHeaderPower, ...store.state.userPower]
+    //         let status = handlePower(power, to.meta);
+    //         if(!status) {
+    //             next({replace: true, name: 'error-403'})
+    //         }
+    //     }
+    // }
+    // next();
 
-router.beforeEach((to,from,next) => {
-    let uid = cookies.get('uid');
-    let token = cookies.get('token');
+    let uid = Cookies.get('uid');
+    let token = Cookies.get('token');
     if (to.name == 'item_detail') {
         document.body.classList.add("item-detail-body")
     }else{
@@ -93,14 +95,39 @@ router.beforeEach((to,from,next) => {
             })
         }
     } else {
-        $http.get(`${config.apiUrl}/Login/getToken?testUid=920928`).then((res) => {
-            if (res.code == 200) {
-                cookies.set('uid', res.uid);
-                cookies.set('token', res.token);
-                next();
-            }
-        });
+        if(Config.isTest){
+            Cookies.set('uid', Config.testUid);
+            Cookies.set('token', Config.testToken);
+            next();
+        }else{
+            $http.get(`${Config.apiUrl}/Login/getToken?testUid=920928`).then((res) => {
+                if (res.code == 200) {
+                    Cookies.set('uid', res.uid);
+                    Cookies.set('token', res.token);
+                    next();
+                }
+            });
+        }
     }
+    next();
 })
+
+/**
+ * 定义一些可以直接通行的路由
+ * @return {bool}
+ */
+ const routePass = (to)=>{
+    const routesName = [
+        // 'auth',
+        'error-404',
+        'error-403',
+        'error-500'
+    ];
+    if(routesName.indexOf(to.name) >= 0){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 export default router

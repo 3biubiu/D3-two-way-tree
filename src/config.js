@@ -1,3 +1,4 @@
+let isTest = true;
 let config = {
 	// 上传下载地址
 	downloadUrl:'http://mms.app_php.com/spa.php/Plugin/pluginDownload',
@@ -27,5 +28,8 @@ let config = {
 	trainUrl:'https://tms.xuannaer.com/index',  //培训  
     csmsUrl: 'https://csms.xuannaer.com',//客服域名  
 	materialUrl:'https://ams.xuannaer.com/material/fixed-current',   //物资
+	isTest:isTest,
+	testUid:'920928',
+	testToken:'11',
 };
 export default config;
