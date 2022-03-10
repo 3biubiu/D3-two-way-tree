@@ -1,13 +1,13 @@
 <template>
     <div class="detail">
         <div class="header">
-      <p class="detail-title">压力测试</p>
-      <div>
-        <add-user username="用户编号" usertext="3250406"></add-user>
-        <add-user username="录入人" usertext="李文杰献6"></add-user>
-        <add-user username="录入时间" usertext="2020-12-09 17:00"></add-user>
-      </div>
-      <tags>
+            <p class="detail-title">压力测试</p>
+        <div>
+            <p class="add-user">用户编号：3250406</p>
+            <p class="add-user">录入人：李文杰献6</p>
+            <p class="add-user">录入时间：2020-12-09 17:00</p>
+        </div>
+      <!-- <tags>
         <tags-item>
           <template slot="tags-item">
             <span>编辑</span>
@@ -28,7 +28,7 @@
             <span>编辑</span>
           </template>
         </tags-item>
-      </tags>
+      </tags> -->
         </div>
         <div class="basic-info">
         <line-title class="line-title" title="载体基本信息"></line-title>
@@ -153,7 +153,7 @@
         </div>
         <div class="project">
             <line-title class="line-title" title="系统自动匹配项目"></line-title> 
-            <tables class="table-project">
+            <!-- <tables class="table-project">
                         <template slot="thead">
                             <tr>
                                 <th>编号</th>
@@ -209,7 +209,7 @@
                                 <td>555</td>
                             </tr>
                         </template>
-            </tables>
+            </tables> -->
             <Page :total="100" show-total show-sizer show-elevator class="pages"/>
         </div>
         <div class="select">
@@ -270,23 +270,17 @@
     </div>
 </template>
 <script>
-import AddUser from "../../components/add_user/AddUser.vue";
-import Tags from "../../components/tags/Tags.vue";
-import TagsItem from "../../components/tags/TagsItem.vue";
+// import Tags from "../../components/tags/Tags.vue";
+// import TagsItem from "../../components/tags/TagsItem.vue";
 import LineTitle from "../../components/common/line_title/LineTitle.vue";
-import Tables from "../../components/common/table/Table.vue";
 import Options from "../../components/options/Options"
-import Search from "../../components/common/remark/Search.vue";
 export default {
     name: "detail",
     components: {
-        AddUser,
-        Tags,
-        Tables,
-        TagsItem,
+        // Tags,
+        // TagsItem,
         LineTitle,
         Options,
-        Search
     },
     data() {
         return {
@@ -318,6 +312,16 @@ export default {
     color: #333;
     line-height: 26px;
     font-weight: 700;
+}
+.add-user{
+    display: inline-block;
+    font-size: 14px;
+    color: #999;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 16px;
+    line-height: 20px;
+    margin-top:18px;
 }
 .basic-info {
     margin: 16px 0px;
