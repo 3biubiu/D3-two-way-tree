@@ -86,38 +86,38 @@ export default {
 <style lang="less">
     .twice-confirm{
         .itis-modal-body{
-            padding: 32px 32px 0;
+            padding: @space-32 @space-32 0;
         }
         .itis-modal-footer{
             border: none;
-            padding: 24px 32px;
+            padding: @space-24 @space-32;
         }
         .twice-confirm-title{
             display: flex;
             p{
                 flex: 1;
-                font-size: 16px;
+                font-size: @font-size-16;
                 font-weight: bold;
-                color: #333333;
+                color: @black-1-color;
             }
         }
         .ivu-icon{
-            margin-right: 8px;
+            margin-right: @space-8;
             font-size: 22px;
         }
         .ivu-icon-ios-help-circle{
-            color: #f90;
+            color: @orange-2-color;
         }
         .ivu-icon-ios-close-circle{
-            color: #f25041;
+            color: @red-2-color;
         }
         .ivu-icon-ios-checkmark-circle{
-            color: #1EBEA0;
+            color: @green-2-color;
         }
         .twice-confirm-content{
-            font-size: 14px;
-            color: #666666;
-            margin-top: 8px;
+            font-size: @font-size-14;
+            color: @black-2-color;
+            margin-top: @space-8;
         }
     }
 </style>
