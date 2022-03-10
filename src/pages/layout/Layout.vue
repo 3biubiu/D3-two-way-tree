@@ -52,7 +52,6 @@
     </div>
 </template>
 <script>
-    import TopNotification from '@/components/common/top_notification/TopNotification.vue';
     // import ShrinkAbleMenu from './business/ShrinkableMenu.vue';
     import menuArray from '@/static_data/menu_array.js';
     // import CommonFooter from './business/CommonFooter.vue';
@@ -68,7 +67,7 @@
         components: {
             // ShrinkAbleMenu,
             // CommonFooter,
-            TopNotification,
+            // TopNotification,
             // HeadMenu,
             // SlideBar,
         },
