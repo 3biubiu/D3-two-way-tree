@@ -21,14 +21,6 @@ const originalPush = Router.prototype.push;
 Router.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 };
-/**处理权限状态码
-*
-*@param {Array} data 权限码数组
-*
-*/
-const handleCode = (codeList,data)=> {
-    return utils.codeStatus(codeList, data);
-}
 
 /**判断所跳转路由是否有权限 调级
     * @param {meta} meta 调转到路由的meta字段
@@ -38,8 +30,7 @@ async function getCodeList(meta){
     let codeData;
     if(meta.code){
         codeData = await $api.getPowerData();
-        status = handleCode(codeData.module, meta.code);
-
+        status = utils.codeStatus(codeData.module, meta.code);
     }else{
         status = true;
     }
