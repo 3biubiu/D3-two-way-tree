@@ -77,27 +77,11 @@
                 <slot>当前共{{tableCount}}条记录，本页共{{tableData.length}}条记录</slot>
             </Page>
         </div>
-        <tis-modal v-model="recycleShow" :footerHide="true" :mask-closable="false">
-            <div class="ivu-modal-confirm">
-                <div class="ivu-modal-confirm-head">
-                    <div class="ivu-modal-confirm-head-icon ivu-modal-confirm-head-icon-confirm">
-                        <i class="ivu-icon ivu-icon-ios-help-circle"></i>
-                    </div>
-                    <div class="ivu-modal-confirm-head-title">您确定要这么做吗?</div>
-                </div>
-                <div class="ivu-modal-confirm-body">
-                    <div><p>{{ recycleTip }}</p></div>
-                </div>
-                <div class="ivu-modal-confirm-footer">
-                    <tis-button @click="hideRecycle()" type="default" class="ivu-btn ivu-btn-text">
-                        <span>取消</span>
-                    </tis-button>
-                    <tis-button @click="recycle()" type="primary">
-                        <span>确定</span>
-                    </tis-button>
-                </div>
-            </div>
-        </tis-modal>
+        <twice-confirm 
+            ref="twiceConfirm"
+            title="您确定要这么做吗?" 
+            content="回收后无法再直接查看联系人信息，您确认要回收该联系人吗？"
+            @confirm="recycle"></twice-confirm>
         <apply-card ref="applyCardModal" :more-card-modal="moreCardModal" @update-is-auth="updateIsAuth" :apply-info="baseInfo"></apply-card>
     </div>
 </template>
@@ -105,13 +89,15 @@
 import utils from '@/utils.js';
 import $api from "@/api/contacts_card/index.js";
 import $itemOneApi from "@/api/item/item_detail/index.js";
-import ApplyCard from "@/components/apply_card/ApplyCard"
+import ApplyCard from "@/components/apply_card/ApplyCard";
+import TwiceConfirm from "@/components/twice_confirm/TwiceConfirm.vue";
 import Cookie from "js-cookie";
 // import listMixins from "@/mixins/list.js";
     export default {
         name:'',
         components: {
-            ApplyCard
+            ApplyCard,
+            TwiceConfirm
         },
         // mixins:[listMixins],
         props:{
@@ -150,11 +136,8 @@ import Cookie from "js-cookie";
                 allChecked:false,//是否全选
                 isShowRecovery:false,//控制是否回收，为了实现功能，暂时先不用
                 recycleLoading: false, // 批量回收按钮loading
-                recycleShow: false, // 回收modal显示状态
-                recycleTip: '', // 回收弹窗提示语
                 recycle_id: 0, // 单个回收id
                 recycle_type: 'all', // 回收类型 single: 单个回收 all: 批量回收
-                recycle_btn_loading: false, // 回收确认按钮loading
                 moreCardModal:false,   //名片抽屉打开/关闭
                 baseInfo:{},
                 isAuth:null,
@@ -239,8 +222,7 @@ import Cookie from "js-cookie";
                     return false
                 }
                 this.recycle_type = 'all'
-                this.recycleShow = true
-                this.recycleTip = '回收后无法再直接查看联系人信息，您确认要回收所选的联系人吗？'
+                this.$refs.twiceConfirm.showConfirmModal();
                 this.$refs.recycleBtn.$el.blur()
             },
             /**
@@ -249,15 +231,8 @@ import Cookie from "js-cookie";
             changeRecycleShow(id) {
                 this.recycle_id = id
                 this.recycle_type = 'single'
-                this.recycleShow = true
-                this.recycleTip = '回收后无法再直接查看联系人信息，您确认要回收该联系人吗？'
+                this.$refs.twiceConfirm.showConfirmModal();
                 this.$refs.recycleBtn.$el.blur()
-            },
-            /**
-             * 隐藏弹窗
-             */
-            hideRecycle() {
-                this.recycleShow = false
             },
             /**
              * 回收确认
@@ -268,7 +243,6 @@ import Cookie from "js-cookie";
                 } else {
                     this.recycleAll()
                 }
-                this.recycleShow = false
             },
             /**
              * 批量回收
@@ -281,7 +255,9 @@ import Cookie from "js-cookie";
                     uid:'702144'
                 };
                 let res = await $itemOneApi.delCardAuth(obj);
+                this.$refs.twiceConfirm.loading = false;
                 if(res.code == 200){
+                    this.$refs.twiceConfirm.cancel();
                     utils.notice("操作成功",'success');
                     this.$emit("refresh");
                 }else {
@@ -300,7 +276,9 @@ import Cookie from "js-cookie";
                     uid:'702144'
                 };
                 let res = await $itemOneApi.delCardAuth(obj);
+                this.$refs.twiceConfirm.loading = false;
                 if(res.code == 200){
+                    this.$refs.twiceConfirm.cancel();
                     utils.notice("操作成功",'success');
                     this.$emit("refresh");
                 }else {
@@ -339,7 +317,7 @@ import Cookie from "js-cookie";
              */
             detailInfo(id,operation = '1'){
                 let url = this.$router.resolve({
-                    name: "detail",
+                    name: "test_detail",
                     params:{item_id:id}
                 });
                 window.open(url.href);
