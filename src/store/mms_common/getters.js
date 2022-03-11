@@ -1,6 +1,6 @@
 const getters = {
     sideBarNumber : state => state.sideBarNumber,
-    dealLeftFieldTips : state => state.dealLeftFieldTips,
-};
-
-export default getters;
+    userPower : state => state.userPower,
+    headerPower : state => state.userHeaderPower
+}
+export default getters

@@ -46,7 +46,7 @@
 </template>
 
 <script>
-    import $api from'@/api/item/item_detail/index.js';
+    import $api from'@/api/index.js';
     import utils from '@/utils';
     export default {
         props : {

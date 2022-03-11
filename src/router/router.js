@@ -6,6 +6,8 @@ import Config from "@/config"
 import $http from "@/resource";
 import $api from "@/api/index.js";
 import utils from "@/utils";
+import store from '../store/index'
+
 
 const RouterConfig = {
     mode:'history',
@@ -22,92 +24,65 @@ Router.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 };
 
-/**判断所跳转路由是否有权限 调级
-    * @param {meta} meta 调转到路由的meta字段
-*/
-async function getCodeList(meta){
-    let status = true;
-    let codeData;
-    if(meta.code){
-        codeData = await $api.getPowerData();
-        status = utils.codeStatus(codeData.module, meta.code);
-    }else{
-        status = true;
-    }
-    return status;
-}
+/**
+ * 判断所跳转路由是否有权限
+ * @param {*} codeData 权限数据
+ * @param {*} meta 调转到路由的meta字段
+ * @returns 
+ */
+ function handlePower(codeData, meta)
+ {
+     let status = false;
+     if (meta.code) {
+         if(codeData !== undefined) {
+             status = utils.codeStatus(codeData, meta.code);
+         } else {
+             status = false;
+         }
+     } else {
+         status = true;
+     }
+     return status;
+ }
 
 router.beforeEach(async (to,from,next) => {
-    // if(routePass(to)){
-    //     next();
-    //     return true;
-    // }
-    // if (to.meta.title) {
-    //     document.title = to.meta.title + "-谷川信息系统";
-    // }
-    // if(!(to.name == from.name)){
-    //     // 获取权限
-    //     let res = await $api.getMenuAuth(to.query.token);
-    //     if(res.code == 401) {
-    //         // 未登录
-    //         window.location.href = res.data.loginUrl;
-    //         return true;
-    //     } else { 
-    //         store.commit('USERHEADPOWER', res.data);
-    //         // 权限判断
-    //         await store.dispatch('getUserPower');
-    //         let power = [...store.state.userHeaderPower, ...store.state.userPower]
-    //         let status = handlePower(power, to.meta);
-    //         if(!status) {
-    //             next({replace: true, name: 'error-403'})
-    //         }
-    //     }
-    // }
-    // next();
-
-    let uid = Cookies.get('uid');
-    let token = Cookies.get('token');
-    if (to.name == 'item_detail') {
-        document.body.classList.add("item-detail-body")
-    }else{
-        document.body.classList.remove("item-detail-body")
+    if(routePass(to)){
+        next();
+        return true;
     }
-    if (uid && token) {
-        if (to.meta.title) {
-            document.title = to.meta.title + "-选哪儿官方版";
+    if (to.meta.title) {
+        document.title = to.meta.title + "-谷川信息系统";
+    }
+    if(!(to.name == from.name)){
+        // 获取权限
+        let res = await $api.getMenuAuth(to.query.token);
+        if(res.code == 401) {
+            // 未登录
+            Cookies.set('rePath', to.path)
+            setTimeout(() => {
+                window.location.href = res.data.loginUrl;
+            }, 200)
+            return true;
+        } 
+        if(res.code == 200){ 
+            store.commit('mmsCommon/USERHEADPOWER', res.data);
+            // 权限判断
+            await store.dispatch('mmsCommon/getUserPower');
+            let power = [...store.state.mmsCommon.userHeaderPower, ...store.state.mmsCommon.userPower]
+            let status = handlePower(power, to.meta);
+            if(!status) {
+                next({replace: true, name: 'error-403'})
+            }
+            if(Cookies.get('rePath')) {
+                setTimeout(() => {
+                    next({replace: true, path: Cookies.get('rePath')});
+                    Cookies.remove('rePath');
+                }, 300)
+            }
         }
-        if(to.matched[1] && to.matched[1].path == '/Spa/industry'){
-            getIndustryCodeList(to.meta).then(status=>{
-                if(status){
-                    next();
-                }else{
-                    next({replace: true, name: 'error-403'})
-                }
-            })
-        }else{
-            // 首页头部和侧边栏的模块展示权限
-            getCodeList(to.meta).then(status=>{
-                if(status){
-                    next();
-                }else{
-                    next({replace: true, name: 'error-403'})
-                }
-            })
-        }
-    } else {
-        if(Config.isTest){
-            Cookies.set('uid', Config.testUid);
-            Cookies.set('token', Config.testToken);
-            next();
-        }else{
-            $http.get(`${Config.apiUrl}/Login/getToken?testUid=920928`).then((res) => {
-                if (res.code == 200) {
-                    Cookies.set('uid', res.uid);
-                    Cookies.set('token', res.token);
-                    next();
-                }
-            });
-        }
+        // else{//这里为了临时进入页面所以注释了，如正式应用到项目需要打开
+        //     next({replace: true, name: 'error-500'})
+        // }
     }
     next();
 })

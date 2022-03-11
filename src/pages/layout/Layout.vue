@@ -175,7 +175,7 @@
             */
             async initData(){
                 this.saveSideBarNumber();
-                this.saveDealLeftFieldTips();
+                // this.saveDealLeftFieldTips();
                 // 首页头部和侧边栏的模块展示权限
                 let power = await $api.getPowerData();
                 this.powerHeaderData = power.module;
@@ -233,7 +233,7 @@
             /*
             * 左侧菜单未读消息
             */
-            ...mmsCommon.mapActions([ 'saveSideBarNumber','saveDealLeftFieldTips']),
+            ...mmsCommon.mapActions([ 'saveSideBarNumber']),
             open(){
                 this.shrink = !this.shrink
             },

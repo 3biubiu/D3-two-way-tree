@@ -1,12 +1,15 @@
-import types from './mutation-types'
+import * as types from './mutation-types'
 
 const matutaions = {
-  	[types.SAVESIDEBARNUMBER](state,sideBarNumber,rootState){
-  	  	state.sideBarNumber = sideBarNumber;
-  	},
-  	[types.DEALLEFTFIELDTIPS](state,dealLeftFieldTips,rootState){
-  	  	state.dealLeftFieldTips = dealLeftFieldTips;
-  	},    
+	[types.USERPOWER](state,powerSiderData,rootState){
+		state.userPower = powerSiderData;
+	},
+	[types.USERHEADPOWER](state,powerHeaderData,rootState){
+		state.userHeaderPower = powerHeaderData;
+	},
+	[types.SAVESIDEBARNUMBER](state,sideBarNumber,rootState){
+		state.sideBarNumber = sideBarNumber;
+	},  
 }
 
 export default matutaions

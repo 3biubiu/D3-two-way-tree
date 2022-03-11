@@ -1,18 +1,29 @@
 import $api from "@/api/index.js";
-import types from './mutation-types'
+import * as types from './mutation-types'
 import utils from '@/utils';
 
 const actions = {
     /**
-        * 保存左侧未读消息数
-    */
-   async saveSideBarNumber({state,commit,rootState}){
+     * saveSideBarNumber 设置徽标提示
+     * @param {Object} state state
+     * @param {Object} commit commit
+     * @return {Promise<void>}
+     */
+     async saveSideBarNumber({state,commit}){
         let info = await $api.getSideBarNumber();
         commit(types.SAVESIDEBARNUMBER, info);
     },
-    async saveDealLeftFieldTips({state,commit,rootState}){
-        let info = await $api.dealLeftFieldTips();
-        commit(types.DEALLEFTFIELDTIPS, info);
+    /**
+     * getUserPower 获取用户权限
+     * @param state
+     * @param commit
+     * @return {Promise<void>}
+     */
+    async getUserPower({state,commit}){
+        let power = await $api.getMyPower();
+        if(power.code == 200) {
+            commit(types.USERPOWER, power.data);
+        }
     },
 }
 export default actions;

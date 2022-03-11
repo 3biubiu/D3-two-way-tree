@@ -1,13 +1,12 @@
 import axios from 'axios'
-import config from '@/config.js';
+import Config from '@/config.js';
 import cookies from 'js-cookie';
 import utils from './utils';
 import { Object } from 'core-js';
 import qs from 'qs';
-// const mmsCommon = createNamespacedHelpers('mmsCommon');
 
 var $http = axios.create({
-    baseURL: `${config.apiUrl}/`,
+    baseURL: `${Config.apiUrl}/`,
     timeout: 55000,
     //在发送请求前修改请求数据
     // transformRequest: [function (data) {
@@ -18,8 +17,16 @@ var $http = axios.create({
 //请求拦截器之前（在请求之前进行一些配置）
 $http.interceptors.request.use(
     config => {
-        if (cookies.get('token')) {
+        if (cookies.get('token')) {//按新规范的话这一块会删掉，这里只是为了调用spa的测试接口因此临时加的
             config.headers['Token'] = cookies.get('token');
+        }
+        
+        if (Config.isTest) {
+            if(config.url.indexOf('?') != -1){
+                config.url = config.url + '&testUid=' + Config.testUid
+            } else {
+                config.url = config.url + '?testUid=' + Config.testUid
+            }
         }
         return config;
     }
@@ -27,23 +34,7 @@ $http.interceptors.request.use(
 //响应了拦截器之后（在响应之后对数据进行一些处理）
 $http.interceptors.response.use(
     response => {
-        switch (response.data.code) {
-            case 200:
-                return response.data;
-            case 401:
-            case 403:
-                cookies.set('uid', '');
-                cookies.set('token', '');
-                // location.href = config.loginUrl;
-                break;
-            case 402:
-                cookies.set('uid', '');
-                cookies.set('token', '');
-                location.reload();
-                break;
-            default : 
-                return response.data;
-        }
+        return response.data;
     },
     error => {//这是异常
         if (error.response) {
