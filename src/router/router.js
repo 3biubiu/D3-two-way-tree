@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import cookies from 'js-cookie'
+import Cookies from 'js-cookie'
 import {routers} from './index';
-import config from "@/config"
+import Config from "@/config"
 import $http from "@/resource";
 import $api from "@/api/index.js";
 import utils from "@/utils";
+import store from '../store/index'
+
 
 const RouterConfig = {
     mode:'history',
@@ -21,95 +23,86 @@ const originalPush = Router.prototype.push;
 Router.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 };
-/**处理权限状态码
-*
-*@param {Array} data 权限码数组
-*
-*/
-const handleCode = (codeList,data)=> {
-    return utils.codeStatus(codeList, data);
-}
 
-/**判断所跳转路由是否有权限 调级
-    * @param {meta} meta 调转到路由的meta字段
-*/
-async function getCodeList(meta){
-    let status = true;
-    let codeData;
-    if(meta.code){
-        codeData = await $api.getPowerData();
-        status = handleCode(codeData.module, meta.code);
-
-    }else{
-        status = true;
-    }
-    return status;
-}
-
-/**判断所跳转路由是否有权限 产业
-    * @param {meta} meta 调转到路由的meta字段
-    *@return bool true 有权限 false 无权限
+/**
+ * 判断所跳转路由是否有权限
+ * @param {*} codeData 权限数据
+ * @param {*} meta 调转到路由的meta字段
+ * @returns 
  */
-async function getIndustryCodeList(meta){
-    if(meta.code){
-        let codeData = await $api.getBasicAuthList(cookies.get('uid'));
-        let codeList = [];
-        if(codeData.code == '200' && codeData.data){
-            for(let i in codeData.data){
-                codeList.push(codeData.data[i].authority);
-            }
-            if(meta.code != '11'){
-                return handleCode(codeList, meta.code) && handleCode(codeList, '11');
-            }else{
-                return handleCode(codeList, meta.code);
-            }
-        }else{
-            return false;
-        }
-    }else{
+ function handlePower(codeData, meta)
+ {
+     let status = false;
+     if (meta.code) {
+         if(codeData !== undefined) {
+             status = utils.codeStatus(codeData, meta.code);
+         } else {
+             status = false;
+         }
+     } else {
+         status = true;
+     }
+     return status;
+ }
+
+router.beforeEach(async (to,from,next) => {
+    if(routePass(to)){
+        next();
         return true;
     }
-}
-
-router.beforeEach((to,from,next) => {
-    let uid = cookies.get('uid');
-    let token = cookies.get('token');
-    if (to.name == 'item_detail') {
-        document.body.classList.add("item-detail-body")
-    }else{
-        document.body.classList.remove("item-detail-body")
+    if (to.meta.title) {
+        document.title = to.meta.title + "-谷川信息系统";
     }
-    if (uid && token) {
-        if (to.meta.title) {
-            document.title = to.meta.title + "-选哪儿官方版";
-        }
-        if(to.matched[1] && to.matched[1].path == '/Spa/industry'){
-            getIndustryCodeList(to.meta).then(status=>{
-                if(status){
-                    next();
-                }else{
-                    next({replace: true, name: 'error-403'})
-                }
-            })
-        }else{
-            // 首页头部和侧边栏的模块展示权限
-            getCodeList(to.meta).then(status=>{
-                if(status){
-                    next();
-                }else{
-                    next({replace: true, name: 'error-403'})
-                }
-            })
-        }
-    } else {
-        $http.get(`${config.apiUrl}/Login/getToken`).then((res) => {
-            if (res.code == 200) {
-                cookies.set('uid', res.uid);
-                cookies.set('token', res.token);
-                next();
+    if(!(to.name == from.name)){
+        // 获取权限
+        let res = await $api.getMenuAuth(to.query.token);
+        if(res.code == 401) {
+            // 未登录
+            Cookies.set('rePath', to.path)
+            setTimeout(() => {
+                window.location.href = res.data.loginUrl;
+            }, 200)
+            return true;
+        } 
+        if(res.code == 200){ 
+            store.commit('mmsCommon/USERHEADPOWER', res.data);
+            // 权限判断
+            await store.dispatch('mmsCommon/getUserPower');
+            let power = [...store.state.mmsCommon.userHeaderPower, ...store.state.mmsCommon.userPower]
+            let status = handlePower(power, to.meta);
+            if(!status) {
+                next({replace: true, name: 'error-403'})
             }
-        });
+            if(Cookies.get('rePath')) {
+                setTimeout(() => {
+                    next({replace: true, path: Cookies.get('rePath')});
+                    Cookies.remove('rePath');
+                }, 300)
+            }
+        }
+        // else{//这里为了临时进入页面所以注释了，如正式应用到项目需要打开
+        //     next({replace: true, name: 'error-500'})
+        // }
     }
+    next();
 })
+
+/**
+ * 定义一些可以直接通行的路由
+ * @return {bool}
+ */
+ const routePass = (to)=>{
+    const routesName = [
+        // 'auth',
+        'error-404',
+        'error-403',
+        'error-500'
+    ];
+    if(routesName.indexOf(to.name) >= 0){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 export default router

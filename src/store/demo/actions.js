@@ -1,9 +1,17 @@
 import $api from "@/api/index.js";
-import types from './mutation-types'
-import utils from '@/utils';
+import * as types from './mutation-types'
 
 const actions = {
-    
+    /**
+     * 改变state里的num
+     * @param state
+     * @param commit
+     * @return {Promise<void>}
+     */
+    async changeNum({state,commit}){
+        //调用mutations里的方法
+        commit(types.CHANGENUM,1);
+    },
 }
 
 

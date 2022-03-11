@@ -3,9 +3,9 @@ let config = {
 	downloadUrl:'http://mms.app_php.com/spa.php/Plugin/pluginDownload',
 	uploadUrl: 'http://mms.app_php.com/spa.php/Plugin/plugInUpload',
 	// 接口地址
-	apiUrl: 'http://mms.app_php.com/spa.php',
-	// apiUrl: 'http://mms-group1.dev.tanikawa.com/spa.php/',
-	devUploadUrl:'http://mms-group1.dev.tanikawa.com/spa.php/Plugin/plugInUploads?testUid=920928',
+	apiUrl: 'http://mms-group1.dev.tanikawa.com/spa.php',
+	// apiUrl: 'http://mms.app_php.com/spa.php',
+	devUploadUrl:'http://mms-group1.dev.tanikawa.com/spa.php/Plugin/plugInUploads',
 	token:'123456',
 	// layout.vue组件内用的---谷川币
 	currencyApi: 'http://www.currency_api.com/api',// 谷川币 接口地址	

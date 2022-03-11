@@ -1,5 +1,5 @@
 //这个混入是为了解决联系人列表页的复用问题[正常情况应该是组件复用而不是写混入]
-import $api from "@/api/contacts_card/index.js"
+import $api from "@/api/index.js"
 import Cookie from "js-cookie";
 
 export default {

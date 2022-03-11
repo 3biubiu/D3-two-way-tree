@@ -21,8 +21,15 @@ utils.codeStatus = (authList, oneAuth) => {
     if (oneAuth == '') {
         status = true;
     }
-	if (authList.indexOf(oneAuth, 0) >= 0) {
+	else if (authList.indexOf(oneAuth, 0) >= 0) {
         status = true;
+    }else if(oneAuth && oneAuth.indexOf(',') > -1){
+        let arr = oneAuth.split(',');
+        for(let i in arr){
+            if(authList.indexOf(arr[i]) > -1){
+                status = true
+            }
+        }
     }
     return status;
 }

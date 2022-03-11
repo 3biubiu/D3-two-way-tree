@@ -87,8 +87,7 @@
 </template>
 <script>
 import utils from '@/utils.js';
-import $api from "@/api/contacts_card/index.js";
-import $itemOneApi from "@/api/item/item_detail/index.js";
+import $api from "@/api/index.js";
 import ApplyCard from "@/components/apply_card/ApplyCard";
 import TwiceConfirm from "@/components/twice_confirm/TwiceConfirm.vue";
 import Cookie from "js-cookie";
@@ -254,7 +253,7 @@ import Cookie from "js-cookie";
                     // uid:Cookie.get('uid')
                     uid:'702144'
                 };
-                let res = await $itemOneApi.delCardAuth(obj);
+                let res = await $api.delCardAuth(obj);
                 this.$refs.twiceConfirm.loading = false;
                 if(res.code == 200){
                     this.$refs.twiceConfirm.cancel();
@@ -275,7 +274,7 @@ import Cookie from "js-cookie";
                     // uid:Cookie.get('uid')
                     uid:'702144'
                 };
-                let res = await $itemOneApi.delCardAuth(obj);
+                let res = await $api.delCardAuth(obj);
                 this.$refs.twiceConfirm.loading = false;
                 if(res.code == 200){
                     this.$refs.twiceConfirm.cancel();

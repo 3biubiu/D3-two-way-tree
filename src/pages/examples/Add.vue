@@ -113,7 +113,7 @@
 </template>
 <script>
     import config from "@/config.js";
-    import $api from "@/api/mms_common/plugin.js";
+    import $api from "@/api/index.js";
     import utils from '@/utils.js'
     export default {
         name:'',

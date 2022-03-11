@@ -245,8 +245,7 @@
 </template>
 <script>
     import utils from '@/utils.js';
-    import $api from "@/api/contacts_card/index.js";
-    import $pluginApi from '@/api/mms_common/plugin.js';
+    import $api from "@/api/index.js";
     import itemCateEnum from "@/static_data/item_cate.js";
     import Cookie from "js-cookie";
     // import listMixins from "@/mixins/list.js";
@@ -339,7 +338,7 @@
             /**
              * 获取部门列表
              */
-            $pluginApi.plugInGroupUser().then(res=>{
+            $api.plugInGroupUser().then(res=>{
                 this.departmentData = res ? res.list : [];
             })
             //获取联系人状态

@@ -1,6 +1,3 @@
-const mutationTypes = {
-    SAVESIDEBARNUMBER : 'SAVESIDEBARNUMBER',
-    DEALLEFTFIELDTIPS : 'DEALLEFTFIELDTIPS',
-};
-
-export default mutationTypes;
+export const USERPOWER = 'USERPOWER';
+export const USERHEADPOWER = 'USERHEADPOWER';
+export const SAVESIDEBARNUMBER = 'SAVESIDEBARNUMBER';

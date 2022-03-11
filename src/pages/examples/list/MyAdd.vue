@@ -11,11 +11,11 @@
                 <div v-if="isShowTip">
                     <div class="list-tip" v-if="approve >= 0">
                         当前共拥有名片 <span class="tip-count">{{ ownNumber }}</span> 张，
-                        含成交项目 <span class="tip-count">{{ dealNumber }}</span> 张
+                        含成交项目 <span class="tip-count">{{ dealNumber }}</span> 张（vuex示例数据{{num}}）
                     </div>
                     <div class="list-tip" v-else>
                         当前共拥有名片 <span class="tip-count">{{ ownNumber }}</span> 张，
-                        请您尽快回收无用名片！
+                        请您尽快回收无用名片！（vuex示例数据{{num}}）
                     </div>
                 </div>
                 <list
@@ -38,6 +38,8 @@
 import Search from './business/Search';
 import List from './business/List';
 import listMixins from "@/mixins/list.js";
+import { createNamespacedHelpers } from 'vuex'
+const { mapState, mapGetters, mapMutations, mapActions } = createNamespacedHelpers('demo')
     export default {
         name:'',
         components: {
@@ -60,9 +62,15 @@ import listMixins from "@/mixins/list.js";
                 this.$refs.searchDeal.handleSearch()
             }
         },
+        computed:{//获取地区数据
+            ...mapGetters(['num'])
+        },
         created(){
             this.init();
             this.initTip();
+        },
+        mounted(){
+            this.changeNum();
         },
         methods:{
             /**
@@ -76,6 +84,7 @@ import listMixins from "@/mixins/list.js";
                     this.isShowTip = false
                 }
             },
+            ...mapActions(['changeNum'])
         }
     }
 </script>
