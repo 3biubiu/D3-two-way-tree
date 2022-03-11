@@ -7,7 +7,7 @@ const demo = {
     redirect: {
         name: 'test_list'
     },
-    component:()=> import('@/components/common/router_view/RouterView.vue'),
+    component:()=> import('@/components/router_view/RouterView.vue'),
     children:[
         {
             path:'test_detail',

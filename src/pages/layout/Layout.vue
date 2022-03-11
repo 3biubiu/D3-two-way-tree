@@ -24,7 +24,8 @@
         <shrinkable-menu routerName="test"></shrinkable-menu>
         <div class="single-page-con" id="js-main-content"  ref="pageBody" :style="{marginLeft: shrink?'64px':'220px',minHeight:heights+'px'}">
             <div class="single-page" >
-                <div class="search-mask" :style="{'height':heights+'px'}" v-if="isShowSelect">
+                <!-- 待确认 -->
+                <!-- <div class="search-mask" :style="{'height':heights+'px'}" v-if="isShowSelect">
                     <div class="search-top">
                         <div class="search-type">
                             <p :class="{'active':index == type}" v-for="(item,index) in typeArr" :key="index" @click="changeSearchType(index)">{{item.name}}</p>
@@ -33,8 +34,11 @@
                         <Button type="primary" class="menu-search-button" @click="search">搜索</Button>
                     </div>
                     <div class="search-bot-mask" :style="{'height':maskHeight+'px'}" @click="hideSelect"></div>
-                </div>
+                </div> -->
                 <router-view ref="view"/>
+                <!-- 待补充 配合菜单设置方法 -->
+                <water-mark ref="waterMark"></water-mark>
+
             </div>
             <common-footer ></common-footer>
             <tis-right-pendant
@@ -54,6 +58,7 @@
 <script>
     // import ShrinkAbleMenu from './business/ShrinkableMenu.vue';
     import menuArray from '@/static_data/menu_array.js';
+    import WaterMark from '@/components/watermark/Watermark.vue';
     // import CommonFooter from './business/CommonFooter.vue';
     // import HeadMenu from "./business/head_menu/HeadMenu";
     // import SlideBar from "./business/slide_bar/SlideBar";
@@ -70,6 +75,7 @@
             // TopNotification,
             // HeadMenu,
             // SlideBar,
+            WaterMark
         },
         data () {
             return {
