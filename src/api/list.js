@@ -40,19 +40,6 @@ $api.delCardAuth = async (formData)=>{
     return await $http.post(url,formData);
 };
 
-/**
- * 获取联系人列表数据
- *
- * @method get
- *
- * @url Card/getCardLists
- *
- * @return {Promise<void>}
- */
- $api.getCardLists = async (data) => {
-    const url = "/Card/getCardLists";
-    return await $http.get(url, {params:Object.assign({"isFollow":0},data)});
-};
 
 /**
  * 获取联系人列表数据[新版，解决了字段冗杂的问题]
@@ -137,14 +124,9 @@ $api.calAllSum = async() => {
  *
  * @url :/Plugin/transferModelUser
  */
- $api.plugInGroupUser = function(formData) {
+ $api.plugInGroupUser = async ()=>{
     const url = '/Plugin/transferModelUser';
-	const promise = new Promise(function(resolve){
-        $http.get(url,{params:formData}).then(response=>{
-            resolve(response);
-        })
-    });
-  	return promise;
+    return await $http.get(url);
 };
 
 

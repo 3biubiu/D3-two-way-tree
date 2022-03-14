@@ -11,18 +11,9 @@ const $api = {};
  *
  * @url : /Plugin/getCameraList
  */
-$api.cameraAttachment = function(formData) {
-	const url = '/Plugin/getCameraList';
-	const promise = new Promise(function(resolve){
-        $http.post(url,formData).then(response=>{
-            if (response.code === 200) {
-                resolve(response.data);
-            } else {
-                utils.notice(response.msg, 'error');
-            }
-        })
-	});
-  	return promise;
+$api.cameraAttachment = async(formData)=>{
+    const url = '/Plugin/getCameraList';
+    return await $http.post(url,formData);
 };
 
 /**
@@ -32,19 +23,9 @@ $api.cameraAttachment = function(formData) {
  *
  * @url : /Plugin/deletePic
  */
-$api.deletePic = function(formData) {
-	const url = '/Plugin/deletePic';
-	const promise = new Promise(function(resolve){
-        $http.post(url,formData).then(response=>{
-            console.log(response);
-            if (response.code === 200) {
-                resolve(response.data);
-            } else {
-                utils.notice(response.error, 'error');
-            }
-        })
-	});
-  	return promise;
+$api.deletePic = async (formData)=>{
+    const url = '/Plugin/deletePic';
+    return await $http.post(url,formData);
 };
 
 /**
@@ -54,18 +35,9 @@ $api.deletePic = function(formData) {
  *
  * @url : /Plugin/getPicInfuByIds
  */
-$api.getPicInfuByIds = function(formData) {
-	const url = '/Plugin/getPicInfuByIds';
-	const promise = new Promise(function(resolve){
-        $http.post(url,formData).then(response=>{
-            if (response.code === 200) {
-                resolve(response.list);
-            } else {
-                utils.notice(response.msg, 'error');
-            }
-        })
-	});
-  	return promise;
+$api.getPicInfuByIds = async (formData)=>{
+    const url = '/Plugin/getPicInfuByIds';
+    return await $http.post(url,formData);
 };
 
 export default $api;

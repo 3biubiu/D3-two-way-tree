@@ -335,12 +335,8 @@
         },
         watch:{},
         created(){
-            /**
-             * 获取部门列表
-             */
-            $api.plugInGroupUser().then(res=>{
-                this.departmentData = res ? res.list : [];
-            })
+            //获取部门列表
+            this.plugInGroupUser();
             //获取联系人状态
             this.getContactsStatus();
             //获取mot数据
@@ -350,6 +346,13 @@
             this.getAllTags();
         },
         methods:{
+            /**
+             * 获取部门列表
+             */
+            async plugInGroupUser(){
+                let res = await $api.plugInGroupUser();
+                this.departmentData = res ? res.list : [];
+            },
             /**
              * 修改联系方式清空后面输入框
              *  @param {string} temp 类型 1=手机 2=座机 3=微信 4=邮箱

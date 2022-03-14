@@ -43,44 +43,5 @@
 </script>
 
 <style lang="less">
-.approve-index{
-    .ivu-tabs-tab{
-        margin-right: 0;
-        padding: 0 16px;
-        font-weight: bold;
-        color: #333333;
-        transition: none;
-    }
-    .ivu-tabs-tab-active{
-        color: #1f6cdd;
-        border-top: none;
-        position: relative;
-        &::before{
-            content: '';
-            width: 100%;
-            height: 2px;
-            background-color: #1f6cdd;
-            position: absolute;
-            left: 0;
-            top: 0;
-            z-index: 1;
-        }
-    }
-    .ivu-tabs-tab:hover{
-        color: #468eeb;
-    }
-    .ivu-tabs-bar{
-        margin-bottom: 0;
-    }
-    .ivu-card-bordered{
-        border: none;
-    }
-    .ivu-card-body{
-        padding: 0;
-    }
-    .ivu-tabs-nav-container:focus .ivu-tabs-tab-focused{
-        border-color: #ececec !important;
-        border-top-color: #1f6cdd !important;
-    }
-}
+
 </style>
