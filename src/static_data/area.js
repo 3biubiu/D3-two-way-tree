@@ -1,5 +1,3 @@
-import basicAuthEnum from "./basic_auth";
-
 const area = [{
     value: "x",
     text: "全部",

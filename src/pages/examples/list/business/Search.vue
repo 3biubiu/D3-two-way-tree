@@ -246,7 +246,7 @@
 <script>
     import utils from '@/utils.js';
     import $api from "@/api/index.js";
-    import itemCateEnum from "@/static_data/item_cate.js";
+    import {itemCateEnum} from "@/static_data/item_cate.js";
     import Cookie from "js-cookie";
     // import listMixins from "@/mixins/list.js";
     export default {

@@ -1,40 +1,12 @@
 <template>
     <div class="main">
-        <!-- <top-notification ref="topNotification" :msg="msg"></top-notification> -->
         <header-menu
             routerName="test"
             >
         </header-menu>
-        <!-- <div class="sidebar-menu-con" :style="{width: shrink?'64px':'240px'}">
-            <slide-bar 
-                :menu-list="menuList" 
-                :menu-title="menuTitle"  
-                @hide-drop-down="hideDrop" 
-                :shrink="shrink"
-                :power="powerSiderData">
-            </slide-bar> -->
-            <!-- <shrink-able-Menu 
-                :menu-list="menuList"
-                :menu-title="menuTitle"
-                @hide-drop-down="hideDrop" 
-                :shrink="shrink"
-                :power="powerSiderData"
-            ></shrink-able-Menu> -->
-        <!-- </div> -->
         <shrinkable-menu routerName="test"></shrinkable-menu>
-        <div class="single-page-con" id="js-main-content"  ref="pageBody" :style="{marginLeft: shrink?'64px':'220px',minHeight:heights+'px'}">
+        <div class="single-page-con" id="js-main-content"  ref="pageBody" :style="{marginLeft: shrink?'64px':'220px'}">
             <div class="single-page" >
-                <!-- 待确认 -->
-                <!-- <div class="search-mask" :style="{'height':heights+'px'}" v-if="isShowSelect">
-                    <div class="search-top">
-                        <div class="search-type">
-                            <p :class="{'active':index == type}" v-for="(item,index) in typeArr" :key="index" @click="changeSearchType(index)">{{item.name}}</p>
-                        </div>
-                        <Input type="text" class="menu-search-input" placeholder="企业 编号 电话 姓名 联系方式 备注 介绍" />
-                        <Button type="primary" class="menu-search-button" @click="search">搜索</Button>
-                    </div>
-                    <div class="search-bot-mask" :style="{'height':maskHeight+'px'}" @click="hideSelect"></div>
-                </div> -->
                 <router-view ref="view"/>
                 <!-- 待补充 配合菜单设置方法 -->
                 <water-mark ref="waterMark"></water-mark>
@@ -59,9 +31,6 @@
     // import ShrinkAbleMenu from './business/ShrinkableMenu.vue';
     import menuArray from '@/static_data/menu_array.js';
     import WaterMark from '@/components/watermark/Watermark.vue';
-    // import CommonFooter from './business/CommonFooter.vue';
-    // import HeadMenu from "./business/head_menu/HeadMenu";
-    // import SlideBar from "./business/slide_bar/SlideBar";
     import $api from "@/api/index.js";
     import utils from "@/utils";
     import Cookie from 'js-cookie';
@@ -70,17 +39,11 @@
     const mmsCommon = createNamespacedHelpers('mmsCommon')
     export default {
         components: {
-            // ShrinkAbleMenu,
-            // CommonFooter,
-            // TopNotification,
-            // HeadMenu,
-            // SlideBar,
             WaterMark
         },
         data () {
             return {
-                msg:'您当前的浏览器版本过低，为了保证您能正常使用本系统的全部功能，推荐您下载最新版的360浏览器、Chrome浏览器或QQ浏览器',
-                routerName:'examples',//当前路由名
+                routerName:'test',//当前路由名
                 menuList: [],//在左侧显示的列表
                 menuTitle: '',//在左侧显示的列表
                 menuArray: menuArray,//菜单数组
@@ -94,26 +57,6 @@
                 ucmsIfameStyle: {
                     display: 'none'
                 },
-                heights:0,//搜索的高度
-                maskHeight:0,//遮罩层的高度
-                isShowSelect:false,
-                type:0,
-                typeArr:[
-                    {
-                        name:'全部',
-                        type:'1'
-                    },
-                    {
-                        name:'项目',
-                        type:'2'
-                    },
-                    {
-                        name:'载体',
-                        type:'3'
-                    },
-                ],
-                routerName:'exam',//当前路由名
-
                 indexClick:-1,//搜索弹窗点击的选项索引
                 compaintLink: Config.compaintLink,
                 // leftList:{}
@@ -136,17 +79,16 @@
             },
         },
         created () {
-            this.getBrowser();
-            this.initData();
+            // this.getBrowser();
+            // this.initData();
             // 将 谷川币 的接口地址 存到cookie里
             Cookie.set('coinApi', Config.currencyApi);
             Cookie.set('coinWs', Config.currencyWs);
         },
         mounted () {
-            this.watchRouterName();
+            // this.watchRouterName();
             this.getIframeSrc();
             this.ucmsIframeEvent();
-            this.height();
         },
         methods: {
             /*
@@ -169,12 +111,6 @@
                         this.$refs.head.isShowLeft = false; //删除收缩功能的小图标 
                     }
                 }
-            },
-            /*
-                菜单收缩控制
-            */
-            shrinkMenu(){
-                this.shrink = !this.shrink;
             },
             /*
                 初始化layout数据：左侧未读条数，头部数据，权限数据。。。
@@ -240,56 +176,6 @@
             * 左侧菜单未读消息
             */
             ...mmsCommon.mapActions([ 'saveSideBarNumber']),
-            open(){
-                this.shrink = !this.shrink
-            },
-             /**
-            * 隐藏头部下拉
-            */
-            hideDrop(){
-                this.$refs.head.hideDropDown();  
-                this.isShowSelect = false;             
-            },
-             /**
-            * 赋值搜索弹窗的高度
-            */
-            height(){
-                let main=document.getElementsByClassName('main')
-                this.heights = main[0].offsetHeight - 50;
-                this.maskHeight = this.heights -176
-            },
-             /**
-            * 显示搜索弹窗
-            */
-            showSelect(){
-                this.isShowSelect = !this.isShowSelect;
-            },
-            /**
-            * 关闭搜索弹窗
-            */
-            hideSelect(){
-                this.isShowSelect = false;
-            },
-            /**
-            * 切换搜索类型
-            */
-            changeSearchType(index){
-                this.type = index;
-                this.indexClick = index;
-            },
-            /**
-            * 点击搜索
-            */
-            search(){
-                this.isShowSelect = false;
-                if(this.indexClick==0){
-                    this.$router.push('/examples/page')
-                }else if(this.indexClick == 1){
-                    this.$router.push('/examples/Table')
-                }else if(this.indexClick == 2){
-                    this.$router.push('/examples/radio')
-                }
-            },
             
         }
     };
