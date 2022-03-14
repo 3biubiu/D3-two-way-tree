@@ -1,6 +1,5 @@
 import $http from '@/resource';
 import utils from '@/utils';
-import Cache from '@/cache';
 
 const $api = {};
 //左侧菜单 + 头部菜单
