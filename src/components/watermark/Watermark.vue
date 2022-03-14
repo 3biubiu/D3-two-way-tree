@@ -12,9 +12,9 @@ export default {
         }
     },
     mounted(){
-        // if(!this.img){
-        //     this.againImg(this.name);
-        // }
+        if(!this.img){
+            this.againImg(this.name);
+        }
     },
     methods:{
         /**
