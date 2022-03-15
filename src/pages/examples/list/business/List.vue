@@ -8,32 +8,10 @@
                 <th style="width:10%;">所属企业</th>
                 <th style="width:7%;">职位</th>
                 <th style="width:6%;">
-                    <label class="time-pointer" v-if="searchData.order ==='create_time_asc'" @click="doSort('create_time_desc')">
-                        录入时间
-                        <i class="fa fa-sort-asc"></i>
-                    </label>
-                    <label class="time-pointer" v-else-if="searchData.order ==='create_time_desc'" @click="doSort('')">
-                        录入时间
-                        <i class="fa fa-sort-desc"></i>
-                    </label>
-                    <label class="time-pointer"  v-else @click="doSort('create_time_asc')">
-                        录入时间
-                        <i class="fa fa-sort"></i>
-                    </label>
+                    <list-sort title="录入时间" name="create_time_" @order-search="doSort"></list-sort>
                 </th>
                 <th style="width:6%;">
-                    <label class="time-pointer"  v-if="searchData.order ==='update_time_asc'" @click="doSort('update_time_desc')">
-                        更新时间
-                        <i class="fa fa-sort-asc"></i>
-                    </label>
-                    <label class="time-pointer"  v-else-if="searchData.order ==='update_time_desc'" @click="doSort('update_time_asc')">
-                        更新时间
-                        <i class="fa fa-sort-desc"></i>
-                    </label>
-                    <label v-else @click="doSort('update_time_asc')"  class="icon-box time-pointer">
-                        更新时间
-                        <i class="fa fa-sort"></i>
-                    </label>
+                    <list-sort title="更新时间" name="update_time_" @order-search="doSort"></list-sort>
                 </th>
                 <th style="width:9%;">操作</th>
             </tr>
@@ -90,13 +68,15 @@ import utils from '@/utils.js';
 import $api from "@/api/index.js";
 import ApplyCard from "@/components/apply_card/ApplyCard";
 import TwiceConfirm from "@/components/twice_confirm/TwiceConfirm.vue";
+import ListSort from "@/components/list_sort/ListSort.vue"
 import Cookie from "js-cookie";
 // import listMixins from "@/mixins/list.js";
     export default {
         name:'',
         components: {
             ApplyCard,
-            TwiceConfirm
+            TwiceConfirm,
+            ListSort
         },
         // mixins:[listMixins],
         props:{
