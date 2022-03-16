@@ -128,7 +128,121 @@ $api.calAllSum = async() => {
     const url = '/Plugin/transferModelUser';
     return await $http.get(url);
 };
-
-
-
+//合同列表
+/**
+ * 获取全部合同列表
+ * @method GET
+ * @param {Array} searchData
+ * @returns {Promise<any>}
+ * @url : /contract-list/all
+ */
+$api.getAllContractList = async (searchData) => {
+    return {
+        code:200,
+        msg:"请求成功",
+        data:{
+            "count":"11",
+            "list":[
+                {
+                    "id":"1",
+                    "uid":"702144",
+                    "title":"合同1",
+                    "attr":"1",
+                    "money":"",
+                    "contractCate":[
+                        "一级-二级1",
+                        "一级-二级2"
+                    ],
+                    "partyA":[
+                        "甲方"
+                    ],
+                    "partyB":[
+                        "乙方"
+                    ],
+                    "partyOther":[
+                        "其他方"
+                    ],
+                    "isMain":"2",
+                    "payType":"1",
+                    "moneyType":"",
+                    "isTemplate":"1",
+                    "signTime":"1641312000",
+                    "execStartTime":"1641312000",
+                    "execEndTime":"1641312000",
+                    "companySealId":"0",
+                    "signType":"1",
+                    "isReadd":"2",
+                    "isDraft":"1",
+                    "addTime":"0",
+                    "updateTime":"0",
+                    "approvalStatus":"WAIT",
+                    "lastApproveTime":"0",
+                    "approvalNode":"",
+                    "mainContractId":"",
+                    "deletedAt":"",
+                    "contractId":"1",
+                    "isMainName":"否",
+                    "approvalStatusName":"等待审批",
+                    "payTypeName":"收款",
+                    "addTimeDate":""
+                }
+            ],
+            "page":"1",
+            "pageSize":"10",
+            "perPage":"1"
+        }
+    };
+    let url = '/contract-list/all';
+    return await $http.get(url, { params: searchData });
+}
+/**
+ * 获取部门
+ * @method GET
+ * @return {Promise<any>}
+ * @url : /system/search-group-name
+ */
+$api.getGroupData = async () => {
+    let url = '/system/search-group-name'
+    return await $http.get(url);
+}
+/**
+ * 获取全部用户包含离职人员
+ * @method GET
+ * @return {Promise<any>}
+ * @url : /user/user-all
+ */
+$api.getAllUserInfo = async () => {
+    const url = '/user/user-all';
+    let res = await $http.get(url);
+    if (res.code == 200) {
+        return res;
+    } else {
+        utils.notice(res.msg, 'error');
+    }
+};
+/**
+ * 获取归档公司
+ * @method GET
+ * @return {Promise<any>}
+ * @url : /system/admin-company
+ */
+$api.getAdminCompanyrData = async () => {
+    const url = '/system/admin-company';
+    let res = await $http.get(url);
+    if (res.code == 200) {
+        return res;
+    } else {
+        utils.notice(res.msg, 'error');
+    }
+};
+/**
+ * 获取三级联动的收付款和合同分类数据
+ * @method GET
+ * @return {Promise<any>}
+ * @url : /category/contract-cate
+ */
+$api.getContractCate = async () => {
+    const url = `category/contract-cate`;
+    return await $http.get(url);
+};
 export default $api;

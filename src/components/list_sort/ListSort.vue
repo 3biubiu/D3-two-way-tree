@@ -59,11 +59,14 @@ export default {
 
 <style lang='less' scoped>
     .sort-out-class{
-        display: flex;
+        display: inline-flex;
         flex-direction: row;
         cursor: pointer;
         align-items: center;
         // justify-content: center;
+        span{
+            font-weight: bold;
+        }
     }
     .sort-class{
         display: flex;

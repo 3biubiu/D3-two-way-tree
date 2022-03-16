@@ -1,244 +1,152 @@
 <template>
     <div class="search-content">
         <div class="search-left">
-            <!-- 第一行 -->
-            <tis-row :gutter="8" class="search-row">
-                <tis-col :span="4">
-					<tis-input
-                        clearable
-						v-model="searchData.nameId"
-						placeholder="联系人ID 姓名">
-					</tis-input>
-                </tis-col>
-                <tis-col :span="4">
-					<tis-input
-                        clearable
-						v-model="searchData.job"
-						placeholder="职务">
-					</tis-input>
-                </tis-col>
+            <tis-row :gutter="16" class="margin-bottom-8">
+                <!-- 合同名称 -->
                 <tis-col :span="8">
-					<tis-input
-                        clearable
-						v-model="searchData.business"
-						placeholder="所属企业">
-					</tis-input>
+                    <tis-input class="title-input" clearable v-model="searchData.title" placeholder="合同名称/合同ID" ></tis-input>
                 </tis-col>
-                <tis-col :span="8">
-                    <tis-input  placeholder="联系方式" v-model="searchData.linkContent" clearable>
-                        <tis-select class="link-select" v-model="searchData.linkType" @on-change="linkChange" slot="prepend">
-                            <tis-option v-for="item in numberList" :value="item.key" :key="item.key">{{item.value}}</tis-option>
-                        </tis-select>
-                    </tis-input>
-                </tis-col>
-            </tis-row>
-            <!-- 第二行 -->
-            <tis-row :gutter="8">
+                <!-- 是否为主合同 -->
                 <tis-col :span="4">
-                    <tis-select 
-                        v-model="searchData.itemLevel" 
-                        placeholder="项目等级"
-                        clearable
-                        :isModal='true'
-                    >
-                        <tis-option v-for="(item,index) in 6" :value="String(index+1)" :key="String(index+1)">{{item | levelStar}}</tis-option>
+                    <tis-select v-model="searchData.isMain" clearable placeholder="是否为主合同">
+                        <tis-option v-for="(item, index) in mainList" :value="item.value" :key="index">{{ item.label }}</tis-option>
                     </tis-select>
                 </tis-col>
-                <tis-col :span="4">
-                    <tis-select 
-                        v-model="searchData.itemQuality" 
-                        placeholder="项目质量"
-                        clearable
-                        :isModal='true'
-                    >
-                        <tis-option v-for="(item,index) in 5" :value="String(index+1)" :key="String(index+1)">{{item | levelStar}}</tis-option>
-                    </tis-select>
-                </tis-col>
-                <tis-col :span="4">
-                    <tis-select-search 
-                        :default-data="ourUserData"
-                        placeholder="我方关系建立人"
-                        :is-init="isInit"
-                        :id="searchData.ourId"
-                        @clear-select-search="clearOurSearch"
-                        @back-select-search="backOurSearch"
-                        >
-                    </tis-select-search>
-                </tis-col>
-                <tis-col :span="4">
-                    <tis-select 
-                        v-model="searchData.ourType" 
-                        placeholder="我方关系程度"    
-                        :isModal='true'                     
-                    >
-                        <tis-option v-for="item in ourType" :value="item.id" :key="item.id">{{item.name}}</tis-option>
-                    </tis-select>
-                </tis-col>
-                <tis-col :span="8">
-                    <!-- :id="searchData.tagId" -->
-                    <tis-select-search 
-                        ref="businessSearch"
-                        :default-data="tagsData"
-                        placeholder="标签搜索"
-                        @clear-select-search="clearTagsSearch"
-                        @back-select-search="backTagsSearch"
-                        res-fields='data'>
-                    </tis-select-search>
-                </tis-col>
-            </tis-row>
-            <!-- 第三行 -->
-            <tis-row :gutter="8" class="search-row-top" v-show="searchShow">
-                <tis-col :span="8">
-                    <tis-select-cascader 
-                        :list="roleList" 
-                        @select="getRoleSelect"
-                        @clear-select ="roleClear"
-                        :default-select="[searchData.roleType,searchData.roleId]"
-                        :fields="roleFields"
-                        :placeholder="placeholder1"
-                        :level='2'>
+                <!-- 收付款合同分类 -->
+                <tis-col :span="12">
+                    <tis-select-cascader
+                        :is-select-next="false"
+                        :not-found-text="notFoundText"
+                        :list="contractCateList"
+                        ref="selectCascader"
+                        :fields="fields"
+                        @select="selectData"
+                        :default-select="searchData.defaultSelect"
+                        :placeholder="placeholder"
+                        :gutter="16"
+                        :level="3">
                     </tis-select-cascader>
                 </tis-col>
+            </tis-row>
+            <!-- 第二行搜索项 -->
+            <tis-row :gutter="16" :class="searchShow ? 'margin-bottom-8': ''">
+                <!-- 甲方 -->
                 <tis-col :span="4">
-                    <tis-date-picker  
-                        type="daterange"
-                        confirm
-                        format="yyyy-MM-dd" 
-                        :editable="false"
-                        @on-change="changeCreateTime"
-                        :value="searchData.dateSettlingCreate"
-                        placeholder="录入时间">
-                    </tis-date-picker>
+                    <tis-input class="title-input" clearable v-model="searchData.partyA" placeholder="甲方" ></tis-input>
                 </tis-col>
+                <!-- 乙方 -->
                 <tis-col :span="4">
-                    <tis-date-picker  
-                        @on-change="changePushTime"
-                        :value="searchData.dateSettlingPush"
-                        confirm
-                        :editable="false"
-                        type="datetimerange"   
-                        format="yyyy-MM-dd" 
-                        placeholder="更新时间">
-                    </tis-date-picker>
+                    <tis-input class="title-input" clearable v-model="searchData.partyB" placeholder="乙方" ></tis-input>
                 </tis-col>
-                <tis-col :span="8">
-                    <tis-department-people
-                        ref="departPeople"
-                        :department-data="departmentData"
-                        :department-fields="departmentFields"
-                        :department-id="searchData.inputDepart"
-                        department-placeholder="选择录入部门"
-                        :people-data="peopleData"
-                        :people-id="searchData.inputUserId"
-                        people-placeholder='选择录入人'
-                        @back-department-people="backDepartmentPeople">
-                    </tis-department-people>
+                <!-- 录入人 -->
+                <tis-col :span="4">
+                    <tis-select v-model="searchData.addUser" filterable clearable placeholder="录入人">
+                        <tis-option v-for="(item, index) in addUserList" :value="item.uid" :key="index">{{ item.username }}</tis-option>
+                    </tis-select>
+                </tis-col>
+                <!-- 录入人部门 -->
+                <tis-col :span="4">
+                    <tis-select v-model="searchData.addUserGroupId" filterable clearable placeholder="录入人部门">
+                        <tis-option v-for="(item, index) in addUserGroupIdList" :value="item.id" :key="index">{{ item.name }}</tis-option>
+                    </tis-select>
+                </tis-col>
+                <!-- 合同负责人 -->
+                <tis-col :span="4">
+                    <tis-select v-model="searchData.manager" filterable clearable placeholder="合同负责人">
+                        <tis-option v-for="(item, index) in managerList" :value="item.uid" :key="index">{{ item.username }}</tis-option>
+                    </tis-select>
+                </tis-col>
+                <!-- 归档公司 -->
+                <tis-col :span="4">
+                    <tis-select class="company-search" v-model="searchData.companySealId" filter-by-label filterable clearable placeholder="归档公司">
+                        <tis-option v-for="(item, index) in companySealList" :label="item.name" :value="item.id" :key="index">{{ item.name }}</tis-option>
+                    </tis-select>
                 </tis-col>
             </tis-row>
-            <!-- 第四行 -->
-            <tis-row :gutter="8" class="search-row-top" v-show="searchShow">
-				<tis-col span="4">
-                    <tis-select 
-                        clearable
-                        v-model="searchData.isRelationItem" 
-                        placeholder="是否关联项目"
-                        @on-change="changeItem"
-                        :isModal='true'                         
-                    >
-                        <tis-option value="1" key="1">是</tis-option>
-                    </tis-select>
-				</tis-col>
-				<tis-col span="4">
-                    <tis-select 
-                        clearable
-                        v-model="searchData.itemCate" 
-                        placeholder="关联项目类型"  
-                        :isModal='true'                       
-                    >
-                        <tis-option v-for="item in itemCateEnum" :value="item.key" :key="item.value">{{item.value}}</tis-option>
-                    </tis-select>
-				</tis-col>
-				<tis-col span="4">
-                    <tis-select 
-                        clearable
-                        v-model="searchData.isRelationCompany" 
-                        placeholder="是否关联单位"  
-                        :isModal='true'          
-                        @on-change="changeCompany"             
-                    >
-                    <tis-option value="1">是</tis-option>
-                    </tis-select>
-				</tis-col>
-				<tis-col span="4">
-                    <tis-select 
-                        clearable
-                        v-model="searchData.companyCate" 
-                        placeholder="关联单位类型"
-                        :isModal='true'                         
-                    >
-                        <tis-option v-for="item in companyCateEnum" :value="item.key" :key="item.key">{{item.value}}</tis-option>
-                    </tis-select>
-				</tis-col>
-                <tis-col span="4">
-                    <tis-select-search
-                        :default-data="defaultDataInsider"
-                        :is-init="isInit"
-                        :id="searchData.insideId"
-                        placeholder="组织内部关系人"
-                        @clear-select-search="clearSelectSearch"
-                        @back-select-search="backSelectSearch">
-                    </tis-select-search>
-				</tis-col>
-                <tis-col span="4">
-                    <tis-select v-model="searchData.insideType" clearable placeholder="内部关系程度">
-                        <tis-option v-for="item in insideType" :value="item.id" :key="item.id">{{item.name}}</tis-option>
+            <!-- 第三行搜索项 -->
+            <tis-row :gutter="16" class="margin-bottom-8" v-if="searchShow">
+                <!-- 执行时间 -->
+                <tis-col :span="8">
+                    <tis-date-picker
+                        :editable="false"
+                        type="daterange"
+                        :value="searchData.execTime"
+                        placeholder="执行时间"
+                        @on-change="changExecTime">
+                    </tis-date-picker>
+                </tis-col>
+                <!-- 签订时间 -->
+                <tis-col :span="8">
+                    <tis-date-picker
+                        :editable="false"
+                        type="daterange"
+                        :value="searchData.signTime"
+                        placeholder="签订时间"
+                        @on-change="changSignTime">
+                    </tis-date-picker>
+                </tis-col>
+                <!-- 是否为补录合同 -->
+                <tis-col :span="4">
+                    <tis-select v-model="searchData.isReadd" placeholder="是否为补录合同">
+                        <tis-option v-for="(item, index) in readdList" :value="item.value" :key="index">{{ item.label }}</tis-option>
                     </tis-select>
                 </tis-col>
-			</tis-row>
-            <!--第五行-->
-            <tis-row :gutter="8" class-name="search-row-top" v-show="searchShow">
-                <tis-col span="8">
-                    <tis-select v-model="searchData.contentStatus" clearable placeholder="联系人状态">
-                        <tis-option v-for="item in contentStatus" :value="item.key" :key="item.key">{{item.value}}</tis-option>
+                <!-- 是否收藏 -->
+                <tis-col :span="4">
+                    <tis-select v-model="searchData.isCollect" clearable placeholder="是否收藏">
+                        <tis-option v-for="(item, index) in collectList" :value="item.value" :key="index">{{ item.label }}</tis-option>
                     </tis-select>
                 </tis-col>
-                <tis-col span="4">
-                    <tis-select clearable placeholder="项目MOT" v-model="searchData.motId" @on-change="changeMot" @on-clear="clearMot">
-                        <tis-option v-for="item in motEnum" :value="item.id" :key="item.id">{{ item.name }}
-                        </tis-option>
+            </tis-row>
+            <!-- 第四行搜索项 -->
+            <tis-row :gutter="16" v-if="searchShow">
+                <!-- 合同金额 -->
+                <tis-col :span="8">
+                    <tis-splicing-input
+                            type="section"
+                            has-name="合同金额"
+                            @change-input="changInput"
+                            :default-text1="searchData.minMoney"
+                            :default-text2="searchData.maxMoney"
+                            input1-placeholder="最小值"
+                            input2-placeholder="最大值">
+                    </tis-splicing-input>
+                </tis-col>
+                <!-- 盖章类型 -->
+                <tis-col :span="4">
+                    <tis-select v-model="searchData.signType" clearable placeholder="盖章类型">
+                        <tis-option v-for="(item, index) in signTypeList" :value="item.value" :key="index">{{ item.label }}</tis-option>
                     </tis-select>
                 </tis-col>
-                <tis-col span="4">
-                    <tis-select clearable placeholder="项目MOT类型" v-model="searchData.motType" :disabled="disabled" @on-change="changeMotCate" @on-clear="clearMotCate">
-                        <tis-option value="1" key="1">土地</tis-Option>
-                        <tis-option value="2" key="2">厂房</tis-option>
-                        <tis-option value="7" key="7">仓库</tis-option>
-                        <tis-option value="4" key="4">写字楼</tis-option>
-                        <tis-option value="5" key="5">注册</tis-option>
-                        <tis-option value="3" key="3">商业</tis-option>
-                        <tis-option value="8" key="8">企服</tis-option>
+                <!-- 是否已查看 -->
+                <tis-col :span="4">
+                    <tis-select v-model="searchData.isRead" clearable placeholder="是否已查看">
+                        <tis-option v-for="(item, index) in readList" :value="item.value" :key="index">{{ item.label }}</tis-option>
                     </tis-select>
                 </tis-col>
-                <template  v-for="(item,key) in motSort">
-                    <tis-col v-show="motTag===true" span="4" :class="{'col-top':key>1}">
-                        <tis-select clearable :placeholder="item.name" v-model="searchData.motSortId[key]">
-                            <tis-option v-for="sonIndex in item.son" :value="sonIndex.id" :key="sonIndex.id">
-                                {{sonIndex.name}}
-                            </tis-option>
-                        </tis-select>
-                    </tis-col>
-                </template>
+                <!-- 合同状态 -->
+                <tis-col :span="4">
+                    <tis-select v-model="searchData.approvalStatus" clearable placeholder="合同状态">
+                        <tis-option v-for="(item, index) in approvalStatusList" :value="item.value" :key="index">{{ item.label }}</tis-option>
+                    </tis-select>
+                </tis-col>
+                <!-- 是否为回收合同 -->
+                <tis-col :span="4">
+                    <tis-select v-model="searchData.isRecovery" clearable placeholder="是否为回收合同">
+                        <tis-option v-for="(item, index) in isRecoveryList" :value="item.value" :key="index">{{ item.label }}</tis-option>
+                    </tis-select>
+                </tis-col>
             </tis-row>
         </div>
         <div class="search-right">
             <div class="right-button">
                 <tis-button type="primary" :loading="btnLoading" @click="handleSearch">搜索</tis-button>
-                <tis-button type="default" v-show="resetStatus"  @click="handleReset">重置</tis-button>
+                <tis-button type="default" v-show="resetStatus"  @click="resetSearch">重置</tis-button>
                 <div class="btn-none" v-show="!resetStatus"></div>
             </div>
             <div class="right-toggle">
-                <p v-show="!searchShow" @click="searchShow = true">展开∨</p>
-                <p v-show="searchShow" @click="searchShow = false">收起∧</p>
+                <p v-show="!searchShow" @click="searchShow = true">展开+</p>
+                <p v-show="searchShow" @click="searchShow = false">收起-</p>
             </div>
         </div>
     </div>
@@ -248,19 +156,11 @@
     import $api from "@/api/index.js";
     import {itemCateEnum} from "@/static_data/item_cate.js";
     import Cookie from "js-cookie";
+    import config from '@/config.js';
     // import listMixins from "@/mixins/list.js";
     export default {
         name:'',
         components: {
-        },
-        // mixins:[listMixins],
-        filters:{
-            levelStar(value){
-                if (value * 1 <= 0) {
-                    return "";
-                }
-                return ("★").repeat(value);
-            }
         },
         props:{
             btnLoading:{//搜索按钮的loading状态
@@ -274,434 +174,253 @@
         },
         data () {
             return {
-                searchShow:false,//搜索项展开收起
-                linkSelect:'',//联系人下拉选择
-                numberList:[
-                    {key:'1' ,value:'手机'},
-                    {key:'4' ,value:'邮箱'},
-                    {key:'2' ,value:'座机'},
-                    {key:'3' ,value:'微信'}
-                ],//联系方式下拉单位
-                ourUserData:{//我方关系建立人
-                    url:'http://mms-group1.dev.tanikawa.com/spa.php/DealPlugin/users?testUid=920928',
-                    methods:'get',
-                    token:'123456',
-                    idShow:true,  
-                    show:['uid','username']
-                },
-                ourType:[],//关系程度下拉列表
-                tagsData:{//标签搜索数据
-                    url:'http://mms-group1.dev.tanikawa.com/spa.php/Plugin/tagsSearch?testUid=920928',
-                    methods:'get',
-                    token:'123456',
-                    idShow:true,  
-                    show:['id','name']
-                },
-                roleList:[],//联系人角色列表
-                roleFields: {id: 'id', name: 'name', children: 'son'},//联系人角色字段
-                placeholder1:['联系人角色类型','联系人角色'],
-                departmentData:[],//部门数据
-                departmentFields:{
-                    id:'id',
-                    name:'name',
-                    groupId:'group_id'
-                },
-                peopleData:{//部门人员数据
-                    url:'http://mms-group1.dev.tanikawa.com/spa.php/DealPlugin/users?testUid=920928',
-                    methods:'get',
-                    token: '123456',
-                    idShow:true,
-                    show:['uid','username'],
-                    searchOptions:{}
-                },
-                itemCateEnum: [],//项目类型
-                companyCateEnum:[],//单位类型
-                defaultDataInsider: {//组织内部关系人数据
-                    url: 'http://mms-group1.dev.tanikawa.com/spa.php/Card/getInsideUserList?testUid=920928',
+                isRecoveryList: [
+                    { value: '1', label: '是' },
+                    { value: '2', label: '否' }
+                ],  // 是否为回收项目
+                readList: [
+                    { value: '1', label: '是' },
+                    { value: '2', label: '否' }
+                ],   // 是否已查看
+                readdList: [
+                    { value: '1', label: '是' },
+                    { value: '2', label: '否' }
+                ],  // 是否为补录合同下拉数据
+                collectList: [
+                    { value: '1', label: '是' },
+                    { value: '2', label: '否' }
+                ],  // 是否收藏下拉数据
+                signTypeList: [
+                    { value: '1', label: '电子章' },
+                    { value: '2', label: '实体章' }
+                ],   // 盖章类型下拉数据
+                approvalStatusList: [
+                    { value: 'WAIT', label: '等待审批' },
+                    { value: 'RUN', label: '审批中' },
+                    { value: 'REFUSED', label: '已拒绝' },
+                    { value: 'ACCEPT', label: '已通过' },
+                    { value: 'CANCEL', label: '已撤销' },
+                    { value: 'INVALID', label: '已作废' },
+                ], //合同状态下拉数据
+                addUserList: [],    // 录入人下拉数据
+                addUserGroupIdList: [], //录入人部门下拉数据
+                managerList: [],    // 负责人
+                contractCateList: [],   // 收付款合同分类
+                placeholder: ['收付款类型','合同一级分类','合同二级分类'],
+                defaultSelect: [],  //收付款合同分类默认值
+                fields: { id: 'id',name: 'name',children: 'children'},  // 收付款合同分类字段名称
+                mainList: [
+                    { value: '1', label: '是' },
+                    { value: '2', label: '否' }
+                ],  // 是否为主合同
+                relatedLoading: false, // 载体数据加载
+                companySealList: [],    // 归档公司
+                notFoundText: ['无匹配数据','请先选择收付款类型','请先选择合同一级分类'],   // 三级联动无数据时的提示
+                isReset: false,
+                carrierData: {
+                    url: config.apiUrl + '/system/search-carrier-name',
+                    // url: '',
                     methods: 'get',
-                    token: '123456',
-                    idShow: true,   //id是否展示在下拉列表中
-                    show: ['id', 'name']   //除id外其他是需要展示的字段对应的字段名
-                },
-                isInit:true,
-                insideType:[],//内部关系程度下拉
-                contentStatus:[],//联系人状态下拉
-                motTag: false,//mot选项
-                motSort:[],
-                motEnum:[],//MOT
-                disabled:true,//mot禁用
+                    idShow: false,  
+                    show:['id','name'],   
+                    searchOptions:{}  
+                },  // 相关载体
+                contractData: {
+                    url: config.apiUrl + '/contract/list',
+                    // url: '',
+                    methods: 'get',
+                    idShow: false,  
+                    show:['id','name'],   
+                    searchOptions:{}  
+                },  // 相关合同
+                itemData: {
+                    url: config.apiUrl + '/system/search-item-name',
+                    // url: '',
+                    methods: 'get',
+                    idShow: false,  
+                    show:['id','name'],   
+                    searchOptions:{}  
+                },  // 相关项目
+                searchShow:false,//搜索项展开收起
                 resetStatus:false,//重置按钮是否出现
             }
         },
         watch:{},
         created(){
-            //获取部门列表
-            this.plugInGroupUser();
-            //获取联系人状态
-            this.getContactsStatus();
-            //获取mot数据
-            this.getMotList();
+            // 收付款合同分类
+            // this.getContractCate();
+            // 归档公司
+            // this.getAdminCompanyrData();
+            // 获取全部用户包含离职
+            // this.getAllUserInfo();
+            // 获取部门数据
+            // this.getGroupData();
         },
         mounted() {     
-            this.getAllTags();
         },
         methods:{
             /**
-             * 获取部门列表
-             */
-            async plugInGroupUser(){
-                let res = await $api.plugInGroupUser();
-                this.departmentData = res ? res.list : [];
-            },
-            /**
-             * 修改联系方式清空后面输入框
-             *  @param {string} temp 类型 1=手机 2=座机 3=微信 4=邮箱
-             */
-            linkChange(temp){
-                this.searchData.linkType = temp;
-                this.searchData.linkContent = '';
-            },
-            /**
-             * 清空我方关系
-             */
-            clearOurSearch() {
-                this.searchData.ourId = '';
-            },
-            /**
-             * 我方关系下拉选中回调
-             *@param {obj} data 获取选中的数组值（对象数组）
-            */
-            backOurSearch(data) {
-                if (Object.keys(data).length > 0) {
-                    this.searchData.ourId = data.uid;
-                }
-            },
-            /**
-             * 获取联系人标签、角色类型 获取联系人关系备选项
-             */
-            async getAllTags(){
-                let res = await $api.getListAllTags();
-                if(res.code !== "200"){
-                    utils.notice(res.msg,"error");
-                    return false;
-                }
-                this.roleList = res.data.roleList;
-                this.ourType = res.data.ourType;
-                this.insideType = res.data.insideType;
-            },
-            /**
-             * 选择搜索的标签
-             * @param {Object} data 回调携带的数据
-             */
-            backTagsSearch(data){
-                this.searchData.tagId = data.id;
-            },
-            clearTagsSearch(data){
-                this.searchData.tagId = "";
-            },
-            /**
-             * 角色类型及角色的选中值
-             * @param {obj} data 获取选中的数组值（对象数组）
-             */
-            getRoleSelect(data){
-                if (Object.keys(data).length > 0) {
-                    this.searchData.roleType = data[0].id?data[0].id:'';
-                    this.searchData.roleId = data[1].id?data[1].id:'';
-                }
-            },
-            /**
-             * 清空联系人角色
-             */
-            roleClear(data){
-                if(data == 1){
-                    this.searchData.roleType = '';
-                    this.searchData.roleId = '';
-                }
-                if(data == 2){
-                    this.searchData.roleId = '';
-                }
-            },
-            /**
-             * 录入时间事件
-             * @param {Array} date 时间区间数组
-             */
-            changeCreateTime(date) {
-                this.searchData.dateSettlingCreate = date;
-                this.searchData.createTimeStart = `${date[0]}`;
-                this.searchData.createTimeEnd =`${date[1]}`;
-            },
-            /**
-             * 推送时间事件
-             * @param {Array} date 时间区间数组
-             */
-            changePushTime(date) {
-                this.searchData.dateSettlingPush = date;
-                this.searchData.updateTimeStart = `${date[0]}`;
-                this.searchData.updateTimeEnd = `${date[1]}`;
-            },
-            /**
-             * 项目类型下拉选项
-             * @param {string} val 是否关联项目 1=是 2=否
-             */
-            changeItem(val) {
-                if (val === '1') {
-                    this.itemCateEnum = itemCateEnum;
-                }else{
-                    this.searchData.itemCate='';
-                    this.itemCateEnum = [];
-                }
-            },
-            /**
-             * 单位类型下拉选项
-             * @param {string} val 是否关联单位 1=是 2=否
-             */
-            changeCompany(val) {
-                if (val === '1') {
-                    this.companyCateEnum = [
-                        {
-                            key: "2",
-                            value: "产业园区",
-                        },
-                        {
-                            key: "1",
-                            value: "各级政府",
-                        },
-                        {
-                            key: "3",
-                            value: "商业项目",
-                        },
-                        {
-                            key: "4",
-                            value: "写字楼项目",
-                        },
-                        {
-                            key: "6",
-                            value: "服务机构",
-                        },
-                        {
-                            key: "7",
-                            value: "品牌商家",
-                        },
-                        {
-                            key: "8",
-                            value: "工业地产",
-                        },
-                        {
-                            key: "9",
-                            value: "渠道（公司机构）",
-                        },
-                        {
-                            key: "10",
-                            value: "渠道（个人）",
-                        },
-                        {
-                            key: "11",
-                            value: "职能部门",
-                        },
-                        {
-                            key: "5",
-                            value: "其他单位",
-                        },
-                    ];
-                }else{
-                    this.searchData.companyCate='';
-                    this.companyCateEnum = [];
-                }
-            },
-            /**
-             * 获取组织内部关系人
-             * @param {obj} data 获取选中的数组值（对象数组）
-             */
-            backSelectSearch(data) {
-                if (Object.keys(data).length > 0) {
-                    this.searchData.insideId = data.id;
-                }
-            },
-            /**
-             * 获取组织内部关系人清空
-             */
-            clearSelectSearch(){
-                this.searchData.insideId='';
-            },
-            /**
-             * 获取联系人状态
-             */
-            async getContactsStatus(){
-                let res = await $api.getContactsStatus();
-                if(res.code != "200"){
-                    utils.notice(res.msg,"error");
-                    return false;
-                }
-                this.contentStatus = res.data;
-            },
-            /**
-             * 通过Mot类型获取其他
-             * @param {int} motId mot类型id
-             */
-            changeMot(motId) {
-                if (!motId) {
-                    return false;
-                }
-                this.searchData.motId = motId;
-                this.disabled = false;
-                this.getSortLists(this.searchData.motType,this.searchData.motId);
-            },
-            /**
-             * 通过Mot 和mot类型 获取其他
-             * @param {int} motType mot类型id
-             */
-            changeMotCate(motType) {
-                if (!motType) {
-                    return false;
-                }
-                this.searchData.motType = motType;
-                this.getSortLists(this.searchData.motType,this.searchData.motId);
-            },
-            /**
-             * 清空MOT 同时标签列表
-             *
-             */
-            clearMot(){
-                this.motTag = false;
-                this.motSort ='';
-                this.disabled = true;
-                this.searchData.motType = '';
-                this.searchData.motId = '';
-                this.searchData.motSortId =["","",""] ;//项目mot
-            },
-            /**
-             * 清空MOT类型 同时标签列表
-             *
-             */
-            clearMotCate(){
-                this.motTag = false;
-                this.motSort ='';
-                if(this.searchData.motId){
-                    this.disabled = false;
-                }else{
-                    this.disabled = true;
-                }
-                this.searchData.motType = '';
-                this.searchData.motSortId =["","",""] ;//项目mot
-            },
-            /**
-             * 获取motSort列表
-             * @param {int} motType mot类型id
-             * @param {int} motId mot类型id
-             */
-            async getSortLists(motType,motId){
-                this.motTag = false;
-                let mot = await $api.getMotSort(motType,motId);
-                if (mot.code !== "200") {
-                    utils.notice(mot.msg, "error");
-                    this.motTag = false;
-                    return false;
-                }
-                if (mot.data.length === 0) {
-                    this.motTag = false;
-                    return false;
-                } else {
-                    this.motTag = true;
-                    this.motSort = mot.data.motSort
-                    return false;
-                }
-            },
-            /**
-             * 获取MOT类型
-             *
-             */
-            async getMotList(){
-                let mot = await $api.getMotTags();
-                if (mot.code !== "200") {
-                    utils.notice(mot.msg, "error");
-                    return false;
-                }
-                this.motEnum = mot.data;
-            },
-            /**
-             *点击搜索按钮
+             * 点击搜索
              */
             handleSearch(){
-                this.$emit('select-search',this.searchData);
-            },
-            /**
-             * 初始化搜索条件
-             * @param {object} data 初始化数据对象
-             * @param {bool} open 是否默认展开
-             * 
-             */ 
-            setSearchOptions(data) {
-                for(let i in this.searchData){
-                    this.searchData[i] = data[i];
-                }
-                //判断默认展开状态
+                this.resetJuged();
                 this.setToggleStatus();
-                this.setReset();
-                this.initStatus = true;
+                this.$emit('select-search')
             },
             /**
-             * 搜索项重置
-             *
+             * 重置
              */
-            handleReset() {
-                //将搜索项中的每一项置空
-                Object.keys(this.searchData).forEach(key=>{this.searchData[key]=''});
+            resetSearch(){
+                Object.keys(this.searchData).forEach(key=>{
+                    let type = ['page','pageSize']
+                    if(type.indexOf(key)<0 && this.searchData[key]){
+                        switch(typeof(this.searchData[key])){
+                            case 'string':
+                                return this.searchData[key] = '';
+                            case 'number':
+                                return this.searchData[key] = 0;
+                            case 'object':
+                                if(this.searchData[key] instanceof Array){
+                                    return this.searchData[key] = [];
+                                }else{
+                                    return this.searchData[key] = {};
+                                }
+                            default:
+                                return this.searchData[key] = '';
+                        }
+                    }
+                    
+                });
                 this.searchData.page = 1;
                 this.searchData.pageSize = 10;
-                this.searchData.uid = '702144';//临时使用固定的uid
-                // this.searchData.uid = Cookie.get('uid');
-                this.searchData.dateSettlingCreate = [];
-                this.searchData.dateSettlingPush = [];
-                this.searchData.linkType = "1";//联系方式类型 1=手机 2=邮箱 3=座机 4=微信
-                this.searchData.inputUserId = null;//录入人
-                this.searchData.contentStatus = "";
-                this.searchData.motSortId =["","",""] ;//项目mot
-                this.searchData.createTimeSortData = null;
-                this.searchData.pushTimeSortData = null;
-                this.searchData.order = null;
-                this.$refs.departPeople.clearDepartment();
-                this.$refs.departPeople.clearPeople();
-                this.resetStatus = false;
-                this.motTag = false;
-                this.disabled = true;
-                this.$emit('select-search',this.searchData);
-                this.$refs.businessSearch.clearAll();
+                this.setToggleStatus();
+                this.$emit('reset-search');
             },
             /**
-             * 判断是否显示重置
+             * 判断是否出现重置
              */
-            setReset(){
-                let type = ['page','pageSize','uid','linkType','order']
+            resetJuged(){
+                let type = ['page','pageSize']
                 let openType = false;
                 for(let i in this.searchData){
-                    if(this.searchData[i]!=null && this.searchData[i]!=undefined && this.searchData[i].toString()!=''&& this.searchData[i].toString().replace(/,/g, '') !== "" && type.indexOf(i)<0){
+                    if(this.searchData[i] && this.searchData[i][0] && type.indexOf(i)<0){
                         openType = true;
                     }
                 }
-                this.$emit('is-show-Reset',openType);
                 this.resetStatus = openType;
             },
             /**
-             * 判断默认是否展开状态
+             * 判断两行一下是否展开
              */
-            setToggleStatus() {
-                let type = ['page','pageSize','order','uid','nameId','job','business','linkType','linkContent','itemLevel','itemQuality','ourId','ourType','tagId']
+            setToggleStatus(){
+                let type = ['execTime','signTime','isRead','isReadd','isCollect','isRecovery','signType','carrierId','contractId','itemId','minMoney','maxMoney','approvalStatus','approvalNode'];
                 let openType = false;
                 for(let i in this.searchData){
-                    if(this.searchData[i] != null && this.searchData[i] != undefined && this.searchData[i].toString() != '' && this.searchData[i].toString().replace(/,/g, '') !== "" && type.indexOf(i)<0){
+                    if(this.searchData[i] && this.searchData[i][0] && type.indexOf(i)>-1){
                         openType = true;
                     }
                 }
                 this.searchShow = openType;
             },
             /**
-             * 组件返回的部门人员选中值
-             * @param data
+             * 合同金额
+             * @param index
+             * @param {Number} textMin 第一个输入框的值
+             * @param {Number} textMax 第二个输入框的值
              */
-            backDepartmentPeople(data){
-                if (Object.keys(data).length > 0) {
-                    this.searchData.inputUserId = data.peopleId;
-                    this.searchData.inputDepart = data.departmentId;
+            changInput(index,textMin,textMax){
+                this.$set(this.searchData,'minMoney',textMin);
+                this.$set(this.searchData,'maxMoney',textMax);
+            },
+            /**
+             * 执行时间
+             * @param {Array} time 选中返回的时间
+             */
+            changExecTime(time){
+                this.$set(this.searchData,'execTime',time);
+            },
+            /**
+             * 签订时间
+             * @param {Array} time 选中返回的时间
+             */
+            changSignTime(time){
+                this.$set(this.searchData,'signTime',time);
+            },
+            /**
+             * 三级联动值改变后的操作
+             * @param {Array} data 选中的数据
+             */
+            selectData(data){
+                this.defaultSelect = [];
+                let param = {
+                    payType: 0,
+                    contractCateOne: 0,
+                    contractCateTwo: 0
+                }
+                // 存在则将数据放入搜索项
+                if (data[0]) {
+                    param.payType = data[0].id;
+                }
+                if (data[1]) {
+                    param.contractCateOne = data[1].id;
+                }
+                if (data[2]) {
+                    param.contractCateTwo = data[2].id;
+                }
+                for(var i in data){
+                    this.defaultSelect.push(data[i].id)
+                }
+                for(var i=0; i< (3 - data.length); i++){
+                    this.defaultSelect.push(0);
+                }
+                // 将默认选中的值塞进去
+                this.$set(this.searchData,'defaultSelect',this.defaultSelect)
+                this.searchData = Object.assign(this.searchData,param);
+            },
+            /**
+             * 获取部门下拉数据
+             */
+            async getGroupData(){
+                let res = await $api.getGroupData();
+                if (res.code == 200) {
+                    this.addUserGroupIdList = res.data
+                }else{
+                    this.$TisMessage.error(res.message)
+                }
+            },
+            /**
+             * 获取全部用户包含离职人员
+             */
+            async getAllUserInfo(){
+                let res = await $api.getAllUserInfo();
+                console.log(res);
+                if (res.code == 200) {
+                    this.managerList = res.data
+                    this.addUserList = res.data
+                }else{
+                    this.$TisMessage.error(res.message)
+                }
+            },
+            /**
+             * 获取三级联动的收付款和合同分类数据
+             */
+            async getContractCate(){
+                let res = await $api.getContractCate();
+                if (res.code == 200) {
+                    this.contractCateList = res.data;
+                }else{
+                    this.$TisMessage.error(res.message);
+                }
+            },
+            /**
+             * 归档公司
+             */
+            async getAdminCompanyrData(){
+                let res = await $api.getAdminCompanyrData();
+                if (res.code == 200) {
+                    this.companySealList = res.data
+                }else{
+                    this.$TisMessage.error(res.message)
                 }
             },
         }

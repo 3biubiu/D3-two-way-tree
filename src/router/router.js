@@ -54,33 +54,34 @@ router.beforeEach(async (to,from,next) => {
         document.title = to.meta.title + "-谷川信息系统";
     }
     if(!(to.name == from.name)){
+        //注意：这里为了临时进入页面所以注释了，如正式应用到项目需要打开
         // 获取权限
-        let res = await $api.getMenuAuth(to.query.token);
-        if(res.code == 401) {
-            // 未登录
-            Cookies.set('rePath', to.path)
-            setTimeout(() => {
-                window.location.href = res.data.loginUrl;
-            }, 200)
-            return true;
-        } 
-        if(res.code == 200){ 
-            store.commit('mmsCommon/USERHEADPOWER', res.data);
-            // 权限判断
-            await store.dispatch('mmsCommon/getUserPower');
-            let power = [...store.state.mmsCommon.userHeaderPower, ...store.state.mmsCommon.userPower]
-            let status = handlePower(power, to.meta);
-            if(!status) {
-                next({replace: true, name: 'error-403'})
-            }
-            if(Cookies.get('rePath')) {
-                setTimeout(() => {
-                    next({replace: true, path: Cookies.get('rePath')});
-                    Cookies.remove('rePath');
-                }, 300)
-            }
-        }
-        // else{//这里为了临时进入页面所以注释了，如正式应用到项目需要打开
+        // let res = await $api.getMenuAuth(to.query.token);
+        // if(res.code == 401) {
+        //     // 未登录
+        //     Cookies.set('rePath', to.path)
+        //     setTimeout(() => {
+        //         // window.location.href = res.data.loginUrl;
+        //     }, 200)
+        //     return true;
+        // } 
+        // if(res.code == 200){ 
+        //     store.commit('mmsCommon/USERHEADPOWER', res.data);
+        //     // 权限判断
+        //     await store.dispatch('mmsCommon/getUserPower');
+        //     let power = [...store.state.mmsCommon.userHeaderPower, ...store.state.mmsCommon.userPower]
+        //     let status = handlePower(power, to.meta);
+        //     if(!status) {
+        //         next({replace: true, name: 'error-403'})
+        //     }
+        //     if(Cookies.get('rePath')) {
+        //         setTimeout(() => {
+        //             next({replace: true, path: Cookies.get('rePath')});
+        //             Cookies.remove('rePath');
+        //         }, 300)
+        //     }
+        // }
+        // else{
         //     next({replace: true, name: 'error-500'})
         // }
     }

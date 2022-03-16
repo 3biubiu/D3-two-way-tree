@@ -1,10 +1,10 @@
 <template>
     <div class="approve-index">
         <!-- <h1>tis设计规范的添加编辑页调用示例</h1> -->
-        <Tabs :value="tabValue" @on-click="handleTab">
+        <router-tab id="frame-router-tabs" class="approve-tabs" :value="tabValue" @on-click="handleTab">
             <TabPane label="申请接待（添加/编辑）" name="approve_add"></TabPane>
-            <TabPane label="我发起的（列表）" name="approve_my_add"></TabPane>
-        </Tabs>
+            <TabPane :label="allContract" name="approve_my_add"></TabPane>
+        </router-tab>
         <div class="router-view">
             <router-view></router-view>
         </div>
@@ -12,22 +12,40 @@
     </div>
 </template>
 <script>
-    // import VueTabs from '../examples/Tabs'
+import RouterTab from '@/components/common/router_tab/RouterTab';
+import { createNamespacedHelpers } from 'vuex'
+const { mapState, mapGetters, mapMutations, mapActions } = createNamespacedHelpers('demo')
     export default {
         name:'',
         components: {
+            RouterTab
             // VueTabs 
         },
         data () {
             return {
                 //当前tab选中的路由name
                 tabValue : this.$route.name,
+                allContract: (h) => {
+                    return h('div', [
+                        h('span', '全部合同'),
+                        h('Badge', {
+                            props: {
+                                count: Number(this.num),
+                                overflowCount: Number(this.num) == 99 ? 100 : 99
+                            }
+                        })
+                    ])
+                }
             }
         },
         watch: {
             
         },
+        computed:{//获取地区数据
+            ...mapGetters(['num'])
+        },
         mounted() {     
+            this.changeNum();
         },
         methods:{
             //Tab切换跳转
@@ -38,10 +56,21 @@
                     name: e,
                 });
             },
+            ...mapActions(['changeNum'])
         }
     }
 </script>
 
 <style lang="less">
+.approve-index{
+    .approve-tabs{
+        .ivu-tabs-bar{
+            margin-bottom: 0;
+        }
+    }
+    .ivu-badge{
+        margin-left: 4px;
+    }
+}
 
 </style>
