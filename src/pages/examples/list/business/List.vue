@@ -1,67 +1,66 @@
 <template>
-    <div class="my-add-list">
-        <tis-table :theadHeight="48" :midTdWidth="widthArr" :tableHeight="48" :isZebra="true" class="list-table">
+    <card class="my-add-list" :padding="16">
+        <tis-table :theadHeight="48" :midTdWidth="widthArr" table-id="id8" :cur-id-idx='curIdIdx' :tableHeight="48" :isZebra="true" class="list-table">
             <tr slot="table-head">
-                <th style="width:3%;"><Checkbox @on-change="selectAll" v-model="allChecked"></Checkbox></th>
-                <th style="width:4%;">编号</th>
-                <th style="width:5%;">姓名</th>
-                <th style="width:10%;">所属企业</th>
-                <th style="width:7%;">职位</th>
-                <th style="width:6%;">
-                    <list-sort title="录入时间" name="create_time_" @order-search="doSort"></list-sort>
-                </th>
-                <th style="width:6%;">
-                    <list-sort title="更新时间" name="update_time_" @order-search="doSort"></list-sort>
-                </th>
-                <th style="width:9%;">操作</th>
+                <th></th>
+                <th>合同ID</th>
+                <th>合同名称</th>
+                <th>甲方</th>
+                <th>乙方</th>
+                <th class="need-center">主合同</th>
+                <th class="need-center">收付款</th>
+                <th>合同分类</th>
+                <th>签订时间</th>
+                <th>执行时间</th>
+                <th>审批状态</th>
+                <th>操作</th>
             </tr>
-            <tr slot="table-body" v-for="(item,index) in tableData" :key="index">
-                <td><Checkbox @on-change="selectOne(item.id)" :value="selectIds.indexOf(item.id) > -1"></Checkbox></td>
-                <td>{{item.id}}</td>
-                <td><span class="name-link" :title="item.name" @click="detailInfo(item.id,item.operation)">{{item.name}}</span></td>
-                <td>{{item.info}}</td>
-                <td>{{item.zhiwu}}</td>
-                <td>{{item.addtime}}</td>
-                <td>{{item.updatetime}}</td>
-                <td>
-                    <div class="btn-box">
-                        <span class="on-btn" @click="detailInfo(item.id,item.operation)"><i class="fa fa-search"/> 详情&emsp;</span>
-                        <span class="on-btn" @click="applyCard(item.id,item.name,item.manager,item.managerName)" v-if="item.authStatusTitle && item.authStatus=='201'">{{item.authStatusTitle}}&emsp;</span>
-                        <span class="on-btn" v-if="item.authStatusTitle && item.authStatus=='202'">{{item.authStatusTitle}}&emsp;</span>
-                        <span class="on-btn" @click="changeRecycleShow(item.id)"><i class="fa fa-trash-o"/> 回收&emsp;</span>
-                    </div>
+            <tr slot="table-body" v-for="(item,index) in listData.list" :key="item.id" @mouseenter="e =>{ getIdIdx(e,'id8',index) }" @mouseleave="e =>{ getIdIdx(e,'id8',null) }">
+                <td class="checkbox">
+                    <tis-checkbox @on-change="selectSingle(item.id)" :value="selectIds.indexOf(item.id) > -1"></tis-checkbox>
                 </td>
+                <!-- 合同ID -->
+                <td>{{item.id}}</td>
+                <!-- 合同名称 -->
+                <td><span><a :href="'/all_contract/detail/' + item.id" target="_blank">{{item.title}}</a></span></td>
+                <!-- 甲方 -->
+                <td><p class="hide-dot" v-for="(value,key) in item.partyA" :key="key">{{value}}</p></td>
+                <!-- 乙方 -->
+                <td><p class="hide-dot" v-for="(value,key) in item.partyB" :key="key">{{value}}</p></td>
+                <!-- 是否为主合同 -->
+                <td class="need-center">{{item.isMainName}}</td>
+                <!-- 收付款类型 -->
+                <td class="need-center">{{item.payTypeName}}</td>
+                <!-- 合同分类 -->
+                <td><p v-for="(value,key) in item.contractCate" :key="key">{{value}}</p></td>
+                <!-- 签订时间 -->
+                <td>{{item.signTimeDate}}</td>
+                <!-- 执行时间 -->
+                <td v-if="item.execStartTimeDate === '-' && item.execEndTimeDate === '-'"><span class="date-s">-</span></td>
+                <td v-else><span class="date-s">{{item.execStartTimeDate}}</span> ~ <span class="date-e">{{item.execEndTimeDate}}</span></td>
+                <!-- 审批状态 -->
+                <td>{{item.approvalStatusName}}</td>
+                <td><span><a :href="'/all_contract/detail/' + item.id" target="_blank">查看</a></span></td>
             </tr>
         </tis-table>
-        <!-- <div class="default-tips hide-footer" v-if="!isShowDefaultTips && this.$route.name === 'approve_my_add'">请在输入框中输入您要搜索的关键词，点击搜索即可从{{countAllNum}}条联系人数据中查找您需要的信息！</div> -->
-        <div class="default-tips" v-if="isShowDefaultTips && tableCount === 0 && this.$route.name === 'approve_my_add'">暂无匹配数据</div>
-        <div class="default-tips" v-if="tableCount === 0 && this.$route.name === 'all_list'">暂无匹配数据</div>
+        <div class="default-tips" v-if="listData.count == 0">暂无匹配数据</div>
         <div class="list-bottom">
             <div class="bottom-left">
                 <tis-checkbox  @on-change="selectAll" v-model="allChecked"><span class="checkbox-text">全选</span></tis-checkbox>
-                <tis-button v-if="isShowButton" ref="recycleBtn" :loading="recycleLoading" type="default" @click="changeRecycleShowBatch">批量回收</tis-button>
+                <tis-button v-if="isShowButton" ref="recycleBtn" type="primary" >批量推送</tis-button>
             </div>
-            <Page   
-                class="page-box"
-                :total="tableCount"
-                :current="Number(searchData.page)"
-                :page-size="Number(searchData.pageSize)"
+            <Page
+                v-if="listData.count>10"
                 @on-change="handlePage"
                 @on-page-size-change="handlePageSize"
-                :page-size-opts="pageSizeOpts"
-                show-sizer
+                :total="parseInt(listData.count)"
+                :current="parseInt(searchData.page)"
+                :page-size="parseInt(searchData.pageSize)"
+                show-elevator
                 show-total
-                show-elevator>
-                <slot>当前共{{tableCount}}条记录，本页共{{tableData.length}}条记录</slot>
-            </Page>
+                show-sizer />
         </div>
-        <twice-confirm 
-            ref="twiceConfirm"
-            title="您确定要这么做吗?" 
-            content="回收后无法再直接查看联系人信息，您确认要回收该联系人吗？"
-            @confirm="recycle"></twice-confirm>
-        <apply-card ref="applyCardModal" :more-card-modal="moreCardModal" @update-is-auth="updateIsAuth" :apply-info="baseInfo"></apply-card>
-    </div>
+    </card>
 </template>
 <script>
 import utils from '@/utils.js';
@@ -70,21 +69,21 @@ import ApplyCard from "@/components/apply_card/ApplyCard";
 import TwiceConfirm from "@/components/twice_confirm/TwiceConfirm.vue";
 import ListSort from "@/components/list_sort/ListSort.vue"
 import Cookie from "js-cookie";
-// import listMixins from "@/mixins/list.js";
+import Card from '../../../../components/card/Card.vue';
     export default {
         name:'',
         components: {
             ApplyCard,
             TwiceConfirm,
-            ListSort
+            ListSort,
+            Card
         },
-        // mixins:[listMixins],
         props:{
             //表格数据
-            tableData: {
-                type: Array,
+            listData: {
+                type: Object,
                 default: () => {
-                    return []
+                    return {}
                 }
             },
             // //数据总数
@@ -109,19 +108,10 @@ import Cookie from "js-cookie";
         },
         data () {
             return {
-                widthArr:[3,4,5,10,7,6,6,9],//宽度数组
-                pageSizeOpts:[10,20,30,40,50,100,200,300,400,500],
+                widthArr:[5,8,20,20,20,8,8,10,9,18,9,8],//宽度数组
                 selectIds:[],//选中的id数组
                 allChecked:false,//是否全选
-                isShowRecovery:false,//控制是否回收，为了实现功能，暂时先不用
-                recycleLoading: false, // 批量回收按钮loading
-                recycle_id: 0, // 单个回收id
-                recycle_type: 'all', // 回收类型 single: 单个回收 all: 批量回收
-                moreCardModal:false,   //名片抽屉打开/关闭
-                baseInfo:{},
-                isAuth:null,
-                //联系人总数
-                countAllNum:null,
+                curIdIdx:null,
             }
         },
         watch: {
@@ -140,21 +130,11 @@ import Cookie from "js-cookie";
                 this.$emit("change-page",{"page":page,"pageSize":this.searchData.pageSize});
             },
             /**
-             * 手动设置页码数
-             * @param {int} page 页码
-             * @param {int} pageSize 单页条数
-             */
-            setPageOptions(page,pageSize) {
-                let newPage = page ? parseInt(page) : 0;
-                let newPageSize = pageSize ? parseInt(pageSize) : 10;
-                this.$emit("set-page-options",{"page":newPage,"pageSize":newPageSize});
-            },
-            /**
              * 处理分页最大显示条数派发事件
              * @param {Number} pageSize 当前显示条数
              */
             handlePageSize(pageSize) {
-                this.$emit("change-page",{"page":1,"pageSize":pageSize});
+                this.$emit("change-page-size",{"page":1,"pageSize":pageSize});
             },
             /**
              * 列表时间排序
@@ -165,170 +145,53 @@ import Cookie from "js-cookie";
                 this.$emit("change-order",newRule);
             },
             /**
-             * 单选
+             * 给子组件传递当前表格的id和当前hover的tr的索引值
+             * @param {Object} e 鼠标事件对象
+             * @param {String} tableId 表格id
+             * @param {String} TrIdx 当前hover的tr的索引
              */
-            selectOne(id){
+            getIdIdx(e,tableId,TrIdx){
+                this.curIdIdx = {
+                    tableId,
+                    TrIdx
+                };
+            },
+            /**
+             * 单选
+             * @param {String} 选中的数据
+             */
+            selectSingle(id){
                 let index = this.selectIds.indexOf(id);
                 if (index === -1) {
                     this.selectIds.push(id);
                 } else {
                     this.selectIds.splice(index, 1);
                 }
-                this.allChecked = this.selectIds.length === this.tableData.length;
+                this.allChecked = this.selectIds.length === this.listData.list.length;
             },
             /**
              * 多选
+             * @param {Boolean} 是否选中多选按钮
              */
-            selectAll(){
-                if(this.allChecked==false){
+            selectAll(bool){
+                if(!bool){
                     this.selectIds = [];
                 }else{
-                    if(this.tableData){
-                        for(let i in this.tableData){
-                            if (this.selectIds.indexOf(this.tableData[i].id) === -1) {
-                                this.selectIds.push(this.tableData[i].id);
+                    if(this.listData.list){
+                        for(let i in this.listData.list){
+                            if (this.selectIds.indexOf(this.listData.list[i].id) == -1) {
+                                this.selectIds.push(this.listData.list[i].id);
                             }
                         }
                     }
                 }
             },
             /**
-             * 批量回收tip
+             * 初始化checkbox
              */
-            changeRecycleShowBatch() {
-                if (this.selectIds.length === 0) {
-                    utils.notice('请选择要回收的联系人')
-                    return false
-                }
-                this.recycle_type = 'all'
-                this.$refs.twiceConfirm.showConfirmModal();
-                this.$refs.recycleBtn.$el.blur()
-            },
-            /**
-             * 单独回收
-             */
-            changeRecycleShow(id) {
-                this.recycle_id = id
-                this.recycle_type = 'single'
-                this.$refs.twiceConfirm.showConfirmModal();
-                this.$refs.recycleBtn.$el.blur()
-            },
-            /**
-             * 回收确认
-             */
-            recycle() {
-                if (this.recycle_type == 'single') {
-                    this.cardRecovery(this.recycle_id)
-                } else {
-                    this.recycleAll()
-                }
-            },
-            /**
-             * 批量回收
-             */
-            async recycleAll() {
-                this.recycleLoading = true;
-                let obj = {
-                    cardId:this.selectIds,
-                    // uid:Cookie.get('uid')
-                    uid:'702144'
-                };
-                let res = await $api.delCardAuth(obj);
-                this.$refs.twiceConfirm.loading = false;
-                if(res.code == 200){
-                    this.$refs.twiceConfirm.cancel();
-                    utils.notice("操作成功",'success');
-                    this.$emit("refresh");
-                }else {
-                    utils.notice(res.msg,'error');
-                }
-                this.recycleLoading = false;
-            },
-            /**
-             * 名片回收
-             * @params cardId 名片id
-             */
-            async cardRecovery(cardId){
-                let obj = {
-                    cardId:cardId,
-                    // uid:Cookie.get('uid')
-                    uid:'702144'
-                };
-                let res = await $api.delCardAuth(obj);
-                this.$refs.twiceConfirm.loading = false;
-                if(res.code == 200){
-                    this.$refs.twiceConfirm.cancel();
-                    utils.notice("操作成功",'success');
-                    this.$emit("refresh");
-                }else {
-                    utils.notice(res.msg,'error');
-                }
-            },
-            /**
-             * 获取联系人基本信息
-             */
-            async getBaseInfo(itemId){
-                this.baseInfo = {}
-                let res = await $api.getContactBase({
-                    cardId:itemId,
-                    uid:'702144'
-                    // uid:Cookies.get('uid')
-                });
-                if(res.code != '200'){
-                    if(res.code !=='403'){
-                        utils.notice(res.msg,'error')
-                    }
-                    return false;
-                }
-                this.baseInfo = res.data;
-            },
-            /**
-             * 更新状态
-             */
-            updateIsAuth(data){
-                this.$nextTick(() => (this.isAuth = data));
-                // this.$emit('init-param-search')
-            },
-            /**
-             * 处理查看详情
-             * @param {Number} id 名片id
-             * @param {string} operation 是否查看 0=有查看记录权限并且未过期 1=查看已过期  2=无权限
-             */
-            detailInfo(id,operation = '1'){
-                let url = this.$router.resolve({
-                    name: "test_detail",
-                    params:{item_id:id}
-                });
-                window.open(url.href);
-                window.opener = null;
-            },
-            /**
-             * 初始化计算所有联系人总数
-             */
-            async calAllSum(){
-                if (this.$route.name==="approve_my_add"){
-                    let res = await $api.calAllSum();
-                    if (res.code == 200){
-                        if (res.data<10000){
-                            this.countAllNum = res.data
-                        }else{
-                            this.countAllNum = String(res.data/10000).split(".")[0] + "万"
-                        }
-                    }
-                }
-            },
-            /**
-             * 申请查看名片
-             */
-            async applyCard(itemId,cardName,manager,managerName){
-                this.baseInfo={
-                    id:itemId,
-                    name:cardName,
-                    manager:manager,
-                    managerName:managerName,
-                }
-                this.$refs.applyCardModal.show();
-                // this.$refs.applyCardModal.showNew(itemId,manager);
+            initCheckbox(){
+                this.allChecked = false;
+                this.selectIds = [];
             },
         }
     }

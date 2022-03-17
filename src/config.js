@@ -4,7 +4,9 @@ let config = {
 	downloadUrl:'http://mms.app_php.com/spa.php/Plugin/pluginDownload',
 	uploadUrl: 'http://mms.app_php.com/spa.php/Plugin/plugInUpload',
 	// 接口地址
-	apiUrl: 'http://mms-group1.dev.tanikawa.com/spa.php',
+	// apiUrl: 'http://mms.app_php.com/spa.php',
+	// apiUrl: 'http://mms-group1.dev.tanikawa.com/spa.php',
+	apiUrl: 'https://contract-group1.dev.tanikawa.com/api',
 	// apiUrl: 'http://tis.app_php.com/api',
 	devUploadUrl:'http://mms-group1.dev.tanikawa.com/spa.php/Plugin/plugInUploads',
 	token:'123456',
