@@ -564,6 +564,30 @@ utils.ObjectPropertyToString = (data={})=>{
     return data;
 };
 
-
+/**
+ * 将所有搜索项置空
+ * @param {Object} data 搜索项
+ */
+utils.ObjectEmpty = (data={})=>{
+    Object.keys(data).forEach(key=>{
+        if(data[key]){
+            switch(typeof(data[key])){
+                case 'string':
+                    return data[key] = '';
+                case 'number':
+                    return data[key] = 0;
+                case 'dataect':
+                    if(data[key] instanceof Array){
+                        return data[key] = [];
+                    }else{
+                        return data[key] = {};
+                    }
+                default:
+                    return data[key] = '';
+            }
+        }
+    });
+    return data;
+}
 
 export default utils;

@@ -9,6 +9,7 @@
             <tis-spin fix v-if="loading"></tis-spin>
             <div class="spin-box">
                 <list 
+                ref="tableList"
                 class="margin-top-16"
                 :list-data="listData"
                 :search-data="searchData"

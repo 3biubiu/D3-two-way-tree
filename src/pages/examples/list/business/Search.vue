@@ -154,9 +154,9 @@
 <script>
     import utils from '@/utils.js';
     import $api from "@/api/index.js";
-    import {itemCateEnum} from "@/static_data/item_cate.js";
     import Cookie from "js-cookie";
     import config from '@/config.js';
+    import {whetherArray} from "@/static_data/whether.js"
     // import listMixins from "@/mixins/list.js";
     export default {
         name:'',
@@ -174,22 +174,10 @@
         },
         data () {
             return {
-                isRecoveryList: [
-                    { value: '1', label: '是' },
-                    { value: '2', label: '否' }
-                ],  // 是否为回收项目
-                readList: [
-                    { value: '1', label: '是' },
-                    { value: '2', label: '否' }
-                ],   // 是否已查看
-                readdList: [
-                    { value: '1', label: '是' },
-                    { value: '2', label: '否' }
-                ],  // 是否为补录合同下拉数据
-                collectList: [
-                    { value: '1', label: '是' },
-                    { value: '2', label: '否' }
-                ],  // 是否收藏下拉数据
+                isRecoveryList: whetherArray,  // 是否为回收项目
+                readList: whetherArray,   // 是否已查看
+                readdList: whetherArray,  // 是否为补录合同下拉数据
+                collectList: whetherArray,  // 是否收藏下拉数据
                 signTypeList: [
                     { value: '1', label: '电子章' },
                     { value: '2', label: '实体章' }
@@ -271,28 +259,11 @@
              * 重置
              */
             resetSearch(){
-                Object.keys(this.searchData).forEach(key=>{
-                    let type = ['page','pageSize']
-                    if(type.indexOf(key)<0 && this.searchData[key]){
-                        switch(typeof(this.searchData[key])){
-                            case 'string':
-                                return this.searchData[key] = '';
-                            case 'number':
-                                return this.searchData[key] = 0;
-                            case 'object':
-                                if(this.searchData[key] instanceof Array){
-                                    return this.searchData[key] = [];
-                                }else{
-                                    return this.searchData[key] = {};
-                                }
-                            default:
-                                return this.searchData[key] = '';
-                        }
-                    }
-                    
-                });
+                //将搜索项置空
+                this.searchData = utils.ObjectEmpty(this.searchData);
                 this.searchData.page = 1;
                 this.searchData.pageSize = 10;
+                //判断搜索项是否展开
                 this.setToggleStatus();
                 this.$emit('reset-search');
             },
@@ -310,7 +281,7 @@
                 this.resetStatus = openType;
             },
             /**
-             * 判断两行一下是否展开
+             * 判断搜索项是否展开
              */
             setToggleStatus(){
                 let type = ['execTime','signTime','isRead','isReadd','isCollect','isRecovery','signType','carrierId','contractId','itemId','minMoney','maxMoney','approvalStatus','approvalNode'];

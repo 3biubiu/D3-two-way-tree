@@ -43,7 +43,7 @@
                 <td><span><a :href="'/all_contract/detail/' + item.id" target="_blank">查看</a></span></td>
             </tr>
         </tis-table>
-        <div class="default-tips" v-if="listData.count == 0 && this.$route.name == 'approve_my_add'">暂无匹配数据</div>
+        <div class="default-tips" v-if="listData.count == 0">暂无匹配数据</div>
         <div class="list-bottom">
             <div class="bottom-left">
                 <tis-checkbox  @on-change="selectAll" v-model="allChecked"><span class="checkbox-text">全选</span></tis-checkbox>
