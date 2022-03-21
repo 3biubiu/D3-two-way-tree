@@ -157,7 +157,6 @@
     import Cookie from "js-cookie";
     import config from '@/config.js';
     import {whetherArray} from "@/static_data/whether.js"
-    // import listMixins from "@/mixins/list.js";
     export default {
         name:'',
         components: {
