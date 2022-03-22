@@ -139,16 +139,16 @@
         <div class="carrier-pic">
         <line-title class="line-title" title="载体图片"></line-title>
         <div class="pic-img">
-            <img src="../../assets/mms_common/head_message.jpg" alt="">
-            <img src="../../assets/mms_common/head_message.jpg" alt="">
-            <img src="../../assets/mms_common/head_message.jpg" alt="">
-            <img src="../../assets/mms_common/head_message.jpg" alt="">
-            <img src="../../assets/mms_common/head_message.jpg" alt="">
+            <img src="../../assets/common/nologo.jpg" alt="">
+            <img src="../../assets/common/nologo.jpg" alt="">
+            <img src="../../assets/common/nologo.jpg" alt="">
+            <img src="../../assets/common/nologo.jpg" alt="">
+            <img src="../../assets/common/nologo.jpg" alt="">
         </div>
         </div>
         <div class="prove">
             <line-title class="line-title" title="产权证明"></line-title>
-            <img src="../../assets/mms_common/empty.png" alt="">
+            <img src="../../assets/common/empty.png" alt="">
             <p>暂无产权证明</p>
         </div>
         <div class="project">
@@ -272,7 +272,7 @@
 <script>
 // import Tags from "../../components/tags/Tags.vue";
 // import TagsItem from "../../components/tags/TagsItem.vue";
-import LineTitle from "../../components/common/line_title/LineTitle.vue";
+import LineTitle from "../../components/line_title/LineTitle.vue";
 import Options from "../../components/options/Options"
 export default {
     name: "detail",

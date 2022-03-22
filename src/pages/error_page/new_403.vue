@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="main">
-      <img class="prompt-img" :src="require('@/assets/mms_common/403.png')">
+      <img class="prompt-img" :src="require('@/assets/common/403.png')">
       <p class="prompt-title">您没有权限访问此页面，请开通权限后再试</p>
     </div>
   </div>
