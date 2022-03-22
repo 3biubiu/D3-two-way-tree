@@ -118,20 +118,6 @@
             async initData(){
                 this.saveSideBarNumber();
                 // this.saveDealLeftFieldTips();
-                // 首页头部和侧边栏的模块展示权限
-                let power = await $api.getPowerData();
-                this.powerHeaderData = power.module;
-                let HR = power.HR!=undefined || power.HR!=null?power.HR:[];
-                let DEAL = power.DEAL!=undefined || power.DEAL!=null?power.DEAL:[];
-                let INDUSTRY = power.INDUSTRY!=undefined || power.INDUSTRY!=null?power.INDUSTRY:[];
-                let TCS = power.tcs!=undefined || power.tcs!=null?power.tcs:[];
-                this.powerSiderData = [...HR,...DEAL,...INDUSTRY,...TCS];
-                // console.log(this.powerSiderData ,this.powerHeaderData)
-
-                // 根据接口的权限数据去展示左侧栏（如果根据menuArray完整列表没有意义）
-                // let leftList = this.menuArray.filter(item => this.powerHeaderData.indexOf(item.powerSatus) > -1)
-                // this.menuList = leftList
-                // console.log(this.menuList)
             },
             /*
                 判断浏览器版本并作出提示
