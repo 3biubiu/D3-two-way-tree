@@ -1,5 +1,5 @@
 import Config from "@/config.js";
-import {Message,Notice} from 'iview';
+import tis from 'tanikawa-tis'
 import Cookies from 'js-cookie';
 
 let utils = {
@@ -21,8 +21,15 @@ utils.codeStatus = (authList, oneAuth) => {
     if (oneAuth == '') {
         status = true;
     }
-	if (authList.indexOf(oneAuth, 0) >= 0) {
+	else if (authList.indexOf(oneAuth, 0) >= 0) {
         status = true;
+    }else if(oneAuth && oneAuth.indexOf(',') > -1){
+        let arr = oneAuth.split(',');
+        for(let i in arr){
+            if(authList.indexOf(arr[i]) > -1){
+                status = true
+            }
+        }
     }
     return status;
 }
@@ -66,7 +73,11 @@ utils.downloadPost = (url, data,token) => {
     form.submit();
     document.body.removeChild(form);
 }
-
+/**
+ * 判断文件是否为图片
+ * @param {String} filename 文件名
+ * @returns {Boolean}
+ */
 utils.checkImg = function (filename) {
     const imgSuff = ['.jpeg', '.gif', '.jpg', '.png'];
     for (var i = imgSuff.length - 1; i >= 0; i--) {
@@ -86,12 +97,12 @@ utils.checkImg = function (filename) {
  * 
  * @return {时间戳}
  */
-utils.timeDiff = (stringTime,type) => {
+utils.timeDiffNew = (stringTime,type) => {
     let timestamp2 = "";
     if(type == 'start'){
-        timestamp2 = Date.parse(new Date(stringTime).toUTCString()) /1000;
+        timestamp2 = Date.parse(new Date(stringTime+' 0:0:0')) /1000;
     }else if(type == 'end'){
-        timestamp2 = Date.parse(new Date(stringTime))/ 1000;
+        timestamp2 = Date.parse(new Date(stringTime+' 0:0:0'))/ 1000 + 24*60*60-1;
     }
     return timestamp2
 }
@@ -160,94 +171,55 @@ utils.isCard = (card)=> {
       return true;
     }
 }
-
+/**
+ * toast气泡提示
+ * @param {String} content 提示文案
+ * @param {String} action 提示方式
+ * @param {Number} duration 延迟的秒数
+ * @returns 
+ */
 utils.notice = (content, action = 'warning', duration = 2) => {
     let config = {};
     config.duration = duration;
     config.content = content;
     switch (action) {
         case 'info':
-            return Message.info(config);
+            return tis.TisMessage.info(config);
         case 'success':
-            return Message.success(config);
+            return tis.TisMessage.success(config);
         case 'error':
-            return Message.error(config);
+            return tis.TisMessage.error(config);
         case 'loading':
-            return Message.loading(config);
+            return tis.TisMessage.loading(config);
         default:
-            return Message.warning(config);
+            return tis.TisMessage.warning(config);
     }
 }
-
+/**
+ * toast气泡提示
+ * @param {String} content 提示文案
+ * @param {String} action 提示方式
+ * @param {Number} duration 延迟的秒数
+ * @returns 
+ */
 utils.message = (content, action = 'warning', duration = 2) => {
     let config = {};
     config.title = content.title;
     config.desc = content.desc || '';
     switch (action) {
         case 'open':
-            return Notice.open(config);
+            return tis.TisNotice.open(config);
         case 'info':
-            return Notice.info(config);
+            return tis.TisNotice.info(config);
         case 'success':
-            return Notice.success(config);
+            return tis.TisNotice.success(config);
         case 'error':
-            return Notice.error(config);
+            return tis.TisNotice.error(config);
         default:
-            return Notice.warning(config);
+            return tis.TisNotice.warning(config);
     }
 };
 
-/**
- * 获取当前单位类型名
- *
- * @param type 单位类型id
- *
- * @date 2018-8-10 10:20:54
- *
- * @return string
- */
-utils.getCompanyTypeName = type => {
-    let name = "";
-    switch (type){
-        case "1":
-            name = "各级政府";
-            break;
-        case "2":
-            name = "产业园区";
-            break;
-        case "3":
-            name = "商业项目";
-            break;
-        case "4":
-            name = "写字楼项目";
-            break;
-        case "5":
-            name = "其他单位";
-            break;
-        case "6":
-            name = "服务机构";
-            break;
-        case "7":
-            name = "品牌商家";
-            break;
-        case "8":
-            name = "工业地产";
-            break;
-        case "9":
-            name = "渠道（公司机构）";
-            break;
-        case "10":
-            name = "渠道（个人）";
-            break;
-        case "11":
-            name = "职能部门";
-            break;
-        default:
-            name = "";
-            break;
-    }
-    return name;
-};
 
 /**
  * 验证是否是手机号（以1开头，11位）
@@ -258,7 +230,7 @@ utils.getCompanyTypeName = type => {
  *
  * @return bool
  */
-    utils.isPhoneNum = (phone) => {
+utils.isPhoneNum = (phone) => {
     let myreg=/^[1][0-9]{10}$/;
     if (!myreg.test(phone)) {
         return false;
@@ -384,85 +356,6 @@ utils.getBrowserVersion = ()=>{
     if (isEdge) { return "Edge";}
 };
 
-/**
- * 通过传入的类型获取项目详情页跳转路由name
- *
- * @param {string} type 项目类型1：土地，2：厂房，3：商业，4：写字楼，5：注册，6：客户，7：仓库，10：其他’|路由name,
- * @param {string} model 输出结果 "route" 输出路由名,"num":数据对应值
- *
- * @date 2018-10-8 15:39:46
- *
- * @return {string}
- */
-utils.getItemDetailUrl = (type,model="route")=>{
-    let obj = {
-        "1"     :   "land-item-all-detail",
-        "2"     :   "factory-item-all-detail",
-        "3"     :   "business-item-all-detail",
-        "4"     :   "building-item-all-detail",
-        "5"     :   "register-item-all-detail",
-        "6"     :   "customer-item-all-detail",
-        "7"     :   "repertory-item-all-detail",
-        "10"    :   "other-item-all-detail",
-    };
-    let res = "";
-    switch (model){
-        case "route":
-            res = obj[type] ? obj[type] : "/";
-            break;
-        case "num":
-            for(let i in obj){
-                if(obj[i] === type){
-                    res = i;
-                    break;
-                }
-            }
-            break;
-        default:
-            break;
-    }
-    return res;
-};
-
-/**
- * 通过传入的类型获取载体详情页跳转路由name
- *
- * @param {string} type 项目类型1：土地，2：厂房，3：商业，4：写字楼，5：注册，6：客户，7：仓库，10：其他’|路由name,
- * @param {string} model 输出结果 "route" 输出路由名,"num":数据对应值
- *
- * @date 2018-12-13 18:54:25
- *
- * @return {string}
- */
-utils.getCarrierDetailUrl = (type,model="route")=>{
-    let obj = {
-        "1"     :   "land-carrier-all-detail",
-        "2"     :   "factory-carrier-all-detail",
-        "3"     :   "business-carrier-all-detail",
-        "4"     :   "building-carrier-all-detail",
-        "5"     :   "register-carrier-all-detail",
-        "6"     :   "customer-carrier-all-detail",
-        "7"     :   "repertory-carrier-all-detail",
-        "10"    :   "other-carrier-all-detail",
-    };
-    let res = "";
-    switch (model){
-        case "route":
-            res = obj[type] ? obj[type] : "/";
-            break;
-        case "num":
-            for(let i in obj){
-                if(obj[i] === type){
-                    res = i;
-                    break;
-                }
-            }
-            break;
-        default:
-            break;
-    }
-    return res;
-};
 
 /**
  * 通过文件后缀名获取对应font-awesome图标
@@ -581,48 +474,6 @@ utils.changeWarpToBr = (str = "",type="1")=>{
     return res;
 };
 
-/**
- * 根据项目类型获取对应的前缀缩写
- *
- * @param {string} str 项目类型编号
- *
- * @date 2018-11-29 10:50:39
- *
- * @return {string}
- */
-utils.getItemCateAbbreviation = (str="")=>{
-    let res = "";
-    switch (str){
-        case "1":
-            res = "TD";
-            break;
-        case "2":
-            res = "CF";
-            break;
-        case "3":
-            res = "SY";
-            break;
-        case "4":
-            res = "XZL";
-            break;
-        case "5":
-            res = "ZC";
-            break;
-        case "6":
-            res = "KH";
-            break;
-        case "7":
-            res = "CK";
-            break;
-        case "10":
-            res = "QT";
-            break;
-        default:
-            res = "";
-            break;
-    }
-    return res;
-};
 
 /**
  * 换算汇率
@@ -699,19 +550,6 @@ utils.findIndex = (a, x)=>{
     return results;
 };
 
-utils.getNameFromQuery = (str) => {
-    if (str && typeof str == 'string') {
-        let begin = str.search('【');
-        let end = str.search('】');
-        if (begin == 0 && end > -1) {
-            return str.slice(end+1);
-        } else {
-            return str;
-        }
-    } else {
-        return str;
-    }
-};
 /**
  * 过滤对象属性，undefined||null => String
  * @param data
@@ -726,6 +564,30 @@ utils.ObjectPropertyToString = (data={})=>{
     return data;
 };
 
-
+/**
+ * 将所有搜索项置空
+ * @param {Object} data 搜索项
+ */
+utils.ObjectEmpty = (data={})=>{
+    Object.keys(data).forEach(key=>{
+        if(data[key]){
+            switch(typeof(data[key])){
+                case 'string':
+                    return data[key] = '';
+                case 'number':
+                    return data[key] = 0;
+                case 'dataect':
+                    if(data[key] instanceof Array){
+                        return data[key] = [];
+                    }else{
+                        return data[key] = {};
+                    }
+                default:
+                    return data[key] = '';
+            }
+        }
+    });
+    return data;
+}
 
 export default utils;

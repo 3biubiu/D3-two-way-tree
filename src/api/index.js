@@ -1,10 +1,12 @@
 
-import mmsCommon from './mms_common/mms_common.js';
-import plugin from './mms_common/plugin.js';
+import mmsCommon from './mms_common.js';
+import List from './list.js';
+import Add from './add.js';
 
 const $api = Object.assign({},
 	mmsCommon,
-	plugin
+	List,
+	Add
 );
 
 

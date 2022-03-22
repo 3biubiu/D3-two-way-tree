@@ -8,25 +8,96 @@
         top: 50px;
         bottom:0;
         left: 0;
-        z-index: 21;
+        z-index: 1003;
         transition: width .3s;
         &::-webkit-scrollbar {
             display: none;
         }
     }
     .single-page-con{
-        min-height: 933px;
+        min-height: calc(~"100vh - 50px");
         margin-top:50px;
         min-width:1200px;
-        overflow:hidden;
+        // overflow:hidden;
         height:auto;
         background-color: #f8f8f8;
         margin-bottom:0;
         position:relative;
-        padding:16px 24px 35px 24px;
-        margin-left:220px;
-        .single-page{
-
+        padding:16px 16px 51px 16px;
+        margin-left:240px;
+        .search-mask {
+            height: 837px;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+            .search-top {
+                padding-bottom: 60px;
+                text-align: center;
+                background-color: #f8f8f8;
+                .search-type {
+                    overflow: hidden;
+                    width: 640px;
+                    padding-top: 40px;
+                    padding-bottom: 16px;
+                    margin: 0 auto;
+                    p {
+                        float: left;
+                        font-size: 14px;
+                        line-height: 20px;
+                        color: #666;
+                        margin-right: 32px;
+                        cursor: pointer;
+                        &.active {
+                            color: #1f6cdd;
+                        }
+                        &:hover {
+                            color: #468eeb;
+                        }
+                        &:active {
+                            color: #114eb8;
+                        }
+                    }
+                }
+                .menu-search-input {
+                    display: inline-block;
+                    height: 40px;
+                    line-height: 38px;
+                    color: #666;
+                    font-size: 14px;
+                    width: 552px;
+                    /deep/ .ivu-input {
+                        border-radius: 0;
+                        height: 40px;
+                        line-height: 40px;
+                    }
+                    &::placeholder{
+                        color: #ccc;
+                    }
+                    &:focus{
+                        outline: 0;
+                        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(52, 152, 219, 0.6);
+                    }
+                }
+                .menu-search-button {
+                    background-color: #1f6cdd;
+                    height: 40px;
+                    line-height: 20px;
+                    border-radius: 0 4px 4px 0;
+                    width:88px;
+                    margin-left: -4px;
+                    &:hover {
+                        background-color: #468eeb;
+                    }
+                    &:active {
+                        background-color: #114eb8;
+                    }
+                }
+            }
+            .search-bot-mask {
+                background-color: rgba(0, 0, 0, 0.5);
+            }
         }
     }
     .user-login-logout{

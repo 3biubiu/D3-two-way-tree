@@ -147,39 +147,103 @@ const menuArray = [
     },
     {
         name:"示例页面",
-        powerSatus:"demo",
+        powerSatus:"exam",
         isVue : true,
-        routerName:"demo",
+        routerName:"exam",
         modular: [
             {
-                title:'示例页面1',
+                title:'示例页面',
                 menuList:[
                     {
                         iconAwesome: "fa fa-table",
-                        name: "first_demo",
-                        title: "示例页面11",
+                        name: "examples",
+                        title: "公共组件示例",
                         powerSatus:"",
-                        openName:'first_demo',
+                        openName:'examples',
                         children: [
                             {
                                 iconAwesome: "fa fa-globe",
-                                name:'first_demo_one',
-                                openName:'first_demo_one',
+                                name:'tis-components',
+                                openName:'tis-components',
                                 powerSatus:"",
-                                title: "示例页面111",
+                                title: "公共组件",                                
+                            },
+                            {
+                                iconAwesome: "fa fa-globe",
+                                name:'first_demo_two',
+                                openName:'first_demo_two',
+                                powerSatus:"",
+                                title: "按钮",
+                                children:[
+                                    {
+                                        iconAwesome: "fa fa-globe",
+                                        name:'demo_three_one',
+                                        openName:'demo_three_one',
+                                        powerSatus:"",
+                                        title: "三级1"
+                                    },
+                                    {
+                                        iconAwesome: "fa fa-globe",
+                                        name:'demo_three_two',
+                                        openName:'demo_three_two',
+                                        powerSatus:"",
+                                        title: "三级2",
+                                        children:[
+                                            {
+                                                iconAwesome: "fa fa-globe",
+                                                name:'demo_four_one',
+                                                openName:'demo_four_one',
+                                                powerSatus:"",
+                                                title: "四级1",
+                                                children:[
+                                                    {
+                                                        iconAwesome: "fa fa-globe",
+                                                        name:'demo_five_one',
+                                                        openName:'demo_five_one',
+                                                        powerSatus:"",
+                                                        title: "五级1", 
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
                             },
                         ]
                     },
                     {
                         iconAwesome: "fa fa-table",
+                        name: "example",
+                        title: "示例页面",
+                        powerSatus:"",
+                        openName:'example',
+                        children: [
+                            {
+                                iconAwesome: "fa fa-globe",
+                                name:'approve',
+                                openName:'approve',
+                                powerSatus:"",
+                                title: "添加编辑页/列表页",                                
+                            },
+                            {
+                                iconAwesome: "fa fa-globe",
+                                name:'first_demo_twoo',
+                                openName:'first_demo_twoo',
+                                powerSatus:"",
+                                title: "按钮",
+                            }
+                        ]
+                    },
+                    {
+                        iconAwesome: "fa fa-table",
                         name: "second_demo",
-                        title: "示例页面2",
+                        title: "详情",
                         powerSatus:"",
                         openName:'second_demo',
                     }
                 ]
             }
-        ]
+        ],
     },
 ]
 
