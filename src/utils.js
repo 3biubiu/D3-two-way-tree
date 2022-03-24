@@ -195,11 +195,12 @@ utils.notice = (content, action = 'warning', duration = 2) => {
             return tis.TisMessage.warning(config);
     }
 }
+
 /**
- * toast气泡提示
+ * 页面公共右侧提示
  * @param {String} content 提示文案
- * @param {String} action 提示方式
- * @param {Number} duration 延迟的秒数
+ * @param {String} action 提示类型
+ * @param {Number} duration 在页面停留时间 s 默认2s
  * @returns 
  */
 utils.message = (content, action = 'warning', duration = 2) => {
@@ -224,8 +225,6 @@ utils.message = (content, action = 'warning', duration = 2) => {
 /**
  * 验证是否是手机号（以1开头，11位）
  *
- * @date 2018-08-13
- *
  * @param {int} phone 手机号
  *
  * @return bool
@@ -244,8 +243,6 @@ utils.isPhoneNum = (phone) => {
  *
  * @param {string} authName 权限名数组
  * @param {int} type 类型1-基础权限，2-继承权限
- *
- * @date 2018-8-14 14:40:37
  *
  * @return {bool}
  */
