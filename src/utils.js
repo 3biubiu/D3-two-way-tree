@@ -74,6 +74,10 @@ utils.downloadPost = (url, data,token) => {
     document.body.removeChild(form);
 }
 
+/**
+ * 验证文件是否是图片
+ * @param {*} filename 文件后缀
+ */
 utils.checkImg = function (filename) {
     const imgSuff = ['.jpeg', '.gif', '.jpg', '.png'];
     for (var i = imgSuff.length - 1; i >= 0; i--) {
@@ -168,6 +172,13 @@ utils.isCard = (card)=> {
     }
 }
 
+/**
+ * 页面公共气泡提示
+ * @param {String} content 提示文案
+ * @param {String} action 提示类型
+ * @param {Number} duration 在页面停留时间 s 默认2s
+ * @returns 
+ */
 utils.notice = (content, action = 'warning', duration = 2) => {
     let config = {};
     config.duration = duration;
@@ -186,6 +197,13 @@ utils.notice = (content, action = 'warning', duration = 2) => {
     }
 }
 
+/**
+ * 页面公共右侧提示
+ * @param {String} content 提示文案
+ * @param {String} action 提示类型
+ * @param {Number} duration 在页面停留时间 s 默认2s
+ * @returns 
+ */
 utils.message = (content, action = 'warning', duration = 2) => {
     let config = {};
     config.title = content.title;
@@ -259,8 +277,6 @@ utils.getCompanyTypeName = type => {
 /**
  * 验证是否是手机号（以1开头，11位）
  *
- * @date 2018-08-13
- *
  * @param {int} phone 手机号
  *
  * @return bool
@@ -279,8 +295,6 @@ utils.getCompanyTypeName = type => {
  *
  * @param {string} authName 权限名数组
  * @param {int} type 类型1-基础权限，2-继承权限
- *
- * @date 2018-8-14 14:40:37
  *
  * @return {bool}
  */
