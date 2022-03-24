@@ -29,7 +29,6 @@
 </template>
 <script>
     // import ShrinkAbleMenu from './business/ShrinkableMenu.vue';
-    import menuArray from '@/static_data/menu_array.js';
     import WaterMark from '@/components/watermark/Watermark.vue';
     import $api from "@/api/index.js";
     import utils from "@/utils";
@@ -46,7 +45,6 @@
                 routerName:'test',//当前路由名
                 menuList: [],//在左侧显示的列表
                 menuTitle: '',//在左侧显示的列表
-                menuArray: menuArray,//菜单数组
                 shrink: false,//菜单收缩
                 menuTheme:'dark',//菜单主题
                 powerSiderData:[],  // 侧边栏权限数据
@@ -65,19 +63,7 @@
         computed: {
             ...mmsCommon.mapGetters(["sideBarNumber","dealLeftFieldTips"]),
         },
-        watch: {
-            $route() {
-                this.watchRouterName();
-                console.log('路由变化')
-                this.routerName = this.$route.path.split("/")[1];
-                for(let i in this.menuArray){
-                    if(this.menuArray[i].routerName == this.routerName){
-                        this.menuList = this.menuArray[i].modular;
-                        break;
-                    }
-                }
-            },
-        },
+        watch: {},
         created () {
             // this.getBrowser();
             // this.initData();
@@ -86,32 +72,10 @@
             Cookie.set('coinWs', Config.currencyWs);
         },
         mounted () {
-            // this.watchRouterName();
             this.getIframeSrc();
             this.ucmsIframeEvent();
         },
         methods: {
-            /*
-                计算菜单和菜单权限：监听路由，改变routerName，menuList
-            */
-            watchRouterName(){
-                // this.routerName = this.$route.path.split("/")[1];
-                // this.routerName = this.$route.matched[0].name;
-                // console.log(this.routerName)
-                for(let i in this.menuArray){
-                    if((this.menuArray[i].routerName == this.routerName) && this.menuArray[i].modular){
-                        this.menuList = this.menuArray[i].modular[0].menuList;
-                        this.menuTitle = this.menuArray[i].modular[0].title;
-                        break;
-                    }else if((this.menuArray[i].routerName == this.routerName) && !this.menuArray[i].modular){
-                        let sidebarMenuCon = document.getElementsByClassName("sidebar-menu-con")[0];
-                        let singlepageCon = document.getElementsByClassName("single-page-con")[0];
-                        sidebarMenuCon.style.display = "none";
-                        singlepageCon.style.marginLeft = 0; //内容铺满整个宽度
-                        this.$refs.head.isShowLeft = false; //删除收缩功能的小图标 
-                    }
-                }
-            },
             /*
                 初始化layout数据：左侧未读条数，头部数据，权限数据。。。
             */
