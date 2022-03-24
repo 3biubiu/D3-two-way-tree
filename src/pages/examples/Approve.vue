@@ -12,7 +12,7 @@
     </div>
 </template>
 <script>
-import RouterTab from '@/components/common/router_tab/RouterTab';
+import RouterTab from '@/components/router_tab/RouterTab';
 import { createNamespacedHelpers } from 'vuex'
 const { mapState, mapGetters, mapMutations, mapActions } = createNamespacedHelpers('demo')
     export default {
