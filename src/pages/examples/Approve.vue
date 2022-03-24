@@ -1,10 +1,10 @@
 <template>
     <div class="approve-index">
         <!-- <h1>tis设计规范的添加编辑页调用示例</h1> -->
-        <Tabs :value="tabValue" @on-click="handleTab">
+        <router-tab id="frame-router-tabs" class="approve-tabs" :value="tabValue" @on-click="handleTab">
             <TabPane label="申请接待（添加/编辑）" name="approve_add"></TabPane>
-            <TabPane label="我发起的（列表）" name="approve_my_add"></TabPane>
-        </Tabs>
+            <TabPane :label="allContract" name="approve_my_add"></TabPane>
+        </router-tab>
         <div class="router-view">
             <router-view></router-view>
         </div>
@@ -12,22 +12,40 @@
     </div>
 </template>
 <script>
-    // import VueTabs from '../examples/Tabs'
+import RouterTab from '@/components/router_tab/RouterTab';
+import { createNamespacedHelpers } from 'vuex'
+const { mapState, mapGetters, mapMutations, mapActions } = createNamespacedHelpers('demo')
     export default {
         name:'',
         components: {
+            RouterTab
             // VueTabs 
         },
         data () {
             return {
                 //当前tab选中的路由name
                 tabValue : this.$route.name,
+                allContract: (h) => {
+                    return h('div', [
+                        h('span', '全部合同'),
+                        h('Badge', {
+                            props: {
+                                count: Number(this.num),
+                                overflowCount: Number(this.num) == 99 ? 100 : 99
+                            }
+                        })
+                    ])
+                }
             }
         },
         watch: {
             
         },
+        computed:{//获取地区数据
+            ...mapGetters(['num'])
+        },
         mounted() {     
+            this.changeNum();
         },
         methods:{
             //Tab切换跳转
@@ -38,49 +56,21 @@
                     name: e,
                 });
             },
+            ...mapActions(['changeNum'])
         }
     }
 </script>
 
 <style lang="less">
 .approve-index{
-    .ivu-tabs-tab{
-        margin-right: 0;
-        padding: 0 16px;
-        font-weight: bold;
-        color: #333333;
-        transition: none;
-    }
-    .ivu-tabs-tab-active{
-        color: #1f6cdd;
-        border-top: none;
-        position: relative;
-        &::before{
-            content: '';
-            width: 100%;
-            height: 2px;
-            background-color: #1f6cdd;
-            position: absolute;
-            left: 0;
-            top: 0;
-            z-index: 1;
+    .approve-tabs{
+        .ivu-tabs-bar{
+            margin-bottom: 0;
         }
     }
-    .ivu-tabs-tab:hover{
-        color: #468eeb;
-    }
-    .ivu-tabs-bar{
-        margin-bottom: 0;
-    }
-    .ivu-card-bordered{
-        border: none;
-    }
-    .ivu-card-body{
-        padding: 0;
-    }
-    .ivu-tabs-nav-container:focus .ivu-tabs-tab-focused{
-        border-color: #ececec !important;
-        border-top-color: #1f6cdd !important;
+    .ivu-badge{
+        margin-left: 4px;
     }
 }
+
 </style>

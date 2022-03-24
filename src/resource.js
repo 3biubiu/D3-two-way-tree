@@ -7,27 +7,11 @@ import qs from 'qs';
 
 var $http = axios.create({
     baseURL: `${Config.apiUrl}/`,
-    timeout: 55000,
-    //在发送请求前修改请求数据
-    // transformRequest: [function (data) {
-    //     //将对象 序列化成URL的形式，以&进行拼接
-    //     return qs.stringify(data)
-    // }],
+    timeout: 55000
 });
 //请求拦截器之前（在请求之前进行一些配置）
 $http.interceptors.request.use(
     config => {
-        if (cookies.get('token')) {//按新规范的话这一块会删掉，这里只是为了调用spa的测试接口因此临时加的
-            config.headers['Token'] = cookies.get('token');
-        }
-        
-        if (Config.isTest) {
-            if(config.url.indexOf('?') != -1){
-                config.url = config.url + '&testUid=' + Config.testUid
-            } else {
-                config.url = config.url + '?testUid=' + Config.testUid
-            }
-        }
         return config;
     }
 )
