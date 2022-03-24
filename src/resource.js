@@ -12,13 +12,6 @@ var $http = axios.create({
 //请求拦截器之前（在请求之前进行一些配置）
 $http.interceptors.request.use(
     config => {
-        if (Config.isTest) {
-            if(config.url.indexOf('?') != -1){
-                config.url = config.url + '&testUid=' + Config.testUid
-            } else {
-                config.url = config.url + '?testUid=' + Config.testUid
-            }
-        }
         return config;
     }
 )
