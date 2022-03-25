@@ -61,7 +61,7 @@
             }
         },
         computed: {
-            ...mmsCommon.mapGetters(["sideBarNumber","dealLeftFieldTips"]),
+            ...mmsCommon.mapGetters(["sideBarNumber"]),
         },
         watch: {},
         created () {
@@ -81,7 +81,6 @@
             */
             async initData(){
                 this.saveSideBarNumber();
-                // this.saveDealLeftFieldTips();
             },
             /*
                 判断浏览器版本并作出提示
