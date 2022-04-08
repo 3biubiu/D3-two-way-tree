@@ -63,14 +63,5 @@ const { mapState, mapGetters, mapMutations, mapActions } = createNamespacedHelpe
 
 <style lang="less">
 .approve-index{
-    .approve-tabs{
-        .ivu-tabs-bar{
-            margin-bottom: 0;
-        }
-    }
-    .ivu-badge{
-        margin-left: 4px;
-    }
 }
-
 </style>
