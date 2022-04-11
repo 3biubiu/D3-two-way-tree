@@ -3,8 +3,8 @@ let config = {
 	downloadUrl:'http://mms.app_php.com/spa.php/Plugin/pluginDownload',
 	uploadUrl: 'http://mms.app_php.com/spa.php/Plugin/plugInUpload',
 	// 接口地址
-	apiUrl: 'http://mms-group1.dev.tanikawa.com/spa.php',
 	// apiUrl: 'http://mms.app_php.com/spa.php',
+	apiUrl: 'http://tis.app_php.com/api',
 	devUploadUrl:'http://mms-group1.dev.tanikawa.com/spa.php/Plugin/plugInUploads',
 	token:'123456',
 	// layout.vue组件内用的---谷川币
@@ -26,5 +26,6 @@ let config = {
 	trainUrl:'https://tms.xuannaer.com/index',  //培训  
     csmsUrl: 'https://csms.xuannaer.com',//客服域名  
 	materialUrl:'https://ams.xuannaer.com/material/fixed-current',   //物资
+    logoutUrl:"https://ums.xuannaer.com/auth/logout?redirectUrl=https%3A%2F%2Fmms.xuannaer.com",
 };
 export default config;
