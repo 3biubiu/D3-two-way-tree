@@ -573,7 +573,7 @@ utils.ObjectEmpty = (data={})=>{
                     return data[key] = '';
                 case 'number':
                     return data[key] = 0;
-                case 'dataect':
+                case 'object':
                     if(data[key] instanceof Array){
                         return data[key] = [];
                     }else{

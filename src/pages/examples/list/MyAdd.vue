@@ -71,7 +71,6 @@ const { mapState, mapGetters, mapMutations, mapActions } = createNamespacedHelpe
         },
         created(){
             this.init();
-            this.getAllContractList();
         },
         mounted(){
             this.changeNum();

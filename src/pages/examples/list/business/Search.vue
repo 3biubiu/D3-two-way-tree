@@ -1,7 +1,7 @@
 <template>
     <div class="search-content">
         <div class="search-left">
-            <tis-row :gutter="16" class="margin-bottom-8">
+            <tis-row :gutter="8" class="margin-bottom-8">
                 <!-- 合同名称 -->
                 <tis-col :span="8">
                     <tis-input class="title-input" clearable v-model="searchData.title" placeholder="合同名称/合同ID" ></tis-input>
@@ -23,13 +23,13 @@
                         @select="selectData"
                         :default-select="searchData.defaultSelect"
                         :placeholder="placeholder"
-                        :gutter="16"
+                        :gutter="8"
                         :level="3">
                     </tis-select-cascader>
                 </tis-col>
             </tis-row>
             <!-- 第二行搜索项 -->
-            <tis-row :gutter="16" :class="searchShow ? 'margin-bottom-8': ''">
+            <tis-row :gutter="8" :class="searchShow ? 'margin-bottom-8': ''">
                 <!-- 甲方 -->
                 <tis-col :span="4">
                     <tis-input class="title-input" clearable v-model="searchData.partyA" placeholder="甲方" ></tis-input>
@@ -64,7 +64,7 @@
                 </tis-col>
             </tis-row>
             <!-- 第三行搜索项 -->
-            <tis-row :gutter="16" class="margin-bottom-8" v-if="searchShow">
+            <tis-row :gutter="8" class="margin-bottom-8" v-if="searchShow">
                 <!-- 执行时间 -->
                 <tis-col :span="8">
                     <tis-date-picker
@@ -99,7 +99,7 @@
                 </tis-col>
             </tis-row>
             <!-- 第四行搜索项 -->
-            <tis-row :gutter="16" v-if="searchShow">
+            <tis-row :gutter="8" v-if="searchShow">
                 <!-- 合同金额 -->
                 <tis-col :span="8">
                     <tis-splicing-input
@@ -145,8 +145,8 @@
                 <div class="btn-none" v-show="!resetStatus"></div>
             </div>
             <div class="right-toggle">
-                <p v-show="!searchShow" @click="searchShow = true">展开+</p>
-                <p v-show="searchShow" @click="searchShow = false">收起-</p>
+                <p v-show="!searchShow" @click="searchShow = true">展开<span>+</span></p>
+                <p v-show="searchShow" @click="searchShow = false">收起<span>-</span></p>
             </div>
         </div>
     </div>
@@ -157,7 +157,6 @@
     import Cookie from "js-cookie";
     import config from '@/config.js';
     import {whetherArray} from "@/static_data/whether.js"
-    // import listMixins from "@/mixins/list.js";
     export default {
         name:'',
         components: {
