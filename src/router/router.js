@@ -34,7 +34,7 @@ Router.prototype.push = function push(location) {
  {
      let status = false;
      if (meta.code) {
-         if(codeData !== undefined) {
+         if(codeData) {
              status = utils.codeStatus(codeData, meta.code);
          } else {
              status = false;
@@ -67,12 +67,18 @@ router.beforeEach(async (to,from,next) => {
         } 
         if(res.code == 200){ 
             store.commit('mmsCommon/USERHEADPOWER', res.data);
+            //这里的 'xxx' 指的是当前模块权限
+            // if(!res.data.includes('xxx')){
+            //     next({replace: true, name: 'error-403'})
+            //     return;
+            // }
             // 权限判断
             await store.dispatch('mmsCommon/getUserPower');
             let power = [...store.state.mmsCommon.userHeaderPower, ...store.state.mmsCommon.userPower]
             let status = handlePower(power, to.meta);
             if(!status) {
                 next({replace: true, name: 'error-403'})
+                return;
             }
             if(Cookies.get('rePath')) {
                 setTimeout(() => {

@@ -22,7 +22,7 @@ export default {
          * @param {string} name 生成的名字
          */
         againImg(name){
-            if(!this.img){
+            if(!this.img && name){
                 this.setWatermark(name)
                 this.img = localStorage.getItem('nameImg'+Cookies.get('uid'));
             }

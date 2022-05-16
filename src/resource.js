@@ -18,7 +18,18 @@ $http.interceptors.request.use(
 //响应了拦截器之后（在响应之后对数据进行一些处理）
 $http.interceptors.response.use(
     response => {
-        return response.data;
+        switch (response.data.code) {
+            case 200:
+                return response.data;
+            case 403:
+                location.href = '/403';
+                break;
+            case 404:
+                location.href = '/404';
+                break;
+            default :
+                return response.data;
+        }
     },
     error => {//这是异常
         if (error.response) {
