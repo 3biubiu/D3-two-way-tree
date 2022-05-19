@@ -34,7 +34,7 @@ Router.prototype.push = function push(location) {
  {
      let status = false;
      if (meta.code) {
-         if(codeData !== undefined) {
+         if(codeData) {
              status = utils.codeStatus(codeData, meta.code);
          } else {
              status = false;
@@ -73,6 +73,7 @@ router.beforeEach(async (to,from,next) => {
             let status = handlePower(power, to.meta);
             if(!status) {
                 next({replace: true, name: 'error-403'})
+                return;
             }
             if(Cookies.get('rePath')) {
                 setTimeout(() => {
