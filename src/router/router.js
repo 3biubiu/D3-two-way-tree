@@ -7,7 +7,6 @@ import $http from "@/resource";
 import $api from "@/api/index.js";
 import utils from "@/utils";
 import store from '../store/index'
-let vueObj = new Vue();
 
 const RouterConfig = {
     mode:'history',
@@ -66,22 +65,16 @@ router.beforeEach(async (to,from,next) => {
             return true;
         } 
         if(res.code == 200){ 
-            // store.commit('mmsCommon/USERHEADPOWER', res.data);
-            //获取当前页面对应的头部权限
-            var auth = '';
-            for(let i in vueObj.$menuArray){
-                if(JSON.stringify(vueObj.$menuArray[i]).includes(to.name)){
-                    auth =  vueObj.$menuArray[i].powerSatus;
-                }
-            }
-            // 头部权限判断
-            if(!res.data.includes(auth)){
+            store.commit('mmsCommon/USERHEADPOWER', res.data);
+            // CUSTOMER_CENTER对应当前项目的头部权限
+            if(!res.data.includes('CUSTOMER_CENTER')){
                 next({replace: true, name: 'error-403'})
                 return;
             }
             // 左侧权限判断
             await store.dispatch('mmsCommon/getUserPower');
             let power = [ ...store.state.mmsCommon.userPower]
+            //侧边栏菜单对应的页面需在meta里加上code属性（值为相应的权限）
             let status = handlePower(power, to.meta);
             if(!status) {
                 next({replace: true, name: 'error-403'})
