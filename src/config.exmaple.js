@@ -1,4 +1,5 @@
 let config = {
+	routerPrefix:'',//路由
 	// 上传下载地址
 	downloadUrl:'http://mms.app_php.com/spa.php/Plugin/pluginDownload',
 	uploadUrl: 'http://mms.app_php.com/spa.php/Plugin/plugInUpload',
