@@ -7,7 +7,10 @@ import qs from 'qs';
 
 var $http = axios.create({
     baseURL: `${Config.apiUrl}/`,
-    timeout: 55000
+    timeout: 55000,
+    transformRequest: [function (data) {
+        return qs.stringify(data)
+    }],
 });
 //请求拦截器之前（在请求之前进行一些配置）
 $http.interceptors.request.use(
