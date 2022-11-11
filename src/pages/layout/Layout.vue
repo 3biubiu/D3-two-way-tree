@@ -74,7 +74,7 @@
             }
         },
         computed: {
-            ...mmsCommon.mapGetters(["sideBarNumber","headerPower", "userPower"]),
+            ...mmsCommon.mapGetters(["sideBarNumber","headerPower", "userPower","headerPower", "userPower"]),
         },
         watch: {},
         created () {
