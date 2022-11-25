@@ -214,11 +214,11 @@
         </div>
         <div class="select">
             <line-title class="line-title" title="标签"></line-title>
-            <options title="千人计划" textColor="#1ebea0" borColor="#68d9be" bgColor="#f0fffa"></options>
+            <!-- <options title="千人计划" textColor="#1ebea0" borColor="#68d9be" bgColor="#f0fffa"></options>
             <options title="千人计划" textColor="#1f6cdd" borColor="#72b0f7" bgColor="#f0f8ff"></options>
             <options title="千人计划" textColor="#f25041" borColor="#ffa696" bgColor="#fff4f0"></options>
             <options title="千人计划" textColor="#f25041" borColor="#ffa696" bgColor="#fff4f0"></options>
-            <options title="孵化器" textColor="#ff9900" borColor="#ffc552" bgColor="#fff9e6"></options>
+            <options title="孵化器" textColor="#ff9900" borColor="#ffc552" bgColor="#fff9e6"></options> -->
         </div>
         <div class="remarks">
             <line-title class="line-title" title="载体备注"></line-title>
@@ -273,14 +273,14 @@
 // import Tags from "../../components/tags/Tags.vue";
 // import TagsItem from "../../components/tags/TagsItem.vue";
 import LineTitle from "../../components/line_title/LineTitle.vue";
-import Options from "../../components/options/Options"
+// import Options from "../../components/options/Options"
 export default {
     name: "detail",
     components: {
         // Tags,
         // TagsItem,
         LineTitle,
-        Options,
+        // Options,
     },
     data() {
         return {

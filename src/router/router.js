@@ -8,7 +8,6 @@ import $api from "@/api/index.js";
 import utils from "@/utils";
 import store from '../store/index'
 
-
 const RouterConfig = {
     mode:'history',
     routes: routers
@@ -34,7 +33,7 @@ Router.prototype.push = function push(location) {
  {
      let status = false;
      if (meta.code) {
-         if(codeData !== undefined) {
+         if(codeData) {
              status = utils.codeStatus(codeData, meta.code);
          } else {
              status = false;
@@ -56,34 +55,41 @@ router.beforeEach(async (to,from,next) => {
     if(!(to.name == from.name)){
         //注意：这里为了临时进入页面所以注释了，如正式应用到项目需要打开
         // 获取权限
-        // let res = await $api.getMenuAuth(to.query.token);
-        // if(res.code == 401) {
-        //     // 未登录
-        //     Cookies.set('rePath', to.path)
-        //     setTimeout(() => {
-        //         // window.location.href = res.data.loginUrl;
-        //     }, 200)
-        //     return true;
-        // } 
-        // if(res.code == 200){ 
-        //     store.commit('mmsCommon/USERHEADPOWER', res.data);
-        //     // 权限判断
-        //     await store.dispatch('mmsCommon/getUserPower');
-        //     let power = [...store.state.mmsCommon.userHeaderPower, ...store.state.mmsCommon.userPower]
-        //     let status = handlePower(power, to.meta);
-        //     if(!status) {
-        //         next({replace: true, name: 'error-403'})
-        //     }
-        //     if(Cookies.get('rePath')) {
-        //         setTimeout(() => {
-        //             next({replace: true, path: Cookies.get('rePath')});
-        //             Cookies.remove('rePath');
-        //         }, 300)
-        //     }
-        // }
-        // else{
-        //     next({replace: true, name: 'error-500'})
-        // }
+        let res = await $api.getMenuAuth(to.query.token);
+        if(res.code == 401) {
+            // 未登录
+            Cookies.set('rePath', to.path)
+            setTimeout(() => {
+                window.location.href = res.data.loginUrl;
+            }, 200)
+            return true;
+        } 
+        if(res.code == 200){ 
+            store.commit('mmsCommon/USERHEADPOWER', res.data);
+            // CUSTOMER_CENTER对应当前项目的头部权限
+            if(!res.data.includes('CUSTOMER_CENTER')){
+                next({replace: true, name: 'error-403'})
+                return;
+            }
+            // 左侧权限判断
+            await store.dispatch('mmsCommon/getUserPower');
+            let power = [ ...store.state.mmsCommon.userPower]
+            //侧边栏菜单对应的页面需在meta里加上code属性（值为相应的权限）
+            let status = handlePower(power, to.meta);
+            if(!status) {
+                next({replace: true, name: 'error-403'})
+                return;
+            }
+            if(Cookies.get('rePath')) {
+                setTimeout(() => {
+                    next({replace: true, path: Cookies.get('rePath')});
+                    Cookies.remove('rePath');
+                }, 300)
+            }
+        }
+        else{
+            next({replace: true, name: 'error-500'})
+        }
     }
     next();
 })

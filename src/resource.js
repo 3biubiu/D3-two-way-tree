@@ -7,25 +7,32 @@ import qs from 'qs';
 
 var $http = axios.create({
     baseURL: `${Config.apiUrl}/`,
-    timeout: 55000
+    timeout: 55000,
+    transformRequest: [function (data) {
+        return qs.stringify(data)
+    }],
 });
 //请求拦截器之前（在请求之前进行一些配置）
 $http.interceptors.request.use(
     config => {
-        if (Config.isTest) {
-            if(config.url.indexOf('?') != -1){
-                config.url = config.url + '&testUid=' + Config.testUid
-            } else {
-                config.url = config.url + '?testUid=' + Config.testUid
-            }
-        }
         return config;
     }
 )
 //响应了拦截器之后（在响应之后对数据进行一些处理）
 $http.interceptors.response.use(
     response => {
-        return response.data;
+        switch (response.data.code) {
+            case 200:
+                return response.data;
+            case 403:
+                location.href = '/403';
+                break;
+            case 404:
+                location.href = '/404';
+                break;
+            default :
+                return response.data;
+        }
     },
     error => {//这是异常
         if (error.response) {

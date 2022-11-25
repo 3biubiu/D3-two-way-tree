@@ -2,7 +2,7 @@ import examples from './examples.js'
 
 
 const page403 = {
-    path: '/403',
+    path: '/fe/test/403',
     meta: {
       title: '403-权限不足'
     },
@@ -11,7 +11,7 @@ const page403 = {
       import('@/pages/error_page/new_403.vue')
 };
 const page404 = {
-    path: '/404',
+    path: '/fe/test/404',
     meta: {
       title: '404-找不到该页面'
     },
@@ -20,7 +20,7 @@ const page404 = {
       import('@/pages/error_page/new_404.vue')
 };
 const page500 = {
-    path: '/500',
+    path: '/fe/test/500',
     meta: {
       title: '500-服务器错误'
     },
@@ -30,7 +30,7 @@ const page500 = {
 };
 
 export const appRouter = {
-    path: '/',
+    path: '/fe/test',
     name: 'test',
     redirect: {
     	name: 'test'
