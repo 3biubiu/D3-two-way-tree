@@ -12,13 +12,13 @@
 <script>
 export default {
     props: {
-        title: {
+        title: {//排序图标前的标题
             type: String,
             default: ''
         },
-        name: {
+        name: {//一般为后端要求的排序字段的前缀
             type: String,
-            default: '1'
+            default: ''
         },
     },
     data() {
@@ -51,6 +51,12 @@ export default {
             let sortName = '';//排序
             sortName = this.sort != ''?this.name + this.sort:'';
             this.$emit('order-search', sortName)
+        },
+        /**
+         * 重置排序
+         */
+        resetSort() {
+            this.sort = '';
         }
     }
 }
@@ -63,7 +69,6 @@ export default {
         flex-direction: row;
         cursor: pointer;
         align-items: center;
-        // justify-content: center;
         span{
             font-weight: bold;
         }
