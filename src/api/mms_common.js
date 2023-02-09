@@ -65,8 +65,35 @@ $api.getPowerData = async () => {
 	if(token) {
 		formData = {ucmsToken: token}
 	}
-	let res = await $http.get(url, {params: formData});
-    return res;
+	// let res = await $http.get(url, {params: formData});
+    
+    return {
+        "code": 200,
+        "message": "成功",
+        "data": [
+          "TUDI",
+          "CHANGFANG",
+          "DEPOT",
+          "OFFICE",
+          "REG",
+          "BRAND",
+          "OTHER",
+          "SERVICE",
+          "INTELLIGENCE",
+          "OA",
+          "AMS",
+          "HR",
+          "MISSION",
+          "PERFORMANCE",
+          "COMPANIES",
+          "ERP",
+          "OFFICE_CONTRACT",
+          "CONTACTS",
+          "CUSTOMER_CENTER",
+          "SPA_INDUSTRY",
+          "INDUSTRY"
+        ]
+      };
 };
 
 

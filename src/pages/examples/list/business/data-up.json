@@ -1,0 +1,36 @@
+{
+    "code": 200,
+    "msg": "操作成功",
+    "data": {
+      "id": 25601128,
+      "uuid": "b6874a9d-dbe9-314f-baba-9ff99d31f2c7",
+      "name": "中国光大集团股份公司",
+      "children": [
+        {
+          "name": "中央汇金投资有限责任公司",
+          "percent": "63.16%",
+          "reg_capital": "4935320.5832万人民币",
+          "subscription": "3117148.48万人民币",
+          "isholder": 1,
+          "uuid": "aac64d68-3506-3c26-b22e-6e2adc9742ee1",
+          "reg_status": "存续"
+        },
+        {
+          "name": "财政部",
+          "percent": "33.43%",
+          "reg_capital": "2612155.8873万人民币",
+          "subscription": "873243.71万人民币",
+          "isholder": 0
+        },
+        {
+          "name": "全国社保基金理事会",
+          "percent": "3.40%",
+          "reg_capital": "265973.8975万人民币",
+          "subscription": "9043.11万人民币",
+          "isholder": 1,
+          "uuid": "a2104bce-4ff5-3ced-8f1b-4baa29e40f4f1",
+          "reg_status": "暂无"
+        }
+      ]
+    }
+  }

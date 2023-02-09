@@ -1,95 +1,66 @@
-.my-add-list{
+/* 针对dom的全屏设置 */
+.div:-webkit-full-screen {
+    background: #fff;
+}
+
+/* 全屏属性 */
+:-webkit-full-screen {
+    background: #fff;
+
+}
+
+:-moz-full-screen {
+    background: #fff;
+
+}
+
+:-ms-fullscreen {
+    background: #fff;
+
+}
+
+
+.my-add-list {
     position: relative;
-    .btn-box{
+
+    .btn-box {
         font-size: 0;
-    }
-    .on-btn{
-        cursor: pointer;
-        color: #1f6cdd;
-        display: inline-block;
-        font-size: 14px;
-        vertical-align: middle;
-        // line-height: 20px;
-        &:hover{
-            color: #468eeb;
-        }
-        &:active{
-            color: #114eb8;
-        }
-    }
-    .name-link{
-        cursor: pointer;
-        color: #1f6cdd;
-        &:hover{
-            color: #468eeb;
-        }
-        &:active{
-            color: #114eb8;
-        }
-    }
-    .list-bottom{
-        width: 100%;
-        display: flex;
-        padding-left: 16px;
-        justify-content: space-between;
-        align-items: flex-end;
-        margin-top: 16px;
-        .bottom-left{
-            font-size: 0;
-        }
-    }
-    .time-pointer{
-        color: #333;
-        font-weight: bold;
-        cursor: pointer;
-        &:hover{
-            color: #468eeb;
-        }
-        &:active{
-            color: #114eb8;
-        }
-    }
-    .default-tips{
-        width: 100%;
-        // margin: 16px 0;
-        margin-top: 16px;
-        font-size: 16px;
-        color: #666666;
-        text-align: center;
     }
 
-    .tis-table th{
-        padding-left: 16px;
-        line-height: 32px;
-        font-weight: bold;
+    #treesvg {
+        display: block;
+        margin: auto;
     }
-    .tis-table td{
-        height: 48px;
-        padding-left: 16px;
-        line-height: 18px;
-        box-sizing: border-box;
-        word-break: break-all;
-        word-break: break-word;
+
+    #toway-tree {
+        margin-top: 0px;
+        overflow: hidden;
+        position: relative;
+        cursor: move;
+        /* background-color: #fff; */
     }
-    .ivu-page{
-        text-align: right;
+    .operation-area {
+        position: absolute;
+        background-color: aquamarine;
     }
-    .page-box{
-        .ivu-select-item{
-            padding: 0;
-        }
+    .proportion-hide,
+    .hide-node {
+        display: none;
     }
-    .itis-checkbox-wrapper{
-        font-size: 0;
-        .itis-checkbox{
-            margin-bottom: 2px;
-        }
-        .checkbox-text{
-            display: inline-block;
-            font-size: 14px;
-            line-height: 20px;
-            margin-left: 8px;
-            vertical-align: bottom;
-        }
+
+    #toway-tree #treesvg .linkup,
+    .linkdown {
+        fill: none;
+        fill-opacity: 0;
+        /* stroke-width: 1px; */
     }
+
+    .tooltip {
+        width: 403px;
+        height: 350px;
+        background: #FFFFFF;
+        box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+    }
+
 }

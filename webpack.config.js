@@ -35,7 +35,7 @@ module.exports = {
 	performance: { //打包后命令行如何展示性能提示，如果超过某个大小是警告还是报错
 		hints: false
 	},
-	devtool: '#eval-source-map'
+	devtool: 'source-map'
 }
 
 if (NODE_ENV === 'production') {

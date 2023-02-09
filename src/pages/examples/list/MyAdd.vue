@@ -90,7 +90,7 @@ const { mapState, mapGetters, mapMutations, mapActions } = createNamespacedHelpe
                     //判断是否展开
                     this.$refs.searchDeal.setToggleStatus();
                     //每次搜索清空复选框选中状态
-                    this.$refs.tableList.initCheckbox();
+                    // this.$refs.tableList.initCheckbox();
                 })
                 //根据搜索项请求列表数据
                 this.getAllContractList(this.searchData);

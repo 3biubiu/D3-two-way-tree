@@ -13,7 +13,7 @@
             :systemName="systemName"
             :routerName="routerName"
             :left-tips="leftTips"
-            :power="userPower"
+            :power="userPower.power"
             ></shrinkable-menu>
         <div class="single-page-con" id="js-main-content"  ref="pageBody" :style="{marginLeft: shrink?'64px':'220px'}">
             <div class="single-page" >
