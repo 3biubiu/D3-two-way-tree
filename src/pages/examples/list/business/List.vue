@@ -69,6 +69,7 @@ export default {
     },
     data() {
         return {
+            clickDom: '',
             showCard: false,
             popperInstance: '', // 气泡生成器,同一时间只能有一个,性能优化
             isSvgFullScreen: false,
@@ -164,6 +165,34 @@ export default {
         this.svgH = 700
         //初始化双向树
         this.initTree()
+        // 点击其他区域关闭card
+        document.addEventListener('click', (e) => {
+            // console.log('e: ', e.target);
+            if (this.clickDom == e.target) {
+                if (!this.showCard) {
+                    this.showCard = true
+                    this.$nextTick(() => {
+                        this.setCardPosition(e.target)
+
+                    })
+                }
+                return
+            }
+            if (e.target.tagName == 'rect') {
+                this.showCard = false
+                this.popperInstance.destroy && this.popperInstance.destroy();
+                this.$nextTick(() => {
+                    this.showCard = true
+                    this.$nextTick(() => {
+                        this.setCardPosition(e.target)
+
+                    })
+                })
+            } else {
+                this.showCard = false
+                this.popperInstance.destroy && this.popperInstance.destroy();
+            }
+        })
     },
     methods: {
 
@@ -212,7 +241,7 @@ export default {
                     return a.parent == b.parent ? 1 : 2
 
                 });
-                
+
             //缩放控制 数组内为缩放的最小和最大值
             this.zoom = d3.zoom().scaleExtent([0.4, 2.5])
         },
@@ -224,16 +253,10 @@ export default {
          */
         d3Click(selection) {
             let _this = this
-            selection.attr("cursor", 'pointer')
-                .on('mouseover', function (d) {
-                    d3.selectAll("path[id =linkpath]").attr('stroke', '#d9d9d9').attr('stroke-width', 1)
-                    //源头区域 边框不加粗
-                    d3.select(`rect[type = ${d.id}-hover]:not(.root-rect)`).attr("stroke", '#72B0F7').attr('stroke-width', 1)
-                    d3.select(`rect[type = ${d.id}]:not(.root-rect)`).style("fill", '#F0F8FF')
 
-                    let item = d3.select("path[type =" + d.id + "]").attr('stroke', '#1f6cdd').attr('stroke-width', 1)
-                    // 将高亮的线放置到较高层级
-                    item.raise()
+            selection.attr("cursor", 'pointer')
+                .on("click", function (d) {
+                    _this.clickDom = this
                     let timer; // 维护同一个timer
                     function debounce(fn, delay) {
                         clearTimeout(timer);
@@ -245,11 +268,40 @@ export default {
 
                     _this.showCard = true
 
+                    // /**
+                    // * @description: 事件监听器的回调,具名化方便后续销毁监听器
+                    // * @param {*} e
+                    // * @param {*} _this
+                    // * @return {*}
+                    // */
+                    // let clickCallBack = (e) => {
+                    //     // console.log("this", this);
+                    //     if (!this.contains(e.target)) {
+                    //         _this.popperInstance.destroy && _this.popperInstance.destroy();
+                    //     }
+
+                    // }
                     // if (_this.showCard) {
                     // debounce(() => {
                     // _this.$nextTick(() => {
                     // if(_this.showCard)
-                    _this.setCardPosition("rect[type =" + d.id + "]")
+                    const popcorn = document.querySelector("rect[type =" + d.id + "]");
+
+                    _this.setCardPosition(popcorn)
+
+                    // 点击其他区域关闭下拉框
+                    // document.addEventListener('click', clickCallBack)
+                })
+                .on('mouseover', function (d) {
+                    d3.selectAll("path[id =linkpath]").attr('stroke', '#d9d9d9').attr('stroke-width', 1)
+                    //源头区域 边框不加粗
+                    d3.select(`rect[type = ${d.id}-hover]:not(.root-rect)`).attr("stroke", '#72B0F7').attr('stroke-width', 1)
+                    d3.select(`rect[type = ${d.id}]:not(.root-rect)`).style("fill", '#F0F8FF')
+
+                    let item = d3.select("path[type =" + d.id + "]").attr('stroke', '#1f6cdd').attr('stroke-width', 1)
+                    // 将高亮的线放置到较高层级
+                    item.raise()
+
 
                 }
                 )
@@ -261,9 +313,9 @@ export default {
 
                     // 将解除高亮的线放置到较低层级
                     item.lower()
-                    _this.showCard = false
+                    // _this.showCard = false
 
-                    _this.popperInstance.destroy && _this.popperInstance.destroy();
+                    // _this.popperInstance.destroy && _this.popperInstance.destroy();
 
                     // Disable the event listeners
                     // if(_this.popperInstance) {
@@ -316,8 +368,8 @@ export default {
             _this.originDiamonds.w = textWidth.node().getBoundingClientRect().width + 32
             console.log('_this.originDiamonds.w: ', _this.originDiamonds.w);
             textWidth.remove()
-            //调用缩放函数
-            initsvg.call(this.zoom)
+            //调用缩放函数 禁用双击事件
+            initsvg.call(this.zoom).on("dblclick.zoom", null)
             this.zoom.on('zoom', () => {
                 // 设置缩放位置以及平移初始位置
                 svg.attr('transform', d3.event.transform.translate(this.svgW / 2, this.svgH / 2));
@@ -334,7 +386,6 @@ export default {
                     _this.popperInstance = ""
 
                 }
-
             })
 
 
@@ -504,7 +555,7 @@ export default {
                     }).attr('x', function (d) {
                         return d.depth ? (-_this.diamonds.w / 2) : (-_this.originDiamonds.w / 2);
                     }).attr('y', function (d) {
-                        return d.depth ? showtype === 'up' ? (-_this.diamonds.h / 2) : (-_this.diamonds.h / 2) : '-50';
+                        return d.depth ? showtype === 'up' ? (-_this.diamonds.h / 2) : (-_this.diamonds.h / 2) : '-24';
                     })
                     .attr('stroke', "#ECECEC")
                     .attr('stroke-width', 1)
@@ -551,15 +602,12 @@ export default {
                             // 如果是1层以上
                             if (d.depth) {
                                 return -29; //  字号 / 2 ,文字水平基线没调
-                            } else {
-                                // 如果名字长度大于11个
-                                return d.data.name.length > 11 ? 10 : 21;
-                            }
+                            } 
                         } else {
                             if (d.depth) {
                                 return -29;
                             } else {
-                                return d.data.name.length > 11 ? -24 : -14;
+                                return 2;
                             }
                         }
                     })
@@ -626,18 +674,17 @@ export default {
                 // 股权占比
                 nodeEnter.append('text')
                     // .attr("cursor", "default")
-                    .attr('x', 7)
+                    .attr('x', 12)
                     .attr('y', function (d) {
-
                         if (d.depth == 0) {
                             d3.select(this).remove()
                             return
                         }
                         // 如果是上半部分
                         if (showtype === 'up') {
-                            return 80
+                            return 73
                         } else {
-                            return -75
+                            return -68
                         }
                     })
                     .attr('text-anchor', 'start')
@@ -655,8 +702,8 @@ export default {
                     })
                     .style('font-size', '12px')
                     .style('font-family', 'PingFangSC-Regular')
-                    .style('font-weight', '400')
-                    .style('color', 'rgba(70,81,102,1)')
+                    .style('font-weight', '600')
+                    .style('color', '#1F6CDD')
                 // .call(d3Click)
 
                 // 认缴金额
@@ -782,7 +829,7 @@ export default {
                     }).attr('x', function (d) {
                         return d.depth ? (-_this.diamonds.w / 2) : (-_this.originDiamonds.w / 2);
                     }).attr('y', function (d) {
-                        return d.depth ? showtype === 'up' ? (-_this.diamonds.h / 2) : (-_this.diamonds.h / 2) : '-50';
+                        return d.depth ? showtype === 'up' ? (-_this.diamonds.h / 2) : (-_this.diamonds.h / 2) : '-24';
                     })
                     .attr('stroke', "transparent")
                     .attr('stroke-width', 1)
@@ -793,7 +840,7 @@ export default {
                 // 创建圆 加减符号
                 let clickNode = nodeEnter.append('g')
                     .attr('transform', function (d) {
-                        let y = d.depth ? showtype === 'up' ? -(_this.raduis + _this.diamonds.h / 2) : + _this.diamonds.h / 2 : 0;
+                        let y = d.depth ? showtype === 'up' ? -(_this.raduis + _this.diamonds.h / 2) : +(_this.raduis + _this.diamonds.h / 2) : 0;
                         return `translate(0,${y})`
                     })
                     //定位圆点
@@ -808,11 +855,11 @@ export default {
                                     return item
                                 }
                             })
-                            
+
                             d3.select("line.vertical-line[type =" + d.id + "]").attr('visibility', 'visible');
 
                         } else {
-                            
+
                             // updataId = d.data.uuid + '-'  + d.depth
                             click(d, showtype, sourceTree, _this.updataId);
                             // console.log("<______________________________点击事件DOM_ updata ==  要展开 展开操作执行_______________________________>");
@@ -1309,8 +1356,8 @@ export default {
          * @param {*} selector
          * @return {*}
          */
-        setCardPosition(selector) {
-            const popcorn = document.querySelector(selector);
+        setCardPosition(popcorn) {
+            // const popcorn = document.querySelector(selector);
             // console.log('popcorn: ', popcorn);
             const tooltip = document.querySelector('.tooltip');
             // if(this.popperInstance) {
@@ -1325,6 +1372,20 @@ export default {
                             offset: [0, 8],
                         },
                     },
+                    {
+                        name: 'preventOverflow',
+                        options: {
+                            padding: { top: 50 },
+                            // mainAxis: true, // true by default
+                            // tetherOffset: -1000 ,
+                        },
+                    },
+                    // {
+                    //     name: 'flip',
+                    //     options: {
+                    //         fallbackPlacements: ['right-start', 'left-start','left-end'],
+                    //     },
+                    // },
                 ],
             });
             // 不监听scroll resize 等相关事件,节省性能

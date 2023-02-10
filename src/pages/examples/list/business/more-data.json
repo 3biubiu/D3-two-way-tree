@@ -1,0 +1,1582 @@
+{
+    "id": 25900219,
+    "uuid": "bc98488c-9fd4-3899-895c-26b4763a915d",
+    "name": "宁德时代新能源科技股份有限公司",
+    "holderList": [
+      {
+        "name": "其他股东",
+        "percent": "34.78%",
+        "reg_capital": "7059万人民币",
+        "subscription": "2455.12万人民币",
+        "isholder": 0
+      },
+      {
+        "name": "宁波梅山保税港区瑞庭投资有限公司",
+        "percent": "32.61%",
+        "reg_capital": "20000万人民币",
+        "subscription": "6522.0万人民币",
+        "isholder": 1,
+        "uuid": "0278a694-0d9a-3691-918a-972640cc1b5a1",
+        "reg_status": "存续"
+      },
+      {
+        "name": "黄世霖",
+        "percent": "16.30%",
+        "reg_capital": "10000万人民币",
+        "subscription": "1630.0万人民币",
+        "isholder": 0,
+        "reg_status": "暂无",
+        "uuid": ""
+      },
+      {
+        "name": "宁波联合创新新能源投资管理合伙企业（有限合伙）",
+        "percent": "9.78%",
+        "reg_capital": "6000万人民币",
+        "subscription": "586.8万人民币",
+        "isholder": 1,
+        "uuid": "8e4d93bb-e122-3fc8-8c0f-f40eb1e5c1db1",
+        "reg_status": "存续"
+      },
+      {
+        "name": "李平",
+        "percent": "6.52%",
+        "reg_capital": "4000万人民币",
+        "subscription": "260.8万人民币",
+        "isholder": 0,
+        "reg_status": "暂无",
+        "uuid": ""
+      }
+    ],
+    "investorList": [
+      {
+        "uuid": "82fc820e-eadb-30cd-858f-0b53dc2915ca1",
+        "percent": "100%",
+        "reg_capital": "1000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德润康科技有限公司",
+        "subscription": "1000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "bbc94387-c961-3539-8996-99fec1e3668f1",
+        "percent": "100%",
+        "reg_capital": "100000.000000万",
+        "reg_status": "在营（开业）企业",
+        "name": "广东瑞庆时代新能源科技有限公司",
+        "subscription": "100000.0万",
+        "isinvest": 0
+      },
+      {
+        "uuid": "1fc4a431-4dc0-342c-b526-9804bcd5a62e1",
+        "percent": "100%",
+        "reg_capital": "50000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "厦门时代新能源科技有限公司",
+        "subscription": "50000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "aa970780-2e61-32d3-bb53-1f5594108edf1",
+        "percent": "100%",
+        "reg_capital": "300.000000万",
+        "reg_status": "在营（开业）企业",
+        "name": "东莞市润源新能源科技有限公司",
+        "subscription": "300.0万",
+        "isinvest": 0
+      },
+      {
+        "uuid": "5fa093ba-82dd-353a-97c2-a72be110284d1",
+        "percent": "100%",
+        "reg_capital": "10000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德润和实业有限公司",
+        "subscription": "10000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "a4bec68a-7f56-30c5-acab-12355368e7361",
+        "percent": "100%",
+        "reg_capital": "10000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "成都金堂时代新材料科技有限公司",
+        "subscription": "10000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "4d6fccfa-a24b-3b05-83fc-4e116c5a27c71",
+        "percent": "75.00%",
+        "reg_capital": "17000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德时代融资租赁有限公司",
+        "subscription": "12750.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "613b65ed-698a-3e0c-b88a-0ce47eec84691",
+        "percent": "66.00%",
+        "reg_capital": "9411.764706万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "龙岩思康新材料有限公司",
+        "subscription": "6211.76万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "44e05bfc-15c2-30db-b656-8f9d4f321ec41",
+        "percent": "44.00%",
+        "reg_capital": "10000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "晋江闽投电力储能科技有限公司",
+        "subscription": "4400.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "ee7b1fe6-ca10-3fcb-bccf-6706ae2d5b071",
+        "percent": "36.09%",
+        "reg_capital": "7041.151600万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "河南跃薪时代新能源科技有限公司",
+        "subscription": "2541.15万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "70986eaa-dff5-3d76-bf78-03fc5b6c46171",
+        "percent": "26.00%",
+        "reg_capital": "3000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "福建宏大时代新能源科技有限公司",
+        "subscription": "780.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "e1c6cdea-4cdb-3955-902a-34ad5d1b51521",
+        "percent": "25.00%",
+        "reg_capital": "30000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德文达镁铝科技有限公司",
+        "subscription": "7500.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "1a5c030f-e83f-3486-8632-e8bbcdc3ae731",
+        "percent": "20.00%",
+        "reg_capital": "10000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "福建时代星云科技有限公司",
+        "subscription": "2000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "f8f08a9c-6df8-367e-908e-bb33512992611",
+        "percent": "18.75%",
+        "reg_capital": "16000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "北京国家新能源汽车技术创新中心有限公司",
+        "subscription": "3000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "424a5f7c-2a5f-3a87-9a00-40ed35dcf9d81",
+        "percent": "",
+        "reg_capital": "13274.068920万人民币",
+        "reg_status": "在营（开业）企业",
+        "name": "广东邦普循环科技有限公司",
+        "subscription": "13274.068920万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "31bcf8f3-c0b0-3d77-a8a5-f32fef28e4d21",
+        "percent": "",
+        "reg_capital": "5000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "南京市卡睿创新创业管理服务有限公司",
+        "subscription": "5000.000000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "d4ba6c04-3e5b-314b-9a8b-ffebfe5a03b61",
+        "percent": "100%",
+        "reg_capital": "5000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德时代新能源产业投资有限公司",
+        "subscription": "5000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "ff322890-4657-3400-ae1f-d71b53a9e9bf1",
+        "percent": "",
+        "reg_capital": "100000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "江苏时代新能源科技有限公司",
+        "subscription": "100000.000000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "1dab5994-8f9e-34d4-bb5e-bfcc40393fa51",
+        "percent": "",
+        "reg_capital": "48000.000000万人民币",
+        "reg_status": "存续",
+        "name": "青海时代新能源科技有限公司",
+        "subscription": "48000.000000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "c24b65a2-d3ac-375c-b728-f04a456775701",
+        "percent": "",
+        "reg_capital": "200000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "时代上汽动力电池有限公司",
+        "subscription": "200000.000000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "80975c7b-d62a-3640-8e5e-85c6f36ba1991",
+        "percent": "",
+        "reg_capital": "110000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德时代锂动力有限公司",
+        "subscription": "110000.000000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "f3b0fd7d-b9ad-3a52-99e9-21bb551020e61",
+        "percent": "100%",
+        "reg_capital": "20000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "屏南时代电子科技有限公司",
+        "subscription": "20000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "bd2bb50a-89aa-3df9-9de7-e5a3615367b41",
+        "percent": "100%",
+        "reg_capital": "76500.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "屏南时代新材料技术有限公司",
+        "subscription": "76500.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "6b816681-8e87-350d-a50a-d5a04ccf574b1",
+        "percent": "100%",
+        "reg_capital": "50000.000000万人民币",
+        "reg_status": "存续",
+        "name": "宁波梅山保税港区问鼎投资有限公司",
+        "subscription": "50000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "a013f43e-ede6-3114-949c-5e3a5a066efe1",
+        "percent": "100%",
+        "reg_capital": "20000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德时代（上海）智能科技有限公司",
+        "subscription": "20000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "96853a5f-7158-33f5-9cfb-4655a13cd4e21",
+        "percent": "100%",
+        "reg_capital": "5000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德润源电能技术有限公司",
+        "subscription": "5000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "59523912-2f2f-3d58-9326-62d8c90664f01",
+        "percent": "100%",
+        "reg_capital": "700.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德时代新能源供应链管理有限公司",
+        "subscription": "700.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "08c173f7-233e-3e27-8815-51bf0cfd4a0a1",
+        "percent": "51.00%",
+        "reg_capital": "200000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "时代一汽动力电池有限公司",
+        "subscription": "102000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "94081669-4ba7-35e3-a96d-bfb58be47e341",
+        "percent": "40.00%",
+        "reg_capital": "22000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "曲靖市麟铁科技有限公司",
+        "subscription": "8800.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "d81ee99d-e2c2-327c-ba10-93ab2464f8841",
+        "percent": "25.00%",
+        "reg_capital": "70000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宜宾市天宜锂业科创有限公司",
+        "subscription": "17500.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "2ea7118c-6294-3eb3-bf21-8f0689a9da491",
+        "percent": "100%",
+        "reg_capital": "1000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "北京锂时代新能源科技有限公司",
+        "subscription": "1000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "4882ffe1-e1e3-3ecc-863a-27bb50c15ffa1",
+        "percent": "100%",
+        "reg_capital": "100000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德蕉城时代新能源科技有限公司",
+        "subscription": "100000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "3596e49c-9260-347b-8677-d02390f170611",
+        "percent": "60.00%",
+        "reg_capital": "10000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "时代永福科技有限公司",
+        "subscription": "6000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "dc45c1de-519e-3464-9076-b63cf02fb8861",
+        "percent": "100%",
+        "reg_capital": "50000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "瑞庭时代（上海）新能源科技有限公司",
+        "subscription": "50000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "ab552fc5-2147-3834-b92b-fe34b78aa7d01",
+        "percent": "51.00%",
+        "reg_capital": "200000.000000万人民币",
+        "reg_status": "在营（开业）企业",
+        "name": "时代广汽动力电池有限公司",
+        "subscription": "102000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "c2d92daf-aec0-3174-afdf-3779aa4a56631",
+        "percent": "100%",
+        "reg_capital": "100000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "四川时代新能源科技有限公司",
+        "subscription": "100000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "b6cc6c10-eb15-3bd4-85dc-64387e3476dc1",
+        "percent": "51.00%",
+        "reg_capital": "100000.000000万人民币",
+        "reg_status": "存续",
+        "name": "时代吉利动力电池有限公司",
+        "subscription": "51000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "15305f4c-bf97-3988-ab4a-dd94d542fead1",
+        "percent": "100%",
+        "reg_capital": "100000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "福鼎时代新能源科技有限公司",
+        "subscription": "100000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "dd9bd528-2d49-3df2-9bf7-ee4007ebdee11",
+        "percent": "51.00%",
+        "reg_capital": "20000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德时代科士达科技有限公司",
+        "subscription": "10200.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "ae92f9fb-9ccc-3d45-9432-9cf12777b7401",
+        "percent": "51.00%",
+        "reg_capital": "50099.000000万人民币",
+        "reg_status": "注销",
+        "name": "宁德和盛循环科技有限公司",
+        "subscription": "25550.49万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "d349935e-9166-38a6-896d-8ed42ae8971a1",
+        "percent": "49.00%",
+        "reg_capital": "4000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "安脉时代智能制造（宁德）有限公司",
+        "subscription": "1960.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "7ace8493-c831-3c52-9c04-38b3a57278f31",
+        "percent": "50.00%",
+        "reg_capital": "10000.000000万元人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "东风时代（武汉）电池系统有限公司",
+        "subscription": "5000.0万元人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "889041b0-8fda-39aa-8722-901820a9c1481",
+        "percent": "49.00%",
+        "reg_capital": "50000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁普时代电池科技有限公司",
+        "subscription": "24500.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "1d168631-be3e-3a91-b1c9-c2c236f9fae81",
+        "percent": "46.55%",
+        "reg_capital": "378947.370000万人民币",
+        "reg_status": "存续",
+        "name": "宁波邦普时代新能源有限公司",
+        "subscription": "176400.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "ce8a4081-4ef1-3d97-ae8d-915aa7d4d8d11",
+        "percent": "21.92%",
+        "reg_capital": "250000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "福建时代闽东新能源产业股权投资合伙企业（有限合伙）",
+        "subscription": "54800.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "966c053d-6772-34d4-bf75-d9b6fead0c431",
+        "percent": "8.00%",
+        "reg_capital": "800000.000000万人民币",
+        "reg_status": "存续(在营、开业、在册)",
+        "name": "重庆蚂蚁消费金融有限公司",
+        "subscription": "64000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "5d82449d-05a9-3b4a-95c7-256eba4c8d5b1",
+        "percent": "2.27%",
+        "reg_capital": "2260.539100万人民币",
+        "reg_status": "存续",
+        "name": "杭州芯迈半导体技术有限公司",
+        "subscription": "51.31万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "b1f6cf4d-538b-3b3c-88e6-aab061523a2b1",
+        "percent": "",
+        "reg_capital": "10000.000000万",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "新能易事特（扬州）科技有限公司",
+        "subscription": "10000.000000万",
+        "isinvest": 0
+      },
+      {
+        "uuid": "a10e951e-69ee-300d-a394-a1ccb701895b1",
+        "percent": "",
+        "reg_capital": "30000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "上汽时代动力电池系统有限公司",
+        "subscription": "30000.000000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "fe93aeb3-036d-3423-a608-e521385a76061",
+        "percent": "49.00%",
+        "reg_capital": "10000.000000万人民币",
+        "reg_status": "在营（开业）企业",
+        "name": "广汽时代动力电池系统有限公司",
+        "subscription": "4900.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "36199d32-f274-3655-9a19-ad3a66b9dd8e1",
+        "percent": "40.00%",
+        "reg_capital": "40000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "国网时代（福建）储能发展有限公司",
+        "subscription": "16000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "33c41913-baf1-3a16-887a-9347e3190a661",
+        "percent": "49.00%",
+        "reg_capital": "5000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "上海快卜新能源科技有限公司",
+        "subscription": "2450.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "6939baf1-cfd2-3f1e-a909-e0c469dcc9321",
+        "percent": "35.00%",
+        "reg_capital": "2000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "厦门时代思康新能源研究院有限公司",
+        "subscription": "700.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "1d80bd53-11be-3bbd-bcdd-75cfc2a4b6fe1",
+        "percent": "40.00%",
+        "reg_capital": "3000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "新疆国网时代储能发展有限公司",
+        "subscription": "1200.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "8ac58bcf-d34b-3a4e-af08-6cb3e947bb6e1",
+        "percent": "25.00%",
+        "reg_capital": "29000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "北京普莱德新材料有限公司",
+        "subscription": "7250.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "d45785a4-a81d-36bc-af74-cd8a60f3ae161",
+        "percent": "23.90%",
+        "reg_capital": "1788.648700万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "福建宁德智享无限科技有限公司",
+        "subscription": "427.49万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "21b9cdf5-f860-328d-9fbc-584a969af2af1",
+        "percent": "10.00%",
+        "reg_capital": "20000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "天津市滨海产业基金管理有限公司",
+        "subscription": "2000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "9e29a2cf-a20d-31ec-93f8-4cba40bef4eb1",
+        "percent": "4.30%",
+        "reg_capital": "93000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "国联汽车动力电池研究院有限责任公司",
+        "subscription": "3999.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "b524681a-495c-3c19-9554-b47d0e7290001",
+        "percent": "8.89%",
+        "reg_capital": "26227.799468万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "蓝谷智慧（北京）能源科技有限公司",
+        "subscription": "2331.65万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "9c05d843-df11-3949-a3ca-591ff7d91e8f1",
+        "percent": "3.56%",
+        "reg_capital": "28052.500000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "准点投资集团有限公司",
+        "subscription": "998.67万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "e627b966-553a-3c0e-bb11-429e31f7369f1",
+        "percent": "5.00%",
+        "reg_capital": "10000.000000万人民币",
+        "reg_status": "存续",
+        "name": "杭州鹏成新能源科技有限公司",
+        "subscription": "500.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "b0867f58-f6c6-306d-bc13-6284965dd30a1",
+        "percent": "",
+        "reg_capital": "3454.728140万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "江苏芝麻能源科技有限公司",
+        "subscription": "3454.728140万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "b0de6e10-906e-3402-b7ec-ec968ad0e34e1",
+        "percent": "",
+        "reg_capital": "10000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "博裕四期（厦门）股权投资合伙企业（有限合伙）",
+        "subscription": "10000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "a131c776-c51d-3572-ba8b-b47508f31ea01",
+        "percent": "",
+        "reg_capital": "4698.130000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "深圳盛德新能源科技有限公司",
+        "subscription": "4698.130000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "495920aa-c177-3f8f-84c4-777ae6df65e21",
+        "percent": "",
+        "reg_capital": "151200.000000万元人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "武汉蔚能电池资产有限公司",
+        "subscription": "151200.000000万元人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "c95a3e63-bdea-3ef4-bf38-9ceb9c8dae1a1",
+        "percent": "",
+        "reg_capital": "154512.695700万人民币",
+        "reg_status": "在营（开业）企业",
+        "name": "广东东方精工科技股份有限公司",
+        "subscription": "154512.695700万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "b84c91e9-2e83-3096-a89d-98697220571c1",
+        "percent": "",
+        "reg_capital": "1268.350000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "常州孟腾智能装备有限公司",
+        "subscription": "1268.350000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "337a1605-4618-3ae9-bad0-49531f2b35eb1",
+        "percent": "30.00%",
+        "reg_capital": "300000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "小康人寿保险有限责任公司",
+        "subscription": "90000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "b49152d5-d9e1-3d5d-acb4-37a70809ff121",
+        "percent": "",
+        "reg_capital": "50000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "北京高瓴裕润股权投资基金合伙企业（有限合伙）",
+        "subscription": "50000.000000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "47e3997e-2e28-34d5-b058-085b930d3eb61",
+        "percent": "100%",
+        "reg_capital": "200000万人民币",
+        "reg_status": "存续",
+        "name": "厦门时代新能源科技有限公司",
+        "subscription": "200000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "96c056f5-6b12-30db-87d7-ee1fc47017bc1",
+        "percent": "100%",
+        "reg_capital": "100000万人民币",
+        "reg_status": "存续",
+        "name": "四川时代新能源资源有限公司",
+        "subscription": "100000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "b9204c24-42d2-310f-833c-78343b4b24ac1",
+        "percent": "100%",
+        "reg_capital": "100000万人民币",
+        "reg_status": "存续",
+        "name": "锦州时代新材料科技有限公司",
+        "subscription": "100000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "3cc508c9-29c7-335f-b9fc-c1b3613dc51f1",
+        "percent": "100%",
+        "reg_capital": "100000万人民币",
+        "reg_status": "存续",
+        "name": "宁德时代（贵州）新能源材料有限公司",
+        "subscription": "100000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "c36a2bd0-7266-30b3-b9b6-fd8da3d4a5d51",
+        "percent": "100%",
+        "reg_capital": "200000万人民币",
+        "reg_status": "存续",
+        "name": "宁德时代（贵州）新能源科技有限公司",
+        "subscription": "200000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "8a33fe35-453d-3ecf-8669-cb0c0be30b9b1",
+        "percent": "100%",
+        "reg_capital": "100000万人民币",
+        "reg_status": "存续",
+        "name": "宜春时代新能源资源有限公司",
+        "subscription": "100000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "3e17780b-c0cd-3a0e-9210-6ecedfe672d91",
+        "percent": "100%",
+        "reg_capital": "20000万人民币",
+        "reg_status": "存续",
+        "name": "屏南润能新材料科技有限公司",
+        "subscription": "20000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "259b4acc-ccd2-35b7-8281-50538b9fe46f1",
+        "percent": "100%",
+        "reg_capital": "320000万人民币",
+        "reg_status": "存续",
+        "name": "宁德时代润智软件科技有限公司",
+        "subscription": "320000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "5676d7c5-cc32-359f-9438-d87f22dfbcfc1",
+        "percent": "100%",
+        "reg_capital": "200000万人民币",
+        "reg_status": "存续",
+        "name": "宜春时代新能源科技有限公司",
+        "subscription": "200000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "5d98b115-08bb-36dd-84a2-19052ff1ce711",
+        "percent": "100%",
+        "reg_capital": "10000万人民币",
+        "reg_status": "存续",
+        "name": "宁德时代（上海）新能源科技有限公司",
+        "subscription": "10000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "d4457fe5-7306-300b-8129-947133fbbc821",
+        "percent": "100%",
+        "reg_capital": "20000万人民币",
+        "reg_status": "存续",
+        "name": "时代电服科技有限公司",
+        "subscription": "20000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "2eac049e-d16f-3ca6-afdd-fd673414876b1",
+        "percent": "100%",
+        "reg_capital": "20000万人民币",
+        "reg_status": "存续",
+        "name": "宁德时代未来能源（上海）研究院有限公司",
+        "subscription": "20000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "b6eb8e68-a63a-3b39-92eb-2511c38ce6b81",
+        "percent": "70%",
+        "reg_capital": "500万人民币",
+        "reg_status": "存续",
+        "name": "深圳鼎阳智能电气有限公司",
+        "subscription": "350.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "40f11690-5479-38bb-9bc3-f074249ae9451",
+        "percent": "54%",
+        "reg_capital": "250000万",
+        "reg_status": "存续",
+        "name": "苏州时代新安能源科技有限公司",
+        "subscription": "135000.0万",
+        "isinvest": 0
+      },
+      {
+        "uuid": "2d73630f-6875-308f-ad2c-29a93382fa6a1",
+        "percent": "51%",
+        "reg_capital": "4081.6326万人民币",
+        "reg_status": "开业",
+        "name": "广州汇宁时代新能源发展有限公司",
+        "subscription": "2081.63万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "27065e2f-0659-3645-9d37-f408af79b4891",
+        "percent": "42.55319%",
+        "reg_capital": "",
+        "reg_status": "开业",
+        "name": "青岛隐山创业投资基金合伙企业（有限合伙）",
+        "subscription": "",
+        "isinvest": 0
+      },
+      {
+        "uuid": "828999b0-eac0-3a73-a651-fe707aafb7621",
+        "percent": "25%",
+        "reg_capital": "160000万人民币",
+        "reg_status": "存续",
+        "name": "苏州天华时代新能源产业投资有限责任公司",
+        "subscription": "40000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "461b99d9-20f9-3590-b96a-72ce3bff12d71",
+        "percent": "25%",
+        "reg_capital": "30000万人民币",
+        "reg_status": "存续",
+        "name": "邵武永太高新材料有限公司",
+        "subscription": "7500.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "6b5e684e-1ed6-34c8-8dd2-01462e8c4cd71",
+        "percent": "23.98853%",
+        "reg_capital": "117224.2578万人民币",
+        "reg_status": "存续",
+        "name": "阿维塔科技（重庆）有限公司",
+        "subscription": "28120.38万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "0fef5909-b61d-3dc3-a61d-d8e44e386fee1",
+        "percent": "20%",
+        "reg_capital": "82000万人民币",
+        "reg_status": "存续",
+        "name": "江西升华新材料有限公司",
+        "subscription": "16400.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "255caca4-d407-377a-b982-05104a4414511",
+        "percent": "19.80198%",
+        "reg_capital": "151500万元",
+        "reg_status": "存续",
+        "name": "厦门隐山股权投资合伙企业（有限合伙）",
+        "subscription": "30000.0万元",
+        "isinvest": 0
+      },
+      {
+        "uuid": "997fabaf-b4a9-30ca-abb7-0286fecb0c6d1",
+        "percent": "14.25962%",
+        "reg_capital": "13473.7699万",
+        "reg_status": "开业",
+        "name": "山东亘元生物科技有限公司",
+        "subscription": "1921.31万",
+        "isinvest": 0
+      },
+      {
+        "uuid": "1642b7da-a8f2-3fbf-bd2f-4018e4fa62701",
+        "percent": "11.35074%",
+        "reg_capital": "",
+        "reg_status": "存续",
+        "name": "上海国策绿色科技制造私募投资基金合伙企业（有限合伙）",
+        "subscription": "",
+        "isinvest": 0
+      },
+      {
+        "uuid": "ba0083fa-52a4-3d37-81dc-968eba7d2ed41",
+        "percent": "10.53741%",
+        "reg_capital": "56793.987万人民币",
+        "reg_status": "存续",
+        "name": "湖南裕能新能源电池材料股份有限公司",
+        "subscription": "5984.62万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "8c29ab19-d7e2-3d23-b0bc-395ffa5172cf1",
+        "percent": "10.00083%",
+        "reg_capital": "24048万人民币",
+        "reg_status": "存续",
+        "name": "上海启源芯动力科技有限公司",
+        "subscription": "2405.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "bba87b23-f778-3270-a1ad-3b0a2edc2ba41",
+        "percent": "8.16327%",
+        "reg_capital": "6282.0513万人民币",
+        "reg_status": "存续",
+        "name": "江西志存锂业有限公司",
+        "subscription": "512.82万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "3aec5282-ff48-37d4-adfa-8b04f8ea0f131",
+        "percent": "8%",
+        "reg_capital": "18210.4万人民币",
+        "reg_status": "存续",
+        "name": "福建永福电力设计股份有限公司",
+        "subscription": "1456.83万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "55404880-9a3e-3fb3-bc45-2270bde728ee1",
+        "percent": "7.15%",
+        "reg_capital": "88144.627万人民币",
+        "reg_status": "存续",
+        "name": "无锡先导智能装备股份有限公司",
+        "subscription": "6302.34万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "770e3c33-018f-3fc4-9211-b5846ab46a0f1",
+        "percent": "5%",
+        "reg_capital": "10000万人民币",
+        "reg_status": "存续",
+        "name": "上海孚腾私募基金管理有限公司",
+        "subscription": "500.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "69cc908b-00a2-30ca-9d4a-d1cc1d7ccc951",
+        "percent": "1.42%",
+        "reg_capital": "44293.481万人民币",
+        "reg_status": "存续",
+        "name": "贵州振华新材料股份有限公司",
+        "subscription": "628.97万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "2540195c-c8d6-3cff-a42c-1c17511763321",
+        "percent": "0.83%",
+        "reg_capital": "58288.0538万人民币",
+        "reg_status": "存续",
+        "name": "苏州天华超净科技股份有限公司",
+        "subscription": "483.79万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "9520ad9f-fea7-391e-9014-5b62aab279c11",
+        "percent": "-",
+        "reg_capital": "170017万人民币",
+        "reg_status": "存续",
+        "name": "福建闽海时代投资发展有限责任公司",
+        "subscription": "170017万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "9186e088-7ad2-32eb-ae1a-88df04325ca41",
+        "percent": "-",
+        "reg_capital": "50000万",
+        "reg_status": "开业",
+        "name": "广东嘉元时代新能源材料有限公司",
+        "subscription": "50000万",
+        "isinvest": 0
+      },
+      {
+        "uuid": "373dd33a-4e10-31f7-9994-6894c112b2ae1",
+        "percent": "-",
+        "reg_capital": "2937.8999万人民币",
+        "reg_status": "存续",
+        "name": "杭州安脉盛智能技术有限公司",
+        "subscription": "2937.8999万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "ee51a3be-51fc-317b-a19b-408eaf9b39e21",
+        "percent": "-",
+        "reg_capital": "7999万人民币",
+        "reg_status": "存续",
+        "name": "江苏力泰锂能科技有限公司",
+        "subscription": "7999万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "4f5a8255-5ded-31f8-96cc-bf64dd2443881",
+        "percent": "100%",
+        "reg_capital": "1000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德润康科技有限公司",
+        "subscription": "1000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "c40f806f-5984-3848-b464-3f5ab81ba1861",
+        "percent": "100%",
+        "reg_capital": "100000.000000万",
+        "reg_status": "在营（开业）企业",
+        "name": "广东瑞庆时代新能源科技有限公司",
+        "subscription": "100000.0万",
+        "isinvest": 0
+      },
+      {
+        "uuid": "c40f806f-5984-3848-b464-3f5ab81ba1861",
+        "percent": "100%",
+        "reg_capital": "50000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "厦门时代新能源科技有限公司",
+        "subscription": "50000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "5eebb4b1-4bfc-3a3b-9a2a-7ec9a0cb82271",
+        "percent": "100%",
+        "reg_capital": "300.000000万",
+        "reg_status": "在营（开业）企业",
+        "name": "东莞市润源新能源科技有限公司",
+        "subscription": "300.0万",
+        "isinvest": 0
+      },
+      {
+        "uuid": "7469fc4b-2bc4-341c-b3e5-86012317b2531",
+        "percent": "100%",
+        "reg_capital": "10000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德润和实业有限公司",
+        "subscription": "10000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "e3d79aa1-a80e-335a-a0aa-12544d755c681",
+        "percent": "8.00%",
+        "reg_capital": "800000.000000万人民币",
+        "reg_status": "存续(在营、开业、在册)",
+        "name": "重庆蚂蚁消费金融有限公司",
+        "subscription": "64000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "0fa2d838-3299-31de-a0cf-a51bc76eadbc1",
+        "percent": "100%",
+        "reg_capital": "10000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "成都金堂时代新材料科技有限公司",
+        "subscription": "10000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "6bf3f2bf-f8e1-3bd8-8aac-08f0345be86f1",
+        "percent": "75.00%",
+        "reg_capital": "17000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德时代融资租赁有限公司",
+        "subscription": "12750.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "3dc52986-632a-3296-adda-4e0f9c8855c61",
+        "percent": "66.00%",
+        "reg_capital": "9411.764706万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "龙岩思康新材料有限公司",
+        "subscription": "6211.76万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "99be52ce-4919-33a4-a6ce-5e155d77931f1",
+        "percent": "44.00%",
+        "reg_capital": "10000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "晋江闽投电力储能科技有限公司",
+        "subscription": "4400.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "f557a17e-fb7d-3714-af6e-4ec8f0b522321",
+        "percent": "36.09%",
+        "reg_capital": "7041.151600万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "河南跃薪时代新能源科技有限公司",
+        "subscription": "2541.15万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "dcb5f14f-3b34-3d65-9f82-10185d1fcc971",
+        "percent": "26.00%",
+        "reg_capital": "3000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "福建宏大时代新能源科技有限公司",
+        "subscription": "780.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "21ec75d2-94ab-3990-9317-6f88a4c945501",
+        "percent": "18.75%",
+        "reg_capital": "16000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "北京国家新能源汽车技术创新中心有限公司",
+        "subscription": "3000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "70c371fe-5c93-3ac5-8b09-da29dc02a5bb1",
+        "percent": "",
+        "reg_capital": "13274.068920万人民币",
+        "reg_status": "在营（开业）企业",
+        "name": "广东邦普循环科技有限公司",
+        "subscription": "13274.068920万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "867c1f24-67ba-3ff6-a6bc-e5d6cd64d0d81",
+        "percent": "",
+        "reg_capital": "5000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "南京市卡睿创新创业管理服务有限公司",
+        "subscription": "5000.000000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "54ca611c-c02c-3c8e-b9f9-23fb07abc9bf1",
+        "percent": "",
+        "reg_capital": "100000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "江苏时代新能源科技有限公司",
+        "subscription": "100000.000000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "08d01939-401f-3e25-a4e5-35611130b4401",
+        "percent": "",
+        "reg_capital": "48000.000000万人民币",
+        "reg_status": "存续",
+        "name": "青海时代新能源科技有限公司",
+        "subscription": "48000.000000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "c40f806f-5984-3848-b464-3f5ab81ba1861",
+        "percent": "100%",
+        "reg_capital": "5000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德时代新能源产业投资有限公司",
+        "subscription": "5000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "54ca611c-c02c-3c8e-b9f9-23fb07abc9bf1",
+        "percent": "",
+        "reg_capital": "200000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "时代上汽动力电池有限公司",
+        "subscription": "200000.000000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "08d01939-401f-3e25-a4e5-35611130b4401",
+        "percent": "",
+        "reg_capital": "110000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德时代锂动力有限公司",
+        "subscription": "110000.000000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "06199c15-184e-38d7-bd01-7fa4f31292f21",
+        "percent": "100%",
+        "reg_capital": "20000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "屏南时代电子科技有限公司",
+        "subscription": "20000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "4ca50a1f-1220-3629-8664-434dbee9fdff1",
+        "percent": "100%",
+        "reg_capital": "76500.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "屏南时代新材料技术有限公司",
+        "subscription": "76500.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "54ca611c-c02c-3c8e-b9f9-23fb07abc9bf1",
+        "percent": "100%",
+        "reg_capital": "50000.000000万人民币",
+        "reg_status": "存续",
+        "name": "宁波梅山保税港区问鼎投资有限公司",
+        "subscription": "50000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "c40f806f-5984-3848-b464-3f5ab81ba1861",
+        "percent": "100%",
+        "reg_capital": "20000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德时代（上海）智能科技有限公司",
+        "subscription": "20000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "54ca611c-c02c-3c8e-b9f9-23fb07abc9bf1",
+        "percent": "100%",
+        "reg_capital": "700.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德时代新能源供应链管理有限公司",
+        "subscription": "700.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "7469fc4b-2bc4-341c-b3e5-86012317b2531",
+        "percent": "100%",
+        "reg_capital": "5000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德润源电能技术有限公司",
+        "subscription": "5000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "067c4363-46ef-397f-b9ce-a37337db4fcf1",
+        "percent": "51.00%",
+        "reg_capital": "200000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "时代一汽动力电池有限公司",
+        "subscription": "102000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "e2f4a1f5-99f0-35cc-9f45-21a2da2b2a091",
+        "percent": "100%",
+        "reg_capital": "1000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "北京锂时代新能源科技有限公司",
+        "subscription": "1000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "15504e15-d2c6-330b-bd68-227627ae0ba11",
+        "percent": "100%",
+        "reg_capital": "100000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德蕉城时代新能源科技有限公司",
+        "subscription": "100000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "c40f806f-5984-3848-b464-3f5ab81ba1861",
+        "percent": "100%",
+        "reg_capital": "50000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "瑞庭时代（上海）新能源科技有限公司",
+        "subscription": "50000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "5875259c-0bd3-3f6c-ab88-143d7664dfea1",
+        "percent": "51.00%",
+        "reg_capital": "200000.000000万人民币",
+        "reg_status": "在营（开业）企业",
+        "name": "时代广汽动力电池有限公司",
+        "subscription": "102000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "c40f806f-5984-3848-b464-3f5ab81ba1861",
+        "percent": "100%",
+        "reg_capital": "100000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "四川时代新能源科技有限公司",
+        "subscription": "100000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "2aa30c62-9861-3ed0-904b-90dde30b04001",
+        "percent": "21.92%",
+        "reg_capital": "250000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "福建时代闽东新能源产业股权投资合伙企业（有限合伙）",
+        "subscription": "54800.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "5e4d1d28-1a26-3671-b8b9-af46755ce41c1",
+        "percent": "51.00%",
+        "reg_capital": "100000.000000万人民币",
+        "reg_status": "存续",
+        "name": "时代吉利动力电池有限公司",
+        "subscription": "51000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "dd0b13c8-48a8-352c-82a6-2b78274a1cb01",
+        "percent": "100%",
+        "reg_capital": "100000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "福鼎时代新能源科技有限公司",
+        "subscription": "100000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "08d01939-401f-3e25-a4e5-35611130b4401",
+        "percent": "51.00%",
+        "reg_capital": "50099.000000万人民币",
+        "reg_status": "注销",
+        "name": "宁德和盛循环科技有限公司",
+        "subscription": "25550.49万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "3f3d6d9b-19fe-3456-a386-01669649f4461",
+        "percent": "2.27%",
+        "reg_capital": "2260.539100万人民币",
+        "reg_status": "存续",
+        "name": "杭州芯迈半导体技术有限公司",
+        "subscription": "51.31万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "ca039593-2bd4-3bd0-84c6-d4233cdd9d401",
+        "percent": "49.00%",
+        "reg_capital": "4000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "安脉时代智能制造（宁德）有限公司",
+        "subscription": "1960.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "4d546ac9-2f9b-3d3c-823c-9a64eea48f921",
+        "percent": "50.00%",
+        "reg_capital": "10000.000000万元人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "东风时代（武汉）电池系统有限公司",
+        "subscription": "5000.0万元人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "bc69f71a-2eb5-32d7-bcdb-3dc03fdcb0841",
+        "percent": "49.00%",
+        "reg_capital": "50000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁普时代电池科技有限公司",
+        "subscription": "24500.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "70c371fe-5c93-3ac5-8b09-da29dc02a5bb1",
+        "percent": "46.55%",
+        "reg_capital": "378947.370000万人民币",
+        "reg_status": "存续",
+        "name": "宁波邦普时代新能源有限公司",
+        "subscription": "176400.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "728bf3e7-8f0c-3258-8191-16297fed8aea1",
+        "percent": "",
+        "reg_capital": "30000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "上汽时代动力电池系统有限公司",
+        "subscription": "30000.000000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "25f0b731-e93a-35a3-aad4-01b3c388bb1d1",
+        "percent": "49.00%",
+        "reg_capital": "10000.000000万人民币",
+        "reg_status": "在营（开业）企业",
+        "name": "广汽时代动力电池系统有限公司",
+        "subscription": "4900.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "eb9d5919-e220-3ff5-866f-102a696809c61",
+        "percent": "40.00%",
+        "reg_capital": "40000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "国网时代（福建）储能发展有限公司",
+        "subscription": "16000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "10a8f844-068b-344f-838c-c4ee6b2436071",
+        "percent": "49.00%",
+        "reg_capital": "5000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "上海快卜新能源科技有限公司",
+        "subscription": "2450.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "5206f517-cbe4-3856-abf3-bbf0dc9d6ce21",
+        "percent": "35.00%",
+        "reg_capital": "2000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "厦门时代思康新能源研究院有限公司",
+        "subscription": "700.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "65c5606e-274d-35c3-99cb-96e0647b028f1",
+        "percent": "40.00%",
+        "reg_capital": "3000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "新疆国网时代储能发展有限公司",
+        "subscription": "1200.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "8d24218d-1b30-3fdd-bb87-ccbe6885bcc81",
+        "percent": "25.00%",
+        "reg_capital": "29000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "北京普莱德新材料有限公司",
+        "subscription": "7250.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "54cedffa-7d57-3aa4-9b66-b2d0290b2c671",
+        "percent": "23.90%",
+        "reg_capital": "1788.648700万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "福建宁德智享无限科技有限公司",
+        "subscription": "427.49万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "69fe30fa-cf1e-3eba-aa27-85c050603b291",
+        "percent": "10.00%",
+        "reg_capital": "20000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "天津市滨海产业基金管理有限公司",
+        "subscription": "2000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "90f6dad4-14e3-3d4c-b69d-3d87b66671eb1",
+        "percent": "8.89%",
+        "reg_capital": "26227.799468万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "蓝谷智慧（北京）能源科技有限公司",
+        "subscription": "2331.65万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "ec7372d8-91d4-3a28-8c3c-d9020684e6241",
+        "percent": "",
+        "reg_capital": "3454.728140万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "江苏芝麻能源科技有限公司",
+        "subscription": "3454.728140万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "56bc7d85-dff0-3500-a88f-ac2792e77cc51",
+        "percent": "",
+        "reg_capital": "10000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "博裕四期（厦门）股权投资合伙企业（有限合伙）",
+        "subscription": "10000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "ff34373b-dc95-38e1-b669-59921904fbde1",
+        "percent": "",
+        "reg_capital": "4698.130000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "深圳盛德新能源科技有限公司",
+        "subscription": "4698.130000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "b81a161b-9df5-3b09-9fad-ef65c5d2b78d1",
+        "percent": "",
+        "reg_capital": "154512.695700万人民币",
+        "reg_status": "在营（开业）企业",
+        "name": "广东东方精工科技股份有限公司",
+        "subscription": "154512.695700万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "1570592a-8a1e-3681-bc72-4909f9bdd6081",
+        "percent": "",
+        "reg_capital": "1268.350000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "常州孟腾智能装备有限公司",
+        "subscription": "1268.350000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "9751a85b-856d-390b-8701-986959a11e6e1",
+        "percent": "30.00%",
+        "reg_capital": "300000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "小康人寿保险有限责任公司",
+        "subscription": "90000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "5c3d34ca-3e43-3f65-b009-0846dd341c011",
+        "percent": "",
+        "reg_capital": "50000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "北京高瓴裕润股权投资基金合伙企业（有限合伙）",
+        "subscription": "50000.000000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "052a86fd-0ab0-3002-a9d7-b33c76eef0471",
+        "percent": "2.96%",
+        "reg_capital": "67600.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "江西升华新材料有限公司",
+        "subscription": "2000.96万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "c40f806f-5984-3848-b464-3f5ab81ba1861",
+        "percent": "100%",
+        "reg_capital": "20000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德时代未来能源（上海）研究院有限公司",
+        "subscription": "20000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "44fdd183-fcd9-3905-be29-8fd5c0d5503f1",
+        "percent": "100%",
+        "reg_capital": "20000万元",
+        "reg_status": "存续",
+        "name": "时代电服科技有限公司",
+        "subscription": "20000.0万元",
+        "isinvest": 0
+      },
+      {
+        "uuid": "c40f806f-5984-3848-b464-3f5ab81ba1861",
+        "percent": "100%",
+        "reg_capital": "10000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宁德时代（上海）新能源科技有限公司",
+        "subscription": "10000.0万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "3f5c6b94-9f7d-3910-9d49-7192b411e29d1",
+        "percent": "9.30%",
+        "reg_capital": "5512.820500万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "江西志存锂业有限公司",
+        "subscription": "512.69万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "b9c4bc72-3fea-35b6-807a-5fd4abb8c0ac1",
+        "percent": "",
+        "reg_capital": "160000.000000万人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "苏州天华时代新能源产业投资有限责任公司",
+        "subscription": "160000.000000万人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "d659245d-a782-38bd-87a3-b8504d5c468e1",
+        "percent": "",
+        "reg_capital": "250000万元人民币",
+        "reg_status": "在业",
+        "name": "苏州时代新安能源科技有限公司",
+        "subscription": "250000万元人民币",
+        "isinvest": 0
+      },
+      {
+        "uuid": "03f9a2a5-3418-349a-9f13-6689adf92fbf1",
+        "percent": "100%",
+        "reg_capital": "200000万元人民币",
+        "reg_status": "存续（在营、开业、在册）",
+        "name": "宜春时代新能源科技有限公司",
+        "subscription": "200000.0万元人民币",
+        "isinvest": 0
+      }
+    ]
+  }

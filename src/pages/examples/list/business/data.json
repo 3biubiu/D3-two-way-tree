@@ -1,59 +1,92 @@
 {
-    "code": 200,
-    "msg": "\u64cd\u4f5c\u6210\u529f",
-    "data": {
-        "id": 9213654,
-        "uuid": "ca4ae967-3e0c-3d2b-b0be-bcb3fafe0e2b",
-        "name": "宝鸡有一群怀揣着梦想的少年相信在牛大叔的带领下会创造生命的奇迹网络科技有限公司",
-        "holderList": [
-            {
-                "name": "\u4e2d\u56fd\u5149\u5927\u96c6\u56e2\u80a1\u4efd\u516c\u53f8",
-                "percent": "100.00%",
-                "reg_capital": "48538.150000\u4e07\u4eba\u6c11\u5e01",
-                "subscription": "48538.150000\u4e07\u4eba\u6c11\u5e01",
-                "isholder": 1,
-                "uuid": "b6874a9d-dbe9-314f-baba-9ff99d31f2c71",
-                "reg_status": "\u5b58\u7eed"
-            }
-        ],
-        
-        "investorList": [
-            {
-              "name": "梧桐树投资平台有限责任公司",
-              "percent": "65.00%",
-              "reg_capital": "23411635万人民币",
-              "subscription": "15217562.75万人民币",
-              "isholder": 1,
-              "uuid": "271a55bc-2c00-3d12-b3c9-66b67b9b56e11",
-              "reg_status": "存续"
-            },
-            {
-              "name": "中国进出口银行",
-              "percent": "15.00%",
-              "reg_capital": "5402685.0万人民币",
-              "subscription": "810402.75万人民币",
-              "isholder": 1,
-              "uuid": "0fc7a547-8846-3c62-b9e2-29f23b16c84d1",
-              "reg_status": "存续"
-            },
-            {
-              "name": "赛里斯投资有限责任公司",
-              "percent": "15.00%",
-              "reg_capital": "5402685.0万人民币",
-              "subscription": "810402.75万人民币",
-              "isholder": 0,
-              "uuid": "e5d420fa-c2bd-345f-8a26-568bc647c85c1",
-              "reg_status": "存续"
-            },
-            {
-              "name": "国开金融有限责任公司",
-              "percent": "5.00%",
-              "reg_capital": "1800895.0万人民币",
-              "subscription": "90044.75万人民币",
-              "isholder": 1,
-              "uuid": "01c87db4-d391-3f4a-b7e8-4c3d6e8326b71",
-              "reg_status": "存续"
-            }
-          ]
-    }
+  "code": 200,
+  "msg": "\u64cd\u4f5c\u6210\u529f",
+  "data": {
+    "id": 9213654,
+    "uuid": "ca4ae967-3e0c-3d2b-b0be-bcb3fafe0e2b",
+    "name": "宝鸡有一群怀揣着梦想的少年相信在牛大叔的带领下会创造生命的奇迹网络科技有限公司",
+    "holderList": [
+      {
+        "name": "其他股东",
+        "percent": "34.78%",
+        "reg_capital": "7059万人民币",
+        "subscription": "2455.12万人民币",
+        "isholder": 0
+      },
+      {
+        "name": "宁波梅山保税港区瑞庭投资有限公司",
+        "percent": "32.61%",
+        "reg_capital": "20000万人民币",
+        "subscription": "6522.0万人民币",
+        "isholder": 1,
+        "uuid": "0278a694-0d9a-3691-918a-972640cc1b5a1",
+        "reg_status": "存续"
+      },
+      {
+        "name": "黄世霖",
+        "percent": "16.30%",
+        "reg_capital": "10000万人民币",
+        "subscription": "1630.0万人民币",
+        "isholder": 0,
+        "reg_status": "暂无",
+        "uuid": ""
+      },
+      {
+        "name": "宁波联合创新新能源投资管理合伙企业（有限合伙）",
+        "percent": "9.78%",
+        "reg_capital": "6000万人民币",
+        "subscription": "586.8万人民币",
+        "isholder": 1,
+        "uuid": "8e4d93bb-e122-3fc8-8c0f-f40eb1e5c1db1",
+        "reg_status": "存续"
+      },
+      {
+        "name": "李平",
+        "percent": "6.52%",
+        "reg_capital": "4000万人民币",
+        "subscription": "260.8万人民币",
+        "isholder": 0,
+        "reg_status": "暂无",
+        "uuid": ""
+      }
+    ],
+    "investorList": [
+      {
+        "name": "梧桐树投资平台有限责任公司",
+        "percent": "65.00%",
+        "reg_capital": "23411635万人民币",
+        "subscription": "15217562.75万人民币",
+        "isholder": 1,
+        "uuid": "271a55bc-2c00-3d12-b3c9-66b67b9b56e11",
+        "reg_status": "存续"
+      },
+      {
+        "name": "中国进出口银行",
+        "percent": "15.00%",
+        "reg_capital": "5402685.0万人民币",
+        "subscription": "810402.75万人民币",
+        "isholder": 1,
+        "uuid": "0fc7a547-8846-3c62-b9e2-29f23b16c84d1",
+        "reg_status": "存续"
+      },
+      {
+        "name": "赛里斯投资有限责任公司",
+        "percent": "15.00%",
+        "reg_capital": "5402685.0万人民币",
+        "subscription": "810402.75万人民币",
+        "isholder": 1,
+        "uuid": "e5d420fa-c2bd-345f-8a26-568bc647c85c1",
+        "reg_status": "存续"
+      },
+      {
+        "name": "国开金融有限责任公司",
+        "percent": "5.00%",
+        "reg_capital": "1800895.0万人民币",
+        "subscription": "90044.75万人民币",
+        "isholder": 1,
+        "uuid": "01c87db4-d391-3f4a-b7e8-4c3d6e8326b71",
+        "reg_status": "存续"
+      }
+    ]
+  }
 }
